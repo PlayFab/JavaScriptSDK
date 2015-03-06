@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>PlayFab API Explorer</title>
+    <style type="text/css" media="screen">
+        body {
+            font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+            font-size: 62.5%;
+        }
+        #editor {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $( "input[type=submit], a, button" )
+                    .button()
+                    .click(function( event ) {
+                        runCode();
+                        event.preventDefault();
+                    });
+        });
+
+        function runCode(){
+            var editor = ace.edit("editor");
+
+            var iframe = document.getElementById("RunResult");
+
+            iframe.contentWindow.onload = function (){
+                editor.getValue();
+                return function() { alert("Done."); }
+            }
+            iframe.contentWindow.runCode(editor.getValue());
+        }
+    </script>
+</head>
+<body>
+<button>Run</button>
+<p></p>
+<div style="width: 1000px; height: 300px">
+
+    <div id="editor" style="width: 50%;height: inherit;float: left";>
+settings.title_id = "8D34";
+var requestExample = {"Username":"test11","Password":"test11"};
+exports.client.LoginWithPlayFab(requestExample,printResult);
+    </div>
+    <div style="width: 50%;height: inherit;float:right;">
+        <iframe src="./_runscript/" id="RunResult" name="RunResult" sandbox="allow-scripts allow-same-origin" frameborder="0" style="width: 100%;height: inherit;" ></iframe>
+
+        </iframe>
+    </div>
+</div>
+
+<script src="./ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+</script>
+</body>
+</html>
