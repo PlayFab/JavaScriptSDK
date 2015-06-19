@@ -83,8 +83,21 @@ function make_request(urlStr, request, authType, authValue, callback)
 
 
 
-
 exports.client = {};
+
+
+exports.client.GetPhotonAuthenticationToken = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetPhotonAuthenticationToken", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
 
 
 exports.client.LoginWithAndroidDeviceID = function(request, callback)
@@ -122,21 +135,6 @@ exports.client.LoginWithFacebook = function(request, callback)
 	request.TitleId = settings.title_id != null ? settings.title_id : request.TitleId; if(request.TitleId == null) throw "Must be have settings.title_id set to call this method";
 
 	make_request(get_server_url() + "/Client/LoginWithFacebook", request, null, null, function(error, result)
-	{
-		if(result != null)
-		settings.session_ticket = result.SessionTicket != null ? settings.session_ticket : settings.session_ticket;
-
-		if(callback != null)
-			callback(error, result);
-	});
-};
-
-
-exports.client.LoginWithGameCenter = function(request, callback)
-{
-	request.TitleId = settings.title_id != null ? settings.title_id : request.TitleId; if(request.TitleId == null) throw "Must be have settings.title_id set to call this method";
-
-	make_request(get_server_url() + "/Client/LoginWithGameCenter", request, null, null, function(error, result)
 	{
 		if(result != null)
 		settings.session_ticket = result.SessionTicket != null ? settings.session_ticket : settings.session_ticket;
@@ -264,6 +262,48 @@ exports.client.GetPlayFabIDsFromFacebookIDs = function(request, callback)
 };
 
 
+exports.client.GetPlayFabIDsFromGameCenterIDs = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetPlayFabIDsFromGameCenterIDs", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetPlayFabIDsFromGoogleIDs = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetPlayFabIDsFromGoogleIDs", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetPlayFabIDsFromSteamIDs = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetPlayFabIDsFromSteamIDs", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
 exports.client.GetUserCombinedInfo = function(request, callback)
 {
 	if (settings.session_ticket == null) throw "Must be logged in to call this method";
@@ -311,6 +351,20 @@ exports.client.LinkGameCenterAccount = function(request, callback)
 	if (settings.session_ticket == null) throw "Must be logged in to call this method";
 
 	make_request(get_server_url() + "/Client/LinkGameCenterAccount", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.LinkGoogleAccount = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/LinkGoogleAccount", request, "X-Authorization", settings.session_ticket, function(error, result)
 	{
 		if(result != null)
 		
@@ -394,6 +448,20 @@ exports.client.UnlinkGameCenterAccount = function(request, callback)
 	if (settings.session_ticket == null) throw "Must be logged in to call this method";
 
 	make_request(get_server_url() + "/Client/UnlinkGameCenterAccount", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.UnlinkGoogleAccount = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/UnlinkGoogleAccount", request, "X-Authorization", settings.session_ticket, function(error, result)
 	{
 		if(result != null)
 		
@@ -688,6 +756,20 @@ exports.client.ConsumeItem = function(request, callback)
 	if (settings.session_ticket == null) throw "Must be logged in to call this method";
 
 	make_request(get_server_url() + "/Client/ConsumeItem", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetCharacterInventory = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetCharacterInventory", request, "X-Authorization", settings.session_ticket, function(error, result)
 	{
 		if(result != null)
 		
@@ -1089,20 +1171,6 @@ exports.client.UpdateSharedGroupData = function(request, callback)
 };
 
 
-exports.client.RefreshPSNAuthToken = function(request, callback)
-{
-	if (settings.session_ticket == null) throw "Must be logged in to call this method";
-
-	make_request(get_server_url() + "/Client/RefreshPSNAuthToken", request, "X-Authorization", settings.session_ticket, function(error, result)
-	{
-		if(result != null)
-		
-		if(callback != null)
-			callback(error, result);
-	});
-};
-
-
 exports.client.GetCloudScriptUrl = function(request, callback)
 {
 	if (settings.session_ticket == null) throw "Must be logged in to call this method";
@@ -1137,6 +1205,104 @@ exports.client.GetContentDownloadUrl = function(request, callback)
 	if (settings.session_ticket == null) throw "Must be logged in to call this method";
 
 	make_request(get_server_url() + "/Client/GetContentDownloadUrl", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetCharacterLeaderboard = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetCharacterLeaderboard", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetLeaderboardAroundCharacter = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetLeaderboardAroundCharacter", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetLeaderboardForUserCharacters = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetLeaderboardForUserCharacters", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GrantCharacterToUser = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GrantCharacterToUser", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetCharacterData = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetCharacterData", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetCharacterReadOnlyData = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetCharacterReadOnlyData", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.UpdateCharacterData = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/UpdateCharacterData", request, "X-Authorization", settings.session_ticket, function(error, result)
 	{
 		if(result != null)
 		
