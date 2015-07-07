@@ -1312,4 +1312,74 @@ exports.client.UpdateCharacterData = function(request, callback)
 };
 
 
+exports.client.AcceptTrade = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/AcceptTrade", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.CancelTrade = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/CancelTrade", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetPlayerTrades = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetPlayerTrades", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.GetTradeStatus = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/GetTradeStatus", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
+exports.client.OpenTrade = function(request, callback)
+{
+	if (settings.session_ticket == null) throw "Must be logged in to call this method";
+
+	make_request(get_server_url() + "/Client/OpenTrade", request, "X-Authorization", settings.session_ticket, function(error, result)
+	{
+		if(result != null)
+		
+		if(callback != null)
+			callback(error, result);
+	});
+};
+
+
 
