@@ -51,8 +51,9 @@ if(!PlayFab._internalSettings) {
                 if (callback == null)
                     return;
 
-                var result = null;                
-                try {    
+                var result = null;
+                try {
+                    // window.console.log("parsing json result: " + xhr.responseText);
                     result = JSON.parse(xhr.responseText);
                 } catch (e) {
                     result = {
@@ -76,8 +77,8 @@ if(!PlayFab._internalSettings) {
                 if (callback == null)
                     return;
 
-                var result = null;                
-                try {    
+                var result = null;
+                try {
                     result = JSON.parse(xhr.responseText);
                 } catch (e) {
                     result = {
@@ -666,7 +667,7 @@ PlayFab.ClientApi = {
     RunCloudScript: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
-        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getLogicServerUrl(), request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getLogicServerUrl() + "/Client/RunCloudScript", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetContentDownloadUrl: function (request, callback) {
