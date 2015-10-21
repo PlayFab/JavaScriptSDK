@@ -23,7 +23,7 @@ if(!PlayFab._internalSettings) {
             return PlayFab._internalSettings.logicServerUrl;
         },
 
-        executeRequest: function (completeUrl, data, callback) {
+        executeRequest: function (completeUrl, data, authkey, authValue, callback) {
             if (callback != null && typeof (callback) != "function") {
                 throw "Callback must be null of a function";
             }
@@ -42,9 +42,8 @@ if(!PlayFab._internalSettings) {
 
             xhr.setRequestHeader('Content-Type', 'application/json');
 
-            if (PlayFab._internalSettings.sessionTicket != null) {
-                xhr.setRequestHeader("X-Authorization", PlayFab._internalSettings.sessionTicket);
-            }
+            if (authkey != null)
+                xhr.setRequestHeader(authkey, authValue);
 
             xhr.setRequestHeader('X-PlayFabSDK', "JavaScriptSDK-" + PlayFab._internalSettings.sdkVersion + "-" + PlayFab._internalSettings.apiVersion);
 
@@ -103,31 +102,31 @@ PlayFab.MatchmakerApi = {
     AuthUser: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
-        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/AuthUser", request, callback);
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/AuthUser", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     PlayerJoined: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
-        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/PlayerJoined", request, callback);
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/PlayerJoined", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     PlayerLeft: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
-        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/PlayerLeft", request, callback);
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/PlayerLeft", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     StartGame: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
-        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/StartGame", request, callback);
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/StartGame", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     UserInfo: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
-        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/UserInfo", request, callback);
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Matchmaker/UserInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
 };

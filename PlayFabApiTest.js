@@ -109,6 +109,14 @@ var PlayFabApiTests = {
         };
     },
 
+    VerifyNullError: function (result, error, assert, message) {
+        var success = (result != null && error == null)
+        if (!success)
+            assert.ok(success, message);
+        if (error != null)
+            assert.ok(false, "PlayFab error message: " + error.errorMessage);
+    },
+
     InvalidLogin: function (assert) {
         var invalidRequest = {
             TitleId: PlayFab.settings.titleId,
@@ -163,8 +171,7 @@ var PlayFabApiTests = {
         };
         var RegisterCallback = function (result, error) {
             // Second login MUST succeed
-            assert.ok(error == null, "Registration failed");
-            assert.ok(result != null, "Registration failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "Registration failed");
 
             // Log in again, this time with the newly registered account
             loginDone = assert.async();
@@ -173,8 +180,7 @@ var PlayFabApiTests = {
         };
         var MandatoryLoginCallback = function (result, error) {
             // Login MUST succeed at some point during this test
-            assert.ok(error == null, "Valid login failed");
-            assert.ok(result != null, "Valid login failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "Valid login failed");
             assert.ok(PlayFab._internalSettings.sessionTicket != null, "Login credentials not saved correctly");
             PlayFabApiTests.testData.playFabId = result.PlayFabId; // Save the PlayFabId, it will be used in other tests
             loginDone();
@@ -192,8 +198,7 @@ var PlayFabApiTests = {
         get2Done = assert.async();
 
         var GetDataCallback1 = function (result, error) {
-            assert.ok(error == null, "GetUserData failed");
-            assert.ok(result != null, "GetUserData failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GetUserData failed");
             assert.ok(result.Data != null, "GetUserData failed");
             assert.ok(result.Data.hasOwnProperty(PlayFabApiTests.testConstants.TEST_KEY), "GetUserData failed");
 
@@ -208,15 +213,13 @@ var PlayFabApiTests = {
             get1Done();
         };
         var UpdateDataCallback = function (result, error) {
-            assert.ok(result != null, "UpdateUserData failed");
-            assert.ok(error == null, "UpdateUserData failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "UpdateUserData failed");
 
             PlayFabClientSDK.GetUserData(getDataRequest, PlayFabApiTests.CallbackWrapper("GetDataCallback2", GetDataCallback2, assert));
             updateDone();
         };
         var GetDataCallback2 = function (result, error) {
-            assert.ok(result != null, "GetUserData failed");
-            assert.ok(error == null, "GetUserData failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GetUserData failed");
             assert.ok(result.Data != null, "GetUserData failed");
             assert.ok(result.Data.hasOwnProperty(PlayFabApiTests.testConstants.TEST_KEY), "GetUserData failed");
 
@@ -241,8 +244,7 @@ var PlayFabApiTests = {
         get2Done = assert.async();
 
         var GetStatsCallback1 = function (result, error) {
-            assert.ok(error == null, "GetUserStats failed");
-            assert.ok(result != null, "GetUserStats failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GetUserStats failed");
             assert.ok(result.UserStatistics != null, "GetUserStats failed");
             assert.ok(result.UserStatistics.hasOwnProperty(PlayFabApiTests.testConstants.TEST_STAT_NAME), "GetUserStats failed");
 
@@ -256,14 +258,12 @@ var PlayFabApiTests = {
             get1Done();
         };
         var UpdateStatsCallback = function (result, error) {
-            assert.ok(error == null, "UpdateUserStats failed");
-            assert.ok(result != null, "UpdateUserStats failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "UpdateUserStats failed");
             PlayFabClientSDK.GetUserStatistics(getStatsRequest, PlayFabApiTests.CallbackWrapper("GetStatsCallback2", GetStatsCallback2, assert));
             updateDone();
         };
         var GetStatsCallback2 = function (result, error) {
-            assert.ok(error == null, "GetUserStats failed");
-            assert.ok(result != null, "GetUserStats failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GetUserStats failed");
             assert.ok(result.UserStatistics != null, "GetUserStats failed");
             assert.ok(result.UserStatistics.hasOwnProperty(PlayFabApiTests.testConstants.TEST_STAT_NAME), "GetUserStats failed");
 
@@ -305,8 +305,7 @@ var PlayFabApiTests = {
         };
         var GrantCharCallback = function (result, error) {
             // Second character callback MUST succeed
-            assert.ok(error == null, "GrantCharacter failed");
-            assert.ok(result != null, "GrantCharacter failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GrantCharacter failed");
 
             // Get chars again, this time with the newly granted character
             getDone = assert.async();
@@ -315,8 +314,7 @@ var PlayFabApiTests = {
         };
         var MandatoryGetCharsCallback = function (result, error) {
             // GetChars MUST succeed at some point during this test
-            assert.ok(error == null, "GetChars failed");
-            assert.ok(result != null, "GetChars failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GetChars failed");
 
             for (var i in result.Characters)
                 if (result.Characters[i].CharacterName == PlayFabApiTests.titleData.characterName)
@@ -341,11 +339,8 @@ var PlayFabApiTests = {
             StatisticName: PlayFabApiTests.testConstants.TEST_STAT_NAME,
         };
 
-        window.console.log("LeaderBoard: " + PlayFabApiTests.testData.characterId);
-
         var GetLeaderboardCallback_C = function (result, error) {
-            assert.ok(error == null, "GetLeaderboard failed");
-            assert.ok(result != null, "GetLeaderboard failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GetLeaderboard failed");
             if (result != null) {
                 assert.ok(result.Leaderboard != null, "GetLeaderboard failed");
                 assert.ok(result.Leaderboard.length > 0, "Leaderboard had insufficient entries");
@@ -354,8 +349,7 @@ var PlayFabApiTests = {
             lbDone_C();
         };
         var GetLeaderboardCallback_S = function (result, error) {
-            assert.ok(error == null, "GetLeaderboard failed");
-            assert.ok(result != null, "GetLeaderboard failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GetLeaderboard failed");
             if (result != null) {
                 assert.ok(result.Leaderboard != null, "GetLeaderboard failed");
                 assert.ok(result.Leaderboard.length > 0, "Leaderboard had insufficient entries");
@@ -372,8 +366,7 @@ var PlayFabApiTests = {
 
     AccountInfo: function (assert) {
         var GetAccountInfoCallback = function (result, error) {
-            assert.ok(error == null, "GetAccountInfo failed");
-            assert.ok(result != null, "GetAccountInfo failed");
+            PlayFabApiTests.VerifyNullError(result, error, assert, "GetAccountInfo failed");
             assert.ok(result.AccountInfo != null, "GetAccountInfo failed");
             assert.ok(result.AccountInfo.TitleInfo != null, "GetAccountInfo failed");
             assert.ok(result.AccountInfo.TitleInfo.Origination != null, "GetAccountInfo failed");
@@ -386,6 +379,7 @@ var PlayFabApiTests = {
     },
 
     CloudScript: function (assert) {
+        window.console.log("Start CloudScript: " + PlayFab._internalSettings.logicServerUrl);
         var urlDone = null;
         var hwDone = null;
 
@@ -393,8 +387,7 @@ var PlayFabApiTests = {
             var getCloudUrlRequest = {};
 
             var GetCloudScriptUrlCallback = function (result, error) {
-                assert.ok(error == null, "GetCloudUrl failed");
-                assert.ok(result != null, "GetCloudUrl failed");
+                PlayFabApiTests.VerifyNullError(result, error, assert, "GetCloudUrl failed");
 
                 if (PlayFab._internalSettings.logicServerUrl != null)
                     PlayFabApiTests.CloudScript(assert); // Recursively call this test to get the case below
@@ -405,13 +398,13 @@ var PlayFabApiTests = {
             };
 
             urlDone = assert.async();
+            window.console.log("Get CloudScript url");
             PlayFabClientSDK.GetCloudScriptUrl(getCloudUrlRequest, PlayFabApiTests.CallbackWrapper("GetCloudScriptUrlCallback", GetCloudScriptUrlCallback, assert));
         } else {
             var helloWorldRequest = { ActionId: "helloWorld" };
 
             var HelloWorldCallback = function (result, error) {
-                assert.ok(error == null, "HelloWorld failed");
-                assert.ok(result != null, "HelloWorld failed");
+                PlayFabApiTests.VerifyNullError(result, error, assert, "HelloWorld failed");
                 if (result != null) {
                     assert.ok(result.Results != null, "HelloWorld failed");
                     assert.ok(result.Results.messageValue != null, "HelloWorld failed");
@@ -421,6 +414,7 @@ var PlayFabApiTests = {
             };
 
             hwDone = assert.async();
+            window.console.log("call helloworld");
             PlayFabClientSDK.RunCloudScript(helloWorldRequest, PlayFabApiTests.CallbackWrapper("HelloWorldCallback", HelloWorldCallback, assert));
         }
     },
