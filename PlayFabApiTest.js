@@ -182,7 +182,7 @@ var PlayFabApiTests = {
             // Login MUST succeed at some point during this test
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing Valid login result");
             assert.ok(PlayFab._internalSettings.sessionTicket != null, "Testing Login credentials cache");
-            PlayFabApiTests.testData.playFabId = result.PlayFabId; // Save the PlayFabId, it will be used in other tests
+            PlayFabApiTests.testData.playFabId = result.data.PlayFabId; // Save the PlayFabId, it will be used in other tests
             loginDone();
         };
         loginDone = assert.async();
@@ -199,11 +199,11 @@ var PlayFabApiTests = {
 
         var GetDataCallback1 = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetUserData result");
-            assert.ok(result.Data != null, "Testing GetUserData Data");
-            assert.ok(result.Data.hasOwnProperty(PlayFabApiTests.testConstants.TEST_KEY), "Testing GetUserData DataKey");
+            assert.ok(result.data.Data != null, "Testing GetUserData Data");
+            assert.ok(result.data.Data.hasOwnProperty(PlayFabApiTests.testConstants.TEST_KEY), "Testing GetUserData DataKey");
 
-            PlayFabApiTests.testData.testNumber = parseInt(result.Data[PlayFabApiTests.testConstants.TEST_KEY].Value, 10);
-            PlayFabApiTests.testData.testTimeStamp = new Date(result.Data[PlayFabApiTests.testConstants.TEST_KEY].LastUpdated);
+            PlayFabApiTests.testData.testNumber = parseInt(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].Value, 10);
+            PlayFabApiTests.testData.testTimeStamp = new Date(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].LastUpdated);
             PlayFabApiTests.testData.testNumber = (PlayFabApiTests.testData.testNumber + 1) % 100; // This test is about the expected value changing - but not testing more complicated issues like bounds
 
             var updateDataRequest = {}; // Can't create this until we have the testNumber value
@@ -220,11 +220,11 @@ var PlayFabApiTests = {
         };
         var GetDataCallback2 = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetUserData result");
-            assert.ok(result.Data != null, "Testing GetUserData Data");
-            assert.ok(result.Data.hasOwnProperty(PlayFabApiTests.testConstants.TEST_KEY), "Testing GetUserData DataKey");
+            assert.ok(result.data.Data != null, "Testing GetUserData Data");
+            assert.ok(result.data.Data.hasOwnProperty(PlayFabApiTests.testConstants.TEST_KEY), "Testing GetUserData DataKey");
 
-            var actualtestNumber = parseInt(result.Data[PlayFabApiTests.testConstants.TEST_KEY].Value, 10);
-            var actualTimeStamp = new Date(result.Data[PlayFabApiTests.testConstants.TEST_KEY].LastUpdated);
+            var actualtestNumber = parseInt(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].Value, 10);
+            var actualTimeStamp = new Date(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].LastUpdated);
 
             assert.equal(PlayFabApiTests.testData.testNumber, actualtestNumber, "Testing incrementing counter: " + PlayFabApiTests.testData.testNumber + "==" + actualtestNumber);
             assert.ok(actualTimeStamp > PlayFabApiTests.testData.testTimeStamp, "Testing incrementing timestamp: " + actualTimeStamp + " > " + PlayFabApiTests.testData.testTimeStamp);
@@ -245,10 +245,10 @@ var PlayFabApiTests = {
 
         var GetStatsCallback1 = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetUserStats result");
-            assert.ok(result.UserStatistics != null, "Testing GetUserData Stats");
-            assert.ok(result.UserStatistics.hasOwnProperty(PlayFabApiTests.testConstants.TEST_STAT_NAME), "Testing GetUserData Stat-value");
+            assert.ok(result.data.UserStatistics != null, "Testing GetUserData Stats");
+            assert.ok(result.data.UserStatistics.hasOwnProperty(PlayFabApiTests.testConstants.TEST_STAT_NAME), "Testing GetUserData Stat-value");
 
-            PlayFabApiTests.testData.testNumber = result.UserStatistics[PlayFabApiTests.testConstants.TEST_STAT_NAME];
+            PlayFabApiTests.testData.testNumber = result.data.UserStatistics[PlayFabApiTests.testConstants.TEST_STAT_NAME];
             PlayFabApiTests.testData.testNumber = (PlayFabApiTests.testData.testNumber + 1) % 100; // This test is about the expected value changing - but not testing more complicated issues like bounds
 
             var updateStatsRequest = {}; // Can't create this until we have the testNumber value
@@ -264,10 +264,10 @@ var PlayFabApiTests = {
         };
         var GetStatsCallback2 = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetUserStats result");
-            assert.ok(result.UserStatistics != null, "Testing GetUserData Stats");
-            assert.ok(result.UserStatistics.hasOwnProperty(PlayFabApiTests.testConstants.TEST_STAT_NAME), "Testing GetUserData Stat-value");
+            assert.ok(result.data.UserStatistics != null, "Testing GetUserData Stats");
+            assert.ok(result.data.UserStatistics.hasOwnProperty(PlayFabApiTests.testConstants.TEST_STAT_NAME), "Testing GetUserData Stat-value");
 
-            var actualtestNumber = result.UserStatistics[PlayFabApiTests.testConstants.TEST_STAT_NAME];
+            var actualtestNumber = result.data.UserStatistics[PlayFabApiTests.testConstants.TEST_STAT_NAME];
 
             assert.equal(PlayFabApiTests.testData.testNumber, actualtestNumber, "Testing incrementing stat: " + PlayFabApiTests.testData.testNumber + "==" + actualtestNumber);
             get2Done();
@@ -316,9 +316,9 @@ var PlayFabApiTests = {
             // GetChars MUST succeed at some point during this test
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetChars result");
 
-            for (var i in result.Characters)
-                if (result.Characters[i].CharacterName == PlayFabApiTests.titleData.characterName)
-                    PlayFabApiTests.testData.characterId = result.Characters[i].CharacterId; // Save the characterId, it will be used in other tests
+            for (var i in result.data.Characters)
+                if (result.data.Characters[i].CharacterName == PlayFabApiTests.titleData.characterName)
+                    PlayFabApiTests.testData.characterId = result.data.Characters[i].CharacterId; // Save the characterId, it will be used in other tests
 
             assert.ok(PlayFabApiTests.testData.characterId != null, "Searching for " + PlayFabApiTests.titleData.characterName + " on this account.");
             getDone();
@@ -342,8 +342,8 @@ var PlayFabApiTests = {
         var GetLeaderboardCallback_C = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetLeaderboard result");
             if (result != null) {
-                assert.ok(result.Leaderboard != null, "Testing GetLeaderboard content");
-                assert.ok(result.Leaderboard.length > 0, "Testing GetLeaderboard content-length");
+                assert.ok(result.data.Leaderboard != null, "Testing GetLeaderboard content");
+                assert.ok(result.data.Leaderboard.length > 0, "Testing GetLeaderboard content-length");
             }
 
             lbDone_C();
@@ -351,8 +351,8 @@ var PlayFabApiTests = {
         var GetLeaderboardCallback_S = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetLeaderboard result");
             if (result != null) {
-                assert.ok(result.Leaderboard != null, "Testing GetLeaderboard content");
-                assert.ok(result.Leaderboard.length > 0, "Testing GetLeaderboard content-length");
+                assert.ok(result.data.Leaderboard != null, "Testing GetLeaderboard content");
+                assert.ok(result.data.Leaderboard.length > 0, "Testing GetLeaderboard content-length");
             }
 
             lbDone_S();
@@ -367,10 +367,10 @@ var PlayFabApiTests = {
     AccountInfo: function (assert) {
         var GetAccountInfoCallback = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetAccountInfo result");
-            assert.ok(result.AccountInfo != null, "Testing GetAccountInfo");
-            assert.ok(result.AccountInfo.TitleInfo != null, "Testing TitleInfo");
-            assert.ok(result.AccountInfo.TitleInfo.Origination != null, "Testing Origination");
-            assert.ok(result.AccountInfo.TitleInfo.Origination.length > 0, "Testing Origination string-Enum");
+            assert.ok(result.data.AccountInfo != null, "Testing GetAccountInfo");
+            assert.ok(result.data.AccountInfo.TitleInfo != null, "Testing TitleInfo");
+            assert.ok(result.data.AccountInfo.TitleInfo.Origination != null, "Testing Origination");
+            assert.ok(result.data.AccountInfo.TitleInfo.Origination.length > 0, "Testing Origination string-Enum");
             getDone();
         };
 
@@ -404,9 +404,9 @@ var PlayFabApiTests = {
             var HelloWorldCallback = function (result, error) {
                 PlayFabApiTests.VerifyNullError(result, error, assert, "Testing HelloWorld response");
                 if (result != null) {
-                    assert.ok(result.Results != null, "Testing HelloWorld result");
-                    assert.ok(result.Results.messageValue != null, "Testing HelloWorld result message");
-                    assert.equal(result.Results.messageValue, "Hello " + PlayFabApiTests.testData.playFabId + "!", "HelloWorld cloudscript result: " + result.Results.messageValue);
+                    assert.ok(result.data.Results != null, "Testing HelloWorld result");
+                    assert.ok(result.data.Results.messageValue != null, "Testing HelloWorld result message");
+                    assert.equal(result.data.Results.messageValue, "Hello " + PlayFabApiTests.testData.playFabId + "!", "HelloWorld cloudscript result: " + result.data.Results.messageValue);
                 }
                 hwDone();
             };
