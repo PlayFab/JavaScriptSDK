@@ -2,7 +2,7 @@ var PlayFab = typeof PlayFab != 'undefined' ? PlayFab : {};
 
 if(!PlayFab.settings) {
     PlayFab.settings = {
-        titleID: null,
+        titleId: null,
         developerSecretKey: null // For security reasons you must never expose this value to the client or players
     }
 }
@@ -68,7 +68,7 @@ if(!PlayFab._internalSettings) {
                 result.CallBackTimeMS = new Date() - startTime;
 
                 if (result.code == 200)
-                    callback(result.data, null);
+                    callback(result, null);
                 else
                     callback(null, result);
             }
@@ -110,7 +110,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -121,7 +121,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -132,7 +132,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -143,7 +143,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -154,7 +154,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -165,7 +165,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -176,7 +176,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -187,7 +187,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -198,7 +198,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -209,7 +209,7 @@ PlayFab.ClientApi = {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
         var overloadCallback = function (result, error) {
-            if (result != null && result.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.SessionTicket; }
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
@@ -657,7 +657,7 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         var overloadCallback = function (result, error) {
-            PlayFab._internalSettings.logicServerUrl = result.Url;
+            PlayFab._internalSettings.logicServerUrl = result.data.Url;
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
