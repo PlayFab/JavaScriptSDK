@@ -10,8 +10,8 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.1.151026",
-        apiVersion: "1.8.20151026",
+        sdkVersion: "0.2.151109",
+        apiVersion: "1.9.20151109",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -320,6 +320,12 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Server/MoveItemToUserFromCharacter", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    RedeemCoupon: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Server/RedeemCoupon", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     ReportPlayer: function (request, callback) {
