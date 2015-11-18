@@ -18,7 +18,6 @@ var PlayFabApiTests = {
         playFabId: null, // Filled during login
         characterId: null, // Filled during character-access
         testNumber: null, // Used by several tests
-        testTimeStamp: null, // Used by several tests
     },
     testConstants: {
         TEST_KEY: "testCounter",
@@ -203,7 +202,6 @@ var PlayFabApiTests = {
             assert.ok(result.data.Data.hasOwnProperty(PlayFabApiTests.testConstants.TEST_KEY), "Testing GetUserData DataKey");
 
             PlayFabApiTests.testData.testNumber = parseInt(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].Value, 10);
-            PlayFabApiTests.testData.testTimeStamp = new Date(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].LastUpdated);
             PlayFabApiTests.testData.testNumber = (PlayFabApiTests.testData.testNumber + 1) % 100; // This test is about the expected value changing - but not testing more complicated issues like bounds
 
             var updateDataRequest = {}; // Can't create this until we have the testNumber value
@@ -224,10 +222,13 @@ var PlayFabApiTests = {
             assert.ok(result.data.Data.hasOwnProperty(PlayFabApiTests.testConstants.TEST_KEY), "Testing GetUserData DataKey");
 
             var actualtestNumber = parseInt(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].Value, 10);
-            var actualTimeStamp = new Date(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].LastUpdated);
+            var timeUpdated = new Date(result.data.Data[PlayFabApiTests.testConstants.TEST_KEY].LastUpdated);
 
+            var now = Date.now();
+            var testMin = now - (1000 * 60 * 5);
+            var testMax = now + (1000 * 60 * 5);
             assert.equal(PlayFabApiTests.testData.testNumber, actualtestNumber, "Testing incrementing counter: " + PlayFabApiTests.testData.testNumber + "==" + actualtestNumber);
-            assert.ok(actualTimeStamp > PlayFabApiTests.testData.testTimeStamp, "Testing incrementing timestamp: " + actualTimeStamp + " > " + PlayFabApiTests.testData.testTimeStamp);
+            assert.ok(testMin <= timeUpdated && timeUpdated <= testMax, "Testing incrementing timestamp: " + timeUpdated + " vs " + now);
             get2Done();
         };
 
