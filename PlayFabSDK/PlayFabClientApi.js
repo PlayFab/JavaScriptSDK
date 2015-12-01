@@ -10,7 +10,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.4.151123",
+        sdkVersion: "0.5.151130",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -147,6 +147,17 @@ PlayFab.ClientApi = {
                 callback(result, error);
         };
         PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Client/LoginWithFacebook", request, null, null, overloadCallback);
+    },
+
+    LoginWithGameCenter: function (request, callback) {
+        request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
+
+        var overloadCallback = function (result, error) {
+            if (result != null && result.data.SessionTicket != null) { PlayFab._internalSettings.sessionTicket = result.data.SessionTicket; }
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Client/LoginWithGameCenter", request, null, null, overloadCallback);
     },
 
     LoginWithGoogleAccount: function (request, callback) {
@@ -368,6 +379,12 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Client/GetFriendLeaderboard", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
+    GetFriendLeaderboardAroundCurrentUser: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Client/GetFriendLeaderboardAroundCurrentUser", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetLeaderboard: function (request, callback) {
