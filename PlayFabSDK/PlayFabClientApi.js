@@ -770,6 +770,12 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Client/OpenTrade", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
+    AttributeInstall: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Client/AttributeInstall", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
 };
 
 var PlayFabClientSDK = PlayFab.ClientApi;
