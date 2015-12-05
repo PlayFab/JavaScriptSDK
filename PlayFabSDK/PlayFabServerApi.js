@@ -123,6 +123,12 @@ PlayFab.ServerApi = {
         PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Server/SendPushNotification", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
+    DeleteUsers: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.executeRequest(PlayFab._internalSettings.getServerUrl() + "/Server/DeleteUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
     GetLeaderboard: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
