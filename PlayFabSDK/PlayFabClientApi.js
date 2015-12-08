@@ -811,7 +811,13 @@ PlayFab.ClientApi = {
     AttributeInstall: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/AttributeInstall", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+        var overloadCallback = function (result, error) {
+            PlayFab.settings.advertisingIdType += "_Successful";
+
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/AttributeInstall", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, overloadCallback);
     },
 
     _MultiStepClientLogin: function (needsAttribution) {
