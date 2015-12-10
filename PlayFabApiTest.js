@@ -42,6 +42,7 @@ var PlayFabApiTests = {
         QUnit.module("PlayFab Api Test");
         QUnit.test("InvalidLogin", PlayFabApiTests.InvalidLogin);
         QUnit.test("LoginOrRegister", PlayFabApiTests.LoginOrRegister);
+        QUnit.test("LoginWithAdvertisingId", PlayFabApiTests.LoginWithAdvertisingId);
 
         setTimeout(function () { PlayFabApiTests.PostLoginTests(0); }, 200);
         setTimeout(function () { PlayFabApiTests.PostCharacterTests(0); }, 200);
@@ -96,11 +97,22 @@ var PlayFabApiTests = {
 
         return titleDataValid;
     },
-
+    
     CallbackWrapper: function (callbackName, Callback, assert) {
         return function (result, error) {
             try {
                 Callback(result, error);
+            } catch (e) {
+                window.console.error("Exception thrown during " + callbackName + " callback: " + e.toString() + "\n" + e.stack); // Very irritatingly, qunit doesn't report failure results until all async callbacks return, which doesn't always happen when there's an exception
+                assert.ok(false, "Exception thrown during " + callbackName + " callback: " + e.toString() + "\n" + e.stack);
+            }
+        };
+    },
+    
+    SimpleCallbackWrapper: function (callbackName, Callback, assert) {
+        return function () {
+            try {
+                Callback();
             } catch (e) {
                 window.console.error("Exception thrown during " + callbackName + " callback: " + e.toString() + "\n" + e.stack); // Very irritatingly, qunit doesn't report failure results until all async callbacks return, which doesn't always happen when there's an exception
                 assert.ok(false, "Exception thrown during " + callbackName + " callback: " + e.toString() + "\n" + e.stack);
@@ -116,6 +128,11 @@ var PlayFabApiTests = {
             assert.ok(false, "PlayFab error message: " + error.errorMessage);
     },
 
+    /// <summary>
+    /// CLIENT API
+    /// Try to deliberately log in with an inappropriate password,
+    ///   and verify that the error displays as expected.
+    /// </summary>
     InvalidLogin: function (assert) {
         var invalidRequest = {
             TitleId: PlayFab.settings.titleId,
@@ -134,6 +151,10 @@ var PlayFabApiTests = {
         PlayFabClientSDK.LoginWithEmailAddress(invalidRequest, PlayFabApiTests.CallbackWrapper("InvalidLoginCallback", InvalidLoginCallback, assert));
     },
 
+    /// <summary>
+    /// CLIENT API
+    /// Log in or create a user, track their PlayFabId
+    /// </summary>
     LoginOrRegister: function (assert) {
         var loginRequest = {
             // Currently, you need to look up the correct format for this object in the API-docs:
@@ -188,6 +209,44 @@ var PlayFabApiTests = {
         PlayFabClientSDK.LoginWithEmailAddress(loginRequest, PlayFabApiTests.CallbackWrapper("OptionalLoginCallback", OptionalLoginCallback, assert));
     },
 
+    /// <summary>
+    /// CLIENT API
+    /// Test that the login call sequence sends the AdvertisingId when set
+    /// </summary>
+    LoginWithAdvertisingId: function (assert) {
+        PlayFab.settings.advertisingIdType = PlayFab.settings.AD_TYPE_ANDROID_ID;
+        PlayFab.settings.advertisingIdValue = "PlayFabTestId";
+
+        assert.expect(0);
+        var loginDone = assert.async();
+        var count = -1;
+        var FinishAdvertId = function () {
+            count += 1;
+            if (count > 10)
+                assert.ok(false, "The advertisingId was not submitted properly");
+            else if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_ANDROID_ID + "_Successful")
+                loginDone();
+            else
+                setTimeout(PlayFabApiTests.SimpleCallbackWrapper("FinishAdvertId", FinishAdvertId, assert), 200);
+        };
+        var AdvertLoginCallback = function (result, error) {
+            setTimeout(PlayFabApiTests.SimpleCallbackWrapper("FinishAdvertId", FinishAdvertId, assert), 200);
+        };
+        var loginRequest = {
+            TitleId: PlayFab.settings.titleId,
+            Email: PlayFabApiTests.titleData.userEmail,
+            Password: PlayFabApiTests.titleData.userPassword,
+        };
+        PlayFabClientSDK.LoginWithEmailAddress(loginRequest, PlayFabApiTests.CallbackWrapper("AdvertLoginCallback", AdvertLoginCallback, assert));
+    },
+
+    /// <summary>
+    /// CLIENT API
+    /// Test a sequence of calls that modifies saved data,
+    ///   and verifies that the next sequential API call contains updated data.
+    /// Verify that the data is correctly modified on the next call.
+    /// Parameter types tested: string, Dictionary<string, string>, DateTime
+    /// </summary>
     UserDataApi: function (assert) {
         var getDataRequest = {}; // null also works
 
@@ -236,6 +295,13 @@ var PlayFabApiTests = {
         PlayFabClientSDK.GetUserData(getDataRequest, PlayFabApiTests.CallbackWrapper("GetDataCallback1", GetDataCallback1, assert));
     },
 
+    /// <summary>
+    /// CLIENT API
+    /// Test a sequence of calls that modifies saved data,
+    ///   and verifies that the next sequential API call contains updated data.
+    /// Verify that the data is saved correctly, and that specific types are tested
+    /// Parameter types tested: Dictionary<string, int> 
+    /// </summary>
     UserStatisticsApi: function (assert) {
         var getStatsRequest = {}; // null also works
 
@@ -278,6 +344,11 @@ var PlayFabApiTests = {
         PlayFabClientSDK.GetUserStatistics(getStatsRequest, PlayFabApiTests.CallbackWrapper("GetStatsCallback1", GetStatsCallback1, assert));
     },
 
+    /// <summary>
+    /// SERVER API
+    /// Get or create the given test character for the given user
+    /// Parameter types tested: Contained-Classes, string
+    /// </summary>
     UserCharacter: function (assert) {
         var getCharsRequest = {};
         var grantCharRequest = {
@@ -328,6 +399,11 @@ var PlayFabApiTests = {
         PlayFabClientSDK.GetAllUsersCharacters(getCharsRequest, PlayFabApiTests.CallbackWrapper("OptionalGetCharsCallback", OptionalGetCharsCallback, assert));
     },
 
+    /// <summary>
+    /// CLIENT AND SERVER API
+    /// Test that leaderboard results can be requested
+    /// Parameter types tested: List of contained-classes
+    /// </summary>
     LeaderBoard: function (assert) {
         var clientRequest = {
             MaxResultsCount: 3,
@@ -365,6 +441,11 @@ var PlayFabApiTests = {
         PlayFabServerSDK.GetLeaderboardAroundCharacter(serverRequest, PlayFabApiTests.CallbackWrapper("GetLeaderboardCallback_S", GetLeaderboardCallback_S, assert));
     },
 
+    /// <summary>
+    /// CLIENT API
+    /// Test that AccountInfo can be requested
+    /// Parameter types tested: List of enum-as-strings converted to list of enums
+    /// </summary>
     AccountInfo: function (assert) {
         var GetAccountInfoCallback = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetAccountInfo result");
@@ -379,6 +460,10 @@ var PlayFabApiTests = {
         PlayFabClientSDK.GetAccountInfo({}, PlayFabApiTests.CallbackWrapper("GetAccountInfoCallback", GetAccountInfoCallback, assert));
     },
 
+    /// <summary>
+    /// CLIENT API
+    /// Test that CloudScript can be properly set up and invoked
+    /// </summary>
     CloudScript: function (assert) {
         var urlDone = null;
         var hwDone = null;
