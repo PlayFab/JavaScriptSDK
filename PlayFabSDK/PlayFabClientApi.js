@@ -888,6 +888,7 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         var overloadCallback = function (result, error) {
+            // Modify advertisingIdType:  Prevents us from sending the id multiple times, and allows automated tests to determine id was sent successfully
             PlayFab.settings.advertisingIdType += "_Successful";
 
             if (callback != null && typeof (callback) == "function")
