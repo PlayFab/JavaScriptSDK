@@ -322,6 +322,12 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromGoogleIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
+    GetPlayFabIDsFromKongregateIDs: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromKongregateIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
     GetPlayFabIDsFromPSNAccountIDs: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
