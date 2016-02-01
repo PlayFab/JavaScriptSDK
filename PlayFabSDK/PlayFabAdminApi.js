@@ -357,8 +357,9 @@ PlayFab.AdminApi = {
     },
 
     GetServerBuildInfo: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetServerBuildInfo", request, null, null, callback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetServerBuildInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     GetServerBuildUploadUrl: function (request, callback) {
