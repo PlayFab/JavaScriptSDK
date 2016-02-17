@@ -476,6 +476,18 @@ PlayFab.ServerApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/UpdateSharedGroupData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
+    GetCloudScriptUrl: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetCloudScriptUrl", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    RunServerCloudScript: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/RunServerCloudScript", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
     GetContentDownloadUrl: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
