@@ -18,7 +18,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.11.160222",
+        sdkVersion: "0.12.160307",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -236,20 +236,6 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithPlayFab", request, null, null, overloadCallback);
     },
 
-    LoginWithPSN: function (request, callback) {
-        request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
-
-        var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
-            }
-            if (callback != null && typeof (callback) == "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithPSN", request, null, null, overloadCallback);
-    },
-
     LoginWithSteam: function (request, callback) {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
@@ -262,20 +248,6 @@ PlayFab.ClientApi = {
                 callback(result, error);
         };
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithSteam", request, null, null, overloadCallback);
-    },
-
-    LoginWithXbox: function (request, callback) {
-        request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
-
-        var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
-            }
-            if (callback != null && typeof (callback) == "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithXbox", request, null, null, overloadCallback);
     },
 
     RegisterPlayFabUser: function (request, callback) {
@@ -326,12 +298,6 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromKongregateIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    GetPlayFabIDsFromPSNAccountIDs: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromPSNAccountIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetPlayFabIDsFromSteamIDs: function (request, callback) {
@@ -388,22 +354,10 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkKongregate", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
-    LinkPSNAccount: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkPSNAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
     LinkSteamAccount: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkSteamAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    LinkXboxAccount: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkXboxAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     SendAccountRecoveryEmail: function (request, callback) {
@@ -453,22 +407,10 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkKongregate", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
-    UnlinkPSNAccount: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkPSNAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
     UnlinkSteamAccount: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkSteamAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    UnlinkXboxAccount: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkXboxAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     UpdateUserTitleDisplayName: function (request, callback) {
@@ -517,6 +459,12 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayerStatistics", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
+    GetPlayerStatisticVersions: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayerStatisticVersions", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetUserData: function (request, callback) {
@@ -799,18 +747,6 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UpdateSharedGroupData", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    ConsumePSNEntitlements: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/ConsumePSNEntitlements", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    RefreshPSNAuthToken: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/RefreshPSNAuthToken", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetCloudScriptUrl: function (request, callback) {
