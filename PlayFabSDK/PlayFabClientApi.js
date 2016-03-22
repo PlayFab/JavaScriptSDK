@@ -749,6 +749,12 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UpdateSharedGroupData", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
+    ExecuteCloudScript: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/ExecuteCloudScript", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
     GetCloudScriptUrl: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
