@@ -18,7 +18,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.12.160307",
+        sdkVersion: "0.13.160328",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -747,6 +747,12 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UpdateSharedGroupData", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
+    ExecuteCloudScript: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/ExecuteCloudScript", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetCloudScriptUrl: function (request, callback) {
