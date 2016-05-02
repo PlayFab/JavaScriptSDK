@@ -18,7 +18,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.16.160425",
+        sdkVersion: "0.17.160502",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -306,6 +306,12 @@ PlayFab.AdminApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetStoreItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    SetStoreSegmentOverrides: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetStoreSegmentOverrides", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     SetTitleData: function (request, callback) {
