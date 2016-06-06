@@ -19,6 +19,7 @@ if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
         sdkVersion: "0.18.160523",
+        buildIdentifier: "jbuild_javascriptsdk_1170",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -104,6 +105,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.MatchmakerApi = {
+
     AuthUser: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 

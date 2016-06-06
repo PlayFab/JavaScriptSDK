@@ -19,6 +19,7 @@ if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
         sdkVersion: "0.18.160523",
+        buildIdentifier: "jbuild_javascriptsdk_1170",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -104,6 +105,11 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.ClientApi = {
+
+    IsClientLoggedIn: function () {
+        return PlayFab._internalSettings.sessionTicket != null && PlayFab._internalSettings.sessionTicket.length > 0;
+    },
+
     GetPhotonAuthenticationToken: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
