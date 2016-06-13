@@ -18,8 +18,8 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.19.160606",
-        buildIdentifier: "jbuild_javascriptsdk_1180",
+        sdkVersion: "0.20.160613",
+        buildIdentifier: "jbuild_0",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 

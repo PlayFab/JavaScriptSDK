@@ -18,8 +18,8 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.19.160606",
-        buildIdentifier: "jbuild_javascriptsdk_1180",
+        sdkVersion: "0.20.160613",
+        buildIdentifier: "jbuild_0",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -440,6 +440,12 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/RedeemMatchmakerTicket", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    SetGameServerInstanceData: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/SetGameServerInstanceData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     SetGameServerInstanceState: function (request, callback) {
