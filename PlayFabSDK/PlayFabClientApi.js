@@ -19,7 +19,7 @@ if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
         sdkVersion: "0.22.160705",
-        buildIdentifier: "jbuild_javascriptsdk_1",
+        buildIdentifier: "jbuild_javascriptsdk_0",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -256,6 +256,20 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithSteam", request, null, null, overloadCallback);
     },
 
+    LoginWithTwitch: function (request, callback) {
+        request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
+
+        var overloadCallback = function (result, error) {
+            if (result != null && result.data.SessionTicket != null) {
+                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            }
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithTwitch", request, null, null, overloadCallback);
+    },
+
     RegisterPlayFabUser: function (request, callback) {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
@@ -318,6 +332,12 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromSteamIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
+    GetPlayFabIDsFromTwitchIDs: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromTwitchIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
     GetUserCombinedInfo: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
@@ -370,6 +390,12 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkSteamAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
+    LinkTwitch: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkTwitch", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     ReportPlayer: function (request, callback) {
@@ -429,6 +455,12 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkSteamAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
+    UnlinkTwitch: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkTwitch", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     UpdateUserTitleDisplayName: function (request, callback) {
