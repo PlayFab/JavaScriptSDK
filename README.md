@@ -80,7 +80,7 @@ function VanillaPFTemplate(bar)
             if ( response && response["code"] == 200 )
             {
                 // SUCCESS >>
-                console.log( j(response) );
+                console.log( JSON.stringify(response) );
                 var data = response["data"];
 
                 if (data)
@@ -92,6 +92,7 @@ function VanillaPFTemplate(bar)
             else
             {
                 // FAIL >>
+                console.log( JSON.stringify(err) );
                 var errMainCode = err["code"];
                 var errStatus = err["status"];
                 var errCode = err["errorCode"];
