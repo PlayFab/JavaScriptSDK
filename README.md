@@ -85,6 +85,7 @@ function VanillaPFTemplate(bar)
 
                 if (data)
                 {
+                    var data = response["data"];
                     // TODO: Handle success
                 }
             }
