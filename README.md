@@ -102,7 +102,7 @@ function VanillaPFTemplate(bar)
 
                 // TODO: Handle errors
                 // Example below for sweetAlert2 @ https://github.com/limonte/sweetalert2
-                //swal(status, errMsg, "error");
+                //swal(errStatus, errMsg, "error");
             }
         }
     }
