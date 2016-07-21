@@ -55,8 +55,61 @@ Our Developer Success Team can assist with answering any questions as well as pr
 
 [Forums, Support and Knowledge Base](https://community.playfab.com/hc/en-us)
 
+6. Example Usage (Template):
+----
+```
+function VanillaPFTemplate(bar)
+{
+    function PFTemplate(bar)
+    {
+        console.log("@ PFTemplate..");
 
-6. Copyright and Licensing Information:
+        var req =
+        {
+            // TODO: Replace "fu" with your own request JSON KVP's
+            "fu": bar
+        };
+
+        // TODO: Uncomment below and replace FuBar with 
+        // a proper PlayFabClientSDK.function(request, callback)
+
+        // Callback =>
+        function onPFTemplate(response, err)
+        {
+            console.log("@ onPFTemplate()..");
+            if ( response && response["code"] == 200 )
+            {
+                // SUCCESS >>
+                console.log( j(response) );
+                var data = response["data"];
+
+                if (data)
+                {
+                    // TODO: Handle success
+                }
+            }
+            else
+            {
+                // FAIL >>
+                var errMainCode = err["code"];
+                var errStatus = err["status"];
+                var errCode = err["errorCode"];
+                var errMsg = err["errorMessage"];
+
+                var errMainTxt = "**ERR " + errMainCode + " (" + errStatus + ") @ onPFTemplate: ";
+                var errPlayFabTxt = errMsg + "(" + errCode + ")";
+                console.log(errMainTxt + errPlayFabTxt);
+
+                // TODO: Handle errors
+                // Example below for sweetAlert2 @ https://github.com/limonte/sweetalert2
+                //swal(status, errMsg, "error");
+            }
+        }
+    }
+}
+```
+
+7. Copyright and Licensing Information:
 ----
   Apache License --
   Version 2.0, January 2004
