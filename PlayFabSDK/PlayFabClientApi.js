@@ -968,9 +968,9 @@ PlayFab.ClientApi = {
     },
 
     GetPlayerSegments: function (request, callback) {
-        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayerSegments", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayerSegments", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     _MultiStepClientLogin: function (needsAttribution) {
