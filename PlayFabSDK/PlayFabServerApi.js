@@ -18,8 +18,8 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.24.160725",
-        buildIdentifier: "jbuild_javascriptsdk_1",
+        sdkVersion: "0.25.160801",
+        buildIdentifier: "jbuild_javascriptsdk_0",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -152,6 +152,12 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetLeaderboardAroundUser", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetPlayerCombinedInfo: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetPlayerCombinedInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     GetPlayerStatistics: function (request, callback) {
@@ -614,6 +620,24 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/UpdateCharacterReadOnlyData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetAllSegments: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetAllSegments", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetPlayerSegments: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetPlayerSegments", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetPlayersInSegment: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetPlayersInSegment", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 };
 
