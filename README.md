@@ -58,54 +58,70 @@ Our Developer Success Team can assist with answering any questions as well as pr
 6. Example Usage (Template):
 ----
 ```
-function VanillaPFTemplate(bar)
+// https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress
+function PFLoginWithEmailAddress(email, password)
 {
-    function PFTemplate(bar)
-    {
-        console.log("@ PFTemplate..");
+    // Request JSON
+    var req = {
+            "Email": email,
+            "Password": password
+            "InfoRequestParameters" : {}
+    };
 
-        var req =
-        {
-            // TODO: Replace "fu" with your own request JSON KVP's
-            "fu": bar
-        };
+    // [Optional: If you use Node.js, send it via Ajax with the same callback INSTEAD of the below line]
+    PlayFabClientSDK.LoginWithEmailAddress(req, onPFLoginWithEmailAddress)
 
-        // TODO: Uncomment below and replace FuBar with 
-        // a proper PlayFabClientSDK.function(request, callback)
+    // Callback =>
+    function onPFLoginWithEmailAddress(response, err) {
+        if (err) {
+            // PLAYFAB ERR >>
+            var errCode = err["errorCode"];
+            switch (errCode) {
+                case 1000:
+                    alert("Invalid Parameters");
+                    break;
+                case 1004:
+                    alert("Invalid Title ID";
+                    break;
+                case 1001:
+                    alert("Account Not Found");
+                    break;
+                case 1002:
+                    alert("Account is Banned");
+                    break;
+                case 1142:
+                    alert("Invalid Email/Password");
+                default:
+                    alert("Unknown Error");
+            }
+        }
+        
+        if ( response && response["code"] == 200 ) {
+            // SUCCESS >>
+            console.log( JSON.stringify(response) );
+            var data = response["data"];
 
-        // Callback =>
-        function onPFTemplate(response, err)
-        {
-            console.log("@ onPFTemplate()..");
-            if ( response && response["code"] == 200 )
-            {
-                // SUCCESS >>
-                console.log( JSON.stringify(response) );
+            if (data) {
                 var data = response["data"];
+                alert("Successfully logged in via LoginWithEmailAddress");
+            } 
+        }
+        else
+        {
+            // HTTP ERR >>
+            console.log( JSON.stringify(err) );
+            var errMainCode = err["code"];
+            var errStatus = err["status"];
+            var errCode = err["errorCode"];
+            var errMsg = err["errorMessage"];
 
-                if (data)
-                {
-                    var data = response["data"];
-                    // TODO: Handle success
-                }
-            }
-            else
-            {
-                // FAIL >>
-                console.log( JSON.stringify(err) );
-                var errMainCode = err["code"];
-                var errStatus = err["status"];
-                var errCode = err["errorCode"];
-                var errMsg = err["errorMessage"];
+            var errMainTxt = "**ERR " + errMainCode + " (" + errStatus + ") @ LoginWithEmailAddress: ";
+            var errPlayFabTxt = errMsg + "(" + errCode + ")";
+            alert(errMainTxt + errPlayFabTxt);
 
-                var errMainTxt = "**ERR " + errMainCode + " (" + errStatus + ") @ onPFTemplate: ";
-                var errPlayFabTxt = errMsg + "(" + errCode + ")";
-                console.log(errMainTxt + errPlayFabTxt);
-
-                // TODO: Handle errors
-                // Example below for sweetAlert2 @ https://github.com/limonte/sweetalert2
-                //swal(errStatus, errMsg, "error");
-            }
+            // Handle errors
+            alert(errStatus + ": " + errMsg);
+            
         }
     }
 }
@@ -118,3 +134,6 @@ function VanillaPFTemplate(bar)
   http://www.apache.org/licenses/
 
   Full details available within the LICENSE file.
+  
+  Acknowledgements:
+  Example Usage provided by [dylanh724](https://www.github.com/dylanh724)
