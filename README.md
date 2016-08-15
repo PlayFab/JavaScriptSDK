@@ -55,11 +55,85 @@ Our Developer Success Team can assist with answering any questions as well as pr
 
 [Forums, Support and Knowledge Base](https://community.playfab.com/hc/en-us)
 
+6. Example Usage (Template):
+----
+```
+// https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress
+function PFLoginWithEmailAddress(email, password)
+{
+    // Request JSON
+    var req = {
+            "Email": email,
+            "Password": password
+            "InfoRequestParameters" : {}
+    };
 
-6. Copyright and Licensing Information:
+    // [Optional: If you use Node.js, send it via Ajax with the same callback INSTEAD of the below line]
+    PlayFabClientSDK.LoginWithEmailAddress(req, onPFLoginWithEmailAddress)
+
+    // Callback =>
+    function onPFLoginWithEmailAddress(response, err) {
+        if (err) {
+            // PLAYFAB ERR >>
+            var errCode = err["errorCode"];
+            switch (errCode) {
+                case 1000:
+                    alert("Invalid Parameters");
+                    break;
+                case 1004:
+                    alert("Invalid Title ID";
+                    break;
+                case 1001:
+                    alert("Account Not Found");
+                    break;
+                case 1002:
+                    alert("Account is Banned");
+                    break;
+                case 1142:
+                    alert("Invalid Email/Password");
+                default:
+                    alert("Unknown Error");
+            }
+        }
+        
+        if ( response && response["code"] == 200 ) {
+            // SUCCESS >>
+            console.log( JSON.stringify(response) );
+            var data = response["data"];
+
+            if (data) {
+                var data = response["data"];
+                alert("Successfully logged in via LoginWithEmailAddress");
+            } 
+        }
+        else
+        {
+            // HTTP ERR >>
+            console.log( JSON.stringify(err) );
+            var errMainCode = err["code"];
+            var errStatus = err["status"];
+            var errCode = err["errorCode"];
+            var errMsg = err["errorMessage"];
+
+            var errMainTxt = "**ERR " + errMainCode + " (" + errStatus + ") @ LoginWithEmailAddress: ";
+            var errPlayFabTxt = errMsg + "(" + errCode + ")";
+            alert(errMainTxt + errPlayFabTxt);
+
+            // Handle errors
+            alert(errStatus + ": " + errMsg);
+            
+        }
+    }
+}
+```
+
+7. Copyright and Licensing Information:
 ----
   Apache License --
   Version 2.0, January 2004
   http://www.apache.org/licenses/
 
   Full details available within the LICENSE file.
+  
+  Acknowledgements:
+  Example Usage provided by [dylanh724](https://www.github.com/dylanh724)
