@@ -997,6 +997,12 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayerSegments", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
+    GetPlayerTags: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayerTags", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
     _MultiStepClientLogin: function (needsAttribution) {
         if (needsAttribution && !PlayFab.settings.disableAdvertising && PlayFab.settings.advertisingIdType !== null && PlayFab.settings.advertisingIdValue !== null) {
             var request = {};
