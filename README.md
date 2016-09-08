@@ -57,83 +57,72 @@ Our Developer Success Team can assist with answering any questions as well as pr
 
 6. Example Usage (Template):
 ----
+
 ```
-// https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress
-function PFLoginWithEmailAddress(email, password)
+// In this javascript example, it is assumed your html will include the PlayFab JavaScript Client SDK
+// For example, in your html header, add this:
+// <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
+
+// You must always set your titleId first
+PlayFab.settings.titleId = null; // Set your titleId here.  Example: "6195"
+
+// Utility function (We may add this to the core sdk later)
+function CompileErrorReport(error) {
+    if (error == null)
+        return "";
+    var fullErrors = error.errorMessage;
+    for (var paramName in error.errorDetails)
+        for (var msgIdx in error.errorDetails[paramName])
+            fullErrors += "\n" + paramName + ": " + error.errorDetails[paramName][msgIdx];
+    return fullErrors;
+}
+
+// Define a callback function (In this case for any PlayFab-Login)
+function OnLogin(response, error) {
+    if (response && response["code"] == 200) {
+        console.log("Login Successful: " + response.data.PlayFabId)
+    }
+    else {
+        console.log("LoginWithEmailAddress Failed: \n" + CompileErrorReport(error))
+    }
+}
+
+// Username and email is a typical login for Web-Pages
+function ExampleLoginWithEmailAddress(email, password)
 {
     // Request JSON
-    var req = {
-            "Email": email,
-            "Password": password
-            "InfoRequestParameters" : {}
+    var loginRequest = {
+        TitleId: PlayFab.settings.titleId,
+        "Email": email,
+        "Password": password
     };
+    // https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress
+    PlayFabClientSDK.LoginWithEmailAddress(loginRequest, OnLogin);
+}
 
-    // [Optional: If you use Node.js, send it via Ajax with the same callback INSTEAD of the below line]
-    PlayFabClientSDK.LoginWithEmailAddress(req, onPFLoginWithEmailAddress)
-
-    // Callback =>
-    function onPFLoginWithEmailAddress(response, err) {
-        if (err) {
-            // PLAYFAB ERR >>
-            var errCode = err["errorCode"];
-            switch (errCode) {
-                case 1000:
-                    alert("Invalid Parameters");
-                    break;
-                case 1004:
-                    alert("Invalid Title ID";
-                    break;
-                case 1001:
-                    alert("Account Not Found");
-                    break;
-                case 1002:
-                    alert("Account is Banned");
-                    break;
-                case 1142:
-                    alert("Invalid Email/Password");
-                default:
-                    alert("Unknown Error");
-            }
-        }
-        
-        if ( response && response["code"] == 200 ) {
-            // SUCCESS >>
-            console.log( JSON.stringify(response) );
-            var data = response["data"];
-
-            if (data) {
-                var data = response["data"];
-                alert("Successfully logged in via LoginWithEmailAddress");
-            } 
-        }
-        else
-        {
-            // HTTP ERR >>
-            console.log( JSON.stringify(err) );
-            var errMainCode = err["code"];
-            var errStatus = err["status"];
-            var errCode = err["errorCode"];
-            var errMsg = err["errorMessage"];
-
-            var errMainTxt = "**ERR " + errMainCode + " (" + errStatus + ") @ LoginWithEmailAddress: ";
-            var errPlayFabTxt = errMsg + "(" + errCode + ")";
-            alert(errMainTxt + errPlayFabTxt);
-
-            // Handle errors
-            alert(errStatus + ": " + errMsg);
-            
-        }
-    }
+// CustomId should only be used for testing or evaluating PlayFab, but it can be any string
+function ExampleLoginWithCustomId(customId) {
+    // Request JSON
+    var loginRequest = {
+        TitleId: PlayFab.settings.titleId,
+        CustomId: PlayFab._internalSettings.buildIdentifier,
+        CreateAccount: true
+    };
+    // https://api.playfab.com/Documentation/Client/method/LoginWithCustomID
+    PlayFabClientSDK.LoginWithCustomID(loginRequest, OnLogin);
 }
 ```
 
-7. Copyright and Licensing Information:
+
+7. Acknowledgements
+----
+  Example Usage provided by [dylanh724](https://www.github.com/dylanh724)
+
+
+8. Copyright and Licensing Information:
 ----
   Apache License --
   Version 2.0, January 2004
   http://www.apache.org/licenses/
 
   Full details available within the LICENSE file.
-  
-  Acknowledgements:
-  Example Usage provided by [dylanh724](https://www.github.com/dylanh724)

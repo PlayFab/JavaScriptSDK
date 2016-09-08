@@ -18,7 +18,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.25.160801",
+        sdkVersion: "0.28.160829",
         buildIdentifier: "jbuild_javascriptsdk_0",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
@@ -106,10 +106,22 @@ if(!PlayFab._internalSettings) {
 
 PlayFab.AdminApi = {
 
+    BanUsers: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/BanUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
     GetUserAccountInfo: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserAccountInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetUserBans: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserBans", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     ResetUsers: function (request, callback) {
@@ -118,10 +130,28 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
+    RevokeAllBansForUser: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RevokeAllBansForUser", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    RevokeBans: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RevokeBans", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
     SendAccountRecoveryEmail: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SendAccountRecoveryEmail", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    UpdateBans: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateBans", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     UpdateUserTitleDisplayName: function (request, callback) {
@@ -260,6 +290,12 @@ PlayFab.AdminApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddVirtualCurrencyTypes", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    DeleteStore: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteStore", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     GetCatalogItems: function (request, callback) {
@@ -496,6 +532,12 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetCharacterStatistics", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
+    AddPlayerTag: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddPlayerTag", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
     GetAllSegments: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
@@ -512,6 +554,18 @@ PlayFab.AdminApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayersInSegment", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetPlayerTags: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerTags", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    RemovePlayerTag: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RemovePlayerTag", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 };
 
