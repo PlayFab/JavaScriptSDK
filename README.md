@@ -22,6 +22,8 @@ These files are an internal PlayFab testing project, which activates and tests t
 
 They require a testTitleData.json file to exist, which is described below.
 
+This SDK can alternatively be obtained via our CDN. Additional details can be found [here](https://playfab.com/playfab-now-serving-javascript-sdk-via-cdn/).
+
 
 4. testTitleData.json file required for example test files.
 ----
