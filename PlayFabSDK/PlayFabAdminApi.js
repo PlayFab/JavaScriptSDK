@@ -18,8 +18,8 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.28.160829",
-        buildIdentifier: "jbuild_javascriptsdk_0",
+        sdkVersion: "0.29.160912",
+        buildIdentifier: "jbuild_javascriptsdk_1",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -536,6 +536,12 @@ PlayFab.AdminApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddPlayerTag", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetAllActionGroups: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetAllActionGroups", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     GetAllSegments: function (request, callback) {
