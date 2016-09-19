@@ -18,8 +18,8 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.29.160912",
-        buildIdentifier: "jbuild_javascriptsdk_1",
+        sdkVersion: "0.30.160919",
+        buildIdentifier: "jbuild_javascriptsdk_0",
         productionServerUrl: ".playfabapi.com",
         logicServerUrl: null,
 
@@ -232,10 +232,22 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/IncrementPlayerStatisticVersion", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
+    RefundPurchase: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RefundPurchase", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
     ResetUserStatistics: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetUserStatistics", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    ResolvePurchaseDispute: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResolvePurchaseDispute", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     UpdatePlayerStatisticDefinition: function (request, callback) {
