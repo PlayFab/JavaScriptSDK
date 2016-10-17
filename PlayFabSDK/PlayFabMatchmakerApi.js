@@ -11,24 +11,19 @@ if(!PlayFab.settings) {
         // Disabling this may prevent your advertising-related PlayFab marketplace partners from working correctly
         disableAdvertising: false,
         AD_TYPE_IDFA: "Idfa",
-        AD_TYPE_ANDROID_ID: "Android_Id"
+        AD_TYPE_ANDROID_ID: "Adid"
     }
 }
 
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.31.161003",
+        sdkVersion: "0.32.161017",
         buildIdentifier: "jbuild_javascriptsdk_1",
         productionServerUrl: ".playfabapi.com",
-        logicServerUrl: null,
 
         GetServerUrl: function () {
             return "https://" + PlayFab.settings.titleId + PlayFab._internalSettings.productionServerUrl;
-        },
-
-        GetLogicServerUrl: function () {
-            return PlayFab._internalSettings.logicServerUrl;
         },
 
         ExecuteRequest: function (completeUrl, data, authkey, authValue, callback) {
