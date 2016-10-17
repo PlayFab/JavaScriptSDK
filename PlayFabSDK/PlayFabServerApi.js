@@ -11,24 +11,19 @@ if(!PlayFab.settings) {
         // Disabling this may prevent your advertising-related PlayFab marketplace partners from working correctly
         disableAdvertising: false,
         AD_TYPE_IDFA: "Idfa",
-        AD_TYPE_ANDROID_ID: "Android_Id"
+        AD_TYPE_ANDROID_ID: "Adid"
     }
 }
 
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.31.161003",
+        sdkVersion: "0.32.161017",
         buildIdentifier: "jbuild_javascriptsdk_1",
         productionServerUrl: ".playfabapi.com",
-        logicServerUrl: null,
 
         GetServerUrl: function () {
             return "https://" + PlayFab.settings.titleId + PlayFab._internalSettings.productionServerUrl;
-        },
-
-        GetLogicServerUrl: function () {
-            return PlayFab._internalSettings.logicServerUrl;
         },
 
         ExecuteRequest: function (completeUrl, data, authkey, authValue, callback) {
@@ -244,15 +239,6 @@ PlayFab.ServerApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetUserReadOnlyData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
-    /**
-     * @deprecated Please use GetPlayerStatistics instead. 
-     */
-    GetUserStatistics: function (request, callback) {
-        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetUserStatistics", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
-    },
-
     UpdatePlayerStatistics: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
@@ -293,15 +279,6 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/UpdateUserReadOnlyData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
-    },
-
-    /**
-     * @deprecated Please use UpdatePlayerStatistics instead. 
-     */
-    UpdateUserStatistics: function (request, callback) {
-        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/UpdateUserStatistics", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     GetCatalogItems: function (request, callback) {
@@ -560,15 +537,6 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/AwardSteamAchievement", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
-    },
-
-    /**
-     * @deprecated Please use WritePlayerEvent instead. 
-     */
-    LogEvent: function (request, callback) {
-        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/LogEvent", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     WriteCharacterEvent: function (request, callback) {

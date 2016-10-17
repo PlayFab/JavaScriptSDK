@@ -12,7 +12,7 @@ if (typeof QUnit == "undefined") {
 }
 
 var PlayFabApiTests = {
-    testTitleDataFilename: "testTitleData.json", // TODO: Do not hard code the location of this file (javascript can't really do relative paths either)
+    testTitleDataFilename: "testTitleData.json", // Since you never want this to be public, a web page can ONLY load this if it's a local file in the same directory (Also can't convert to environment variable)
     titleData: {
         titleId: null, // put titleId here
         developerSecretKey: null, // put secretKey here
@@ -70,6 +70,7 @@ var PlayFabApiTests = {
             QUnit.test("LeaderBoard", PlayFabApiTests.LeaderBoard);
             QUnit.test("AccountInfo", PlayFabApiTests.AccountInfo);
             QUnit.test("CloudScript", PlayFabApiTests.CloudScript);
+            QUnit.test("CloudScriptError", PlayFabApiTests.CloudScriptError);
             QUnit.test("WriteEvent", PlayFabApiTests.WriteEvent);
         }
     },
@@ -508,6 +509,32 @@ var PlayFabApiTests = {
         };
         
         PlayFabClientSDK.ExecuteCloudScript(helloWorldRequest, PlayFabApiTests.CallbackWrapper("helloWorldCallback", helloWorldCallback, assert));
+    },
+    
+    /// <summary>
+    /// CLIENT API
+    /// Test that CloudScript errors can be deciphered
+    /// </summary>
+    CloudScriptError: function (assert) {
+        var errDone = assert.async();
+        
+        var errRequest = {
+            // Currently, you need to look up the correct format for this object in the API-docs:
+            //   https://api.playfab.com/Documentation/Client/method/ExecuteCloudScript
+            FunctionName: "throwError"
+        };
+        
+        var errCallback = function (result, error) {
+            PlayFabApiTests.VerifyNullError(result, error, assert, "Testing Cloud Script Error result");
+            if (result != null) {
+                assert.ok(result.data.FunctionResult == null, "Testing Cloud Script Error result");
+                assert.ok(result.data.Error != null, "Testing Cloud Script Error result message");
+                assert.equal(result.data.Error.Error, "JavascriptException", "Testing Cloud Script Error result message");
+            }
+            errDone();
+        };
+        
+        PlayFabClientSDK.ExecuteCloudScript(errRequest, PlayFabApiTests.CallbackWrapper("errCallback", errCallback, assert));
     },
     
     /// <summary>

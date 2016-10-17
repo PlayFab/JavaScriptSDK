@@ -11,24 +11,19 @@ if(!PlayFab.settings) {
         // Disabling this may prevent your advertising-related PlayFab marketplace partners from working correctly
         disableAdvertising: false,
         AD_TYPE_IDFA: "Idfa",
-        AD_TYPE_ANDROID_ID: "Android_Id"
+        AD_TYPE_ANDROID_ID: "Adid"
     }
 }
 
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.31.161003",
+        sdkVersion: "0.32.161017",
         buildIdentifier: "jbuild_javascriptsdk_1",
         productionServerUrl: ".playfabapi.com",
-        logicServerUrl: null,
 
         GetServerUrl: function () {
             return "https://" + PlayFab.settings.titleId + PlayFab._internalSettings.productionServerUrl;
-        },
-
-        GetLogicServerUrl: function () {
-            return PlayFab._internalSettings.logicServerUrl;
         },
 
         ExecuteRequest: function (completeUrl, data, authkey, authValue, callback) {
@@ -496,15 +491,6 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetFriendLeaderboard", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
-    /**
-     * @deprecated Please use GetFriendLeaderboardAroundPlayer instead. 
-     */
-    GetFriendLeaderboardAroundCurrentUser: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetFriendLeaderboardAroundCurrentUser", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
     GetFriendLeaderboardAroundPlayer: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
@@ -515,15 +501,6 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetLeaderboard", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    /**
-     * @deprecated Please use GetLeaderboardAroundPlayer instead. 
-     */
-    GetLeaderboardAroundCurrentUser: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetLeaderboardAroundCurrentUser", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetLeaderboardAroundPlayer: function (request, callback) {
@@ -568,15 +545,6 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetUserReadOnlyData", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
-    /**
-     * @deprecated Please use GetPlayerStatistics instead. 
-     */
-    GetUserStatistics: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetUserStatistics", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
     UpdatePlayerStatistics: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
@@ -593,15 +561,6 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UpdateUserPublisherData", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    /**
-     * @deprecated Please use UpdatePlayerStatistics instead. 
-     */
-    UpdateUserStatistics: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UpdateUserStatistics", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetCatalogItems: function (request, callback) {
@@ -796,15 +755,6 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/ValidateGooglePlayPurchase", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
-    /**
-     * @deprecated Please use WritePlayerEvent instead. 
-     */
-    LogEvent: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LogEvent", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
     WriteCharacterEvent: function (request, callback) {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
@@ -857,29 +807,6 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/ExecuteCloudScript", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    /**
-     * @deprecated Please use ExecuteCloudScript instead. 
-     */
-    GetCloudScriptUrl: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        var overloadCallback = function (result, error) {
-            PlayFab._internalSettings.logicServerUrl = result.data.Url;
-            if (callback != null && typeof (callback) == "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetCloudScriptUrl", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, overloadCallback);
-    },
-
-    /**
-     * @deprecated Please use ExecuteCloudScript instead. 
-     */
-    RunCloudScript: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetLogicServerUrl() + "/Client/RunCloudScript", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     GetContentDownloadUrl: function (request, callback) {
@@ -1015,7 +942,7 @@ PlayFab.ClientApi = {
             if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_IDFA)
                 request.Idfa = PlayFab.settings.advertisingIdValue;
             else if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_ANDROID_ID)
-                request.Android_Id = PlayFab.settings.advertisingIdValue;
+                request.Adid = PlayFab.settings.advertisingIdValue;
             else
                 return;
             PlayFab.ClientApi.AttributeInstall(request, null);
