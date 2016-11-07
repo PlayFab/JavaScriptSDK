@@ -18,7 +18,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.32.161017",
+        sdkVersion: "0.33.161107",
         buildIdentifier: "jbuild_javascriptsdk_1",
         productionServerUrl: ".playfabapi.com",
 
@@ -579,6 +579,66 @@ PlayFab.AdminApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RemovePlayerTag", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    AbortTaskInstance: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AbortTaskInstance", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    CreateActionsOnPlayersInSegmentTask: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CreateActionsOnPlayersInSegmentTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    CreateCloudScriptTask: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CreateCloudScriptTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    DeleteTask: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetActionsOnPlayersInSegmentTaskInstance: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetActionsOnPlayersInSegmentTaskInstance", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetCloudScriptTaskInstance: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetCloudScriptTaskInstance", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetTaskInstances: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetTaskInstances", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    GetTasks: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetTasks", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    RunTask: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RunTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    UpdateTask: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 };
 
