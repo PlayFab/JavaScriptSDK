@@ -18,7 +18,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.34.161121",
+        sdkVersion: "0.35.170102",
         buildIdentifier: "jbuild_javascriptsdk_1",
         productionServerUrl: ".playfabapi.com",
 
@@ -343,15 +343,6 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromTwitchIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
-    },
-
-    /**
-     * @deprecated Please use GetPlayerCombinedInfo instead. 
-     */
-    GetUserCombinedInfo: function (request, callback) {
-        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetUserCombinedInfo", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     LinkAndroidDeviceID: function (request, callback) {
