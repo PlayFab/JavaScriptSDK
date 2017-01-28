@@ -28,8 +28,7 @@ The Example project is being revised for the upcoming 1.0 release
 This sdk includes an optional example project that is used by PlayFab to verify sdk features are fully functional.
 
 Please read about the testTitleData.json format, and purpose here:
-* https://github.com/PlayFab/SDKGenerator/blob/master/JenkinsConsoleUtility/testTitleData.md
-This file must be created and placed in the root of the sdk (beside PlayFabApiTest.html & PlayFabApiTest.js), and must be named "testTitleData.json"
+* [testTitleData.md](https://github.com/PlayFab/SDKGenerator/blob/master/JenkinsConsoleUtility/testTitleData.md) must be created and placed in the root of the example (beside index.html & PlayFabApiTest.ts), and must be named "testTitleData.json"
 
 
 4. Troubleshooting:
