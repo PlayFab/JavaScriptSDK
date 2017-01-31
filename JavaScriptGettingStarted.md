@@ -98,7 +98,7 @@ Congratulations, you made your first successful API call!
 Deconstruct the code
 ----
 
-This optional last section describes each part of Program.cs in detail.
+This optional last section describes each part of this example in detail.
 
 The HTML file has a few important lines:
 ```HTML
@@ -117,7 +117,8 @@ The other important HTML lines:
 As you can see above, PlayFabGettingStarted.js contains the DoExampleLoginWithCustomID function. These lines bind our js file to our webpage, and invoke the DoExampleLoginWithCustomID function in that script.  Everything else is just GUI.
 
 * Line by line breakdown for PlayFabGettingStarted.js
-  * PlayFab.settings.titleId = "xxxx";
+  * PlayFab.settings.titleId = document.getElementById("titleId").value;
+    * This reads the titleId from the html-input, and sets it to the PlayFab sdk.
     * Every PlayFab developer creates a title in Game Manager.  When you publish your game, you must code that titleId into your game.  This lets the client know how to access the correct data within PlayFab.  For most users, just consider it a mandatory step that makes PlayFab work.
   * var loginRequest = { TitleId: PlayFab.settings.titleId, CustomId: "GettingStartedGuide", CreateAccount: true };
     * Most PlayFab API methods require input parameters, and those input parameters are packed into a request object
