@@ -129,7 +129,7 @@ The other important HTML lines:
 As you can see above, app.js contains the DoExampleLoginWithCustomID function. These lines bind our js file to our webpage, and invoke the DoExampleLoginWithCustomID function in that script.  Everything else is just GUI.  The name "app.js" is based on the typescript file in our default project "app.ts".  If you rename "app.ts", it will generate a ".js" file with the same name.  You should not try to add ".ts" scripts directly to a webpage.  For more information about TypeScript, read the [TypeScript tutorial](https://www.typescriptlang.org/docs/tutorial.html).
 
 * Line by line breakdown for app.js
-  * PlayFab.settings.titleId = (&gt;HTMLInputElement>document.getElementById("titleId")).value;
+  * PlayFab.settings.titleId = (&lt;HTMLInputElement>document.getElementById("titleId")).value;
     * This reads the titleId from the html-input, and sets it to the PlayFab sdk.  TypeScript defines that getElementById returns type HTMLElement.  We must cast that to the sub-type HTMLInputElement to get the input-specific field "value".
     * Every PlayFab developer creates a title in Game Manager.  When you publish your game, you must code that titleId into your game.  This lets the client know how to access the correct data within PlayFab.  For most users, just consider it a mandatory step that makes PlayFab work.
   * var loginRequest: PlayFabClientModels.LoginWithCustomIDRequest = { TitleId: PlayFab.settings.titleId, CustomId: "GettingStartedGuide", CreateAccount: true };
