@@ -1,4 +1,6 @@
-var PlayFab = typeof PlayFab != 'undefined' ? PlayFab : {};
+/// <reference path="../typings/PlayFab/PlayFabClientApi.d.ts" />
+
+var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
 if(!PlayFab.settings) {
     PlayFab.settings = {
@@ -18,8 +20,6 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         sessionTicket: null,
-        sdkVersion: "0.36.170109",
-        buildIdentifier: "jbuild_javascriptsdk_1",
         productionServerUrl: ".playfabapi.com",
 
         GetServerUrl: function () {
@@ -98,6 +98,9 @@ if(!PlayFab._internalSettings) {
         }
     }
 }
+
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
+PlayFab.sdkVersion = "1.0.170130";
 
 PlayFab.ClientApi = {
 
