@@ -33,7 +33,7 @@ declare module PlayFabClientModule {
          */
         LoginWithGameCenter(request: PlayFabClientModels.LoginWithGameCenterRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>): void;
         /**
-         / Signs the user in using a Google account access token(https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods), returning a session identifier that can subsequently be used for API calls which require an authenticated user
+         / Signs the user in using their Google account credentials
          / https://api.playfab.com/Documentation/Client/method/LoginWithGoogleAccount
          */
         LoginWithGoogleAccount(request: PlayFabClientModels.LoginWithGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>): void;
@@ -143,7 +143,7 @@ declare module PlayFabClientModule {
          */
         LinkGameCenterAccount(request: PlayFabClientModels.LinkGameCenterAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGameCenterAccountResult>): void;
         /**
-         / Links the currently signed-in user account to the Google account specified by the Google account access token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
+         / Links the currently signed-in user account to their Google account, using their Google account credentials
          / https://api.playfab.com/Documentation/Client/method/LinkGoogleAccount
          */
         LinkGoogleAccount(request: PlayFabClientModels.LinkGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGoogleAccountResult>): void;
@@ -503,7 +503,7 @@ declare module PlayFabClientModule {
          */
         ExecuteCloudScript(request: PlayFabClientModels.ExecuteCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ExecuteCloudScriptResult>): void;
         /**
-         / This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service
+         / This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
          / https://api.playfab.com/Documentation/Client/method/GetContentDownloadUrl
          */
         GetContentDownloadUrl(request: PlayFabClientModels.GetContentDownloadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetContentDownloadUrlResult>): void;
@@ -3110,9 +3110,13 @@ declare module PlayFabClientModels {
      */
     export interface LinkGoogleAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         / Unique token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods) from Google Play for the user.
+         / Server authentication code obtained on the client by calling getServerAuthCode() (https://developers.google.com/identity/sign-in/android/offline-access) from Google Play for the user.
          */
-        AccessToken: string;
+        ServerAuthCode?: string;
+        /**
+         / OAuth 2.0 access token obtained on the client by calling the getAccessToken() Google client API.
+         */
+        AccessToken?: string;
         /**
          / If another user is already linked to the account, unlink the other user and re-link.
          */
@@ -3412,9 +3416,13 @@ declare module PlayFabClientModels {
          */
         TitleId?: string;
         /**
-         / Unique token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods) from Google Play for the user.
+         / OAuth 2.0 server authentication code obtained on the client by calling the getServerAuthCode() (https://developers.google.com/identity/sign-in/android/offline-access) Google client API.
          */
-        AccessToken: string;
+        ServerAuthCode?: string;
+        /**
+         / OAuth 2.0 access token obtained on the client by calling the getAccessToken() Google client API.
+         */
+        AccessToken?: string;
         /**
          / Automatically create a PlayFab account if one is not currently linked to this Google account.
          */
@@ -3669,6 +3677,15 @@ declare module PlayFabClientModels {
          / Balance of the virtual currency after modification.
          */
         Balance: number;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.NameIdentifier
+     */
+    export interface NameIdentifier {
+        Name?: string;
+        Id?: string;
 
     }
 

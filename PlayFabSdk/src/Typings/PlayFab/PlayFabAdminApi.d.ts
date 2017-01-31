@@ -366,7 +366,7 @@ declare module PlayFabAdminModule {
          */
         GetContentList(request: PlayFabAdminModels.GetContentListRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetContentListResult>): void;
         /**
-         / Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the content.
+         / Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the  content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
          / https://api.playfab.com/Documentation/Admin/method/GetContentUploadUrl
          */
         GetContentUploadUrl(request: PlayFabAdminModels.GetContentUploadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetContentUploadUrlResult>): void;

@@ -416,7 +416,7 @@ declare module PlayFabServerModule {
          */
         ExecuteCloudScript(request: PlayFabServerModels.ExecuteCloudScriptServerRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ExecuteCloudScriptResult>): void;
         /**
-         / This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service
+         / This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
          / https://api.playfab.com/Documentation/Server/method/GetContentDownloadUrl
          */
         GetContentDownloadUrl(request: PlayFabServerModels.GetContentDownloadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetContentDownloadUrlResult>): void;
@@ -4043,7 +4043,7 @@ declare module PlayFabServerModels {
      */
     export interface SetGameServerInstanceDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         / Unique identifier of the Game Instance to be updated.
+         / Unique identifier of the Game Instance to be updated, in decimal format.
          */
         LobbyId: string;
         /**
@@ -4065,7 +4065,7 @@ declare module PlayFabServerModels {
      */
     export interface SetGameServerInstanceStateRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         / Unique identifier of the Game Instance to be updated.
+         / Unique identifier of the Game Instance to be updated, in decimal format.
          */
         LobbyId: string;
         /**
