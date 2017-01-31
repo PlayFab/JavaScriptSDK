@@ -9,6 +9,7 @@ TypeScript Project Setup
 
 * OS: This guide is written for Windows 10 and Visual Studio
   * The "Project Setup" section of this guide will not be very useful for other operating systems and environments (sorry!)
+  * TypeScript works on a wide variety of Operating Systems, Environments, and tools
 * Installation
   * Download and install Visual Studio 2015
     * Update TypeScript within VS to the [latest version](https://www.microsoft.com/en-us/download/details.aspx?id=48593) (2.1.5 when this document was written)
