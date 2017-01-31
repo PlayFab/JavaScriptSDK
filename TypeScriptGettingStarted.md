@@ -42,7 +42,7 @@ In your favorite text-editor, update the contents of index.html as follows:
 <head>
     <meta charset="utf-8">
     <title>PlayFab JavaScript Unit Tests</title>
-    <script type="text/javascript" src="https://download.playfab.com/PlayFabClientApi.js"></script>
+    <script type="text/javascript" src="src/PlayFab/PlayFabClientApi.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
@@ -58,9 +58,9 @@ In your favorite text-editor, update the contents of index.html as follows:
 
 In your favorite text-editor, update the contents of app.ts as follows:
 ```TypeScript
-function DoExampleLoginWithCustomID() {
+function DoExampleLoginWithCustomID(): void {
     PlayFab.settings.titleId = (<HTMLInputElement>document.getElementById("titleId")).value;
-    var loginRequest = {
+    var loginRequest: PlayFabClientModels.LoginWithCustomIDRequest = {
         CustomId: (<HTMLInputElement>document.getElementById("customId")).value,
         CreateAccount: true
     };
@@ -68,7 +68,7 @@ function DoExampleLoginWithCustomID() {
     PlayFabClientSDK.LoginWithCustomID(loginRequest, LoginCallback);
 }
 
-var LoginCallback = function (result: PlayFabModule.SuccessContainer<PlayFabClientModels.LoginResult>, error: PlayFabModule.IPlayFabError) {
+var LoginCallback = function (result: PlayFabModule.SuccessContainer<PlayFabClientModels.LoginResult>, error: PlayFabModule.IPlayFabError): void {
     if (result !== null) {
         document.getElementById("resultOutput").innerHTML = "Congratulations, you made your first successful API call!";
     } else if (error !== null) {
@@ -80,10 +80,10 @@ var LoginCallback = function (result: PlayFabModule.SuccessContainer<PlayFabClie
 }
 
 // This is a utility function we haven't put into the core SDK yet.  Feel free to use it.
-function CompileErrorReport(error: PlayFabModule.IPlayFabError) {
+function CompileErrorReport(error: PlayFabModule.IPlayFabError): string {
     if (error === null)
         return "";
-    var fullErrors = error.errorMessage;
+    var fullErrors: string = error.errorMessage;
     for (var paramName in error.errorDetails)
         for (var msgIdx in error.errorDetails[paramName])
             fullErrors += "\n" + paramName + ": " + error.errorDetails[paramName][msgIdx];
@@ -108,3 +108,52 @@ Congratulations, you made your first successful API call!
 
 Deconstruct the code
 ----
+
+
+This optional last section describes each part of this example in detail.
+
+The HTML file has a few important lines:
+```HTML
+<script type="text/javascript" src="src/PlayFab/PlayFabClientApi.js"></script>
+```
+
+This line loads the Client-SDK from the local PlayFabSDK file. The latest version of this file is also available from [our CDN](https://download.playfab.com/PlayFabClientApi.js).  For more information read our [CDN blog post](https://playfab.com/playfab-now-serving-javascript-sdk-via-cdn/).
+
+The other important HTML lines:
+```HTML
+<script type="text/javascript" src="app.js"></script>
+...
+<input type="button" value="Call LoginWithCustomID" onclick="DoExampleLoginWithCustomID()"><br />
+```
+
+As you can see above, app.js contains the DoExampleLoginWithCustomID function. These lines bind our js file to our webpage, and invoke the DoExampleLoginWithCustomID function in that script.  Everything else is just GUI.  The name "app.js" is based on the typescript file in our default project "app.ts".  If you rename "app.ts", it will generate a ".js" file with the same name.  You should not try to add ".ts" scripts directly to a webpage.  For more information about TypeScript, read the [TypeScript tutorial](https://www.typescriptlang.org/docs/tutorial.html).
+
+* Line by line breakdown for app.js
+  * PlayFab.settings.titleId = (&gt;HTMLInputElement>document.getElementById("titleId")).value;
+    * This reads the titleId from the html-input, and sets it to the PlayFab sdk.  TypeScript defines that getElementById returns type HTMLElement.  We must cast that to the sub-type HTMLInputElement to get the input-specific field "value".
+    * Every PlayFab developer creates a title in Game Manager.  When you publish your game, you must code that titleId into your game.  This lets the client know how to access the correct data within PlayFab.  For most users, just consider it a mandatory step that makes PlayFab work.
+  * var loginRequest: PlayFabClientModels.LoginWithCustomIDRequest = { TitleId: PlayFab.settings.titleId, CustomId: "GettingStartedGuide", CreateAccount: true };
+    * Most PlayFab API methods require input parameters, and those input parameters are packed into a request object
+    * Every API method requires a unique request object, with a mix of optional and mandatory parameters
+      * We also cast this request to LoginWithCustomIDRequest, which is the required type for PlayFabClientSDK.LoginWithCustomID
+      * For LoginWithCustomIDRequest, there is a mandatory parameter of CustomId, which uniquely identifies a player and CreateAccount, which allows the creation of a new account with this call.
+  * PlayFabClientSDK.LoginWithCustomID(loginRequest, LoginCallback);
+    * This begins the async request to "LoginWithCustomID", which will call LoginCallback when the API call is complete
+    * For login, most developers will want to use a more appropriate login method
+      * See the [PlayFab Login Documentation](https://api.playfab.com/Documentation/Client#Authentication) for a list of all login methods, and input parameters.  Common choices are:
+        * [LoginWithAndroidDeviceID](https://api.playfab.com/Documentation/Client/method/LoginWithAndroidDeviceID)
+        * [LoginWithIOSDeviceID](https://api.playfab.com/Documentation/Client/method/LoginWithIOSDeviceID)
+        * [LoginWithEmailAddress](https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress)
+* LoginCallback contains two parameters: result, error
+  * When successful, error will be null, and the result object will contain the requested information, according to the API called
+    * This result contains some basic information about the player, but for most users, login is simply a mandatory step before calling other APIs.
+  * If error is not null, your API has failed
+    * API calls can fail for many reasons, and you should always attempt to handle failure
+    * Why API calls fail (In order of likelihood)
+      * PlayFabSettings.TitleId is not set.  If you forget to set titleId to your title, then nothing will work.
+      * Request parameters.  If you have not provided the correct or required information for a particular API call, then it will fail.  See error.errorMessage, error.errorDetails, or error.GenerateErrorReport() for more info.
+      * Device connectivity issue.  Cell-phones lose/regain connectivity constantly, and so any API call at any time can fail randomly, and then work immediately after.  Going into a tunnel can disconnect you completely.
+      * PlayFab server issue.  As with all software, there can be issues.  See our [release notes](https://api.playfab.com/releaseNotes/) for updates.
+      * The internet is not 100% reliable.  Sometimes the message is corrupted or fails to reach the PlayFab server.
+    * If you are having difficulty debugging an issue, and the information within the error information is not sufficient, please visit us on our [forums](https://community.playfab.com/index.html)
+
