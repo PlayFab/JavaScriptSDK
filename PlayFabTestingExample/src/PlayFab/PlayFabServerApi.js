@@ -99,8 +99,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
-PlayFab.sdkVersion = "1.0.170130";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
+PlayFab.sdkVersion = "1.1.170223";
 
 PlayFab.ServerApi = {
 
@@ -156,6 +156,12 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/SendPushNotification", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    UpdateAvatarUrl: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/UpdateAvatarUrl", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     UpdateBans: function (request, callback) {
@@ -486,6 +492,12 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/RemoveFriend", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    SetFriendTags: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/SetFriendTags", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
     DeregisterGame: function (request, callback) {

@@ -99,8 +99,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
-PlayFab.sdkVersion = "1.0.170130";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
+PlayFab.sdkVersion = "1.1.170223";
 
 PlayFab.ClientApi = {
 
@@ -112,6 +112,16 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPhotonAuthenticationToken", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
+    GetWindowsHelloChallenge: function (request, callback) {
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetWindowsHelloChallenge", request, null, null, callback);
+    },
+
+    LinkWindowsHello: function (request, callback) {
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkWindowsHello", request, null, null, callback);
     },
 
     LoginWithAndroidDeviceID: function (request, callback) {
@@ -268,6 +278,20 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithTwitch", request, null, null, overloadCallback);
     },
 
+    LoginWithWindowsHello: function (request, callback) {
+        request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
+
+        var overloadCallback = function (result, error) {
+            if (result != null && result.data.SessionTicket != null) {
+                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            }
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithWindowsHello", request, null, null, overloadCallback);
+    },
+
     RegisterPlayFabUser: function (request, callback) {
         request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
 
@@ -280,6 +304,25 @@ PlayFab.ClientApi = {
                 callback(result, error);
         };
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/RegisterPlayFabUser", request, null, null, overloadCallback);
+    },
+
+    RegisterWithWindowsHello: function (request, callback) {
+        request.TitleId = PlayFab.settings.titleId != null ? PlayFab.settings.titleId : request.TitleId; if (request.TitleId == null) throw "Must be have PlayFab.settings.titleId set to call this method";
+
+        var overloadCallback = function (result, error) {
+            if (result != null && result.data.SessionTicket != null) {
+                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            }
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/RegisterWithWindowsHello", request, null, null, overloadCallback);
+    },
+
+    UnlinkWindowsHello: function (request, callback) {
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkWindowsHello", request, null, null, callback);
     },
 
     AddGenericID: function (request, callback) {
@@ -471,6 +514,12 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkTwitch", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
+    UpdateAvatarUrl: function (request, callback) {
+        if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UpdateAvatarUrl", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
     },
 
     UpdateUserTitleDisplayName: function (request, callback) {
@@ -928,6 +977,11 @@ PlayFab.ClientApi = {
         if (PlayFab._internalSettings.sessionTicket == null) throw "Must be logged in to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayerTags", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback);
+    },
+
+    ValidateWindowsStoreReceipt: function (request, callback) {
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/ValidateWindowsStoreReceipt", request, null, null, callback);
     },
 
     _MultiStepClientLogin: function (needsAttribution) {

@@ -46,6 +46,11 @@ declare module PlayFabServerModule {
          */
         SendPushNotification(request: PlayFabServerModels.SendPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.SendPushNotificationResult>): void;
         /**
+         / Update the avatar URL of the specified player
+         / https://api.playfab.com/Documentation/Server/method/UpdateAvatarUrl
+         */
+        UpdateAvatarUrl(request: PlayFabServerModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>): void;
+        /**
          / Updates information of a list of existing bans specified with Ban Ids.
          / https://api.playfab.com/Documentation/Server/method/UpdateBans
          */
@@ -320,6 +325,11 @@ declare module PlayFabServerModule {
          / https://api.playfab.com/Documentation/Server/method/RemoveFriend
          */
         RemoveFriend(request: PlayFabServerModels.RemoveFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>): void;
+        /**
+         / Updates the tag list for a specified user in the friend list of another user
+         / https://api.playfab.com/Documentation/Server/method/SetFriendTags
+         */
+        SetFriendTags(request: PlayFabServerModels.SetFriendTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>): void;
         /**
          / Inform the matchmaker that a Game Server Instance is removed.
          / https://api.playfab.com/Documentation/Server/method/DeregisterGame
@@ -2096,6 +2106,18 @@ declare module PlayFabServerModels {
          / Indicates whether Facebook friends should be included in the response. Default is true.
          */
         IncludeFacebookFriends?: boolean;
+        /**
+         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        Version: number;
+        /**
+         / If true, uses the specified version. If false, gets the most recent version.
+         */
+        UseSpecificVersion: boolean;
+        /**
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         */
+        ProfileConstraints?: number;
 
     }
 
@@ -2183,6 +2205,18 @@ declare module PlayFabServerModels {
          / Maximum number of entries to retrieve.
          */
         MaxResultsCount: number;
+        /**
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         */
+        ProfileConstraints?: number;
+        /**
+         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        Version: number;
+        /**
+         / If true, uses the specified version. If false, gets the most recent version.
+         */
+        UseSpecificVersion: boolean;
 
     }
 
@@ -2191,9 +2225,17 @@ declare module PlayFabServerModels {
      */
     export interface GetLeaderboardAroundUserResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
-         / Ordered list of leaderboard entries.
+         / Ordered listing of users and their positions in the requested leaderboard.
          */
         Leaderboard?: PlayerLeaderboardEntry[];
+        /**
+         / The version of the leaderboard returned.
+         */
+        Version: number;
+        /**
+         / The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
+         */
+        NextReset?: string;
 
     }
 
@@ -2243,6 +2285,18 @@ declare module PlayFabServerModels {
          / Maximum number of entries to retrieve.
          */
         MaxResultsCount: number;
+        /**
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         */
+        ProfileConstraints?: number;
+        /**
+         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        Version: number;
+        /**
+         / If true, uses the specified version. If false, gets the most recent version.
+         */
+        UseSpecificVersion: boolean;
 
     }
 
@@ -2251,9 +2305,17 @@ declare module PlayFabServerModels {
      */
     export interface GetLeaderboardResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
-         / Ordered list of leaderboard entries.
+         / Ordered listing of users and their positions in the requested leaderboard.
          */
         Leaderboard?: PlayerLeaderboardEntry[];
+        /**
+         / The version of the leaderboard returned.
+         */
+        Version: number;
+        /**
+         / The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
+         */
+        NextReset?: string;
 
     }
 
@@ -3213,7 +3275,8 @@ declare module PlayFabServerModels {
         | "Facebook"
         | "IOSDevice"
         | "AndroidDevice"
-        | "Twitch";
+        | "Twitch"
+        | "WindowsHello";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LogStatement
@@ -3445,6 +3508,10 @@ declare module PlayFabServerModels {
          / User's overall position in the leaderboard.
          */
         Position: number;
+        /**
+         / The profile of the user, if requested. Note that this profile may have sensitive fields scrubbed.
+         */
+        Profile?: PlayerProfile;
 
     }
 
@@ -3535,6 +3602,10 @@ declare module PlayFabServerModels {
          */
         BannedUntil?: string;
         /**
+         / Image URL of the player's avatar.
+         */
+        AvatarUrl?: string;
+        /**
          / Dictionary of player's statistics using only the latest version's value
          */
         Statistics?: { [key: string]: number };
@@ -3574,6 +3645,73 @@ declare module PlayFabServerModels {
          / Array of player statistics
          */
         PlayerStatistics?: PlayerStatistic[];
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerProfileViewConstraints
+     */
+    export interface PlayerProfileViewConstraints {
+        /**
+         / Whether to show the display name. Defaults to false
+         */
+        ShowDisplayName: boolean;
+        /**
+         / Whether to show the created date. Defaults to false
+         */
+        ShowCreated: boolean;
+        /**
+         / Whether to show origination. Defaults to false
+         */
+        ShowOrigination: boolean;
+        /**
+         / Whether to show the last login time. Defaults to false
+         */
+        ShowLastLogin: boolean;
+        /**
+         / Whether to show the banned until time. Defaults to false
+         */
+        ShowBannedUntil: boolean;
+        /**
+         / Whether to show statistics, the most recent version of each stat. Defaults to false
+         */
+        ShowStatistics: boolean;
+        /**
+         / Whether to show campaign attributions. Defaults to false
+         */
+        ShowCampaignAtributions: boolean;
+        /**
+         / Whether to show push notification registrations. Defaults to false
+         */
+        ShowPushNotificationRegistrations: boolean;
+        /**
+         / Whether to show the linked accounts. Defaults to false
+         */
+        ShowLinkedAccounts: boolean;
+        /**
+         / Whether to show the total value to date in usd. Defaults to false
+         */
+        ShowTotalValueToDateInUsd: boolean;
+        /**
+         / Whether to show the values to date. Defaults to false
+         */
+        ShowValuesToDate: boolean;
+        /**
+         / Whether to show tags. Defaults to false
+         */
+        ShowTags: boolean;
+        /**
+         / Whether to show the virtual currency balances. Defaults to false
+         */
+        ShowVirtualCurrencyBalances: boolean;
+        /**
+         / Whether to show player's locations. Defaults to false
+         */
+        ShowLocations: boolean;
+        /**
+         / Whether to show player's avatar URL. Defaults to false
+         */
+        ShowAvatarUrl: boolean;
 
     }
 
@@ -4039,6 +4177,25 @@ declare module PlayFabServerModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetFriendTagsRequest
+     */
+    export interface SetFriendTagsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / PlayFab identifier of the player whose friend is to be updated.
+         */
+        PlayFabId: string;
+        /**
+         / PlayFab identifier of the friend account to which the tag(s) should be applied.
+         */
+        FriendPlayFabId: string;
+        /**
+         / Array of tags to set on the friend account.
+         */
+        Tags: string[];
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceDataRequest
      */
     export interface SetGameServerInstanceDataRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -4387,6 +4544,21 @@ declare module PlayFabServerModels {
          / Virtual currency granted to the player as a result of unlocking the container.
          */
         VirtualCurrency?: { [key: string]: number };
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateAvatarUrlRequest
+     */
+    export interface UpdateAvatarUrlRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        PlayFabId: string;
+        /**
+         / URL of the avatar image. If empty, it removes the existing avatar URL.
+         */
+        ImageUrl: string;
 
     }
 
@@ -4853,7 +5025,8 @@ declare module PlayFabServerModels {
         | "CustomId"
         | "XboxLive"
         | "Parse"
-        | "Twitch";
+        | "Twitch"
+        | "WindowsHello";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserPrivateAccountInfo
@@ -4932,6 +5105,10 @@ declare module PlayFabServerModels {
          / boolean indicating whether or not the user is currently banned for a title
          */
         isBanned?: boolean;
+        /**
+         / URL to the player's avatar.
+         */
+        AvatarUrl?: string;
 
     }
 

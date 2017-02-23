@@ -8,6 +8,16 @@ declare module PlayFabClientModule {
          */
         GetPhotonAuthenticationToken(request: PlayFabClientModels.GetPhotonAuthenticationTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPhotonAuthenticationTokenResult>): void;
         /**
+         / Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
+         / https://api.playfab.com/Documentation/Client/method/GetWindowsHelloChallenge
+         */
+        GetWindowsHelloChallenge(request: PlayFabClientModels.GetWindowsHelloChallengeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetWindowsHelloChallengeResponse>): void;
+        /**
+         / Link Windows Hello to the current PlayFab Account
+         / https://api.playfab.com/Documentation/Client/method/LinkWindowsHello
+         */
+        LinkWindowsHello(request: PlayFabClientModels.LinkWindowsHelloAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkWindowsHelloAccountResponse>): void;
+        /**
          / Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
          / https://api.playfab.com/Documentation/Client/method/LoginWithAndroidDeviceID
          */
@@ -63,10 +73,25 @@ declare module PlayFabClientModule {
          */
         LoginWithTwitch(request: PlayFabClientModels.LoginWithTwitchRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>): void;
         /**
+         / Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server. 
+         / https://api.playfab.com/Documentation/Client/method/LoginWithWindowsHello
+         */
+        LoginWithWindowsHello(request: PlayFabClientModels.LoginWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>): void;
+        /**
          / Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. You must supply either a username or an email address.
          / https://api.playfab.com/Documentation/Client/method/RegisterPlayFabUser
          */
         RegisterPlayFabUser(request: PlayFabClientModels.RegisterPlayFabUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>): void;
+        /**
+         / Register using Windows Hello authentication. Before a user can request a challenge or perform a signin the user must first either register or link a Windows Hello account.
+         / https://api.playfab.com/Documentation/Client/method/RegisterWithWindowsHello
+         */
+        RegisterWithWindowsHello(request: PlayFabClientModels.RegisterWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>): void;
+        /**
+         / Unlink Windows Hello from the current PlayFab Account
+         / https://api.playfab.com/Documentation/Client/method/UnlinkWindowsHello
+         */
+        UnlinkWindowsHello(request: PlayFabClientModels.UnlinkWindowsHelloAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkWindowsHelloAccountResponse>): void;
         /**
          / Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
          / https://api.playfab.com/Documentation/Client/method/AddGenericID
@@ -227,6 +252,11 @@ declare module PlayFabClientModule {
          / https://api.playfab.com/Documentation/Client/method/UnlinkTwitch
          */
         UnlinkTwitch(request: PlayFabClientModels.UnlinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkTwitchAccountResult>): void;
+        /**
+         / Update the avatar URL of the player
+         / https://api.playfab.com/Documentation/Client/method/UpdateAvatarUrl
+         */
+        UpdateAvatarUrl(request: PlayFabClientModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>): void;
         /**
          / Updates the title specific display name for the user
          / https://api.playfab.com/Documentation/Client/method/UpdateUserTitleDisplayName
@@ -602,6 +632,11 @@ declare module PlayFabClientModule {
          / https://api.playfab.com/Documentation/Client/method/GetPlayerTags
          */
         GetPlayerTags(request: PlayFabClientModels.GetPlayerTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerTagsResult>): void;
+        /**
+         / Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+         / https://api.playfab.com/Documentation/Client/method/ValidateWindowsStoreReceipt
+         */
+        ValidateWindowsStoreReceipt(request: PlayFabClientModels.ValidateWindowsReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateWindowsReceiptResult>): void;
 
     }
 }
@@ -634,6 +669,25 @@ declare module PlayFabClientModels {
          / Details about trade which was just accepted.
          */
         Trade?: TradeInfo;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AdCampaignAttribution
+     */
+    export interface AdCampaignAttribution {
+        /**
+         / Attribution network name
+         */
+        Platform?: string;
+        /**
+         / Attribution campaign identifier
+         */
+        CampaignId?: string;
+        /**
+         / UTC time stamp of attribution
+         */
+        AttributedAt: string;
 
     }
 
@@ -790,10 +844,6 @@ declare module PlayFabClientModels {
          / The IdentifierForAdvertisers for iOS Devices.
          */
         Idfa?: string;
-        /**
-         / The android advertising id. This field is deprecated in favor of Adid for clarity.
-         */
-        Android_Id?: string;
         /**
          / The adid for this device.
          */
@@ -1171,6 +1221,264 @@ declare module PlayFabClientModels {
         Data?: { [key: string]: string };
 
     }
+
+    type ContinentCode = "AF"
+        | "AN"
+        | "AS"
+        | "EU"
+        | "NA"
+        | "OC"
+        | "SA";
+
+    type CountryCode = "AF"
+        | "AX"
+        | "AL"
+        | "DZ"
+        | "AS"
+        | "AD"
+        | "AO"
+        | "AI"
+        | "AQ"
+        | "AG"
+        | "AR"
+        | "AM"
+        | "AW"
+        | "AU"
+        | "AT"
+        | "AZ"
+        | "BS"
+        | "BH"
+        | "BD"
+        | "BB"
+        | "BY"
+        | "BE"
+        | "BZ"
+        | "BJ"
+        | "BM"
+        | "BT"
+        | "BO"
+        | "BQ"
+        | "BA"
+        | "BW"
+        | "BV"
+        | "BR"
+        | "IO"
+        | "BN"
+        | "BG"
+        | "BF"
+        | "BI"
+        | "KH"
+        | "CM"
+        | "CA"
+        | "CV"
+        | "KY"
+        | "CF"
+        | "TD"
+        | "CL"
+        | "CN"
+        | "CX"
+        | "CC"
+        | "CO"
+        | "KM"
+        | "CG"
+        | "CD"
+        | "CK"
+        | "CR"
+        | "CI"
+        | "HR"
+        | "CU"
+        | "CW"
+        | "CY"
+        | "CZ"
+        | "DK"
+        | "DJ"
+        | "DM"
+        | "DO"
+        | "EC"
+        | "EG"
+        | "SV"
+        | "GQ"
+        | "ER"
+        | "EE"
+        | "ET"
+        | "FK"
+        | "FO"
+        | "FJ"
+        | "FI"
+        | "FR"
+        | "GF"
+        | "PF"
+        | "TF"
+        | "GA"
+        | "GM"
+        | "GE"
+        | "DE"
+        | "GH"
+        | "GI"
+        | "GR"
+        | "GL"
+        | "GD"
+        | "GP"
+        | "GU"
+        | "GT"
+        | "GG"
+        | "GN"
+        | "GW"
+        | "GY"
+        | "HT"
+        | "HM"
+        | "VA"
+        | "HN"
+        | "HK"
+        | "HU"
+        | "IS"
+        | "IN"
+        | "ID"
+        | "IR"
+        | "IQ"
+        | "IE"
+        | "IM"
+        | "IL"
+        | "IT"
+        | "JM"
+        | "JP"
+        | "JE"
+        | "JO"
+        | "KZ"
+        | "KE"
+        | "KI"
+        | "KP"
+        | "KR"
+        | "KW"
+        | "KG"
+        | "LA"
+        | "LV"
+        | "LB"
+        | "LS"
+        | "LR"
+        | "LY"
+        | "LI"
+        | "LT"
+        | "LU"
+        | "MO"
+        | "MK"
+        | "MG"
+        | "MW"
+        | "MY"
+        | "MV"
+        | "ML"
+        | "MT"
+        | "MH"
+        | "MQ"
+        | "MR"
+        | "MU"
+        | "YT"
+        | "MX"
+        | "FM"
+        | "MD"
+        | "MC"
+        | "MN"
+        | "ME"
+        | "MS"
+        | "MA"
+        | "MZ"
+        | "MM"
+        | "NA"
+        | "NR"
+        | "NP"
+        | "NL"
+        | "NC"
+        | "NZ"
+        | "NI"
+        | "NE"
+        | "NG"
+        | "NU"
+        | "NF"
+        | "MP"
+        | "NO"
+        | "OM"
+        | "PK"
+        | "PW"
+        | "PS"
+        | "PA"
+        | "PG"
+        | "PY"
+        | "PE"
+        | "PH"
+        | "PN"
+        | "PL"
+        | "PT"
+        | "PR"
+        | "QA"
+        | "RE"
+        | "RO"
+        | "RU"
+        | "RW"
+        | "BL"
+        | "SH"
+        | "KN"
+        | "LC"
+        | "MF"
+        | "PM"
+        | "VC"
+        | "WS"
+        | "SM"
+        | "ST"
+        | "SA"
+        | "SN"
+        | "RS"
+        | "SC"
+        | "SL"
+        | "SG"
+        | "SX"
+        | "SK"
+        | "SI"
+        | "SB"
+        | "SO"
+        | "ZA"
+        | "GS"
+        | "SS"
+        | "ES"
+        | "LK"
+        | "SD"
+        | "SR"
+        | "SJ"
+        | "SZ"
+        | "SE"
+        | "CH"
+        | "SY"
+        | "TW"
+        | "TJ"
+        | "TZ"
+        | "TH"
+        | "TL"
+        | "TG"
+        | "TK"
+        | "TO"
+        | "TT"
+        | "TN"
+        | "TR"
+        | "TM"
+        | "TC"
+        | "TV"
+        | "UG"
+        | "UA"
+        | "AE"
+        | "GB"
+        | "US"
+        | "UM"
+        | "UY"
+        | "UZ"
+        | "VU"
+        | "VE"
+        | "VN"
+        | "VG"
+        | "VI"
+        | "WF"
+        | "EH"
+        | "YE"
+        | "ZM"
+        | "ZW";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupRequest
@@ -1915,6 +2223,14 @@ declare module PlayFabClientModels {
          / Indicates whether Facebook friends should be included in the response. Default is true.
          */
         IncludeFacebookFriends?: boolean;
+        /**
+         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        Version: number;
+        /**
+         / If true, uses the specified version. If false, gets the most recent version.
+         */
+        UseSpecificVersion: boolean;
 
     }
 
@@ -1926,6 +2242,14 @@ declare module PlayFabClientModels {
          / Ordered listing of users and their positions in the requested leaderboard.
          */
         Leaderboard?: PlayerLeaderboardEntry[];
+        /**
+         / The version of the leaderboard returned.
+         */
+        Version: number;
+        /**
+         / The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
+         */
+        NextReset?: string;
 
     }
 
@@ -1953,6 +2277,14 @@ declare module PlayFabClientModels {
          / Indicates whether Facebook friends should be included in the response. Default is true.
          */
         IncludeFacebookFriends?: boolean;
+        /**
+         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        Version: number;
+        /**
+         / If true, uses the specified version. If false, gets the most recent version.
+         */
+        UseSpecificVersion: boolean;
 
     }
 
@@ -2032,6 +2364,14 @@ declare module PlayFabClientModels {
          / Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         MaxResultsCount?: number;
+        /**
+         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        Version: number;
+        /**
+         / If true, uses the specified version. If false, gets the most recent version.
+         */
+        UseSpecificVersion: boolean;
 
     }
 
@@ -2043,6 +2383,14 @@ declare module PlayFabClientModels {
          / Ordered listing of users and their positions in the requested leaderboard.
          */
         Leaderboard?: PlayerLeaderboardEntry[];
+        /**
+         / The version of the leaderboard returned.
+         */
+        Version: number;
+        /**
+         / The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
+         */
+        NextReset?: string;
 
     }
 
@@ -2088,6 +2436,14 @@ declare module PlayFabClientModels {
          / Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         MaxResultsCount?: number;
+        /**
+         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        Version: number;
+        /**
+         / If true, uses the specified version. If false, gets the most recent version.
+         */
+        UseSpecificVersion: boolean;
 
     }
 
@@ -2099,6 +2455,14 @@ declare module PlayFabClientModels {
          / Ordered listing of users and their positions in the requested leaderboard.
          */
         Leaderboard?: PlayerLeaderboardEntry[];
+        /**
+         / The version of the leaderboard returned.
+         */
+        Version: number;
+        /**
+         / The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
+         */
+        NextReset?: string;
 
     }
 
@@ -2852,6 +3216,32 @@ declare module PlayFabClientModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeRequest
+     */
+    export interface GetWindowsHelloChallengeRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+         */
+        TitleId: string;
+        /**
+         / SHA256 hash of the PublicKey generated by Windows Hello.
+         */
+        PublicKeyHint: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeResponse
+     */
+    export interface GetWindowsHelloChallengeResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         / Server generated challenge to be signed by the user.
+         */
+        Challenge?: string;
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GooglePlayFabIdPair
      */
     export interface GooglePlayFabIdPair {
@@ -3232,6 +3622,36 @@ declare module PlayFabClientModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountRequest
+     */
+    export interface LinkWindowsHelloAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Player's user named used by Windows Hello.
+         */
+        UserName: string;
+        /**
+         / PublicKey generated by Windows Hello.
+         */
+        PublicKey: string;
+        /**
+         / Device name.
+         */
+        DeviceName?: string;
+        /**
+         / If another user is already linked to the account, unlink the other user and re-link.
+         */
+        ForceLink?: boolean;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountResponse
+     */
+    export interface LinkWindowsHelloAccountResponse extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ListUsersCharactersRequest
      */
     export interface ListUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -3252,6 +3672,21 @@ declare module PlayFabClientModels {
         Characters?: CharacterResult[];
 
     }
+
+    type LoginIdentityProvider = "Unknown"
+        | "PlayFab"
+        | "Custom"
+        | "GameCenter"
+        | "GooglePlay"
+        | "Steam"
+        | "XBoxLive"
+        | "PSN"
+        | "Kongregate"
+        | "Facebook"
+        | "IOSDevice"
+        | "AndroidDevice"
+        | "Twitch"
+        | "WindowsHello";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -3562,6 +3997,29 @@ declare module PlayFabClientModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithWindowsHelloRequest
+     */
+    export interface LoginWithWindowsHelloRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+         */
+        TitleId?: string;
+        /**
+         / The signed response from the user for the Challenge.
+         */
+        ChallengeSignature: string;
+        /**
+         / SHA256 hash of the PublicKey generated by Windows Hello.
+         */
+        PublicKeyHint: string;
+        /**
+         / Flags for which pieces of info to return for the user.
+         */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LogStatement
      */
     export interface LogStatement {
@@ -3832,6 +4290,166 @@ declare module PlayFabClientModels {
          / User's overall position in the leaderboard.
          */
         Position: number;
+        /**
+         / The profile of the user, if requested. Note that this profile may have sensitive fields scrubbed.
+         */
+        Profile?: PlayerProfile;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerLinkedAccount
+     */
+    export interface PlayerLinkedAccount {
+        /**
+         / Authentication platform
+         */
+        Platform?: string;
+        /**
+         / Platform user identifier
+         */
+        PlatformUserId?: string;
+        /**
+         / Linked account's username
+         */
+        Username?: string;
+        /**
+         / Linked account's email
+         */
+        Email?: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerLocation
+     */
+    export interface PlayerLocation {
+        /**
+         / The two-character continent code for this location
+         */
+        ContinentCode: string;
+        /**
+         / The two-character ISO 3166-1 country code for the country associated with the location
+         */
+        CountryCode: string;
+        /**
+         / City of the player's geographic location.
+         */
+        City?: string;
+        /**
+         / Latitude coordinate of the player's geographic location.
+         */
+        Latitude?: number;
+        /**
+         / Longitude coordinate of the player's geographic location.
+         */
+        Longitude?: number;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerProfile
+     */
+    export interface PlayerProfile {
+        /**
+         / PlayFab Player ID
+         */
+        PlayerId?: string;
+        /**
+         / Title ID this profile applies to
+         */
+        TitleId?: string;
+        /**
+         / Player Display Name
+         */
+        DisplayName?: string;
+        /**
+         / Publisher this player belongs to
+         */
+        PublisherId?: string;
+        /**
+         / Player account origination
+         */
+        Origination?: string;
+        /**
+         / Player record created
+         */
+        Created?: string;
+        /**
+         / Last login
+         */
+        LastLogin?: string;
+        /**
+         / Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date.
+         */
+        BannedUntil?: string;
+        /**
+         / Image URL of the player's avatar.
+         */
+        AvatarUrl?: string;
+        /**
+         / Dictionary of player's statistics using only the latest version's value
+         */
+        Statistics?: { [key: string]: number };
+        /**
+         / A sum of player's total purchases in USD across all currencies.
+         */
+        TotalValueToDateInUSD?: number;
+        /**
+         / Dictionary of player's total purchases by currency.
+         */
+        ValuesToDate?: { [key: string]: number };
+        /**
+         / List of player's tags for segmentation.
+         */
+        Tags?: string[];
+        /**
+         / Dictionary of player's locations by type.
+         */
+        Locations?: { [key: string]: PlayerLocation };
+        /**
+         / Dictionary of player's virtual currency balances
+         */
+        VirtualCurrencyBalances?: { [key: string]: number };
+        /**
+         / Array of ad campaigns player has been attributed to
+         */
+        AdCampaignAttributions?: AdCampaignAttribution[];
+        /**
+         / Array of configured push notification end points
+         */
+        PushNotificationRegistrations?: PushNotificationRegistration[];
+        /**
+         / Array of third party accounts linked to this player
+         */
+        LinkedAccounts?: PlayerLinkedAccount[];
+        /**
+         / Array of player statistics
+         */
+        PlayerStatistics?: PlayerStatistic[];
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerStatistic
+     */
+    export interface PlayerStatistic {
+        /**
+         / Statistic ID
+         */
+        Id?: string;
+        /**
+         / Statistic version (0 if not a versioned statistic)
+         */
+        StatisticVersion: number;
+        /**
+         / Current statistic value
+         */
+        StatisticValue: number;
+        /**
+         / Statistic name
+         */
+        Name?: string;
 
     }
 
@@ -3905,6 +4523,24 @@ declare module PlayFabClientModels {
          / Details for the items purchased.
          */
         Items?: ItemInstance[];
+
+    }
+
+    type PushNotificationPlatform = "ApplePushNotificationService"
+        | "GoogleCloudMessaging";
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PushNotificationRegistration
+     */
+    export interface PushNotificationRegistration {
+        /**
+         / Push notification platform
+         */
+        Platform?: string;
+        /**
+         / Notification configured endpoint
+         */
+        NotificationEndpointARN?: string;
 
     }
 
@@ -4046,6 +4682,33 @@ declare module PlayFabClientModels {
          / Settings specific to this user.
          */
         SettingsForUser?: UserSettings;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterWithWindowsHelloRequest
+     */
+    export interface RegisterWithWindowsHelloRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+         */
+        TitleId: string;
+        /**
+         / Player's user named used by Windows Hello.
+         */
+        UserName: string;
+        /**
+         / PublicKey generated by Windows Hello.
+         */
+        PublicKey: string;
+        /**
+         / Device name.
+         */
+        DeviceName?: string;
+        /**
+         / Flags for which pieces of info to return for the user.
+         */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
 
     }
 
@@ -4751,6 +5414,24 @@ declare module PlayFabClientModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountRequest
+     */
+    export interface UnlinkWindowsHelloAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / SHA256 hash of the PublicKey generated by Windows Hello.
+         */
+        PublicKeyHint: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountResponse
+     */
+    export interface UnlinkWindowsHelloAccountResponse extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerInstanceRequest
      */
     export interface UnlockContainerInstanceRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -4812,6 +5493,17 @@ declare module PlayFabClientModels {
          / Virtual currency granted to the player as a result of unlocking the container.
          */
         VirtualCurrency?: { [key: string]: number };
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateAvatarUrlRequest
+     */
+    export interface UpdateAvatarUrlRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / URL of the avatar image. If empty, it removes the existing avatar URL.
+         */
+        ImageUrl: string;
 
     }
 
@@ -5177,7 +5869,8 @@ declare module PlayFabClientModels {
         | "CustomId"
         | "XboxLive"
         | "Parse"
-        | "Twitch";
+        | "Twitch"
+        | "WindowsHello";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserPrivateAccountInfo
@@ -5267,6 +5960,10 @@ declare module PlayFabClientModels {
          / boolean indicating whether or not the user is currently banned for a title
          */
         isBanned?: boolean;
+        /**
+         / URL to the player's avatar.
+         */
+        AvatarUrl?: string;
 
     }
 
@@ -5383,6 +6080,36 @@ declare module PlayFabClientModels {
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptResult
      */
     export interface ValidateIOSReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptRequest
+     */
+    export interface ValidateWindowsReceiptRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / XML Receipt returned by the Windows App Store in-app purchase API
+         */
+        Receipt: string;
+        /**
+         / Catalog version to use when granting receipt item. If null, defaults to primary catalog.
+         */
+        CatalogVersion?: string;
+        /**
+         / Currency used for the purchase.
+         */
+        CurrencyCode: string;
+        /**
+         / Amount of the stated currency paid for the object.
+         */
+        PurchasePrice: number;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptResult
+     */
+    export interface ValidateWindowsReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
