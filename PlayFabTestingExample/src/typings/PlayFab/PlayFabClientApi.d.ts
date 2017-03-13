@@ -1,3 +1,5 @@
+/// <reference path="Playfab.d.ts" />
+
 declare module PlayFabClientModule {
     export interface IPlayFabClient {
         IsClientLoggedIn(): boolean;
@@ -593,12 +595,12 @@ declare module PlayFabClientModule {
          */
         ValidateAmazonIAPReceipt(request: PlayFabClientModels.ValidateAmazonReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateAmazonReceiptResult>): void;
         /**
-         / Accepts an open trade. If the call is successful, the offered and accepted items will be swapped between the two players' inventories.
+         / Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
          / https://api.playfab.com/Documentation/Client/method/AcceptTrade
          */
         AcceptTrade(request: PlayFabClientModels.AcceptTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AcceptTradeResponse>): void;
         /**
-         / Cancels an open trade.
+         / Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade  can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other players from accepting  them, for trades that can be claimed by more than one player).
          / https://api.playfab.com/Documentation/Client/method/CancelTrade
          */
         CancelTrade(request: PlayFabClientModels.CancelTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CancelTradeResponse>): void;
@@ -613,7 +615,7 @@ declare module PlayFabClientModule {
          */
         GetTradeStatus(request: PlayFabClientModels.GetTradeStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTradeStatusResponse>): void;
         /**
-         / Opens a new outstanding trade.
+         / Opens a new outstanding trade. Note that a given item instance may only be in one open trade at a time.
          / https://api.playfab.com/Documentation/Client/method/OpenTrade
          */
         OpenTrade(request: PlayFabClientModels.OpenTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.OpenTradeResponse>): void;
@@ -673,9 +675,9 @@ declare module PlayFabClientModels {
     }
 
     /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AdCampaignAttribution
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AdCampaignAttributionModel
      */
-    export interface AdCampaignAttribution {
+    export interface AdCampaignAttributionModel {
         /**
          / Attribution network name
          */
@@ -2231,6 +2233,10 @@ declare module PlayFabClientModels {
          / If true, uses the specified version. If false, gets the most recent version.
          */
         UseSpecificVersion: boolean;
+        /**
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         */
+        ProfileConstraints?: number;
 
     }
 
@@ -2285,6 +2291,10 @@ declare module PlayFabClientModels {
          / If true, uses the specified version. If false, gets the most recent version.
          */
         UseSpecificVersion: boolean;
+        /**
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         */
+        ProfileConstraints?: number;
 
     }
 
@@ -2372,6 +2382,10 @@ declare module PlayFabClientModels {
          / If true, uses the specified version. If false, gets the most recent version.
          */
         UseSpecificVersion: boolean;
+        /**
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         */
+        ProfileConstraints?: number;
 
     }
 
@@ -2444,6 +2458,10 @@ declare module PlayFabClientModels {
          / If true, uses the specified version. If false, gets the most recent version.
          */
         UseSpecificVersion: boolean;
+        /**
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         */
+        ProfileConstraints?: number;
 
     }
 
@@ -3452,6 +3470,29 @@ declare module PlayFabClientModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkedPlatformAccountModel
+     */
+    export interface LinkedPlatformAccountModel {
+        /**
+         / Authentication platform
+         */
+        Platform?: string;
+        /**
+         / Unique account identifier of the user on the platform
+         */
+        PlatformUserId?: string;
+        /**
+         / Linked account username of the user on the platform, if available
+         */
+        Username?: string;
+        /**
+         / Linked account email of the user on the platform, if available
+         */
+        Email?: string;
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkFacebookAccountRequest
      */
     export interface LinkFacebookAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -3670,6 +3711,33 @@ declare module PlayFabClientModels {
          / The requested list of characters.
          */
         Characters?: CharacterResult[];
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LocationModel
+     */
+    export interface LocationModel {
+        /**
+         / The two-character continent code for this location
+         */
+        ContinentCode?: string;
+        /**
+         / The two-character ISO 3166-1 country code for the country associated with the location
+         */
+        CountryCode?: string;
+        /**
+         / City name.
+         */
+        City?: string;
+        /**
+         / Latitude coordinate of the geographic location.
+         */
+        Latitude?: number;
+        /**
+         / Longitude coordinate of the geographic location.
+         */
+        Longitude?: number;
 
     }
 
@@ -4291,165 +4359,151 @@ declare module PlayFabClientModels {
          */
         Position: number;
         /**
-         / The profile of the user, if requested. Note that this profile may have sensitive fields scrubbed.
+         / The profile of the user, if requested.
          */
-        Profile?: PlayerProfile;
+        Profile?: PlayerProfileModel;
 
     }
 
     /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerLinkedAccount
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerProfileModel
      */
-    export interface PlayerLinkedAccount {
-        /**
-         / Authentication platform
-         */
-        Platform?: string;
-        /**
-         / Platform user identifier
-         */
-        PlatformUserId?: string;
-        /**
-         / Linked account's username
-         */
-        Username?: string;
-        /**
-         / Linked account's email
-         */
-        Email?: string;
-
-    }
-
-    /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerLocation
-     */
-    export interface PlayerLocation {
-        /**
-         / The two-character continent code for this location
-         */
-        ContinentCode: string;
-        /**
-         / The two-character ISO 3166-1 country code for the country associated with the location
-         */
-        CountryCode: string;
-        /**
-         / City of the player's geographic location.
-         */
-        City?: string;
-        /**
-         / Latitude coordinate of the player's geographic location.
-         */
-        Latitude?: number;
-        /**
-         / Longitude coordinate of the player's geographic location.
-         */
-        Longitude?: number;
-
-    }
-
-    /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerProfile
-     */
-    export interface PlayerProfile {
-        /**
-         / PlayFab Player ID
-         */
-        PlayerId?: string;
-        /**
-         / Title ID this profile applies to
-         */
-        TitleId?: string;
-        /**
-         / Player Display Name
-         */
-        DisplayName?: string;
+    export interface PlayerProfileModel {
         /**
          / Publisher this player belongs to
          */
         PublisherId?: string;
         /**
-         / Player account origination
+         / Title ID this profile applies to
          */
-        Origination?: string;
+        TitleId?: string;
+        /**
+         / PlayFab Player ID
+         */
+        PlayerId?: string;
         /**
          / Player record created
          */
         Created?: string;
         /**
+         / Player account origination
+         */
+        Origination?: string;
+        /**
          / Last login
          */
         LastLogin?: string;
         /**
-         / Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date.
+         / If the player is currently banned, the UTC Date when the ban expires
          */
         BannedUntil?: string;
         /**
-         / Image URL of the player's avatar.
+         / List of geographic locations where the player has logged-in
+         */
+        Locations?: LocationModel[];
+        /**
+         / Player Display Name
+         */
+        DisplayName?: string;
+        /**
+         / Image URL of the player's avatar
          */
         AvatarUrl?: string;
         /**
-         / Dictionary of player's statistics using only the latest version's value
+         / List of player's tags for segmentation
          */
-        Statistics?: { [key: string]: number };
+        Tags?: TagModel[];
         /**
-         / A sum of player's total purchases in USD across all currencies.
+         / List of configured end points registered for sending the player push notifications
+         */
+        PushNotificationRegistrations?: PushNotificationRegistrationModel[];
+        /**
+         / List of third party accounts linked to this player
+         */
+        LinkedAccounts?: LinkedPlatformAccountModel[];
+        /**
+         / List of advertising campaigns the player has been attributed to
+         */
+        AdCampaignAttributions?: AdCampaignAttributionModel[];
+        /**
+         / A sum of player's total purchases across all real-money currencies, converted to US Dollars equivalent
          */
         TotalValueToDateInUSD?: number;
         /**
-         / Dictionary of player's total purchases by currency.
+         / List of player's total lifetime real-money purchases by currency
          */
-        ValuesToDate?: { [key: string]: number };
+        ValuesToDate?: ValueToDateModel[];
         /**
-         / List of player's tags for segmentation.
+         / List of player's virtual currency balances
          */
-        Tags?: string[];
+        VirtualCurrencyBalances?: VirtualCurrencyBalanceModel[];
         /**
-         / Dictionary of player's locations by type.
+         / List of leaderboard statistic values for the player
          */
-        Locations?: { [key: string]: PlayerLocation };
-        /**
-         / Dictionary of player's virtual currency balances
-         */
-        VirtualCurrencyBalances?: { [key: string]: number };
-        /**
-         / Array of ad campaigns player has been attributed to
-         */
-        AdCampaignAttributions?: AdCampaignAttribution[];
-        /**
-         / Array of configured push notification end points
-         */
-        PushNotificationRegistrations?: PushNotificationRegistration[];
-        /**
-         / Array of third party accounts linked to this player
-         */
-        LinkedAccounts?: PlayerLinkedAccount[];
-        /**
-         / Array of player statistics
-         */
-        PlayerStatistics?: PlayerStatistic[];
+        Statistics?: StatisticModel[];
 
     }
 
     /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerStatistic
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerProfileViewConstraints
      */
-    export interface PlayerStatistic {
+    export interface PlayerProfileViewConstraints {
         /**
-         / Statistic ID
+         / Whether to show the display name. Defaults to false
          */
-        Id?: string;
+        ShowDisplayName: boolean;
         /**
-         / Statistic version (0 if not a versioned statistic)
+         / Whether to show the created date. Defaults to false
          */
-        StatisticVersion: number;
+        ShowCreated: boolean;
         /**
-         / Current statistic value
+         / Whether to show origination. Defaults to false
          */
-        StatisticValue: number;
+        ShowOrigination: boolean;
         /**
-         / Statistic name
+         / Whether to show the last login time. Defaults to false
          */
-        Name?: string;
+        ShowLastLogin: boolean;
+        /**
+         / Whether to show the banned until time. Defaults to false
+         */
+        ShowBannedUntil: boolean;
+        /**
+         / Whether to show statistics, the most recent version of each stat. Defaults to false
+         */
+        ShowStatistics: boolean;
+        /**
+         / Whether to show campaign attributions. Defaults to false
+         */
+        ShowCampaignAttributions: boolean;
+        /**
+         / Whether to show push notification registrations. Defaults to false
+         */
+        ShowPushNotificationRegistrations: boolean;
+        /**
+         / Whether to show the linked accounts. Defaults to false
+         */
+        ShowLinkedAccounts: boolean;
+        /**
+         / Whether to show the total value to date in usd. Defaults to false
+         */
+        ShowTotalValueToDateInUsd: boolean;
+        /**
+         / Whether to show the values to date. Defaults to false
+         */
+        ShowValuesToDate: boolean;
+        /**
+         / Whether to show tags. Defaults to false
+         */
+        ShowTags: boolean;
+        /**
+         / Whether to show player's locations. Defaults to false
+         */
+        ShowLocations: boolean;
+        /**
+         / Whether to show player's avatar URL. Defaults to false
+         */
+        ShowAvatarUrl: boolean;
 
     }
 
@@ -4530,9 +4584,9 @@ declare module PlayFabClientModels {
         | "GoogleCloudMessaging";
 
     /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PushNotificationRegistration
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PushNotificationRegistrationModel
      */
-    export interface PushNotificationRegistration {
+    export interface PushNotificationRegistrationModel {
         /**
          / Push notification platform
          */
@@ -5015,6 +5069,25 @@ declare module PlayFabClientModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticModel
+     */
+    export interface StatisticModel {
+        /**
+         / Statistic name
+         */
+        Name?: string;
+        /**
+         / Statistic version (0 if not a versioned statistic)
+         */
+        Version: number;
+        /**
+         / Statistic value
+         */
+        Value: number;
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticNameVersion
      */
     export interface StatisticNameVersion {
@@ -5140,6 +5213,17 @@ declare module PlayFabClientModels {
          / Amount to be subtracted from the user balance of the specified virtual currency.
          */
         Amount: number;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TagModel
+     */
+    export interface TagModel {
+        /**
+         / Full value of the tag, including namespace
+         */
+        TagValue?: string;
 
     }
 
@@ -6110,6 +6194,40 @@ declare module PlayFabClientModels {
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptResult
      */
     export interface ValidateWindowsReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValueToDateModel
+     */
+    export interface ValueToDateModel {
+        /**
+         / ISO 4217 code of the currency used in the purchases
+         */
+        Currency?: string;
+        /**
+         / Total value of the purchases in a whole number of 1/100 monetary units. For example 999 indicates nine dollars and ninety-nine cents when Currency is 'USD')
+         */
+        TotalValue: number;
+        /**
+         / Total value of the purchases in a string representation of decimal monetary units (e.g. '9.99' indicates nine dollars and ninety-nine cents when Currency is 'USD'))
+         */
+        TotalValueAsDecimal?: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.VirtualCurrencyBalanceModel
+     */
+    export interface VirtualCurrencyBalanceModel {
+        /**
+         / Name of the virtual currency
+         */
+        Currency?: string;
+        /**
+         / Balance of the virtual currency
+         */
+        TotalValue: number;
 
     }
 

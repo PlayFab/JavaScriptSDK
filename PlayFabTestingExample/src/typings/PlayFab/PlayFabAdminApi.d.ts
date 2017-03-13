@@ -1,3 +1,5 @@
+/// <reference path="Playfab.d.ts" />
+
 declare module PlayFabAdminModule {
     export interface IPlayFabAdmin {
         /**
@@ -1658,6 +1660,7 @@ declare module PlayFabAdminModels {
     }
 
     type EffectType = "Allow"
+        | "Deny";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.EmptyResult
@@ -3072,7 +3075,7 @@ declare module PlayFabAdminModels {
          */
         Action: string;
         /**
-         / The effect this statement will have. The only supported effect is 'Allow'.
+         / The effect this statement will have. It could be either Allow or Deny
          */
         Effect: string;
         /**
@@ -3297,6 +3300,10 @@ declare module PlayFabAdminModels {
          / status of the process of saving player statistic values of the previous version to a downloadable archive
          */
         ArchivalStatus?: string;
+        /**
+         / status of the statistic version
+         */
+        Status?: string;
         /**
          / URL for the downloadable archive of player statistic values, if available
          */
@@ -3857,6 +3864,12 @@ declare module PlayFabAdminModels {
         | "Queued"
         | "InProgress"
         | "Complete";
+
+    type StatisticVersionStatus = "Active"
+        | "SnapshotPending"
+        | "Snapshot"
+        | "ArchivalPending"
+        | "Archived";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.StoreItem

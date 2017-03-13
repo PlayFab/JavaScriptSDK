@@ -1,3 +1,8 @@
+/// <reference path="PlayFabAdminApi.d.ts" />
+/// <reference path="PlayFabMatchmakerApi.d.ts" />
+/// <reference path="PlayFabServerApi.d.ts" />
+/// <reference path="PlayFabClientApi.d.ts" />
+
 declare module PlayFabModule {
     export interface ISettings {
         titleId: string;
