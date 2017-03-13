@@ -1,3 +1,5 @@
+/// <reference path="Playfab.d.ts" />
+
 declare module PlayFabMatchmakerModule {
     export interface IPlayFabMatchmaker {
         /**
