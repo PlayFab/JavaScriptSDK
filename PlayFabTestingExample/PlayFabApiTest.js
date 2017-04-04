@@ -350,9 +350,7 @@ var PlayFabApiTests = {
         var clientRequest = {
             MaxResultsCount: 3,
             StartPosition: 0,
-            StatisticName: PlayFabApiTests.testConstants.TEST_STAT_NAME,
-            UseSpecificVersion: false,
-            Version: 0
+            StatisticName: PlayFabApiTests.testConstants.TEST_STAT_NAME
         };
         var serverRequest = {
             MaxResultsCount: 3,
