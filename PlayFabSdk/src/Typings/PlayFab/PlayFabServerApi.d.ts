@@ -3823,7 +3823,7 @@ declare module PlayFabServerModels {
          */
         ShowBannedUntil: boolean;
         /**
-         / Whether to show statistics, the most recent version of each stat. Defaults to false
+         / Reserved for future development
          */
         ShowStatistics: boolean;
         /**
