@@ -1720,9 +1720,17 @@ declare module PlayFabServerModels {
          */
         FunctionResult?: any;
         /**
+         / Flag indicating if the FunctionResult was too large and was subsequently dropped from this event
+         */
+        FunctionResultTooLarge?: boolean;
+        /**
          / Entries logged during the function execution. These include both entries logged in the function code using log.info() and log.error() and error entries for API and HTTP request failures.
          */
         Logs?: LogStatement[];
+        /**
+         / Flag indicating if the logs were too large and were subsequently dropped from this event
+         */
+        LogsTooLarge?: boolean;
         ExecutionTimeSeconds: number;
         /**
          / Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP requests.
@@ -1738,7 +1746,7 @@ declare module PlayFabServerModels {
          */
         HttpRequestsIssued: number;
         /**
-         / Information about the error, if any, that occured during execution
+         / Information about the error, if any, that occurred during execution
          */
         Error?: ScriptExecutionError;
 
@@ -3185,7 +3193,7 @@ declare module PlayFabServerModels {
          */
         CharacterId?: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
@@ -4823,7 +4831,7 @@ declare module PlayFabServerModels {
          */
         CharacterId: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
@@ -4909,7 +4917,7 @@ declare module PlayFabServerModels {
          */
         SharedGroupId: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
@@ -4939,7 +4947,7 @@ declare module PlayFabServerModels {
          */
         PlayFabId: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
@@ -4973,7 +4981,7 @@ declare module PlayFabServerModels {
          */
         PlayFabId: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
@@ -5000,7 +5008,7 @@ declare module PlayFabServerModels {
          */
         ItemInstanceId: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
