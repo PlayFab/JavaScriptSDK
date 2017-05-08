@@ -358,7 +358,7 @@ declare module PlayFabAdminModule {
          */
         UpdateCloudScript(request: PlayFabAdminModels.UpdateCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCloudScriptResult>): void;
         /**
-         / Delete a content file from the title
+         / Delete a content file from the title. When deleting a file that does not exist, it returns success.
          / https://api.playfab.com/Documentation/Admin/method/DeleteContent
          */
         DeleteContent(request: PlayFabAdminModels.DeleteContentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>): void;
@@ -1701,9 +1701,17 @@ declare module PlayFabAdminModels {
          */
         FunctionResult?: any;
         /**
+         / Flag indicating if the FunctionResult was too large and was subsequently dropped from this event
+         */
+        FunctionResultTooLarge?: boolean;
+        /**
          / Entries logged during the function execution. These include both entries logged in the function code using log.info() and log.error() and error entries for API and HTTP request failures.
          */
         Logs?: LogStatement[];
+        /**
+         / Flag indicating if the logs were too large and were subsequently dropped from this event
+         */
+        LogsTooLarge?: boolean;
         ExecutionTimeSeconds: number;
         /**
          / Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP requests.
@@ -1719,7 +1727,7 @@ declare module PlayFabAdminModels {
          */
         HttpRequestsIssued: number;
         /**
-         / Information about the error, if any, that occured during execution
+         / Information about the error, if any, that occurred during execution
          */
         Error?: ScriptExecutionError;
 
@@ -2759,7 +2767,7 @@ declare module PlayFabAdminModels {
          */
         CharacterId?: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
@@ -3315,10 +3323,6 @@ declare module PlayFabAdminModels {
          / time when the statistic version became inactive due to statistic version incrementing
          */
         DeactivationTime?: string;
-        /**
-         / status of the process of saving player statistic values of the previous version to a downloadable archive
-         */
-        ArchivalStatus?: string;
         /**
          / status of the statistic version
          */
@@ -4288,7 +4292,7 @@ declare module PlayFabAdminModels {
          */
         PlayFabId: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
@@ -4322,7 +4326,7 @@ declare module PlayFabAdminModels {
          */
         PlayFabId: string;
         /**
-         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         / Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         Data?: { [key: string]: string };
         /**
