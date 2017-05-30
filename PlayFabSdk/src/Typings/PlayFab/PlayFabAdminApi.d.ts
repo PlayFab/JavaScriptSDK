@@ -1701,7 +1701,7 @@ declare module PlayFabAdminModels {
          */
         FunctionResult?: any;
         /**
-         / Flag indicating if the FunctionResult was too large and was subsequently dropped from this event
+         / Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. This only occurs if the total event size is larger than 350KB.
          */
         FunctionResultTooLarge?: boolean;
         /**
@@ -1709,7 +1709,7 @@ declare module PlayFabAdminModels {
          */
         Logs?: LogStatement[];
         /**
-         / Flag indicating if the logs were too large and were subsequently dropped from this event
+         / Flag indicating if the logs were too large and were subsequently dropped from this event. This only occurs if the total event size is larger than 350KB after the FunctionResult was removed.
          */
         LogsTooLarge?: boolean;
         ExecutionTimeSeconds: number;
@@ -3689,7 +3689,7 @@ declare module PlayFabAdminModels {
         /**
          / Name of the task. This is a unique identifier for tasks in the title.
          */
-        Name?: string;
+        Name: string;
         /**
          / Description the task
          */
