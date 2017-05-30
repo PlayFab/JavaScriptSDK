@@ -13,6 +13,11 @@ declare module PlayFabServerModule {
          */
         BanUsers(request: PlayFabServerModels.BanUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.BanUsersResult>): void;
         /**
+         / Retrieves the player's profile
+         / https://api.playfab.com/Documentation/Server/method/GetPlayerProfile
+         */
+        GetPlayerProfile(request: PlayFabServerModels.GetPlayerProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayerProfileResult>): void;
+        /**
          / Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
          / https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromFacebookIDs
          */
@@ -1720,7 +1725,7 @@ declare module PlayFabServerModels {
          */
         FunctionResult?: any;
         /**
-         / Flag indicating if the FunctionResult was too large and was subsequently dropped from this event
+         / Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. This only occurs if the total event size is larger than 350KB.
          */
         FunctionResultTooLarge?: boolean;
         /**
@@ -1728,7 +1733,7 @@ declare module PlayFabServerModels {
          */
         Logs?: LogStatement[];
         /**
-         / Flag indicating if the logs were too large and were subsequently dropped from this event
+         / Flag indicating if the logs were too large and were subsequently dropped from this event. This only occurs if the total event size is larger than 350KB after the FunctionResult was removed.
          */
         LogsTooLarge?: boolean;
         ExecutionTimeSeconds: number;
@@ -2419,6 +2424,14 @@ declare module PlayFabServerModels {
          / Specific statistics to retrieve. Leave null to get all keys. Has no effect if GetPlayerStatistics is false
          */
         PlayerStatisticNames?: string[];
+        /**
+         / Whether to get player profile. Defaults to false.
+         */
+        GetPlayerProfile: boolean;
+        /**
+         / Specifies the properties to return from the player profile. Defaults to returning the player's display name.
+         */
+        ProfileConstraints?: number;
 
     }
 
@@ -2489,6 +2502,36 @@ declare module PlayFabServerModels {
          / List of statistics for this player.
          */
         PlayerStatistics?: StatisticValue[];
+        /**
+         / The profile of the players. This profile is not guaranteed to be up-to-date. For a new player, this profile will not exist.
+         */
+        PlayerProfile?: PlayerProfileModel;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerProfileRequest
+     */
+    export interface GetPlayerProfileRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        PlayFabId: string;
+        /**
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         */
+        ProfileConstraints?: number;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerProfileResult
+     */
+    export interface GetPlayerProfileResult extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         / The profile of the player. This profile is not guaranteed to be up-to-date. For a new player, this profile will not exist.
+         */
+        PlayerProfile?: PlayerProfileModel;
 
     }
 
@@ -4179,13 +4222,9 @@ declare module PlayFabServerModels {
          */
         ReporterId: string;
         /**
-         / PlayFabId of the reported player.
+         / Unique PlayFab identifier of the reported player.
          */
         ReporteeId: string;
-        /**
-         / Title player was reported in, optional if report not for specific title.
-         */
-        TitleId?: string;
         /**
          / Optional additional comment by reporting player.
          */
@@ -4198,9 +4237,9 @@ declare module PlayFabServerModels {
      */
     export interface ReportPlayerServerResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
-         / Indicates whether this action completed successfully.
+         / Deprecated: Always true
          */
-        Updated: boolean;
+        Updated?: boolean;
         /**
          / The number of remaining reports which may be filed today by this reporting player.
          */
