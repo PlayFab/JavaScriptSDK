@@ -118,7 +118,7 @@ The HTML file has a few important lines:
 <script type="text/javascript" src="src/PlayFab/PlayFabClientApi.js"></script>
 ```
 
-This line loads the Client-SDK from the local PlayFabSDK file. The latest version of this file is also available from [our CDN](https://download.playfab.com/PlayFabClientApi.js).  For more information read our [CDN blog post](https://playfab.com/playfab-now-serving-javascript-sdk-via-cdn/).
+This line loads the Client-SDK from the local PlayFabSDK file. The latest version of this file is also available from [our CDN](https://download.playfab.com/PlayFabClientApi.js).  For more information read our [CDN blog post](https://blog.playfab.com/blog/playfab-now-serving-javascript-sdk-via-cdn/).
 
 The other important HTML lines:
 ```HTML
