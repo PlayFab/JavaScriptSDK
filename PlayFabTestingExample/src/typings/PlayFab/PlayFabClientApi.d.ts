@@ -450,21 +450,6 @@ declare module PlayFabClientModule {
          */
         SetFriendTags(request: PlayFabClientModels.SetFriendTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SetFriendTagsResult>): void;
         /**
-         / Registers the iOS device to receive push notifications
-         / https://api.playfab.com/Documentation/Client/method/RegisterForIOSPushNotification
-         */
-        RegisterForIOSPushNotification(request: PlayFabClientModels.RegisterForIOSPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterForIOSPushNotificationResult>): void;
-        /**
-         / Restores all in-app purchases based on the given restore receipt
-         / https://api.playfab.com/Documentation/Client/method/RestoreIOSPurchases
-         */
-        RestoreIOSPurchases(request: PlayFabClientModels.RestoreIOSPurchasesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RestoreIOSPurchasesResult>): void;
-        /**
-         / Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
-         / https://api.playfab.com/Documentation/Client/method/ValidateIOSReceipt
-         */
-        ValidateIOSReceipt(request: PlayFabClientModels.ValidateIOSReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateIOSReceiptResult>): void;
-        /**
          / Get details about all current running game servers matching the given parameters.
          / https://api.playfab.com/Documentation/Client/method/GetCurrentGames
          */
@@ -484,16 +469,6 @@ declare module PlayFabClientModule {
          / https://api.playfab.com/Documentation/Client/method/StartGame
          */
         StartGame(request: PlayFabClientModels.StartGameRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.StartGameResult>): void;
-        /**
-         / Registers the Android device to receive push notifications
-         / https://api.playfab.com/Documentation/Client/method/AndroidDevicePushNotificationRegistration
-         */
-        AndroidDevicePushNotificationRegistration(request: PlayFabClientModels.AndroidDevicePushNotificationRegistrationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AndroidDevicePushNotificationRegistrationResult>): void;
-        /**
-         / Validates a Google Play purchase and gives the corresponding item to the player.
-         / https://api.playfab.com/Documentation/Client/method/ValidateGooglePlayPurchase
-         */
-        ValidateGooglePlayPurchase(request: PlayFabClientModels.ValidateGooglePlayPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateGooglePlayPurchaseResult>): void;
         /**
          / Writes a character-based event into PlayStream.
          / https://api.playfab.com/Documentation/Client/method/WriteCharacterEvent
@@ -595,11 +570,6 @@ declare module PlayFabClientModule {
          */
         UpdateCharacterData(request: PlayFabClientModels.UpdateCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateCharacterDataResult>): void;
         /**
-         / Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
-         / https://api.playfab.com/Documentation/Client/method/ValidateAmazonIAPReceipt
-         */
-        ValidateAmazonIAPReceipt(request: PlayFabClientModels.ValidateAmazonReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateAmazonReceiptResult>): void;
-        /**
          / Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
          / https://api.playfab.com/Documentation/Client/method/AcceptTrade
          */
@@ -639,6 +609,36 @@ declare module PlayFabClientModule {
          / https://api.playfab.com/Documentation/Client/method/GetPlayerTags
          */
         GetPlayerTags(request: PlayFabClientModels.GetPlayerTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerTagsResult>): void;
+        /**
+         / Registers the Android device to receive push notifications
+         / https://api.playfab.com/Documentation/Client/method/AndroidDevicePushNotificationRegistration
+         */
+        AndroidDevicePushNotificationRegistration(request: PlayFabClientModels.AndroidDevicePushNotificationRegistrationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AndroidDevicePushNotificationRegistrationResult>): void;
+        /**
+         / Registers the iOS device to receive push notifications
+         / https://api.playfab.com/Documentation/Client/method/RegisterForIOSPushNotification
+         */
+        RegisterForIOSPushNotification(request: PlayFabClientModels.RegisterForIOSPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterForIOSPushNotificationResult>): void;
+        /**
+         / Restores all in-app purchases based on the given restore receipt
+         / https://api.playfab.com/Documentation/Client/method/RestoreIOSPurchases
+         */
+        RestoreIOSPurchases(request: PlayFabClientModels.RestoreIOSPurchasesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RestoreIOSPurchasesResult>): void;
+        /**
+         / Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+         / https://api.playfab.com/Documentation/Client/method/ValidateAmazonIAPReceipt
+         */
+        ValidateAmazonIAPReceipt(request: PlayFabClientModels.ValidateAmazonReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateAmazonReceiptResult>): void;
+        /**
+         / Validates a Google Play purchase and gives the corresponding item to the player.
+         / https://api.playfab.com/Documentation/Client/method/ValidateGooglePlayPurchase
+         */
+        ValidateGooglePlayPurchase(request: PlayFabClientModels.ValidateGooglePlayPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateGooglePlayPurchaseResult>): void;
+        /**
+         / Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+         / https://api.playfab.com/Documentation/Client/method/ValidateIOSReceipt
+         */
+        ValidateIOSReceipt(request: PlayFabClientModels.ValidateIOSReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateIOSReceiptResult>): void;
         /**
          / Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
          / https://api.playfab.com/Documentation/Client/method/ValidateWindowsStoreReceipt
@@ -2247,7 +2247,7 @@ declare module PlayFabClientModels {
          */
         UseSpecificVersion?: boolean;
         /**
-         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: number;
 
@@ -2305,7 +2305,7 @@ declare module PlayFabClientModels {
          */
         UseSpecificVersion?: boolean;
         /**
-         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: number;
 
@@ -2396,7 +2396,7 @@ declare module PlayFabClientModels {
          */
         UseSpecificVersion?: boolean;
         /**
-         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: number;
 
@@ -2472,7 +2472,7 @@ declare module PlayFabClientModels {
          */
         UseSpecificVersion?: boolean;
         /**
-         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: number;
 
@@ -2684,7 +2684,7 @@ declare module PlayFabClientModels {
          */
         PlayFabId: string;
         /**
-         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: number;
 
@@ -3334,7 +3334,7 @@ declare module PlayFabClientModels {
          */
         ItemId: string;
         /**
-         / Non-unique display name of the character being granted.
+         / Non-unique display name of the character being granted (1-20 characters in length).
          */
         CharacterName: string;
 
@@ -4485,11 +4485,11 @@ declare module PlayFabClientModels {
          */
         PublisherId?: string;
         /**
-         / Title ID this profile applies to
+         / Title ID this player profile applies to
          */
         TitleId?: string;
         /**
-         / PlayFab Player ID
+         / PlayFab player account unique identifier
          */
         PlayerId?: string;
         /**
@@ -4501,7 +4501,7 @@ declare module PlayFabClientModels {
          */
         Origination?: string;
         /**
-         / Last login
+         / UTC time when the player most recently logged in to the title
          */
         LastLogin?: string;
         /**
@@ -4509,15 +4509,15 @@ declare module PlayFabClientModels {
          */
         BannedUntil?: string;
         /**
-         / List of geographic locations where the player has logged-in
+         / List of geographic locations from which the player has logged in to the title
          */
         Locations?: LocationModel[];
         /**
-         / Player Display Name
+         / Player display name
          */
         DisplayName?: string;
         /**
-         / Image URL of the player's avatar
+         / URL of the player's avatar image
          */
         AvatarUrl?: string;
         /**
@@ -4529,7 +4529,7 @@ declare module PlayFabClientModels {
          */
         PushNotificationRegistrations?: PushNotificationRegistrationModel[];
         /**
-         / List of third party accounts linked to this player
+         / List of all authentication systems linked to this player account
          */
         LinkedAccounts?: LinkedPlatformAccountModel[];
         /**
@@ -4537,15 +4537,15 @@ declare module PlayFabClientModels {
          */
         AdCampaignAttributions?: AdCampaignAttributionModel[];
         /**
-         / A sum of player's total purchases across all real-money currencies, converted to US Dollars equivalent
+         / Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a whole number of cents (1/100 USD).              For example, 999 indicates nine dollars and ninety-nine cents.
          */
         TotalValueToDateInUSD?: number;
         /**
-         / List of player's total lifetime real-money purchases by currency
+         / List of the player's lifetime purchase totals, summed by real-money currency
          */
         ValuesToDate?: ValueToDateModel[];
         /**
-         / List of player's virtual currency balances
+         / List of the player's virtual currency balances
          */
         VirtualCurrencyBalances?: VirtualCurrencyBalanceModel[];
         /**
@@ -4817,7 +4817,7 @@ declare module PlayFabClientModels {
          */
         RequireBothUsernameAndEmail?: boolean;
         /**
-         / An optional parameter for setting the display name for this title.
+         / An optional parameter for setting the display name for this title (3-25 characters).
          */
         DisplayName?: string;
         /**
@@ -6337,11 +6337,11 @@ declare module PlayFabClientModels {
          */
         Currency?: string;
         /**
-         / Total value of the purchases in a whole number of 1/100 monetary units. For example 999 indicates nine dollars and ninety-nine cents when Currency is 'USD')
+         / Total value of the purchases in a whole number of 1/100 monetary units. For example, 999 indicates nine dollars and ninety-nine cents when Currency is 'USD')
          */
         TotalValue: number;
         /**
-         / Total value of the purchases in a string representation of decimal monetary units (e.g. '9.99' indicates nine dollars and ninety-nine cents when Currency is 'USD'))
+         / Total value of the purchases in a string representation of decimal monetary units. For example, '9.99' indicates nine dollars and ninety-nine cents when Currency is 'USD'.
          */
         TotalValueAsDecimal?: string;
 

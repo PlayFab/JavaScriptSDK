@@ -5,14 +5,14 @@
 
 JavaScriptSDK for the Client API of PlayFab
 
-This SDK can alternatively be used via our CDN. Additional details can be found [here](https://playfab.com/playfab-now-serving-javascript-sdk-via-cdn/).
+This SDK can alternatively be used via our CDN. Additional details can be found [here](https://blog.playfab.com/blog/playfab-now-serving-javascript-sdk-via-cdn).
 
 If you want to start coding right away, check out our [JavaScript Getting Started Guide](JavaScriptGettingStarted.md)
 
 
 ## 2. Prerequisites:
 
-* Users should be very familiar with the topics covered in our [getting started guide](https://playfab.com/docs/getting-started-with-playfab/).
+* Users should be very familiar with the topics covered in our [getting started guide](https://api.playfab.com/docs/general-getting-started).
 
 To connect to the PlayFab service, your machine must be running TLS v1.2 or better.
 * For Windows, this means Windows 7 and above

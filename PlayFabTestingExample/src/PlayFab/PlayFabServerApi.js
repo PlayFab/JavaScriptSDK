@@ -99,8 +99,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
-PlayFab.sdkVersion = "1.6.170530";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_2";
+PlayFab.sdkVersion = "1.7.170612";
 
 PlayFab.ServerApi = {
 
@@ -554,12 +554,6 @@ PlayFab.ServerApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/SetGameServerInstanceTags", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
-    AwardSteamAchievement: function (request, callback) {
-        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/AwardSteamAchievement", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
-    },
-
     WriteCharacterEvent: function (request, callback) {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
@@ -750,6 +744,12 @@ PlayFab.ServerApi = {
         if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/RemovePlayerTag", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
+    AwardSteamAchievement: function (request, callback) {
+        if (PlayFab.settings.developerSecretKey == null) throw "Must have PlayFab.settings.developerSecretKey set to call this method";
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/AwardSteamAchievement", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 };
 
