@@ -3,10 +3,35 @@
 declare module PlayFabAdminModule {
     export interface IPlayFabAdmin {
         /**
+         / Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after this API returns.
+         / https://api.playfab.com/Documentation/Admin/method/CreatePlayerSharedSecret
+         */
+        CreatePlayerSharedSecret(request: PlayFabAdminModels.CreatePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreatePlayerSharedSecretResult>): void;
+        /**
+         / Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API returns.
+         / https://api.playfab.com/Documentation/Admin/method/DeletePlayerSharedSecret
+         */
+        DeletePlayerSharedSecret(request: PlayFabAdminModels.DeletePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeletePlayerSharedSecretResult>): void;
+        /**
+         / Returns all Player Shared Secret Keys including disabled and expired.
+         / https://api.playfab.com/Documentation/Admin/method/GetPlayerSharedSecrets
+         */
+        GetPlayerSharedSecrets(request: PlayFabAdminModels.GetPlayerSharedSecretsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSharedSecretsResult>): void;
+        /**
          / Gets the requested policy.
          / https://api.playfab.com/Documentation/Admin/method/GetPolicy
          */
         GetPolicy(request: PlayFabAdminModels.GetPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPolicyResponse>): void;
+        /**
+         / Sets or resets the player's secret. Player secrets are used to sign API requests.
+         / https://api.playfab.com/Documentation/Admin/method/SetPlayerSecret
+         */
+        SetPlayerSecret(request: PlayFabAdminModels.SetPlayerSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetPlayerSecretResult>): void;
+        /**
+         / Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available after this API returns.
+         / https://api.playfab.com/Documentation/Admin/method/UpdatePlayerSharedSecret
+         */
+        UpdatePlayerSharedSecret(request: PlayFabAdminModels.UpdatePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePlayerSharedSecretResult>): void;
         /**
          / Changes a policy for a title
          / https://api.playfab.com/Documentation/Admin/method/UpdatePolicy
@@ -1405,6 +1430,28 @@ declare module PlayFabAdminModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerSharedSecretRequest
+     */
+    export interface CreatePlayerSharedSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Friendly name for this key
+         */
+        FriendlyName?: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerSharedSecretResult
+     */
+    export interface CreatePlayerSharedSecretResult extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         / The player shared secret to use when calling Client/GetTitlePublicKey
+         */
+        SecretKey?: string;
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerStatisticDefinitionRequest
      */
     export interface CreatePlayerStatisticDefinitionRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -1616,6 +1663,24 @@ declare module PlayFabAdminModels {
          / Key of the content item to be deleted
          */
         Key: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretRequest
+     */
+    export interface DeletePlayerSharedSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / The shared secret key to delete
+         */
+        SecretKey?: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretResult
+     */
+    export interface DeletePlayerSharedSecretResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -2103,6 +2168,24 @@ declare module PlayFabAdminModels {
          / Array of segments the requested player currently belongs to.
          */
         Segments?: GetSegmentResult[];
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerSharedSecretsRequest
+     */
+    export interface GetPlayerSharedSecretsRequest extends PlayFabModule.IPlayFabRequestCommon {
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerSharedSecretsResult
+     */
+    export interface GetPlayerSharedSecretsResult extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         / The player shared secret to use when calling Client/GetTitlePublicKey
+         */
+        SharedSecrets?: SharedSecret[];
 
     }
 
@@ -3352,6 +3435,10 @@ declare module PlayFabAdminModels {
 
     }
 
+    type PushSetupPlatform = "GCM"
+        | "APNS"
+        | "APNS_SANDBOX";
+
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RandomResultTable
      */
@@ -3762,6 +3849,28 @@ declare module PlayFabAdminModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPlayerSecretRequest
+     */
+    export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Player secret that is used to verify API request signatures (Enterprise Only).
+         */
+        PlayerSecret: string;
+        /**
+         / Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        PlayFabId: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPlayerSecretResult
+     */
+    export interface SetPlayerSecretResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublishedRevisionRequest
      */
     export interface SetPublishedRevisionRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -3862,6 +3971,25 @@ declare module PlayFabAdminModels {
          / Amazon Resource Name for the created notification topic.
          */
         ARN?: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SharedSecret
+     */
+    export interface SharedSecret {
+        /**
+         / The player shared secret to use when calling Client/GetTitlePublicKey
+         */
+        SecretKey?: string;
+        /**
+         / Friendly name for this key
+         */
+        FriendlyName?: string;
+        /**
+         / Flag to indicate if this key is disabled
+         */
+        Disabled: boolean;
 
     }
 
@@ -4129,6 +4257,32 @@ declare module PlayFabAdminModels {
          / New revision number created
          */
         Revision: number;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerSharedSecretRequest
+     */
+    export interface UpdatePlayerSharedSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / The shared secret key to update
+         */
+        SecretKey?: string;
+        /**
+         / Friendly name for this key
+         */
+        FriendlyName?: string;
+        /**
+         / Disable or Enable this key
+         */
+        Disabled: boolean;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerSharedSecretResult
+     */
+    export interface UpdatePlayerSharedSecretResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
