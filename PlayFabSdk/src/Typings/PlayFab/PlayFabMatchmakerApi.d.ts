@@ -200,6 +200,10 @@ declare module PlayFabMatchmakerModels {
      */
     export interface RegisterGameRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
+         / Previous lobby id if re-registering an existing game.
+         */
+        LobbyId?: string;
+        /**
          / IP address of the Game Server Instance.
          */
         ServerHost: string;
@@ -231,7 +235,7 @@ declare module PlayFabMatchmakerModels {
      */
     export interface RegisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
         /**
-         / Unique identifier generated for the Game Server Instance that is registered.
+         / Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
          */
         LobbyId?: string;
 

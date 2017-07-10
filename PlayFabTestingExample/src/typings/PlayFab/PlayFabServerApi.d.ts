@@ -8,6 +8,11 @@ declare module PlayFabServerModule {
          */
         AuthenticateSessionTicket(request: PlayFabServerModels.AuthenticateSessionTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.AuthenticateSessionTicketResult>): void;
         /**
+         / Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+         / https://api.playfab.com/Documentation/Server/method/SetPlayerSecret
+         */
+        SetPlayerSecret(request: PlayFabServerModels.SetPlayerSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.SetPlayerSecretResult>): void;
+        /**
          / Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
          / https://api.playfab.com/Documentation/Server/method/BanUsers
          */
@@ -2141,13 +2146,9 @@ declare module PlayFabServerModels {
          */
         IncludeFacebookFriends?: boolean;
         /**
-         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         / The version of the leaderboard to get.
          */
         Version?: number;
-        /**
-         / If true, uses the specified version. If false, gets the most recent version.
-         */
-        UseSpecificVersion?: boolean;
         /**
          / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -2244,13 +2245,9 @@ declare module PlayFabServerModels {
          */
         ProfileConstraints?: number;
         /**
-         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         / The version of the leaderboard to get.
          */
         Version?: number;
-        /**
-         / If true, uses the specified version. If false, gets the most recent version.
-         */
-        UseSpecificVersion?: boolean;
 
     }
 
@@ -2324,13 +2321,9 @@ declare module PlayFabServerModels {
          */
         ProfileConstraints?: number;
         /**
-         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         / The version of the leaderboard to get.
          */
         Version?: number;
-        /**
-         / If true, uses the specified version. If false, gets the most recent version.
-         */
-        UseSpecificVersion?: boolean;
 
     }
 
@@ -3966,6 +3959,37 @@ declare module PlayFabServerModels {
 
     }
 
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationPackage
+     */
+    export interface PushNotificationPackage {
+        /**
+         / If set, represents a timestamp for when the device should display the message. Local format should be formatted as: yyyy-MM-dd HH:mm:ss or UTC timestamp formatted as yyyy-MM-ddTHH:mm:ssZ. Delivery is not delayed, scheduling is expected to be handled by the device.
+         */
+        ScheduleDate?: string;
+        /**
+         / Title/Subject of the message
+         */
+        Title: string;
+        /**
+         / Content of the message
+         */
+        Message: string;
+        /**
+         / Icon file to display with the message
+         */
+        Icon?: string;
+        /**
+         / Sound file to play with the message
+         */
+        Sound?: string;
+        /**
+         / Arbitrary string that will be delivered with the message. Suggested use: JSON formatted object
+         */
+        CustomData?: string;
+
+    }
+
     type PushNotificationPlatform = "ApplePushNotificationService"
         | "GoogleCloudMessaging";
 
@@ -4117,6 +4141,10 @@ declare module PlayFabServerModels {
      */
     export interface RegisterGameRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
+         / Previous lobby id if re-registering an existing game.
+         */
+        LobbyId?: string;
+        /**
          / IP address of the Game Server Instance.
          */
         ServerHost: string;
@@ -4148,7 +4176,7 @@ declare module PlayFabServerModels {
      */
     export interface RegisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
         /**
-         / Unique identifier generated for the Game Server Instance that is registered.
+         / Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
          */
         LobbyId?: string;
 
@@ -4369,7 +4397,11 @@ declare module PlayFabServerModels {
         /**
          / Text of message to send.
          */
-        Message: string;
+        Message?: string;
+        /**
+         / Defines all possible push attributes like message, title, icon, etc
+         */
+        Package?: PushNotificationPackage;
         /**
          / Subject of message to send (may not be displayed in all platforms.
          */
@@ -4466,6 +4498,28 @@ declare module PlayFabServerModels {
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsResult
      */
     export interface SetGameServerInstanceTagsResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretRequest
+     */
+    export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Player secret that is used to verify API request signatures (Enterprise Only).
+         */
+        PlayerSecret: string;
+        /**
+         / Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        PlayFabId: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretResult
+     */
+    export interface SetPlayerSecretResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 

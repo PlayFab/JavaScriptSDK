@@ -10,6 +10,11 @@ declare module PlayFabClientModule {
          */
         GetPhotonAuthenticationToken(request: PlayFabClientModels.GetPhotonAuthenticationTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPhotonAuthenticationTokenResult>): void;
         /**
+         / Returns the title's base 64 encoded RSA CSP blob.
+         / https://api.playfab.com/Documentation/Client/method/GetTitlePublicKey
+         */
+        GetTitlePublicKey(request: PlayFabClientModels.GetTitlePublicKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTitlePublicKeyResult>): void;
+        /**
          / Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
          / https://api.playfab.com/Documentation/Client/method/GetWindowsHelloChallenge
          */
@@ -84,6 +89,11 @@ declare module PlayFabClientModule {
          / https://api.playfab.com/Documentation/Client/method/RegisterWithWindowsHello
          */
         RegisterWithWindowsHello(request: PlayFabClientModels.RegisterWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>): void;
+        /**
+         / Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+         / https://api.playfab.com/Documentation/Client/method/SetPlayerSecret
+         */
+        SetPlayerSecret(request: PlayFabClientModels.SetPlayerSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SetPlayerSecretResult>): void;
         /**
          / Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
          / https://api.playfab.com/Documentation/Client/method/AddGenericID
@@ -2239,13 +2249,9 @@ declare module PlayFabClientModels {
          */
         IncludeFacebookFriends?: boolean;
         /**
-         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         / The version of the leaderboard to get.
          */
         Version?: number;
-        /**
-         / If true, uses the specified version. If false, gets the most recent version.
-         */
-        UseSpecificVersion?: boolean;
         /**
          / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -2297,13 +2303,9 @@ declare module PlayFabClientModels {
          */
         IncludeFacebookFriends?: boolean;
         /**
-         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         / The version of the leaderboard to get.
          */
         Version?: number;
-        /**
-         / If true, uses the specified version. If false, gets the most recent version.
-         */
-        UseSpecificVersion?: boolean;
         /**
          / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -2388,13 +2390,9 @@ declare module PlayFabClientModels {
          */
         MaxResultsCount?: number;
         /**
-         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         / The version of the leaderboard to get.
          */
         Version?: number;
-        /**
-         / If true, uses the specified version. If false, gets the most recent version.
-         */
-        UseSpecificVersion?: boolean;
         /**
          / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -2464,13 +2462,9 @@ declare module PlayFabClientModels {
          */
         MaxResultsCount?: number;
         /**
-         / The version of the leaderboard to get, when UseSpecificVersion is true.
+         / The version of the leaderboard to get.
          */
         Version?: number;
-        /**
-         / If true, uses the specified version. If false, gets the most recent version.
-         */
-        UseSpecificVersion?: boolean;
         /**
          / If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -3191,6 +3185,32 @@ declare module PlayFabClientModels {
          / Array of news items.
          */
         News?: TitleNewsItem[];
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitlePublicKeyRequest
+     */
+    export interface GetTitlePublicKeyRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+         */
+        TitleId: string;
+        /**
+         / The shared secret key for this title
+         */
+        TitleSharedSecret: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitlePublicKeyResult
+     */
+    export interface GetTitlePublicKeyResult extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         / Base64 encoded RSA CSP byte array blob containing the title's public RSA key
+         */
+        RSAPublicKey?: string;
 
     }
 
@@ -5063,6 +5083,28 @@ declare module PlayFabClientModels {
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetFriendTagsResult
      */
     export interface SetFriendTagsResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretRequest
+     */
+    export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Player secret that is used to verify API request signatures (Enterprise Only).
+         */
+        PlayerSecret?: string;
+        /**
+         / Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
+         */
+        EncryptedRequest?: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretResult
+     */
+    export interface SetPlayerSecretResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
