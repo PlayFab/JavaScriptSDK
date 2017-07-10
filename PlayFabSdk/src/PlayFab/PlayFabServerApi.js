@@ -102,7 +102,7 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_2";
 PlayFab.sdkVersion = "1.8.170710";
 
 PlayFab.ServerApi = {
