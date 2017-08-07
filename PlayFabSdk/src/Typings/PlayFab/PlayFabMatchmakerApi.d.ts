@@ -148,11 +148,11 @@ declare module PlayFabMatchmakerModels {
      */
     export interface PlayerJoinedRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         / Unique identifier of the Game Server Instance the user is joining.
+         / Unique identifier of the Game Server Instance the user is joining. This must be a Game Server Instance started with the Matchmaker/StartGame API.
          */
         LobbyId: string;
         /**
-         / PlayFab unique identifier for the user joining.
+         / PlayFab unique identifier for the player joining.
          */
         PlayFabId: string;
 
@@ -170,11 +170,11 @@ declare module PlayFabMatchmakerModels {
      */
     export interface PlayerLeftRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         / Unique identifier of the Game Server Instance the user is leaving.
+         / Unique identifier of the Game Server Instance the user is leaving. This must be a Game Server Instance started with the Matchmaker/StartGame API.
          */
         LobbyId: string;
         /**
-         / PlayFab unique identifier for the user leaving.
+         / PlayFab unique identifier for the player leaving.
          */
         PlayFabId: string;
 

@@ -102,8 +102,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_2";
-PlayFab.sdkVersion = "1.8.170710";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
+PlayFab.sdkVersion = "1.9.170807";
 
 PlayFab.AdminApi = {
 
@@ -155,6 +155,12 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/BanUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
+    DeletePlayer: function (request, callback) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeletePlayer", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
+    },
+
     GetUserAccountInfo: function (request, callback) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
@@ -167,6 +173,9 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserBans", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
+    /**
+     * @deprecated Please use DeletePlayer instead. 
+     */
     ResetUsers: function (request, callback) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
@@ -209,6 +218,9 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CreatePlayerStatisticDefinition", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback);
     },
 
+    /**
+     * @deprecated Please use DeleteUser instead. 
+     */
     DeleteUsers: function (request, callback) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
