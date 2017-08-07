@@ -493,7 +493,7 @@ declare module PlayFabServerModule {
          */
         GetCharacterReadOnlyData(request: PlayFabServerModels.GetCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetCharacterDataResult>): void;
         /**
-         / Updates the title-specific custom data for the user's chjaracter which is readable and writable by the client
+         / Updates the title-specific custom data for the user's character which is readable and writable by the client
          / https://api.playfab.com/Documentation/Server/method/UpdateCharacterData
          */
         UpdateCharacterData(request: PlayFabServerModels.UpdateCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UpdateCharacterDataResult>): void;
@@ -1160,6 +1160,25 @@ declare module PlayFabServerModels {
 
     }
 
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ContactEmailInfo
+     */
+    export interface ContactEmailInfo {
+        /**
+         / The name of the email info data
+         */
+        Name?: string;
+        /**
+         / The email address
+         */
+        EmailAddress?: string;
+        /**
+         / The verification status of the email
+         */
+        VerificationStatus?: string;
+
+    }
+
     type ContinentCode = "AF"
         | "AN"
         | "AS"
@@ -1679,6 +1698,10 @@ declare module PlayFabServerModels {
     export interface DeregisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
+
+    type EmailVerificationStatus = "Unverified"
+        | "Pending"
+        | "Confirmed";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
@@ -3760,6 +3783,10 @@ declare module PlayFabServerModels {
          / Array of player statistics
          */
         PlayerStatistics?: PlayerStatistic[];
+        /**
+         / Array of contact email addresses associated with the player
+         */
+        ContactEmailAddresses?: ContactEmailInfo[];
 
     }
 

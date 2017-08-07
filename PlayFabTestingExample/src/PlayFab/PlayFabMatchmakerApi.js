@@ -102,8 +102,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_2";
-PlayFab.sdkVersion = "1.8.170710";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
+PlayFab.sdkVersion = "1.9.170807";
 
 PlayFab.MatchmakerApi = {
 

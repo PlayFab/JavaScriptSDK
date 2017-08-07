@@ -43,6 +43,11 @@ declare module PlayFabAdminModule {
          */
         BanUsers(request: PlayFabAdminModels.BanUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>): void;
         /**
+         / Removes a user's player account from a title and deletes all associated data
+         / https://api.playfab.com/Documentation/Admin/method/DeletePlayer
+         */
+        DeletePlayer(request: PlayFabAdminModels.DeletePlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeletePlayerResult>): void;
+        /**
          / Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
          / https://api.playfab.com/Documentation/Admin/method/GetUserAccountInfo
          */
@@ -1099,6 +1104,25 @@ declare module PlayFabAdminModels {
         | "False";
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ContactEmailInfo
+     */
+    export interface ContactEmailInfo {
+        /**
+         / The name of the email info data
+         */
+        Name?: string;
+        /**
+         / The email address
+         */
+        EmailAddress?: string;
+        /**
+         / The verification status of the email
+         */
+        VerificationStatus?: string;
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ContentInfo
      */
     export interface ContentInfo {
@@ -1667,6 +1691,24 @@ declare module PlayFabAdminModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerRequest
+     */
+    export interface DeletePlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         / Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        PlayFabId: string;
+
+    }
+
+    /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerResult
+     */
+    export interface DeletePlayerResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretRequest
      */
     export interface DeletePlayerSharedSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -1741,6 +1783,10 @@ declare module PlayFabAdminModels {
 
     type EffectType = "Allow"
         | "Deny";
+
+    type EmailVerificationStatus = "Unverified"
+        | "Pending"
+        | "Confirmed";
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.EmptyResult
@@ -3329,6 +3375,10 @@ declare module PlayFabAdminModels {
          / Array of player statistics
          */
         PlayerStatistics?: PlayerStatistic[];
+        /**
+         / Array of contact email addresses associated with the player
+         */
+        ContactEmailAddresses?: ContactEmailInfo[];
 
     }
 
