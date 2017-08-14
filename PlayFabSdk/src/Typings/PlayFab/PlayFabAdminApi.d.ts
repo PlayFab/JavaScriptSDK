@@ -4549,7 +4549,7 @@ declare module PlayFabAdminModels {
          */
         PlayFabId: string;
         /**
-         / new title display name for the user - must be between 3 and 25 characters
+         / New title display name for the user - must be between 3 and 25 characters
          */
         DisplayName: string;
 
