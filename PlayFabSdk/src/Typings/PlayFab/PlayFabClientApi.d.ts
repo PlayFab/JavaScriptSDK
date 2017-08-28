@@ -495,27 +495,27 @@ declare module PlayFabClientModule {
          */
         WriteTitleEvent(request: PlayFabClientModels.WriteTitleEventRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>): void;
         /**
-         / Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users in the group can add new members.
+         / Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          / https://api.playfab.com/Documentation/Client/method/AddSharedGroupMembers
          */
         AddSharedGroupMembers(request: PlayFabClientModels.AddSharedGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddSharedGroupMembersResult>): void;
         /**
-         / Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the group. Upon creation, the current user will be the only member of the group.
+         / Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          / https://api.playfab.com/Documentation/Client/method/CreateSharedGroup
          */
         CreateSharedGroup(request: PlayFabClientModels.CreateSharedGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CreateSharedGroupResult>): void;
         /**
-         / Retrieves data stored in a shared group object, as well as the list of members in the group. Non-members of the group may use this to retrieve group data, including membership, but they will not receive data for keys marked as private.
+         / Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private. Shared Groups are designed for sharing data between a  very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          / https://api.playfab.com/Documentation/Client/method/GetSharedGroupData
          */
         GetSharedGroupData(request: PlayFabClientModels.GetSharedGroupDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetSharedGroupDataResult>): void;
         /**
-         / Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted.
+         / Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          / https://api.playfab.com/Documentation/Client/method/RemoveSharedGroupMembers
          */
         RemoveSharedGroupMembers(request: PlayFabClientModels.RemoveSharedGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveSharedGroupMembersResult>): void;
         /**
-         / Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group can update the data.
+         / Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          / https://api.playfab.com/Documentation/Client/method/UpdateSharedGroupData
          */
         UpdateSharedGroupData(request: PlayFabClientModels.UpdateSharedGroupDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateSharedGroupDataResult>): void;
@@ -1229,6 +1229,21 @@ declare module PlayFabClientModels {
     }
 
     /**
+     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ContactEmailInfoModel
+     */
+    export interface ContactEmailInfoModel {
+        /**
+         / The name of the email info data
+         */
+        Name?: string;
+        /**
+         / The email address
+         */
+        EmailAddress?: string;
+
+    }
+
+    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.Container_Dictionary_String_String
      */
     export interface Container_Dictionary_String_String {
@@ -1923,7 +1938,11 @@ declare module PlayFabClientModels {
         /**
          / game specific string denoting server configuration
          */
-        GameServerState?: string;
+        GameServerState?: number;
+        /**
+         / game specific string denoting server configuration
+         */
+        GameServerStateEnum?: string;
         /**
          / game session custom data
          */
@@ -4561,6 +4580,10 @@ declare module PlayFabClientModels {
          */
         LinkedAccounts?: LinkedPlatformAccountModel[];
         /**
+         / List of all contact email info associated with the player account
+         */
+        ContactEmailAddresses?: ContactEmailInfoModel[];
+        /**
          / List of advertising campaigns the player has been attributed to
          */
         AdCampaignAttributions?: AdCampaignAttributionModel[];
@@ -4623,6 +4646,10 @@ declare module PlayFabClientModels {
          / Whether to show the linked accounts. Defaults to false
          */
         ShowLinkedAccounts: boolean;
+        /**
+         / Whether to show contact email addresses. Defaults to false
+         */
+        ShowContactEmailAddresses: boolean;
         /**
          / Whether to show the total value to date in usd. Defaults to false
          */
@@ -5002,10 +5029,6 @@ declare module PlayFabClientModels {
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ReportPlayerClientResult
      */
     export interface ReportPlayerClientResult extends PlayFabModule.IPlayFabResultCommon  {
-        /**
-         / Deprecated: Always true
-         */
-        Updated?: boolean;
         /**
          / The number of remaining reports which may be filed today.
          */
