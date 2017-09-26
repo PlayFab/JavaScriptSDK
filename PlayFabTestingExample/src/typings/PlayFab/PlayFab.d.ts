@@ -7,6 +7,7 @@ declare module PlayFabModule {
     export interface ISettings {
         titleId: string;
         developerSecretKey: string;
+        GlobalHeaderInjection?: { [key: string]: string };
         advertisingIdType: string;
         advertisingIdValue: string;
         disableAdvertising: boolean;
@@ -21,6 +22,8 @@ declare module PlayFabModule {
         errorCode: number;
         errorMessage: string;
         errorDetails?: { [key: string]: string[] };
+        request?: any;
+        customData?: any;
     }
     export interface SuccessContainer<TResult extends IPlayFabResultCommon> extends IPlayFabError {
         data: TResult;
@@ -33,6 +36,7 @@ declare module PlayFabModule {
 declare var PlayFab: {
     buildIdentifier: string;
     sdkVersion: string;
+    GenerateErrorReport(IPlayFabError): string;
     settings: PlayFabModule.ISettings;
     AdminApi: PlayFabAdminModule.IPlayFabAdmin;
     MatchmakerApi: PlayFabMatchmakerModule.IPlayFabMatchmaker;

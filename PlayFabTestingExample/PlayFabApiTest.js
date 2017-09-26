@@ -4,7 +4,8 @@ var PlayFabApiTests = {
         titleId: null,
         developerSecretKey: null,
         userEmail: "put valid email associated with an existing account here",
-        characterName: "put any character name here"
+        characterName: "put any character name here",
+        extraHeaders: {}
     },
     testData: {
         playFabId: null,
@@ -53,6 +54,7 @@ var PlayFabApiTests = {
             QUnit.test("CloudScript", PlayFabApiTests.CloudScript);
             QUnit.test("CloudScriptError", PlayFabApiTests.CloudScriptError);
             QUnit.test("WriteEvent", PlayFabApiTests.WriteEvent);
+            QUnit.test("ForgetCredentials", PlayFabApiTests.ForgetCredentials);
         }
     },
     SetUp: function (inputTitleData) {
@@ -67,6 +69,7 @@ var PlayFabApiTests = {
             console.log("testTitleData input file did not parse correctly");
         PlayFab.settings.titleId = PlayFabApiTests.titleData.titleId;
         PlayFab.settings.developerSecretKey = PlayFabApiTests.titleData.developerSecretKey;
+        PlayFab.settings.GlobalHeaderInjection = PlayFabApiTests.titleData.extraHeaders;
         return titleDataValid;
     },
     CallbackWrapper: function (callbackName, callback, assert) {
@@ -94,20 +97,11 @@ var PlayFabApiTests = {
     VerifyNullError: function (result, error, assert, message) {
         var success = (result !== null && error == null);
         if (error != null) {
-            assert.ok(false, "PlayFab error message: " + PlayFabApiTests.CompileErrorReport(error));
+            assert.ok(false, "PlayFab error message: " + PlayFab.GenerateErrorReport(error));
         }
         else {
             assert.ok(success, message);
         }
-    },
-    CompileErrorReport: function (error) {
-        if (error == null)
-            return "";
-        var fullErrors = error.errorMessage;
-        for (var paramName in error.errorDetails)
-            for (var msgIdx in error.errorDetails[paramName])
-                fullErrors += "\n" + paramName + ": " + error.errorDetails[paramName][msgIdx];
-        return fullErrors;
     },
     /// <summary>
     /// CLIENT API
@@ -146,7 +140,7 @@ var PlayFabApiTests = {
             assert.ok(error != null, "InvalidRegistration should have failed");
             var expectedEmailMsg = "email address is not valid.";
             var expectedPasswordMsg = "password must be between";
-            var errorReport = PlayFabApiTests.CompileErrorReport(error);
+            var errorReport = PlayFab.GenerateErrorReport(error);
             assert.ok(errorReport.toLowerCase().indexOf(expectedEmailMsg) > -1, "Expect errorMessage about invalid email: " + errorReport);
             assert.ok(errorReport.toLowerCase().indexOf(expectedPasswordMsg) > -1, "Expect errorMessage about invalid password: " + errorReport);
             invalidDone();
@@ -452,6 +446,15 @@ var PlayFabApiTests = {
             writeEventDone();
         };
         PlayFabClientSDK.WritePlayerEvent(writeEventRequest, PlayFabApiTests.CallbackWrapper("writeEventCallback", writeEventCallback, assert));
+    },
+    /// <summary>
+    /// CLIENT API
+    /// Test that the client can log out
+    /// </summary>
+    ForgetCredentials: function (assert) {
+        assert.ok(PlayFabClientSDK.IsClientLoggedIn(), "Client should be logged in.");
+        PlayFabClientSDK.ForgetClientCredentials();
+        assert.ok(!PlayFabClientSDK.IsClientLoggedIn(), "Client should NOT be logged in.");
     },
 };
 // The test report that will ultimately be relayed back to Cloud Script when the suite finishes
