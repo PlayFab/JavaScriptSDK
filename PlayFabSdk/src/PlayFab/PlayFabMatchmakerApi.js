@@ -123,7 +123,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.12.170925";
+PlayFab.sdkVersion = "1.13.171016";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -168,3 +168,4 @@ PlayFab.MatchmakerApi = {
 };
 
 var PlayFabMatchmakerSDK = PlayFab.MatchmakerApi;
+

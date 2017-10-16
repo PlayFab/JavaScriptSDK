@@ -123,7 +123,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.12.170925";
+PlayFab.sdkVersion = "1.13.171016";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -245,15 +245,6 @@ PlayFab.AdminApi = {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetActionsOnPlayersInSegmentTaskInstance", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Please use GetTasks instead. 
-     */
-    GetAllActionGroups: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetAllActionGroups", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     GetAllSegments: function (request, callback, customData, extraHeaders) {
@@ -735,3 +726,4 @@ PlayFab.AdminApi = {
 };
 
 var PlayFabAdminSDK = PlayFab.AdminApi;
+

@@ -83,11 +83,6 @@ declare module PlayFabServerModule {
          */
         ExecuteCloudScript(request: PlayFabServerModels.ExecuteCloudScriptServerRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ExecuteCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         / Retrieve a list of all PlayStream actions groups.
-         / https://api.playfab.com/Documentation/Server/method/GetAllActionGroups
-         */
-        GetAllActionGroups(request: PlayFabServerModels.GetAllActionGroupsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetAllActionGroupsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          / Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
          / https://api.playfab.com/Documentation/Server/method/GetAllSegments
          */
@@ -1851,39 +1846,6 @@ declare module PlayFabServerModels {
 
     type GameInstanceState = "Open"
         | "Closed";
-
-    /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetActionGroupResult
-     */
-    export interface GetActionGroupResult extends PlayFabModule.IPlayFabResultCommon  {
-        /**
-         / Action Group ID
-         */
-        Id?: string;
-        /**
-         / Action Group name
-         */
-        Name: string;
-
-    }
-
-    /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllActionGroupsRequest
-     */
-    export interface GetAllActionGroupsRequest extends PlayFabModule.IPlayFabRequestCommon {
-
-    }
-
-    /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllActionGroupsResult
-     */
-    export interface GetAllActionGroupsResult extends PlayFabModule.IPlayFabResultCommon  {
-        /**
-         / List of Action Groups.
-         */
-        ActionGroups: GetActionGroupResult[];
-
-    }
 
     /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest
@@ -4008,27 +3970,31 @@ declare module PlayFabServerModels {
      */
     export interface PushNotificationPackage {
         /**
-         / Arbitrary string that will be delivered with the message. Suggested use: JSON formatted object
+         / Numerical badge to display on App icon (iOS only)
+         */
+        Badge: number;
+        /**
+         / This must be a JSON formatted object. For use with developer-created custom Push Notification plugins
          */
         CustomData?: string;
         /**
-         / Icon file to display with the message
+         / Icon file to display with the message (Not supported for iOS)
          */
         Icon?: string;
         /**
-         / Content of the message
+         / Content of the message (all platforms)
          */
         Message: string;
         /**
-         / If set, represents a timestamp for when the device should display the message. Local format should be formatted as: yyyy-MM-dd HH:mm:ss or UTC timestamp formatted as yyyy-MM-ddTHH:mm:ssZ. Delivery is not delayed, scheduling is expected to be handled by the device.
+         / This field was solely for use with the PlayFab custom Push Plugin, which has been deprecated in favor of the supported platform-specific fields
          */
         ScheduleDate?: string;
         /**
-         / Sound file to play with the message
+         / Sound file to play with the message (all platforms)
          */
         Sound?: string;
         /**
-         / Title/Subject of the message
+         / Title/Subject of the message. Not supported for iOS
          */
         Title: string;
 
@@ -4439,7 +4405,7 @@ declare module PlayFabServerModels {
          */
         Message?: string;
         /**
-         / Defines all possible push attributes like message, title, icon, etc. Not fully supported for iOS devices.
+         / Defines all possible push attributes like message, title, icon, etc. Some parameters are device specific - please see the PushNotificationPackage documentation for details.
          */
         Package?: PushNotificationPackage;
         /**
@@ -4447,7 +4413,7 @@ declare module PlayFabServerModels {
          */
         Recipient: string;
         /**
-         / Subject of message to send (may not be displayed in all platforms.
+         / Subject of message to send (may not be displayed in all platforms)
          */
         Subject?: string;
         /**

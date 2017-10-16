@@ -93,11 +93,6 @@ declare module PlayFabAdminModule {
          */
         GetActionsOnPlayersInSegmentTaskInstance(request: PlayFabAdminModels.GetTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetActionsOnPlayersInSegmentTaskInstanceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         / Retrieve a list of all PlayStream actions groups.
-         / https://api.playfab.com/Documentation/Admin/method/GetAllActionGroups
-         */
-        GetAllActionGroups(request: PlayFabAdminModels.GetAllActionGroupsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetAllActionGroupsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          / Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
          / https://api.playfab.com/Documentation/Admin/method/GetAllSegments
          */
@@ -1908,21 +1903,6 @@ declare module PlayFabAdminModels {
     }
 
     /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionGroupResult
-     */
-    export interface GetActionGroupResult extends PlayFabModule.IPlayFabResultCommon  {
-        /**
-         / Action Group ID
-         */
-        Id?: string;
-        /**
-         / Action Group name
-         */
-        Name: string;
-
-    }
-
-    /**
      / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult
      */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
@@ -1934,24 +1914,6 @@ declare module PlayFabAdminModels {
          / Status summary of the actions-on-players-in-segment task instance
          */
         Summary?: ActionsOnPlayersInSegmentTaskSummary;
-
-    }
-
-    /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetAllActionGroupsRequest
-     */
-    export interface GetAllActionGroupsRequest extends PlayFabModule.IPlayFabRequestCommon {
-
-    }
-
-    /**
-     / https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetAllActionGroupsResult
-     */
-    export interface GetAllActionGroupsResult extends PlayFabModule.IPlayFabResultCommon  {
-        /**
-         / List of Action Groups.
-         */
-        ActionGroups: GetActionGroupResult[];
 
     }
 

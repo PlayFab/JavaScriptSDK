@@ -1919,10 +1919,6 @@ declare module PlayFabClientModels {
         /**
          / game specific string denoting server configuration
          */
-        GameServerState?: number;
-        /**
-         / game specific string denoting server configuration
-         */
         GameServerStateEnum?: string;
         /**
          / last heartbeat of the game server instance, used in external game server provider mode

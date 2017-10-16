@@ -123,7 +123,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.12.170925";
+PlayFab.sdkVersion = "1.13.171016";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -1054,3 +1054,19 @@ PlayFab.ClientApi = {
 };
 
 var PlayFabClientSDK = PlayFab.ClientApi;
+
+PlayFab.RegisterWithPhaser = function() {
+    if ( typeof Phaser === 'undefined')
+        return;
+
+    Phaser.Plugin.PlayFab = function (game, parent) {
+        Phaser.Plugin.call(this, game, parent);
+    };
+    Phaser.Plugin.PlayFab.prototype = Object.create(Phaser.Plugin.prototype);
+    Phaser.Plugin.PlayFab.prototype.constructor = Phaser.Plugin.PlayFab;
+    Phaser.Plugin.PlayFab.prototype.PlayFab = PlayFab;
+    Phaser.Plugin.PlayFab.prototype.settings = PlayFab.settings;
+    Phaser.Plugin.PlayFab.prototype.ClientApi = PlayFab.ClientApi;
+};
+PlayFab.RegisterWithPhaser();
+
