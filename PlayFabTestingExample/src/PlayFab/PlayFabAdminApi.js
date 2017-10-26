@@ -122,8 +122,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.13.171016";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_2";
+PlayFab.sdkVersion = "1.14.171026";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -232,13 +232,10 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
-    /**
-     * @deprecated Please use DeleteUser instead. 
-     */
-    DeleteUsers: function (request, callback, customData, extraHeaders) {
+    DeleteTitle: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteTitle", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     GetActionsOnPlayersInSegmentTaskInstance: function (request, callback, customData, extraHeaders) {
@@ -521,15 +518,6 @@ PlayFab.AdminApi = {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetCharacterStatistics", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Please use DeletePlayer instead. 
-     */
-    ResetUsers: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     ResetUserStatistics: function (request, callback, customData, extraHeaders) {
