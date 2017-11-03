@@ -123,7 +123,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_2";
-PlayFab.sdkVersion = "1.14.171026";
+PlayFab.sdkVersion = "1.15.171102";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -159,6 +159,12 @@ PlayFab.ClientApi = {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/AddGenericID", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
+    AddOrUpdateContactEmail: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/AddOrUpdateContactEmail", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
     AddSharedGroupMembers: function (request, callback, customData, extraHeaders) {
@@ -810,6 +816,12 @@ PlayFab.ClientApi = {
                 callback(result, error);
         };
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/RegisterWithWindowsHello", request, null, null, overloadCallback);
+    },
+
+    RemoveContactEmail: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/RemoveContactEmail", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
     RemoveFriend: function (request, callback, customData, extraHeaders) {

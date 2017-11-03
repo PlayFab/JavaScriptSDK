@@ -123,7 +123,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_2";
-PlayFab.sdkVersion = "1.14.171026";
+PlayFab.sdkVersion = "1.15.171102";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -302,6 +302,12 @@ PlayFab.AdminApi = {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetMatchmakerGameModes", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
+    GetPlayerIdFromAuthToken: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerIdFromAuthToken", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     GetPlayerSegments: function (request, callback, customData, extraHeaders) {
@@ -518,6 +524,12 @@ PlayFab.AdminApi = {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetCharacterStatistics", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
+    ResetPassword: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetPassword", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     ResetUserStatistics: function (request, callback, customData, extraHeaders) {

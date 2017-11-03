@@ -123,7 +123,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_2";
-PlayFab.sdkVersion = "1.14.171026";
+PlayFab.sdkVersion = "1.15.171102";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -596,6 +596,12 @@ PlayFab.ServerApi = {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
 
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/RevokeInventoryItem", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
+    SendCustomAccountRecoveryEmail: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/SendCustomAccountRecoveryEmail", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     SendPushNotification: function (request, callback, customData, extraHeaders) {
