@@ -152,6 +152,11 @@ declare module PlayFabAdminModule {
          */
         GetMatchmakerGameModes(request: PlayFabAdminModels.GetMatchmakerGameModesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakerGameModesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Gets a player's ID from an auth token.
+         * https://api.playfab.com/Documentation/Admin/method/GetPlayerIdFromAuthToken
+         */
+        GetPlayerIdFromAuthToken(request: PlayFabAdminModels.GetPlayerIdFromAuthTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerIdFromAuthTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * List all segments that a player currently belongs to at this moment in time.
          * https://api.playfab.com/Documentation/Admin/method/GetPlayerSegments
          */
@@ -337,6 +342,11 @@ declare module PlayFabAdminModule {
          * https://api.playfab.com/Documentation/Admin/method/ResetCharacterStatistics
          */
         ResetCharacterStatistics(request: PlayFabAdminModels.ResetCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Reset a player's password for a given title.
+         * https://api.playfab.com/Documentation/Admin/method/ResetPassword
+         */
+        ResetPassword(request: PlayFabAdminModels.ResetPasswordRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetPasswordResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Completely removes all statistics for the specified user, for the current game
          * https://api.playfab.com/Documentation/Admin/method/ResetUserStatistics
@@ -689,6 +699,8 @@ declare module PlayFabAdminModels {
         HasSignatureOrEncryption?: string;
 
     }
+
+    type AuthTokenType = "Email"
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanInfo */
     export interface BanInfo {
@@ -1772,6 +1784,22 @@ declare module PlayFabAdminModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerIdFromAuthTokenRequest */
+    export interface GetPlayerIdFromAuthTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The auth token of the player requesting the password reset. */
+        Token: string;
+        /** The type of auth token of the player requesting the password reset. */
+        TokenType: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerIdFromAuthTokenResult */
+    export interface GetPlayerIdFromAuthTokenResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The player ID from the token passed in */
+        PlayFabId?: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerProfileRequest */
     export interface GetPlayerProfileRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2830,6 +2858,20 @@ declare module PlayFabAdminModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetCharacterStatisticsResult */
     export interface ResetCharacterStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetPasswordRequest */
+    export interface ResetPasswordRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The new password for the player. */
+        Password: string;
+        /** The token of the player requesting the password reset. */
+        Token: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetPasswordResult */
+    export interface ResetPasswordResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
