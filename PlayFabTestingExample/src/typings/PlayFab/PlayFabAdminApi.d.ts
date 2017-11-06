@@ -157,6 +157,11 @@ declare module PlayFabAdminModule {
          */
         GetPlayerIdFromAuthToken(request: PlayFabAdminModels.GetPlayerIdFromAuthTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerIdFromAuthTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Retrieves the player's profile
+         * https://api.playfab.com/Documentation/Admin/method/GetPlayerProfile
+         */
+        GetPlayerProfile(request: PlayFabAdminModels.GetPlayerProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerProfileResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * List all segments that a player currently belongs to at this moment in time.
          * https://api.playfab.com/Documentation/Admin/method/GetPlayerSegments
          */

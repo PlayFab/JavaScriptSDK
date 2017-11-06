@@ -3,7 +3,7 @@
 declare module PlayFabClientModule {
     export interface IPlayFabClient {
         IsClientLoggedIn(): boolean;
-        ForgetClientCredentials(): void;
+        ForgetAllCredentials(): void;
 
         /**
          * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
