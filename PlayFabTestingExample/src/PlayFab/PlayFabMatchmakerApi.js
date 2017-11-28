@@ -20,10 +20,12 @@ if(!PlayFab.settings) {
 
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
+        entityToken: null,
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
         errorLoggedIn: "Must be logged in to call this method",
+        errorEntityToken: "You must successfully call GetEntityToken before calling this",
         errorSecretKey: "Must have PlayFab.settings.developerSecretKey set to call this method",
 
         GetServerUrl: function () {
@@ -39,7 +41,7 @@ if(!PlayFab._internalSettings) {
                 try {
                     xhr.setRequestHeader(gHeaderKey, headersObj[headerKey]);
                 } catch (e) {
-                    console.log("Failed to append header: " + headerKey + " = " + headersObj[headerKey]);
+                    console.log("Failed to append header: " + headerKey + " = " + headersObj[headerKey] + "Error: " + e);
                 }
             }
         },
@@ -58,8 +60,8 @@ if(!PlayFab._internalSettings) {
             // window.console.log("URL: " + completeUrl);
             xhr.open("POST", completeUrl, true);
 
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.setRequestHeader('X-PlayFabSDK', "JavaScriptSDK-" + PlayFab._internalSettings.sdkVersion);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("X-PlayFabSDK", "JavaScriptSDK-" + PlayFab._internalSettings.sdkVersion);
             if (authkey != null)
                 xhr.setRequestHeader(authkey, authValue);
             PlayFab._internalSettings.InjectHeaders(xhr, PlayFab.settings.GlobalHeaderInjection);
@@ -123,7 +125,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.16.171106";
+PlayFab.sdkVersion = "1.17.171127";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -135,34 +137,33 @@ PlayFab.GenerateErrorReport = function (error) {
 };
 
 PlayFab.MatchmakerApi = {
+    ForgetAllCredentials: function () {
+        PlayFab._internalSettings.sessionTicket = null;
+        PlayFab._internalSettings.entityToken = null;
+    },
 
     AuthUser: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/AuthUser", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     PlayerJoined: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/PlayerJoined", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     PlayerLeft: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/PlayerLeft", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     StartGame: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/StartGame", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     UserInfo: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/UserInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 };

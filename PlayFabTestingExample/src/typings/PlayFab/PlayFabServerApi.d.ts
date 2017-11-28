@@ -2,6 +2,8 @@
 
 declare module PlayFabServerModule {
     export interface IPlayFabServer {
+        ForgetAllCredentials(): void;
+
         /**
          * Increments  the character's balance of the specified virtual currency by the stated amount
          * https://api.playfab.com/Documentation/Server/method/AddCharacterVirtualCurrency
@@ -1978,7 +1980,7 @@ declare module PlayFabServerModels {
         /** List of statistics for this player. */
         PlayerStatistics?: StatisticValue[];
         /** Title data for this title. */
-        TitleData?: { [key: string]: string };
+        TitleData?: { [key: string]: string | null };
         /** User specific custom data. */
         UserData?: { [key: string]: UserDataRecord };
         /** The version of the UserData that was returned. */
@@ -2153,7 +2155,7 @@ declare module PlayFabServerModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPublisherDataResult */
     export interface GetPublisherDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
 
     }
 
@@ -2232,7 +2234,7 @@ declare module PlayFabServerModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleDataResult */
     export interface GetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
 
     }
 
@@ -2360,7 +2362,7 @@ declare module PlayFabServerModels {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string;
         /** A set of custom key-value pairs on the inventory item. */
-        CustomData?: { [key: string]: string };
+        CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;
         /** Timestamp for when this instance will expire. */
@@ -2456,7 +2458,7 @@ declare module PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /** Unique identifier of the catalog item to be granted to the user. */
         ItemId: string;
         /**
@@ -2483,7 +2485,7 @@ declare module PlayFabServerModels {
         /** Catalog version for the inventory item, when this instance was created. */
         CatalogVersion?: string;
         /** A set of custom key-value pairs on the inventory item. */
-        CustomData?: { [key: string]: string };
+        CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;
         /** Timestamp for when this instance will expire. */
@@ -2839,8 +2841,6 @@ declare module PlayFabServerModels {
         TotalValueToDateInUSD?: number;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
         ValuesToDate?: ValueToDateModel[];
-        /** List of the player's virtual currency balances */
-        VirtualCurrencyBalances?: VirtualCurrencyBalanceModel[];
 
     }
 
@@ -2921,11 +2921,6 @@ declare module PlayFabServerModels {
         Icon?: string;
         /** Content of the message (all platforms) */
         Message: string;
-        /**
-         * This field was solely for use with the PlayFab custom Push Plugin, which has been deprecated in favor of the supported
-         * platform-specific fields
-         */
-        ScheduleDate?: string;
         /** Sound file to play with the message (all platforms) */
         Sound?: string;
         /** Title/Subject of the message. Not supported for iOS */
@@ -3048,7 +3043,7 @@ declare module PlayFabServerModels {
         /** Port number for communication with the Game Server Instance. */
         ServerPort: string;
         /** Tags for the Game Server Instance */
-        Tags?: { [key: string]: string };
+        Tags?: { [key: string]: string | null };
 
     }
 
@@ -3294,7 +3289,7 @@ declare module PlayFabServerModels {
          * Tags to set for the specified Game Server Instance. Note that this is the complete list of tags to be associated with
          * the Game Server Instance.
          */
-        Tags: { [key: string]: string };
+        Tags: { [key: string]: string | null };
 
     }
 
@@ -3596,7 +3591,7 @@ declare module PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -3660,7 +3655,7 @@ declare module PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -3684,7 +3679,7 @@ declare module PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -3713,7 +3708,7 @@ declare module PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -3732,7 +3727,7 @@ declare module PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /** Unique PlayFab assigned instance identifier of the item */
         ItemInstanceId: string;
         /**
@@ -3961,15 +3956,6 @@ declare module PlayFabServerModels {
          * dollars and ninety-nine cents when Currency is 'USD'.
          */
         TotalValueAsDecimal?: string;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Server.Models/PlayFab.Server.Models.VirtualCurrencyBalanceModel */
-    export interface VirtualCurrencyBalanceModel {
-        /** Name of the virtual currency */
-        Currency?: string;
-        /** Balance of the virtual currency */
-        TotalValue: number;
 
     }
 

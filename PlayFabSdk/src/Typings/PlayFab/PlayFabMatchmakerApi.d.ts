@@ -2,6 +2,8 @@
 
 declare module PlayFabMatchmakerModule {
     export interface IPlayFabMatchmaker {
+        ForgetAllCredentials(): void;
+
         /**
          * Validates a user with the PlayFab service
          * https://api.playfab.com/Documentation/Matchmaker/method/AuthUser
@@ -75,7 +77,7 @@ declare module PlayFabMatchmakerModels {
         /** Catalog version for the inventory item, when this instance was created. */
         CatalogVersion?: string;
         /** A set of custom key-value pairs on the inventory item. */
-        CustomData?: { [key: string]: string };
+        CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;
         /** Timestamp for when this instance will expire. */
@@ -164,7 +166,7 @@ declare module PlayFabMatchmakerModels {
         /** Port number for communication with the Game Server Instance. */
         ServerPort: string;
         /** Tags for the Game Server Instance */
-        Tags?: { [key: string]: string };
+        Tags?: { [key: string]: string | null };
 
     }
 
