@@ -3,6 +3,7 @@
 declare module PlayFabClientModule {
     export interface IPlayFabClient {
         IsClientLoggedIn(): boolean;
+
         ForgetAllCredentials(): void;
 
         /**
@@ -26,7 +27,7 @@ declare module PlayFabClientModule {
          */
         AddGenericID(request: PlayFabClientModels.AddGenericIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddGenericIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Adds or updates a contact email to the player's profile
+         * Adds or updates a contact email to the player's profile.
          * https://api.playfab.com/Documentation/Client/method/AddOrUpdateContactEmail
          */
         AddOrUpdateContactEmail(request: PlayFabClientModels.AddOrUpdateContactEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddOrUpdateContactEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -190,6 +191,13 @@ declare module PlayFabClientModule {
          * https://api.playfab.com/Documentation/Client/method/GetLeaderboardForUserCharacters
          */
         GetLeaderboardForUserCharacters(request: PlayFabClientModels.GetLeaderboardForUsersCharactersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardForUsersCharactersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the client
+         * completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the client to
+         * create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
+         * https://api.playfab.com/Documentation/Client/method/GetPaymentToken
+         */
+        GetPaymentToken(request: PlayFabClientModels.GetPaymentTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPaymentTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
          * https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
@@ -536,7 +544,7 @@ declare module PlayFabClientModule {
          */
         RegisterWithWindowsHello(request: PlayFabClientModels.RegisterWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Removes a contact email from the player's profile
+         * Removes a contact email from the player's profile.
          * https://api.playfab.com/Documentation/Client/method/RemoveContactEmail
          */
         RemoveContactEmail(request: PlayFabClientModels.RemoveContactEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveContactEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -558,6 +566,12 @@ declare module PlayFabClientModule {
          * https://api.playfab.com/Documentation/Client/method/RemoveSharedGroupMembers
          */
         RemoveSharedGroupMembers(request: PlayFabClientModels.RemoveSharedGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveSharedGroupMembersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Write a PlayStream event to describe the provided player device information. This API method is not designed to be
+         * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
+         * https://api.playfab.com/Documentation/Client/method/ReportDeviceInfo
+         */
+        ReportDeviceInfo(request: PlayFabClientModels.DeviceInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title
          * can take action concerning potentially toxic players.
@@ -1159,7 +1173,7 @@ declare module PlayFabClientModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.Container_Dictionary_String_String */
     export interface Container_Dictionary_String_String {
         /** Content of data */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
 
     }
 
@@ -1624,6 +1638,13 @@ declare module PlayFabClientModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.DeviceInfoRequest */
+    export interface DeviceInfoRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Information posted to the PlayStream Event. Currently arbitrary, and specific to the environment sending it. */
+        Info?: { [key: string]: any };
+
+    }
+
     type EmailVerificationStatus = "Unverified"
         | "Pending"
         | "Confirmed";
@@ -1766,7 +1787,7 @@ declare module PlayFabClientModels {
         /** stastic used to match this game in player statistic matchmaking */
         StatisticName?: string;
         /** game session tags */
-        Tags?: { [key: string]: string };
+        Tags?: { [key: string]: string | null };
 
     }
 
@@ -2132,6 +2153,22 @@ declare module PlayFabClientModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPaymentTokenRequest */
+    export interface GetPaymentTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The name of service to provide the payment token. Allowed Values are: xsolla */
+        TokenProvider: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPaymentTokenResult */
+    export interface GetPaymentTokenResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** PlayFab's purchase order identifier. */
+        OrderId?: string;
+        /** The token from provider. */
+        ProviderToken?: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPhotonAuthenticationTokenRequest */
     export interface GetPhotonAuthenticationTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The Photon applicationId for the game you wish to log into. */
@@ -2218,7 +2255,7 @@ declare module PlayFabClientModels {
         /** List of statistics for this player. */
         PlayerStatistics?: StatisticValue[];
         /** Title data for this title. */
-        TitleData?: { [key: string]: string };
+        TitleData?: { [key: string]: string | null };
         /** User specific custom data. */
         UserData?: { [key: string]: UserDataRecord };
         /** The version of the UserData that was returned. */
@@ -2449,7 +2486,7 @@ declare module PlayFabClientModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPublisherDataResult */
     export interface GetPublisherDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
 
     }
 
@@ -2555,7 +2592,7 @@ declare module PlayFabClientModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleDataResult */
     export interface GetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
 
     }
 
@@ -2720,7 +2757,7 @@ declare module PlayFabClientModels {
         /** Catalog version for the inventory item, when this instance was created. */
         CatalogVersion?: string;
         /** A set of custom key-value pairs on the inventory item. */
-        CustomData?: { [key: string]: string };
+        CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;
         /** Timestamp for when this instance will expire. */
@@ -3473,8 +3510,6 @@ declare module PlayFabClientModels {
         TotalValueToDateInUSD?: number;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
         ValuesToDate?: ValueToDateModel[];
-        /** List of the player's virtual currency balances */
-        VirtualCurrencyBalances?: VirtualCurrencyBalanceModel[];
 
     }
 
@@ -4295,7 +4330,7 @@ declare module PlayFabClientModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -4348,7 +4383,7 @@ declare module PlayFabClientModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -4372,7 +4407,7 @@ declare module PlayFabClientModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -4707,15 +4742,6 @@ declare module PlayFabClientModels {
          * dollars and ninety-nine cents when Currency is 'USD'.
          */
         TotalValueAsDecimal?: string;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.VirtualCurrencyBalanceModel */
-    export interface VirtualCurrencyBalanceModel {
-        /** Name of the virtual currency */
-        Currency?: string;
-        /** Balance of the virtual currency */
-        TotalValue: number;
 
     }
 

@@ -2,6 +2,8 @@
 
 declare module PlayFabAdminModule {
     export interface IPlayFabAdmin {
+        ForgetAllCredentials(): void;
+
         /**
          * Abort an ongoing task instance.
          * https://api.playfab.com/Documentation/Admin/method/AbortTaskInstance
@@ -39,6 +41,11 @@ declare module PlayFabAdminModule {
          * https://api.playfab.com/Documentation/Admin/method/BanUsers
          */
         BanUsers(request: PlayFabAdminModels.BanUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Checks the global count for the limited edition item.
+         * https://api.playfab.com/Documentation/Admin/method/CheckLimitedEditionItemAvailability
+         */
+        CheckLimitedEditionItemAvailability(request: PlayFabAdminModels.CheckLimitedEditionItemAvailabilityRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CheckLimitedEditionItemAvailabilityResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action.
          * https://api.playfab.com/Documentation/Admin/method/CreateActionsOnPlayersInSegmentTask
@@ -296,6 +303,11 @@ declare module PlayFabAdminModule {
          * https://api.playfab.com/Documentation/Admin/method/GrantItemsToUsers
          */
         GrantItemsToUsers(request: PlayFabAdminModels.GrantItemsToUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GrantItemsToUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Increases the global count for the given scarce resource.
+         * https://api.playfab.com/Documentation/Admin/method/IncrementLimitedEditionItemAvailability
+         */
+        IncrementLimitedEditionItemAvailability(request: PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Resets the indicated statistic, removing all player entries for it and backing up the old values.
          * https://api.playfab.com/Documentation/Admin/method/IncrementPlayerStatisticVersion
@@ -869,6 +881,22 @@ declare module PlayFabAdminModels {
         ResultTableContents?: string[];
         /** virtual currency types and balances which will be added to the player inventory when the container is unlocked */
         VirtualCurrencyContents?: { [key: string]: number };
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CheckLimitedEditionItemAvailabilityRequest */
+    export interface CheckLimitedEditionItemAvailabilityRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Which catalog is being updated. If null, uses the default catalog. */
+        CatalogVersion?: string;
+        /** The item to check for. */
+        ItemId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CheckLimitedEditionItemAvailabilityResult */
+    export interface CheckLimitedEditionItemAvailabilityResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The amount of the specified resource remaining. */
+        Amount: number;
 
     }
 
@@ -1951,7 +1979,7 @@ declare module PlayFabAdminModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPublisherDataResult */
     export interface GetPublisherDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
 
     }
 
@@ -2112,7 +2140,7 @@ declare module PlayFabAdminModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTitleDataResult */
     export interface GetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
 
     }
 
@@ -2194,7 +2222,7 @@ declare module PlayFabAdminModels {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string;
         /** A set of custom key-value pairs on the inventory item. */
-        CustomData?: { [key: string]: string };
+        CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;
         /** Timestamp for when this instance will expire. */
@@ -2238,6 +2266,22 @@ declare module PlayFabAdminModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementLimitedEditionItemAvailabilityRequest */
+    export interface IncrementLimitedEditionItemAvailabilityRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Amount to increase availability by. */
+        Amount: number;
+        /** Which catalog is being updated. If null, uses the default catalog. */
+        CatalogVersion?: string;
+        /** The item which needs more availability. */
+        ItemId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementLimitedEditionItemAvailabilityResult */
+    export interface IncrementLimitedEditionItemAvailabilityResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementPlayerStatisticVersionRequest */
     export interface IncrementPlayerStatisticVersionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique name of the statistic */
@@ -2262,7 +2306,7 @@ declare module PlayFabAdminModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /** Unique identifier of the catalog item to be granted to the user. */
         ItemId: string;
         /**
@@ -2289,7 +2333,7 @@ declare module PlayFabAdminModels {
         /** Catalog version for the inventory item, when this instance was created. */
         CatalogVersion?: string;
         /** A set of custom key-value pairs on the inventory item. */
-        CustomData?: { [key: string]: string };
+        CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;
         /** Timestamp for when this instance will expire. */
@@ -2656,8 +2700,6 @@ declare module PlayFabAdminModels {
         TotalValueToDateInUSD?: number;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
         ValuesToDate?: ValueToDateModel[];
-        /** List of the player's virtual currency balances */
-        VirtualCurrencyBalances?: VirtualCurrencyBalanceModel[];
 
     }
 
@@ -3499,7 +3541,7 @@ declare module PlayFabAdminModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -3528,7 +3570,7 @@ declare module PlayFabAdminModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string };
+        Data?: { [key: string]: string | null };
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -3771,15 +3813,6 @@ declare module PlayFabAdminModels {
          * dollars and ninety-nine cents when Currency is 'USD'.
          */
         TotalValueAsDecimal?: string;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.VirtualCurrencyBalanceModel */
-    export interface VirtualCurrencyBalanceModel {
-        /** Name of the virtual currency */
-        Currency?: string;
-        /** Balance of the virtual currency */
-        TotalValue: number;
 
     }
 
