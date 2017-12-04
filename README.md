@@ -42,13 +42,21 @@ Our Developer Success Team can assist with answering any questions as well as pr
 
 [Forums, Support and Knowledge Base](https://community.playfab.com/index.html)
 
+## 7. NPM support:
+You may install JavaScript SDK with npm by running :  
 
-## 5. Acknowledgements
+`npm install playfab-web-sdk`
+
+Notice that it will install web JavaScript package as opposed to `npm install playfab` which will install NodeJS SDK.
+
+While npm is generally used for server side packages, you may use one of popular build tools to mix NPM installed packages into your clientside JS codebase. Consider Babel, Webpack, Gulp or Grunt for different approaches to building and automation.
+
+## 6. Acknowledgements
 
   [dylanh724](https://www.github.com/dylanh724) - The previous tutorial before the current [Getting Started Guide](JavaScriptGettingStarted.md)
 
 
-## 6. Copyright and Licensing Information:
+## 7. Copyright and Licensing Information:
 
   Apache License --
   Version 2.0, January 2004
