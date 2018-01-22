@@ -6,7 +6,6 @@ var PlayFabApiTests = {
         titleId: null,
         developerSecretKey: null,
         userEmail: "put valid email associated with an existing account here",
-        characterName: "put any character name here",
         extraHeaders: {}
     },
     testData: {
@@ -70,16 +69,13 @@ var PlayFabApiTests = {
             setTimeout(function () { PlayFabApiTests.PostEntityTokenTests(count + 1); }, PlayFabApiTests.testRetryDelay);
         }
         else {
-            // Continue with other tests that require login
-            // QUnit.test("EntityObjects", PlayFabApiTests.EntityObjects); // TODO: Release Entity API
         }
     },
     SetUp: function (inputTitleData) {
         // All of these must exist for the titleData load to be successful
         var titleDataValid = inputTitleData.hasOwnProperty("titleId") && inputTitleData.titleId != null
             && inputTitleData.hasOwnProperty("developerSecretKey") && inputTitleData.developerSecretKey != null
-            && inputTitleData.hasOwnProperty("userEmail")
-            && inputTitleData.hasOwnProperty("characterName");
+            && inputTitleData.hasOwnProperty("userEmail");
         if (titleDataValid)
             PlayFabApiTests.titleData = inputTitleData;
         else
