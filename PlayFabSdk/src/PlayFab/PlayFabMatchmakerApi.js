@@ -21,6 +21,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
+        sdkVersion: "1.17.180122",
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
@@ -125,7 +126,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.17.171127";
+PlayFab.sdkVersion = "1.17.180122";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
