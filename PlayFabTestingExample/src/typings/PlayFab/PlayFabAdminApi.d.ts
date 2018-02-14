@@ -395,8 +395,9 @@ declare module PlayFabAdminModule {
          */
         RunTask(request: PlayFabAdminModels.RunTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RunTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to
-         * change the password
+         * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
+         * change the password.If an account recovery email template ID is provided, an email using the custom email template will
+         * be used.
          * https://api.playfab.com/Documentation/Admin/method/SendAccountRecoveryEmail
          */
         SendAccountRecoveryEmail(request: PlayFabAdminModels.SendAccountRecoveryEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SendAccountRecoveryEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -3086,6 +3087,8 @@ declare module PlayFabAdminModels {
     export interface SendAccountRecoveryEmailRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** User email address attached to their account */
         Email: string;
+        /** The email template id of the account recovery email template to send. */
+        EmailTemplateId?: string;
 
     }
 
