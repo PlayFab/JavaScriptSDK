@@ -585,7 +585,8 @@ declare module PlayFabClientModule {
         RestoreIOSPurchases(request: PlayFabClientModels.RestoreIOSPurchasesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RestoreIOSPurchasesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
-         * change the password
+         * change the password.If an account recovery email template ID is provided, an email using the custom email template will
+         * be used.
          * https://api.playfab.com/Documentation/Client/method/SendAccountRecoveryEmail
          */
         SendAccountRecoveryEmail(request: PlayFabClientModels.SendAccountRecoveryEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SendAccountRecoveryEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -774,8 +775,8 @@ declare module PlayFabClientModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AcceptTradeRequest */
     export interface AcceptTradeRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         * Items from the accepting player's or guild's inventory in exchange for the offered items in the trade. In the case of a
-         * gift, this will be null.
+         * Items from the accepting player's inventory in exchange for the offered items in the trade. In the case of a gift, this
+         * will be null.
          */
         AcceptedInventoryInstanceIds?: string[];
         /** Player who opened the trade. */
@@ -1651,6 +1652,19 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult */
     export interface EmptyResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EntityTokenResponse */
+    export interface EntityTokenResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The identifier of the entity the token was issued for. */
+        EntityId?: string;
+        /** The token used to set X-EntityToken for all entity based API calls. */
+        EntityToken?: string;
+        /** The type of entity the token was issued for. */
+        EntityType?: string;
+        /** The time the token will expire, if it is an expiring token, in UTC. */
+        TokenExpiration?: string;
 
     }
 
@@ -3022,6 +3036,11 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult */
     export interface LoginResult extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         * If LoginTitlePlayerAccountEntity flag is set on the login request the title_player_account will also be logged in and
+         * returned.
+         */
+        EntityToken?: EntityTokenResponse;
         /** Results for requested info. */
         InfoResultPayload?: GetPlayerCombinedInfoResultPayload;
         /** The time of this user's previous login. If there was no previous login, then it's DateTime.MinValue */
@@ -3049,6 +3068,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Specific Operating System version for the user's device. */
         OS?: string;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -3071,6 +3092,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
         /**
@@ -3087,6 +3110,8 @@ declare module PlayFabClientModels {
         Email: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Password for the PlayFab account (6-100 characters) */
         Password: string;
         /**
@@ -3107,6 +3132,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
         /**
@@ -3125,6 +3152,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Unique Game Center player id. */
         PlayerId?: string;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -3145,6 +3174,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
         /**
@@ -3172,6 +3203,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Specific Operating System version for the user's device. */
         OS?: string;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -3196,6 +3229,8 @@ declare module PlayFabClientModels {
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
         /** Numeric user ID assigned by Kongregate */
         KongregateId?: string;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
         /**
@@ -3210,6 +3245,8 @@ declare module PlayFabClientModels {
     export interface LoginWithPlayFabRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Password for the PlayFab account (6-100 characters) */
         Password: string;
         /**
@@ -3230,6 +3267,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
         /**
@@ -3255,6 +3294,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
         /**
@@ -3271,6 +3312,8 @@ declare module PlayFabClientModels {
         ChallengeSignature: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
         PublicKeyHint: string;
         /**
@@ -3668,6 +3711,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Password for the PlayFab account (6-100 characters) */
         Password?: string;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -3709,6 +3754,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
         /** PublicKey generated by Windows Hello. */
@@ -3817,6 +3864,8 @@ declare module PlayFabClientModels {
     export interface SendAccountRecoveryEmailRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** User email address attached to their account */
         Email: string;
+        /** The email template id of the account recovery email template to send. */
+        EmailTemplateId?: string;
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
          * title has been selected.
