@@ -9,7 +9,7 @@ declare module PlayFabClientModule {
         /**
          * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
          * allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
-         * items will be swapped  between the two players' inventories.
+         * items will be swapped between the two players' inventories.
          * https://api.playfab.com/Documentation/Client/method/AcceptTrade
          */
         AcceptTrade(request: PlayFabClientModels.AcceptTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AcceptTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -32,9 +32,9 @@ declare module PlayFabClientModule {
          */
         AddOrUpdateContactEmail(request: PlayFabClientModels.AddOrUpdateContactEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddOrUpdateContactEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
-         * users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
-         * players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+         * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
+         * in the group can add new members. Shared Groups are designed for sharing data between a very small number of players,
+         * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          * https://api.playfab.com/Documentation/Client/method/AddSharedGroupMembers
          */
         AddSharedGroupMembers(request: PlayFabClientModels.AddSharedGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddSharedGroupMembersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -62,12 +62,12 @@ declare module PlayFabClientModule {
         /**
          * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
          * can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
-         * players from accepting  them, for trades that can be claimed by more than one player).
+         * players from accepting them, for trades that can be claimed by more than one player).
          * https://api.playfab.com/Documentation/Client/method/CancelTrade
          */
         CancelTrade(request: PlayFabClientModels.CancelTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CancelTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual
+         * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and virtual
          * currency balances as appropriate
          * https://api.playfab.com/Documentation/Client/method/ConfirmPurchase
          */
@@ -78,9 +78,9 @@ declare module PlayFabClientModule {
          */
         ConsumeItem(request: PlayFabClientModels.ConsumeItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the
-         * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing
-         * data between a very small number of players, please see our guide:
+         * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
+         * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
+         * between a very small number of players, please see our guide:
          * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          * https://api.playfab.com/Documentation/Client/method/CreateSharedGroup
          */
@@ -132,13 +132,12 @@ declare module PlayFabClientModule {
          */
         GetCharacterStatistics(request: PlayFabClientModels.GetCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
-         * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
-         * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+         * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent HTTP GET to the returned
+         * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
+         * content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
          * the query to retrieve the data will fail. See this post for more information:
-         * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
-         * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
-         * apply.
+         * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+         * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
          * https://api.playfab.com/Documentation/Client/method/GetContentDownloadUrl
          */
         GetContentDownloadUrl(request: PlayFabClientModels.GetContentDownloadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetContentDownloadUrlResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -272,7 +271,7 @@ declare module PlayFabClientModule {
          */
         GetPlayFabIDsFromKongregateIDs(request: PlayFabClientModels.GetPlayFabIDsFromKongregateIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromKongregateIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+         * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
          * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
          * https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromSteamIDs
          */
@@ -296,9 +295,9 @@ declare module PlayFabClientModule {
          */
         GetPurchase(request: PlayFabClientModels.GetPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group
-         * may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private.
-         * Shared Groups are designed for sharing data between a  very small number of players, please see our guide:
+         * Retrieves data stored in a shared group object, as well as the list of members in the group. Non-members of the group
+         * may use this to retrieve group data, including membership, but they will not receive data for keys marked as private.
+         * Shared Groups are designed for sharing data between a very small number of players, please see our guide:
          * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          * https://api.playfab.com/Documentation/Client/method/GetSharedGroupData
          */
@@ -469,8 +468,8 @@ declare module PlayFabClientModule {
         LoginWithKongregate(request: PlayFabClientModels.LoginWithKongregateRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
-         * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation
-         * of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
+         * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the creation of
+         * new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
          * RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
          * https://api.playfab.com/Documentation/Client/method/LoginWithPlayFab
          */
@@ -515,13 +514,13 @@ declare module PlayFabClientModule {
          */
         PayForPurchase(request: PlayFabClientModels.PayForPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.PayForPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as
-         * what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+         * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as well as what
+         * the client believes the price to be. This lets the server fail the purchase if the price has changed.
          * https://api.playfab.com/Documentation/Client/method/PurchaseItem
          */
         PurchaseItem(request: PlayFabClientModels.PurchaseItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.PurchaseItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+         * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
          * Economy->Catalogs tab in the PlayFab Game Manager.
          * https://api.playfab.com/Documentation/Client/method/RedeemCoupon
          */
@@ -538,7 +537,7 @@ declare module PlayFabClientModule {
          */
         RegisterPlayFabUser(request: PlayFabClientModels.RegisterPlayFabUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can
+         * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
          * subsequently be used for API calls which require an authenticated user
          * https://api.playfab.com/Documentation/Client/method/RegisterWithWindowsHello
          */
@@ -559,9 +558,9 @@ declare module PlayFabClientModule {
          */
         RemoveGenericID(request: PlayFabClientModels.RemoveGenericIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveGenericIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the
-         * group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data
-         * will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our
+         * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
+         * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
+         * will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
          * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          * https://api.playfab.com/Documentation/Client/method/RemoveSharedGroupMembers
          */
@@ -688,8 +687,7 @@ declare module PlayFabClientModule {
          */
         UpdateAvatarUrl(request: PlayFabClientModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the
-         * client
+         * Creates and updates the title-specific custom data for the user's character which is readable and writable by the client
          * https://api.playfab.com/Documentation/Client/method/UpdateCharacterData
          */
         UpdateCharacterData(request: PlayFabClientModels.UpdateCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateCharacterDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -708,7 +706,7 @@ declare module PlayFabClientModule {
         /**
          * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
          * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
-         * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for
+         * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed for
          * sharing data between a very small number of players, please see our guide:
          * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          * https://api.playfab.com/Documentation/Client/method/UpdateSharedGroupData
@@ -772,7 +770,7 @@ declare module PlayFabClientModule {
 }
 
 declare module PlayFabClientModels {
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AcceptTradeRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AcceptTradeRequest */
     export interface AcceptTradeRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Items from the accepting player's inventory in exchange for the offered items in the trade. In the case of a gift, this
@@ -786,14 +784,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AcceptTradeResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AcceptTradeResponse */
     export interface AcceptTradeResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Details about trade which was just accepted. */
         Trade?: TradeInfo;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AdCampaignAttributionModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AdCampaignAttributionModel */
     export interface AdCampaignAttributionModel {
         /** UTC time stamp of attribution */
         AttributedAt: string;
@@ -804,7 +802,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddFriendRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddFriendRequest */
     export interface AddFriendRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Email address of the user to attempt to add to the local user's friend list. */
         FriendEmail?: string;
@@ -817,38 +815,38 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddFriendResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddFriendResult */
     export interface AddFriendResult extends PlayFabModule.IPlayFabResultCommon  {
         /** True if the friend request was processed successfully. */
         Created: boolean;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddGenericIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddGenericIDRequest */
     export interface AddGenericIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Generic service identifier to add to the player account. */
         GenericId: GenericServiceId;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddGenericIDResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddGenericIDResult */
     export interface AddGenericIDResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddOrUpdateContactEmailRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddOrUpdateContactEmailRequest */
     export interface AddOrUpdateContactEmailRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The new contact email to associate with the player. */
         EmailAddress: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddOrUpdateContactEmailResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddOrUpdateContactEmailResult */
     export interface AddOrUpdateContactEmailResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddSharedGroupMembersRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddSharedGroupMembersRequest */
     export interface AddSharedGroupMembersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabIds: string[];
@@ -857,12 +855,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddSharedGroupMembersResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddSharedGroupMembersResult */
     export interface AddSharedGroupMembersResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddUsernamePasswordRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddUsernamePasswordRequest */
     export interface AddUsernamePasswordRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** User email address attached to their account */
         Email: string;
@@ -873,14 +871,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddUsernamePasswordResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddUsernamePasswordResult */
     export interface AddUsernamePasswordResult extends PlayFabModule.IPlayFabResultCommon  {
         /** PlayFab unique user name. */
         Username?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddUserVirtualCurrencyRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddUserVirtualCurrencyRequest */
     export interface AddUserVirtualCurrencyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Amount to be added to the user balance of the specified virtual currency. */
         Amount: number;
@@ -889,7 +887,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AndroidDevicePushNotificationRegistrationRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AndroidDevicePushNotificationRegistrationRequest */
     export interface AndroidDevicePushNotificationRegistrationRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Message to display when confirming push notification. */
         ConfirmationMessage?: string;
@@ -903,12 +901,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AndroidDevicePushNotificationRegistrationResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AndroidDevicePushNotificationRegistrationResult */
     export interface AndroidDevicePushNotificationRegistrationResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AttributeInstallRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AttributeInstallRequest */
     export interface AttributeInstallRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The adid for this device. */
         Adid?: string;
@@ -917,26 +915,26 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AttributeInstallResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AttributeInstallResult */
     export interface AttributeInstallResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CancelTradeRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CancelTradeRequest */
     export interface CancelTradeRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Trade identifier. */
         TradeId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CancelTradeResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CancelTradeResponse */
     export interface CancelTradeResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Details about trade which was just canceled. */
         Trade?: TradeInfo;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CartItem */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CartItem */
     export interface CartItem {
         /** Description of the catalog item. */
         Description?: string;
@@ -957,7 +955,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CatalogItem */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CatalogItem */
     export interface CatalogItem {
         /**
          * defines the bundle properties for the item - bundles are items which contain other items, including random drop tables
@@ -1016,7 +1014,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CatalogItemBundleInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CatalogItemBundleInfo */
     export interface CatalogItemBundleInfo {
         /** unique ItemId values for all items which will be added to the player inventory when the bundle is added */
         BundledItems?: string[];
@@ -1030,7 +1028,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CatalogItemConsumableInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CatalogItemConsumableInfo */
     export interface CatalogItemConsumableInfo {
         /** number of times this object can be used, after which it will be removed from the player inventory */
         UsageCount?: number;
@@ -1048,7 +1046,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CatalogItemContainerInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CatalogItemContainerInfo */
     export interface CatalogItemContainerInfo {
         /** unique ItemId values for all items which will be added to the player inventory, once the container has been unlocked */
         ItemContents?: string[];
@@ -1067,7 +1065,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CharacterInventory */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CharacterInventory */
     export interface CharacterInventory {
         /** The id of this character. */
         CharacterId?: string;
@@ -1076,7 +1074,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CharacterLeaderboardEntry */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CharacterLeaderboardEntry */
     export interface CharacterLeaderboardEntry {
         /** PlayFab unique identifier of the character that belongs to the user for this leaderboard entry. */
         CharacterId?: string;
@@ -1095,7 +1093,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CharacterResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CharacterResult */
     export interface CharacterResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The id for this character on this player. */
         CharacterId?: string;
@@ -1110,7 +1108,7 @@ declare module PlayFabClientModels {
         | "Latest"
         | "Specific";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CollectionFilter */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CollectionFilter */
     export interface CollectionFilter {
         /** List of Exclude rules, with any of which if a collection matches, it is excluded by the filter. */
         Excludes?: Container_Dictionary_String_String[];
@@ -1122,14 +1120,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConfirmPurchaseRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConfirmPurchaseRequest */
     export interface ConfirmPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Purchase order identifier returned from StartPurchase. */
         OrderId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConfirmPurchaseResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConfirmPurchaseResult */
     export interface ConfirmPurchaseResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of items purchased. */
         Items?: ItemInstance[];
@@ -1140,7 +1138,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumeItemRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumeItemRequest */
     export interface ConsumeItemRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string;
@@ -1151,7 +1149,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumeItemResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumeItemResult */
     export interface ConsumeItemResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique instance identifier of the item with uses consumed. */
         ItemInstanceId?: string;
@@ -1160,7 +1158,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ContactEmailInfoModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ContactEmailInfoModel */
     export interface ContactEmailInfoModel {
         /** The email address */
         EmailAddress?: string;
@@ -1171,7 +1169,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.Container_Dictionary_String_String */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.Container_Dictionary_String_String */
     export interface Container_Dictionary_String_String {
         /** Content of data */
         Data?: { [key: string]: string | null };
@@ -1436,14 +1434,14 @@ declare module PlayFabClientModels {
         | "ZM"
         | "ZW";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupRequest */
     export interface CreateSharedGroupRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique identifier for the shared group (a random identifier will be assigned, if one is not specified). */
         SharedGroupId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupResult */
     export interface CreateSharedGroupResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique identifier for the shared group. */
         SharedGroupId?: string;
@@ -1613,7 +1611,7 @@ declare module PlayFabClientModels {
         | "ZMW"
         | "ZWD";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CurrentGamesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CurrentGamesRequest */
     export interface CurrentGamesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Build to match against. */
         BuildVersion?: string;
@@ -1628,7 +1626,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CurrentGamesResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CurrentGamesResult */
     export interface CurrentGamesResult extends PlayFabModule.IPlayFabResultCommon  {
         /** number of games running */
         GameCount: number;
@@ -1639,7 +1637,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.DeviceInfoRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.DeviceInfoRequest */
     export interface DeviceInfoRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Information posted to the PlayStream Event. Currently arbitrary, and specific to the environment sending it. */
         Info?: { [key: string]: any };
@@ -1650,25 +1648,40 @@ declare module PlayFabClientModels {
         | "Pending"
         | "Confirmed";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult */
     export interface EmptyResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EntityTokenResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EntityKey */
+    export interface EntityKey {
+        /** Entity profile ID. */
+        Id: string;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        Type?: string;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        TypeString?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EntityTokenResponse */
     export interface EntityTokenResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** The identifier of the entity the token was issued for. */
-        EntityId?: string;
+        /** The entity id and type. */
+        Entity?: EntityKey;
         /** The token used to set X-EntityToken for all entity based API calls. */
         EntityToken?: string;
-        /** The type of entity the token was issued for. */
-        EntityType?: string;
         /** The time the token will expire, if it is an expiring token, in UTC. */
         TokenExpiration?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ExecuteCloudScriptRequest */
+    type EntityTypes = "title"
+        | "master_player_account"
+        | "title_player_account"
+        | "character"
+        | "group";
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ExecuteCloudScriptRequest */
     export interface ExecuteCloudScriptRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The name of the CloudScript function to execute */
         FunctionName: string;
@@ -1690,7 +1703,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ExecuteCloudScriptResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ExecuteCloudScriptResult */
     export interface ExecuteCloudScriptResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Number of PlayFab API requests issued by the CloudScript function */
         APIRequestsIssued: number;
@@ -1729,7 +1742,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.FacebookPlayFabIdPair */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.FacebookPlayFabIdPair */
     export interface FacebookPlayFabIdPair {
         /** Unique Facebook identifier for a user. */
         FacebookId?: string;
@@ -1738,7 +1751,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.FriendInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.FriendInfo */
     export interface FriendInfo {
         /** Unique lobby identifier of the Game Server Instance to which this player is currently connected. */
         CurrentMatchmakerLobbyId?: string;
@@ -1761,7 +1774,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameCenterPlayFabIdPair */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameCenterPlayFabIdPair */
     export interface GameCenterPlayFabIdPair {
         /** Unique Game Center identifier for a user. */
         GameCenterId?: string;
@@ -1770,7 +1783,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameInfo */
     export interface GameInfo {
         /** build version this server is running */
         BuildVersion?: string;
@@ -1808,7 +1821,7 @@ declare module PlayFabClientModels {
     type GameInstanceState = "Open"
         | "Closed";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameServerRegionsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameServerRegionsRequest */
     export interface GameServerRegionsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** version of game server for which stats are being requested */
         BuildVersion: string;
@@ -1820,14 +1833,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameServerRegionsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameServerRegionsResult */
     export interface GameServerRegionsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** array of regions found matching the request parameters */
         Regions?: RegionInfo[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GenericPlayFabIdPair */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GenericPlayFabIdPair */
     export interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
         GenericId?: GenericServiceId;
@@ -1836,7 +1849,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GenericServiceId */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GenericServiceId */
     export interface GenericServiceId {
         /** Name of the service for which the player has a unique identifier. */
         ServiceName: string;
@@ -1845,7 +1858,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetAccountInfoRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetAccountInfoRequest */
     export interface GetAccountInfoRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** User email address for the account to find (if no Username is specified). */
         Email?: string;
@@ -1864,28 +1877,28 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetAccountInfoResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetAccountInfoResult */
     export interface GetAccountInfoResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Account information for the local user. */
         AccountInfo?: UserAccountInfo;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCatalogItemsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCatalogItemsRequest */
     export interface GetCatalogItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Which catalog is being requested. If null, uses the default catalog. */
         CatalogVersion?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCatalogItemsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCatalogItemsResult */
     export interface GetCatalogItemsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of items which can be purchased. */
         Catalog?: CatalogItem[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterDataRequest */
     export interface GetCharacterDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
@@ -1901,7 +1914,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterDataResult */
     export interface GetCharacterDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string;
@@ -1915,7 +1928,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterInventoryRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterInventoryRequest */
     export interface GetCharacterInventoryRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Used to limit results to only those from a specific catalog version. */
         CatalogVersion?: string;
@@ -1924,7 +1937,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterInventoryResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterInventoryResult */
     export interface GetCharacterInventoryResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique identifier of the character for this inventory. */
         CharacterId?: string;
@@ -1937,7 +1950,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterLeaderboardRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterLeaderboardRequest */
     export interface GetCharacterLeaderboardRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Optional character type on which to filter the leaderboard entries. */
         CharacterType?: string;
@@ -1950,28 +1963,28 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterLeaderboardResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterLeaderboardResult */
     export interface GetCharacterLeaderboardResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Ordered list of leaderboard entries. */
         Leaderboard?: CharacterLeaderboardEntry[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterStatisticsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterStatisticsRequest */
     export interface GetCharacterStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterStatisticsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCharacterStatisticsResult */
     export interface GetCharacterStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The requested character statistics. */
         CharacterStatistics?: { [key: string]: number };
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetContentDownloadUrlRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetContentDownloadUrlRequest */
     export interface GetContentDownloadUrlRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** HTTP method to fetch item - GET or HEAD. Use HEAD when only fetching metadata. Default is GET. */
         HttpMethod?: string;
@@ -1985,14 +1998,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetContentDownloadUrlResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetContentDownloadUrlResult */
     export interface GetContentDownloadUrlResult extends PlayFabModule.IPlayFabResultCommon  {
         /** URL for downloading content via HTTP GET or HEAD method. The URL will expire in approximately one hour. */
         URL?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundPlayerRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundPlayerRequest */
     export interface GetFriendLeaderboardAroundPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean;
@@ -2015,7 +2028,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundPlayerResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundPlayerResult */
     export interface GetFriendLeaderboardAroundPlayerResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Ordered listing of users and their positions in the requested leaderboard. */
         Leaderboard?: PlayerLeaderboardEntry[];
@@ -2026,7 +2039,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardRequest */
     export interface GetFriendLeaderboardRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean;
@@ -2049,7 +2062,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendsListRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendsListRequest */
     export interface GetFriendsListRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean;
@@ -2064,14 +2077,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendsListResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendsListResult */
     export interface GetFriendsListResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of friends found. */
         Friends?: FriendInfo[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundCharacterRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundCharacterRequest */
     export interface GetLeaderboardAroundCharacterRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character on which to center the leaderboard. */
         CharacterId: string;
@@ -2084,14 +2097,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundCharacterResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundCharacterResult */
     export interface GetLeaderboardAroundCharacterResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Ordered list of leaderboard entries. */
         Leaderboard?: CharacterLeaderboardEntry[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundPlayerRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundPlayerRequest */
     export interface GetLeaderboardAroundPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
         MaxResultsCount?: number;
@@ -2110,7 +2123,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundPlayerResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundPlayerResult */
     export interface GetLeaderboardAroundPlayerResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Ordered listing of users and their positions in the requested leaderboard. */
         Leaderboard?: PlayerLeaderboardEntry[];
@@ -2121,7 +2134,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardForUsersCharactersRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardForUsersCharactersRequest */
     export interface GetLeaderboardForUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number;
@@ -2130,14 +2143,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardForUsersCharactersResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardForUsersCharactersResult */
     export interface GetLeaderboardForUsersCharactersResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Ordered list of leaderboard entries. */
         Leaderboard?: CharacterLeaderboardEntry[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardRequest */
     export interface GetLeaderboardRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
         MaxResultsCount?: number;
@@ -2156,7 +2169,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardResult */
     export interface GetLeaderboardResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Ordered listing of users and their positions in the requested leaderboard. */
         Leaderboard?: PlayerLeaderboardEntry[];
@@ -2167,14 +2180,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPaymentTokenRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPaymentTokenRequest */
     export interface GetPaymentTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The name of service to provide the payment token. Allowed Values are: xsolla */
         TokenProvider: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPaymentTokenResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPaymentTokenResult */
     export interface GetPaymentTokenResult extends PlayFabModule.IPlayFabResultCommon  {
         /** PlayFab's purchase order identifier. */
         OrderId?: string;
@@ -2183,21 +2196,21 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPhotonAuthenticationTokenRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPhotonAuthenticationTokenRequest */
     export interface GetPhotonAuthenticationTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The Photon applicationId for the game you wish to log into. */
         PhotonApplicationId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPhotonAuthenticationTokenResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPhotonAuthenticationTokenResult */
     export interface GetPhotonAuthenticationTokenResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The Photon authentication token for this game-session. */
         PhotonCustomAuthenticationToken?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerCombinedInfoRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerCombinedInfoRequest */
     export interface GetPlayerCombinedInfoRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters: GetPlayerCombinedInfoRequestParams;
@@ -2206,7 +2219,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerCombinedInfoRequestParams */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerCombinedInfoRequestParams */
     export interface GetPlayerCombinedInfoRequestParams {
         /** Whether to get character inventories. Defaults to false. */
         GetCharacterInventories: boolean;
@@ -2244,7 +2257,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerCombinedInfoResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerCombinedInfoResult */
     export interface GetPlayerCombinedInfoResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Results for requested info. */
         InfoResultPayload?: GetPlayerCombinedInfoResultPayload;
@@ -2253,7 +2266,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerCombinedInfoResultPayload */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerCombinedInfoResultPayload */
     export interface GetPlayerCombinedInfoResultPayload {
         /** Account information for the user. This is always retrieved. */
         AccountInfo?: UserAccountInfo;
@@ -2287,7 +2300,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerProfileRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerProfileRequest */
     export interface GetPlayerProfileRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
@@ -2300,7 +2313,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerProfileResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerProfileResult */
     export interface GetPlayerProfileResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * The profile of the player. This profile is not guaranteed to be up-to-date. For a new player, this profile will not
@@ -2310,19 +2323,19 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerSegmentsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerSegmentsRequest */
     export interface GetPlayerSegmentsRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerSegmentsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerSegmentsResult */
     export interface GetPlayerSegmentsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of segments the requested player currently belongs to. */
         Segments?: GetSegmentResult[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticsRequest */
     export interface GetPlayerStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** statistics to return (current version will be returned for each) */
         StatisticNames?: string[];
@@ -2334,28 +2347,28 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticsResult */
     export interface GetPlayerStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** User statistics for the requested user. */
         Statistics?: StatisticValue[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticVersionsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticVersionsRequest */
     export interface GetPlayerStatisticVersionsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique name of the statistic */
         StatisticName?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticVersionsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticVersionsResult */
     export interface GetPlayerStatisticVersionsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** version change history of the statistic */
         StatisticVersions?: PlayerStatisticVersion[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerTagsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerTagsRequest */
     export interface GetPlayerTagsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Optional namespace to filter results by */
         Namespace?: string;
@@ -2364,7 +2377,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerTagsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerTagsResult */
     export interface GetPlayerTagsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
@@ -2373,14 +2386,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerTradesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerTradesRequest */
     export interface GetPlayerTradesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Returns only trades with the given status. If null, returns all trades. */
         StatusFilter?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerTradesResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerTradesResponse */
     export interface GetPlayerTradesResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** History of trades which this player has accepted. */
         AcceptedTrades?: TradeInfo[];
@@ -2389,35 +2402,35 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromFacebookIDsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromFacebookIDsRequest */
     export interface GetPlayFabIDsFromFacebookIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers. */
         FacebookIDs: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromFacebookIDsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromFacebookIDsResult */
     export interface GetPlayFabIDsFromFacebookIDsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Mapping of Facebook identifiers to PlayFab identifiers. */
         Data?: FacebookPlayFabIdPair[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGameCenterIDsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGameCenterIDsRequest */
     export interface GetPlayFabIDsFromGameCenterIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Array of unique Game Center identifiers (the Player Identifier) for which the title needs to get PlayFab identifiers. */
         GameCenterIDs: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGameCenterIDsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGameCenterIDsResult */
     export interface GetPlayFabIDsFromGameCenterIDsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Mapping of Game Center identifiers to PlayFab identifiers. */
         Data?: GameCenterPlayFabIdPair[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGenericIDsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGenericIDsRequest */
     export interface GetPlayFabIDsFromGenericIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique generic service identifiers for which the title needs to get PlayFab identifiers. Currently limited to a
@@ -2427,91 +2440,91 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGenericIDsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGenericIDsResult */
     export interface GetPlayFabIDsFromGenericIDsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Mapping of generic service identifiers to PlayFab identifiers. */
         Data?: GenericPlayFabIdPair[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGoogleIDsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGoogleIDsRequest */
     export interface GetPlayFabIDsFromGoogleIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Array of unique Google identifiers (Google+ user IDs) for which the title needs to get PlayFab identifiers. */
         GoogleIDs: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGoogleIDsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGoogleIDsResult */
     export interface GetPlayFabIDsFromGoogleIDsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Mapping of Google identifiers to PlayFab identifiers. */
         Data?: GooglePlayFabIdPair[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromKongregateIDsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromKongregateIDsRequest */
     export interface GetPlayFabIDsFromKongregateIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Array of unique Kongregate identifiers (Kongregate's user_id) for which the title needs to get PlayFab identifiers. */
         KongregateIDs: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromKongregateIDsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromKongregateIDsResult */
     export interface GetPlayFabIDsFromKongregateIDsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Mapping of Kongregate identifiers to PlayFab identifiers. */
         Data?: KongregatePlayFabIdPair[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromSteamIDsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromSteamIDsRequest */
     export interface GetPlayFabIDsFromSteamIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. */
         SteamStringIDs?: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromSteamIDsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromSteamIDsResult */
     export interface GetPlayFabIDsFromSteamIDsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Mapping of Steam identifiers to PlayFab identifiers. */
         Data?: SteamPlayFabIdPair[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromTwitchIDsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromTwitchIDsRequest */
     export interface GetPlayFabIDsFromTwitchIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Array of unique Twitch identifiers (Twitch's _id) for which the title needs to get PlayFab identifiers. */
         TwitchIds: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromTwitchIDsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromTwitchIDsResult */
     export interface GetPlayFabIDsFromTwitchIDsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Mapping of Twitch identifiers to PlayFab identifiers. */
         Data?: TwitchPlayFabIdPair[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPublisherDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPublisherDataRequest */
     export interface GetPublisherDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
         Keys: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPublisherDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPublisherDataResult */
     export interface GetPublisherDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
         Data?: { [key: string]: string | null };
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseRequest */
     export interface GetPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Purchase order identifier. */
         OrderId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseResult */
     export interface GetPurchaseResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Purchase order identifier. */
         OrderId?: string;
@@ -2526,7 +2539,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSegmentResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSegmentResult */
     export interface GetSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Identifier of the segments AB Test, if it is attached to one. */
         ABTestParent?: string;
@@ -2537,7 +2550,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSharedGroupDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSharedGroupDataRequest */
     export interface GetSharedGroupDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** If true, return the list of all members of the shared group. */
         GetMembers?: boolean;
@@ -2551,7 +2564,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSharedGroupDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSharedGroupDataResult */
     export interface GetSharedGroupDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Data for the requested keys. */
         Data?: { [key: string]: SharedGroupDataRecord };
@@ -2560,7 +2573,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetStoreItemsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetStoreItemsRequest */
     export interface GetStoreItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** catalog version to store items from. Use default catalog version if null */
         CatalogVersion?: string;
@@ -2569,7 +2582,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetStoreItemsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetStoreItemsResult */
     export interface GetStoreItemsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The base catalog that this store is a part of. */
         CatalogVersion?: string;
@@ -2584,47 +2597,47 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTimeRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTimeRequest */
     export interface GetTimeRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTimeResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTimeResult */
     export interface GetTimeResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Current server time when the request was received, in UTC */
         Time: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleDataRequest */
     export interface GetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         Keys?: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleDataResult */
     export interface GetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
         Data?: { [key: string]: string | null };
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleNewsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleNewsRequest */
     export interface GetTitleNewsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Limits the results to the last n entries. Defaults to 10 if not set. */
         Count?: number;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleNewsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleNewsResult */
     export interface GetTitleNewsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of news items. */
         News?: TitleNewsItem[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitlePublicKeyRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitlePublicKeyRequest */
     export interface GetTitlePublicKeyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
@@ -2636,14 +2649,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitlePublicKeyResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitlePublicKeyResult */
     export interface GetTitlePublicKeyResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Base64 encoded RSA CSP byte array blob containing the title's public RSA key */
         RSAPublicKey?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTradeStatusRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTradeStatusRequest */
     export interface GetTradeStatusRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Player who opened trade. */
         OfferingPlayerId: string;
@@ -2652,21 +2665,21 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTradeStatusResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTradeStatusResponse */
     export interface GetTradeStatusResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Information about the requested trade. */
         Trade?: TradeInfo;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserDataRequest */
     export interface GetUserDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the
          * version in the system is greater than this.
          */
         IfChangedFromDataVersion?: number;
-        /** Specific keys to search for in the custom data. Leave null to get all keys. */
+        /** List of unique keys to load from. */
         Keys?: string[];
         /**
          * Unique PlayFab identifier of the user to load data for. Optional, defaults to yourself if not set. When specified to a
@@ -2676,7 +2689,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserDataResult */
     export interface GetUserDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** User specific data for this title. */
         Data?: { [key: string]: UserDataRecord };
@@ -2688,12 +2701,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserInventoryRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserInventoryRequest */
     export interface GetUserInventoryRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserInventoryResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserInventoryResult */
     export interface GetUserInventoryResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of inventory items belonging to the user. */
         Inventory?: ItemInstance[];
@@ -2704,7 +2717,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeRequest */
     export interface GetWindowsHelloChallengeRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
         PublicKeyHint: string;
@@ -2716,14 +2729,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeResponse */
     export interface GetWindowsHelloChallengeResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Server generated challenge to be signed by the user. */
         Challenge?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GooglePlayFabIdPair */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GooglePlayFabIdPair */
     export interface GooglePlayFabIdPair {
         /** Unique Google identifier for a user. */
         GoogleId?: string;
@@ -2732,7 +2745,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GrantCharacterToUserRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GrantCharacterToUserRequest */
     export interface GrantCharacterToUserRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version from which items are to be granted. */
         CatalogVersion?: string;
@@ -2746,7 +2759,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GrantCharacterToUserResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GrantCharacterToUserResult */
     export interface GrantCharacterToUserResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique identifier tagged to this character. */
         CharacterId?: string;
@@ -2757,7 +2770,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ItemInstance */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ItemInstance */
     export interface ItemInstance {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
         Annotation?: string;
@@ -2795,7 +2808,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ItemPurchaseRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ItemPurchaseRequest */
     export interface ItemPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Title-specific text concerning this purchase. */
         Annotation?: string;
@@ -2808,7 +2821,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.KongregatePlayFabIdPair */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.KongregatePlayFabIdPair */
     export interface KongregatePlayFabIdPair {
         /** Unique Kongregate identifier for a user. */
         KongregateId?: string;
@@ -2817,7 +2830,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkAndroidDeviceIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkAndroidDeviceIDRequest */
     export interface LinkAndroidDeviceIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Specific model of the user's device. */
         AndroidDevice?: string;
@@ -2830,12 +2843,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkAndroidDeviceIDResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkAndroidDeviceIDResult */
     export interface LinkAndroidDeviceIDResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkCustomIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkCustomIDRequest */
     export interface LinkCustomIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Custom unique identifier for the user, generated by the title. */
         CustomId: string;
@@ -2844,12 +2857,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkCustomIDResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkCustomIDResult */
     export interface LinkCustomIDResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkedPlatformAccountModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkedPlatformAccountModel */
     export interface LinkedPlatformAccountModel {
         /** Linked account email of the user on the platform, if available */
         Email?: string;
@@ -2862,7 +2875,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkFacebookAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkFacebookAccountRequest */
     export interface LinkFacebookAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique identifier from Facebook for the user. */
         AccessToken: string;
@@ -2871,12 +2884,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkFacebookAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkFacebookAccountResult */
     export interface LinkFacebookAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGameCenterAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGameCenterAccountRequest */
     export interface LinkGameCenterAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
@@ -2885,12 +2898,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGameCenterAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGameCenterAccountResult */
     export interface LinkGameCenterAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGoogleAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGoogleAccountRequest */
     export interface LinkGoogleAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
@@ -2902,12 +2915,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGoogleAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGoogleAccountResult */
     export interface LinkGoogleAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkIOSDeviceIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkIOSDeviceIDRequest */
     export interface LinkIOSDeviceIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Vendor-specific iOS identifier for the user's device. */
         DeviceId: string;
@@ -2920,12 +2933,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkIOSDeviceIDResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkIOSDeviceIDResult */
     export interface LinkIOSDeviceIDResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkKongregateAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkKongregateAccountRequest */
     export interface LinkKongregateAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Valid session auth ticket issued by Kongregate */
         AuthTicket: string;
@@ -2936,12 +2949,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkKongregateAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkKongregateAccountResult */
     export interface LinkKongregateAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkSteamAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkSteamAccountRequest */
     export interface LinkSteamAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
@@ -2953,12 +2966,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkSteamAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkSteamAccountResult */
     export interface LinkSteamAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkTwitchAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkTwitchAccountRequest */
     export interface LinkTwitchAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Valid token issued by Twitch */
         AccessToken: string;
@@ -2967,12 +2980,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkTwitchAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkTwitchAccountResult */
     export interface LinkTwitchAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountRequest */
     export interface LinkWindowsHelloAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Device name. */
         DeviceName?: string;
@@ -2985,26 +2998,26 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountResponse */
     export interface LinkWindowsHelloAccountResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ListUsersCharactersRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ListUsersCharactersRequest */
     export interface ListUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ListUsersCharactersResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ListUsersCharactersResult */
     export interface ListUsersCharactersResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The requested list of characters. */
         Characters?: CharacterResult[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LocationModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LocationModel */
     export interface LocationModel {
         /** City name. */
         City?: string;
@@ -3034,7 +3047,7 @@ declare module PlayFabClientModels {
         | "Twitch"
         | "WindowsHello";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult */
     export interface LoginResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * If LoginTitlePlayerAccountEntity flag is set on the login request the title_player_account will also be logged in and
@@ -3056,7 +3069,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithAndroidDeviceIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithAndroidDeviceIDRequest */
     export interface LoginWithAndroidDeviceIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Specific model of the user's device. */
         AndroidDevice?: string;
@@ -3082,7 +3095,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithCustomIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithCustomIDRequest */
     export interface LoginWithCustomIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean;
@@ -3104,7 +3117,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithEmailAddressRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithEmailAddressRequest */
     export interface LoginWithEmailAddressRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Email address for the account. */
         Email: string;
@@ -3122,7 +3135,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithFacebookRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithFacebookRequest */
     export interface LoginWithFacebookRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique identifier from Facebook for the user. */
         AccessToken: string;
@@ -3144,7 +3157,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithGameCenterRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithGameCenterRequest */
     export interface LoginWithGameCenterRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean;
@@ -3166,7 +3179,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithGoogleAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithGoogleAccountRequest */
     export interface LoginWithGoogleAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean;
@@ -3191,7 +3204,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithIOSDeviceIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithIOSDeviceIDRequest */
     export interface LoginWithIOSDeviceIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean;
@@ -3217,7 +3230,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithKongregateRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithKongregateRequest */
     export interface LoginWithKongregateRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Token issued by Kongregate's client API for the user. */
         AuthTicket?: string;
@@ -3241,7 +3254,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithPlayFabRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithPlayFabRequest */
     export interface LoginWithPlayFabRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
@@ -3259,7 +3272,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithSteamRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithSteamRequest */
     export interface LoginWithSteamRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean;
@@ -3284,7 +3297,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithTwitchRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithTwitchRequest */
     export interface LoginWithTwitchRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Token issued by Twitch's API for the user. */
         AccessToken?: string;
@@ -3306,7 +3319,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithWindowsHelloRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithWindowsHelloRequest */
     export interface LoginWithWindowsHelloRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The signed response from the user for the Challenge. */
         ChallengeSignature: string;
@@ -3324,7 +3337,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LogStatement */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LogStatement */
     export interface LogStatement {
         /** Optional object accompanying the message as contextual information */
         Data?: any;
@@ -3334,7 +3347,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.MatchmakeRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.MatchmakeRequest */
     export interface MatchmakeRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Build version to match against. [Note: Required if LobbyId is not specified] */
         BuildVersion?: string;
@@ -3355,7 +3368,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.MatchmakeResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.MatchmakeResult */
     export interface MatchmakeResult extends PlayFabModule.IPlayFabResultCommon  {
         /** timestamp for when the server will expire, if applicable */
         Expires?: string;
@@ -3382,7 +3395,7 @@ declare module PlayFabClientModels {
         | "NoAvailableSlots"
         | "SessionClosed";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.MembershipModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.MembershipModel */
     export interface MembershipModel {
         /** Whether this membership is active. That is, whether the MembershipExpiration time has been reached. */
         IsActive: boolean;
@@ -3400,7 +3413,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ModifyUserVirtualCurrencyResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ModifyUserVirtualCurrencyResult */
     export interface ModifyUserVirtualCurrencyResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Balance of the virtual currency after modification. */
         Balance: number;
@@ -3416,14 +3429,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.NameIdentifier */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.NameIdentifier */
     export interface NameIdentifier {
         Id?: string;
         Name?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.OpenTradeRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.OpenTradeRequest */
     export interface OpenTradeRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Players who are allowed to accept the trade. If null, the trade may be accepted by any player. If empty, the trade may
@@ -3437,14 +3450,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.OpenTradeResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.OpenTradeResponse */
     export interface OpenTradeResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The information about the trade that was just opened. */
         Trade?: TradeInfo;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PayForPurchaseRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PayForPurchaseRequest */
     export interface PayForPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Currency to use to fund the purchase. */
         Currency: string;
@@ -3457,7 +3470,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PayForPurchaseResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PayForPurchaseResult */
     export interface PayForPurchaseResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Local credit applied to the transaction (provider specific). */
         CreditApplied: number;
@@ -3482,7 +3495,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PaymentOption */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PaymentOption */
     export interface PaymentOption {
         /** Specific currency to use to fund the purchase. */
         Currency?: string;
@@ -3495,7 +3508,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerLeaderboardEntry */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerLeaderboardEntry */
     export interface PlayerLeaderboardEntry {
         /** Title-specific display name of the user for this leaderboard entry. */
         DisplayName?: string;
@@ -3510,7 +3523,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerProfileModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerProfileModel */
     export interface PlayerProfileModel {
         /** List of advertising campaigns the player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttributionModel[];
@@ -3548,7 +3561,7 @@ declare module PlayFabClientModels {
         TitleId?: string;
         /**
          * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a
-         * whole number of cents (1/100 USD).              For example, 999 indicates nine dollars and ninety-nine cents.
+         * whole number of cents (1/100 USD).       For example, 999 indicates nine dollars and ninety-nine cents.
          */
         TotalValueToDateInUSD?: number;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
@@ -3556,7 +3569,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerProfileViewConstraints */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerProfileViewConstraints */
     export interface PlayerProfileViewConstraints {
         /** Whether to show player's avatar URL. Defaults to false */
         ShowAvatarUrl: boolean;
@@ -3593,7 +3606,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerStatisticVersion */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PlayerStatisticVersion */
     export interface PlayerStatisticVersion {
         /** time when the statistic version became active */
         ActivationTime: string;
@@ -3610,7 +3623,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseItemRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseItemRequest */
     export interface PurchaseItemRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version for the items to be purchased (defaults to most recent version. */
         CatalogVersion?: string;
@@ -3627,7 +3640,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseItemResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseItemResult */
     export interface PurchaseItemResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Details for the items purchased. */
         Items?: ItemInstance[];
@@ -3637,7 +3650,7 @@ declare module PlayFabClientModels {
     type PushNotificationPlatform = "ApplePushNotificationService"
         | "GoogleCloudMessaging";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PushNotificationRegistrationModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PushNotificationRegistrationModel */
     export interface PushNotificationRegistrationModel {
         /** Notification configured endpoint */
         NotificationEndpointARN?: string;
@@ -3646,7 +3659,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RedeemCouponRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RedeemCouponRequest */
     export interface RedeemCouponRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version of the coupon. If null, uses the default catalog */
         CatalogVersion?: string;
@@ -3657,7 +3670,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RedeemCouponResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RedeemCouponResult */
     export interface RedeemCouponResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Items granted to the player as a result of redeeming the coupon. */
         GrantedItems?: ItemInstance[];
@@ -3672,7 +3685,7 @@ declare module PlayFabClientModels {
         | "Brazil"
         | "Australia";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegionInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegionInfo */
     export interface RegionInfo {
         /** indicates whether the server specified is available in this region */
         Available: boolean;
@@ -3685,7 +3698,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterForIOSPushNotificationRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterForIOSPushNotificationRequest */
     export interface RegisterForIOSPushNotificationRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Message to display when confirming push notification. */
         ConfirmationMessage?: string;
@@ -3696,12 +3709,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterForIOSPushNotificationResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterForIOSPushNotificationResult */
     export interface RegisterForIOSPushNotificationResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterPlayFabUserRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterPlayFabUserRequest */
     export interface RegisterPlayFabUserRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** An optional parameter for setting the display name for this title (3-25 characters). */
         DisplayName?: string;
@@ -3733,7 +3746,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterPlayFabUserResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterPlayFabUserResult */
     export interface RegisterPlayFabUserResult extends PlayFabModule.IPlayFabResultCommon  {
         /** PlayFab unique identifier for this newly created account. */
         PlayFabId?: string;
@@ -3746,7 +3759,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterWithWindowsHelloRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterWithWindowsHelloRequest */
     export interface RegisterWithWindowsHelloRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Device name. */
         DeviceName?: string;
@@ -3770,41 +3783,41 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveContactEmailRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveContactEmailRequest */
     export interface RemoveContactEmailRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveContactEmailResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveContactEmailResult */
     export interface RemoveContactEmailResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveFriendRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveFriendRequest */
     export interface RemoveFriendRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** PlayFab identifier of the friend account which is to be removed. */
         FriendPlayFabId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveFriendResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveFriendResult */
     export interface RemoveFriendResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveGenericIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveGenericIDRequest */
     export interface RemoveGenericIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Generic service identifier to be removed from the player. */
         GenericId: GenericServiceId;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveGenericIDResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveGenericIDResult */
     export interface RemoveGenericIDResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveSharedGroupMembersRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveSharedGroupMembersRequest */
     export interface RemoveSharedGroupMembersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabIds: string[];
@@ -3813,12 +3826,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveSharedGroupMembersResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveSharedGroupMembersResult */
     export interface RemoveSharedGroupMembersResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ReportPlayerClientRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ReportPlayerClientRequest */
     export interface ReportPlayerClientRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Optional additional comment by reporting player. */
         Comment?: string;
@@ -3827,26 +3840,26 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ReportPlayerClientResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ReportPlayerClientResult */
     export interface ReportPlayerClientResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The number of remaining reports which may be filed today. */
         SubmissionsRemaining: number;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesRequest */
     export interface RestoreIOSPurchasesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Base64 encoded receipt data, passed back by the App Store as a result of a successful purchase. */
         ReceiptData: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesResult */
     export interface RestoreIOSPurchasesResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ScriptExecutionError */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ScriptExecutionError */
     export interface ScriptExecutionError {
         /**
          * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,
@@ -3860,7 +3873,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SendAccountRecoveryEmailRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SendAccountRecoveryEmailRequest */
     export interface SendAccountRecoveryEmailRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** User email address attached to their account */
         Email: string;
@@ -3874,12 +3887,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SendAccountRecoveryEmailResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SendAccountRecoveryEmailResult */
     export interface SendAccountRecoveryEmailResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetFriendTagsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetFriendTagsRequest */
     export interface SetFriendTagsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** PlayFab identifier of the friend account to which the tag(s) should be applied. */
         FriendPlayFabId: string;
@@ -3888,12 +3901,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetFriendTagsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetFriendTagsResult */
     export interface SetFriendTagsResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretRequest */
     export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
         EncryptedRequest?: string;
@@ -3902,12 +3915,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretResult */
     export interface SetPlayerSecretResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SharedGroupDataRecord */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SharedGroupDataRecord */
     export interface SharedGroupDataRecord {
         /** Timestamp for when this data was last updated. */
         LastUpdated: string;
@@ -3926,7 +3939,7 @@ declare module PlayFabClientModels {
         | "GameServer"
         | "Partner";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartGameRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartGameRequest */
     export interface StartGameRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** version information for the build of the game server which is to be started */
         BuildVersion: string;
@@ -3943,7 +3956,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartGameResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartGameResult */
     export interface StartGameResult extends PlayFabModule.IPlayFabResultCommon  {
         /** timestamp for when the server should expire, if applicable */
         Expires?: string;
@@ -3962,7 +3975,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartPurchaseRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartPurchaseRequest */
     export interface StartPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version for the items to be purchased. Defaults to most recent catalog. */
         CatalogVersion?: string;
@@ -3973,7 +3986,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartPurchaseResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartPurchaseResult */
     export interface StartPurchaseResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Cart items to be purchased. */
         Contents?: CartItem[];
@@ -3986,7 +3999,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticModel */
     export interface StatisticModel {
         /** Statistic name */
         Name?: string;
@@ -3997,7 +4010,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticNameVersion */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticNameVersion */
     export interface StatisticNameVersion {
         /** unique name of the statistic */
         StatisticName: string;
@@ -4006,7 +4019,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticUpdate */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticUpdate */
     export interface StatisticUpdate {
         /** unique name of the statistic */
         StatisticName: string;
@@ -4020,7 +4033,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticValue */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StatisticValue */
     export interface StatisticValue {
         /** unique name of the statistic */
         StatisticName?: string;
@@ -4031,7 +4044,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SteamPlayFabIdPair */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SteamPlayFabIdPair */
     export interface SteamPlayFabIdPair {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier. */
         PlayFabId?: string;
@@ -4040,7 +4053,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StoreItem */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StoreItem */
     export interface StoreItem {
         /** Store specific custom data. The data only exists as part of this store; it is not transferred to item instances */
         CustomData?: any;
@@ -4058,7 +4071,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StoreMarketingModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StoreMarketingModel */
     export interface StoreMarketingModel {
         /** Tagline for a store. */
         Description?: string;
@@ -4069,7 +4082,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SubscriptionModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SubscriptionModel */
     export interface SubscriptionModel {
         /** When this subscription expires. */
         Expiration: string;
@@ -4097,7 +4110,7 @@ declare module PlayFabClientModels {
         | "FreeTrial"
         | "PaymentPending";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SubtractUserVirtualCurrencyRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SubtractUserVirtualCurrencyRequest */
     export interface SubtractUserVirtualCurrencyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         Amount: number;
@@ -4106,7 +4119,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TagModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TagModel */
     export interface TagModel {
         /** Full value of the tag, including namespace */
         TagValue?: string;
@@ -4119,7 +4132,7 @@ declare module PlayFabClientModels {
         | "ActivatedSteam"
         | "RevokedSteam";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TitleNewsItem */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TitleNewsItem */
     export interface TitleNewsItem {
         /** News item text. */
         Body?: string;
@@ -4132,13 +4145,13 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TradeInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TradeInfo */
     export interface TradeInfo {
         /** Item instances from the accepting player that are used to fulfill the trade. If null, no one has accepted the trade. */
         AcceptedInventoryInstanceIds?: string[];
         /** The PlayFab ID of the player who accepted the trade. If null, no one has accepted the trade. */
         AcceptedPlayerId?: string;
-        /** An optional list of players allowed to complete this trade.  If null, anybody can complete the trade. */
+        /** An optional list of players allowed to complete this trade. If null, anybody can complete the trade. */
         AllowedPlayerIds?: string[];
         /** If set, The UTC time when this trade was canceled. */
         CancelledAt?: string;
@@ -4192,7 +4205,7 @@ declare module PlayFabClientModels {
         | "Other"
         | "Failed";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TwitchPlayFabIdPair */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.TwitchPlayFabIdPair */
     export interface TwitchPlayFabIdPair {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Twitch identifier. */
         PlayFabId?: string;
@@ -4201,7 +4214,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkAndroidDeviceIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkAndroidDeviceIDRequest */
     export interface UnlinkAndroidDeviceIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Android device identifier for the user's device. If not specified, the most recently signed in Android Device ID will be
@@ -4211,12 +4224,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkAndroidDeviceIDResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkAndroidDeviceIDResult */
     export interface UnlinkAndroidDeviceIDResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkCustomIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkCustomIDRequest */
     export interface UnlinkCustomIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Custom unique identifier for the user, generated by the title. If not specified, the most recently signed in Custom ID
@@ -4226,42 +4239,42 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkCustomIDResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkCustomIDResult */
     export interface UnlinkCustomIDResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkFacebookAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkFacebookAccountRequest */
     export interface UnlinkFacebookAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkFacebookAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkFacebookAccountResult */
     export interface UnlinkFacebookAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGameCenterAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGameCenterAccountRequest */
     export interface UnlinkGameCenterAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGameCenterAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGameCenterAccountResult */
     export interface UnlinkGameCenterAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGoogleAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGoogleAccountRequest */
     export interface UnlinkGoogleAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGoogleAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGoogleAccountResult */
     export interface UnlinkGoogleAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkIOSDeviceIDRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkIOSDeviceIDRequest */
     export interface UnlinkIOSDeviceIDRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Vendor-specific iOS identifier for the user's device. If not specified, the most recently signed in iOS Device ID will
@@ -4271,57 +4284,57 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkIOSDeviceIDResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkIOSDeviceIDResult */
     export interface UnlinkIOSDeviceIDResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkKongregateAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkKongregateAccountRequest */
     export interface UnlinkKongregateAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkKongregateAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkKongregateAccountResult */
     export interface UnlinkKongregateAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkSteamAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkSteamAccountRequest */
     export interface UnlinkSteamAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkSteamAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkSteamAccountResult */
     export interface UnlinkSteamAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkTwitchAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkTwitchAccountRequest */
     export interface UnlinkTwitchAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkTwitchAccountResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkTwitchAccountResult */
     export interface UnlinkTwitchAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountRequest */
     export interface UnlinkWindowsHelloAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
         PublicKeyHint: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountResponse */
     export interface UnlinkWindowsHelloAccountResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerInstanceRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerInstanceRequest */
     export interface UnlockContainerInstanceRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses catalog
+         * Specifies the catalog version that should be used to determine container contents. If unspecified, uses catalog
          * associated with the item instance.
          */
         CatalogVersion?: string;
@@ -4330,17 +4343,17 @@ declare module PlayFabClientModels {
         /** ItemInstanceId of the container to unlock. */
         ContainerItemInstanceId: string;
         /**
-         * ItemInstanceId of the key that will be consumed by unlocking this container.  If the container requires a key, this
+         * ItemInstanceId of the key that will be consumed by unlocking this container. If the container requires a key, this
          * parameter is required.
          */
         KeyItemInstanceId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerItemRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerItemRequest */
     export interface UnlockContainerItemRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses default/primary
+         * Specifies the catalog version that should be used to determine container contents. If unspecified, uses default/primary
          * catalog.
          */
         CatalogVersion?: string;
@@ -4351,7 +4364,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerItemResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerItemResult */
     export interface UnlockContainerItemResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Items granted to the player as a result of unlocking the container. */
         GrantedItems?: ItemInstance[];
@@ -4364,14 +4377,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateAvatarUrlRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateAvatarUrlRequest */
     export interface UpdateAvatarUrlRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** URL of the avatar image. If empty, it removes the existing avatar URL. */
         ImageUrl: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterDataRequest */
     export interface UpdateCharacterDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
@@ -4381,8 +4394,8 @@ declare module PlayFabClientModels {
          */
         Data?: { [key: string]: string | null };
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         KeysToRemove?: string[];
         /** Permission to be applied to all user data keys written in this request. Defaults to "private" if not set. */
@@ -4390,7 +4403,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterDataResult */
     export interface UpdateCharacterDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of
@@ -4400,7 +4413,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterStatisticsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterStatisticsRequest */
     export interface UpdateCharacterStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
@@ -4409,24 +4422,24 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterStatisticsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterStatisticsResult */
     export interface UpdateCharacterStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdatePlayerStatisticsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdatePlayerStatisticsRequest */
     export interface UpdatePlayerStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Statistics to be updated with the provided values */
         Statistics: StatisticUpdate[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdatePlayerStatisticsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdatePlayerStatisticsResult */
     export interface UpdatePlayerStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateSharedGroupDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateSharedGroupDataRequest */
     export interface UpdateSharedGroupDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
@@ -4434,8 +4447,8 @@ declare module PlayFabClientModels {
          */
         Data?: { [key: string]: string | null };
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         KeysToRemove?: string[];
         /** Permission to be applied to all user data keys in this request. */
@@ -4445,12 +4458,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateSharedGroupDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateSharedGroupDataResult */
     export interface UpdateSharedGroupDataResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserDataRequest */
     export interface UpdateUserDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
@@ -4458,8 +4471,8 @@ declare module PlayFabClientModels {
          */
         Data?: { [key: string]: string | null };
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         KeysToRemove?: string[];
         /**
@@ -4470,7 +4483,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserDataResult */
     export interface UpdateUserDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of
@@ -4480,21 +4493,21 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserTitleDisplayNameRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserTitleDisplayNameRequest */
     export interface UpdateUserTitleDisplayNameRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** New title display name for the user - must be between 3 and 25 characters. */
         DisplayName: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserTitleDisplayNameResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserTitleDisplayNameResult */
     export interface UpdateUserTitleDisplayNameResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Current title display name for the user (this will be the original display name if the rename attempt failed). */
         DisplayName?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserAccountInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserAccountInfo */
     export interface UserAccountInfo {
         /** User Android device information, if an Android device has been linked */
         AndroidDeviceInfo?: UserAndroidDeviceInfo;
@@ -4531,14 +4544,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserAndroidDeviceInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserAndroidDeviceInfo */
     export interface UserAndroidDeviceInfo {
         /** Android device ID */
         AndroidDeviceId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserCustomIdInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserCustomIdInfo */
     export interface UserCustomIdInfo {
         /** Custom ID */
         CustomId?: string;
@@ -4548,7 +4561,7 @@ declare module PlayFabClientModels {
     type UserDataPermission = "Private"
         | "Public";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserDataRecord */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserDataRecord */
     export interface UserDataRecord {
         /** Timestamp for when this data was last updated. */
         LastUpdated: string;
@@ -4562,7 +4575,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserFacebookInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserFacebookInfo */
     export interface UserFacebookInfo {
         /** Facebook identifier */
         FacebookId?: string;
@@ -4571,14 +4584,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserGameCenterInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserGameCenterInfo */
     export interface UserGameCenterInfo {
         /** Gamecenter identifier */
         GameCenterId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserGoogleInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserGoogleInfo */
     export interface UserGoogleInfo {
         /** Email address of the Google account */
         GoogleEmail?: string;
@@ -4591,14 +4604,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserIosDeviceInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserIosDeviceInfo */
     export interface UserIosDeviceInfo {
         /** iOS device ID */
         IosDeviceId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserKongregateInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserKongregateInfo */
     export interface UserKongregateInfo {
         /** Kongregate ID */
         KongregateId?: string;
@@ -4626,14 +4639,14 @@ declare module PlayFabClientModels {
         | "Twitch"
         | "WindowsHello";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserPrivateAccountInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserPrivateAccountInfo */
     export interface UserPrivateAccountInfo {
         /** user email address */
         Email?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserPsnInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserPsnInfo */
     export interface UserPsnInfo {
         /** PSN account ID */
         PsnAccountId?: string;
@@ -4642,7 +4655,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserSettings */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserSettings */
     export interface UserSettings {
         /** Boolean for whether this player is eligible for gathering device info. */
         GatherDeviceInfo: boolean;
@@ -4651,7 +4664,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserSteamInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserSteamInfo */
     export interface UserSteamInfo {
         /** what stage of game ownership the user is listed as being in, from Steam */
         SteamActivationStatus?: string;
@@ -4664,7 +4677,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserTitleInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserTitleInfo */
     export interface UserTitleInfo {
         /** URL to the player's avatar. */
         AvatarUrl?: string;
@@ -4689,7 +4702,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserTwitchInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserTwitchInfo */
     export interface UserTwitchInfo {
         /** Twitch ID */
         TwitchId?: string;
@@ -4698,14 +4711,14 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserXboxInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserXboxInfo */
     export interface UserXboxInfo {
         /** XBox user ID */
         XboxUserId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptRequest */
     export interface ValidateAmazonReceiptRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version to use when granting receipt item. If null, defaults to primary catalog. */
         CatalogVersion?: string;
@@ -4720,12 +4733,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptResult */
     export interface ValidateAmazonReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseRequest */
     export interface ValidateGooglePlayPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Currency used for the purchase. */
         CurrencyCode?: string;
@@ -4738,12 +4751,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseResult */
     export interface ValidateGooglePlayPurchaseResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptRequest */
     export interface ValidateIOSReceiptRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Currency used for the purchase. */
         CurrencyCode: string;
@@ -4754,12 +4767,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptResult */
     export interface ValidateIOSReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptRequest */
     export interface ValidateWindowsReceiptRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version to use when granting receipt item. If null, defaults to primary catalog. */
         CatalogVersion?: string;
@@ -4772,12 +4785,12 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptResult */
     export interface ValidateWindowsReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValueToDateModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValueToDateModel */
     export interface ValueToDateModel {
         /** ISO 4217 code of the currency used in the purchases */
         Currency?: string;
@@ -4794,7 +4807,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.VirtualCurrencyRechargeTime */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.VirtualCurrencyRechargeTime */
     export interface VirtualCurrencyRechargeTime {
         /**
          * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value
@@ -4809,7 +4822,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteClientCharacterEventRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteClientCharacterEventRequest */
     export interface WriteClientCharacterEventRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any };
@@ -4825,7 +4838,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteClientPlayerEventRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteClientPlayerEventRequest */
     export interface WriteClientPlayerEventRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any };
@@ -4839,7 +4852,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteEventResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteEventResponse */
     export interface WriteEventResponse extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * The unique identifier of the event. The values of this identifier consist of ASCII characters and are not constrained to
@@ -4849,7 +4862,7 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteTitleEventRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteTitleEventRequest */
     export interface WriteTitleEventRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any };

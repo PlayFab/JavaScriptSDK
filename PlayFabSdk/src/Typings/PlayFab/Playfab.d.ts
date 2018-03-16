@@ -2,6 +2,7 @@
 /// <reference path="PlayFabMatchmakerApi.d.ts" />
 /// <reference path="PlayFabServerApi.d.ts" />
 /// <reference path="PlayFabClientApi.d.ts" />
+/// <reference path="PlayFabEntityApi.d.ts" />
 
 declare module PlayFabModule {
     export interface ISettings {
@@ -42,6 +43,7 @@ declare var PlayFab: {
     MatchmakerApi: PlayFabMatchmakerModule.IPlayFabMatchmaker;
     ServerApi: PlayFabServerModule.IPlayFabServer;
     ClientApi: PlayFabClientModule.IPlayFabClient;
+    EntityApi: PlayFabEntityModule.IPlayFabEntity;
 
 };
 // Continue to support older usage
@@ -49,4 +51,5 @@ declare var PlayFabAdminSDK: PlayFabAdminModule.IPlayFabAdmin;
 declare var PlayFabMatchmakerSDK: PlayFabMatchmakerModule.IPlayFabMatchmaker;
 declare var PlayFabServerSDK: PlayFabServerModule.IPlayFabServer;
 declare var PlayFabClientSDK: PlayFabClientModule.IPlayFabClient;
+declare var PlayFabEntitySDK: PlayFabEntityModule.IPlayFabEntity;
 
