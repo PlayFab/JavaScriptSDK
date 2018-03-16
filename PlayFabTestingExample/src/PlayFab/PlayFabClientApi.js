@@ -21,7 +21,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.19.180213",
+        sdkVersion: "1.20.180316",
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
@@ -126,7 +126,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.19.180213";
+PlayFab.sdkVersion = "1.20.180316";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -525,9 +525,12 @@ PlayFab.ClientApi = {
     LoginWithAndroidDeviceID: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -538,9 +541,12 @@ PlayFab.ClientApi = {
     LoginWithCustomID: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -551,9 +557,12 @@ PlayFab.ClientApi = {
     LoginWithEmailAddress: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -564,9 +573,12 @@ PlayFab.ClientApi = {
     LoginWithFacebook: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -577,9 +589,12 @@ PlayFab.ClientApi = {
     LoginWithGameCenter: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -590,9 +605,12 @@ PlayFab.ClientApi = {
     LoginWithGoogleAccount: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -603,9 +621,12 @@ PlayFab.ClientApi = {
     LoginWithIOSDeviceID: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -616,9 +637,12 @@ PlayFab.ClientApi = {
     LoginWithKongregate: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -629,9 +653,12 @@ PlayFab.ClientApi = {
     LoginWithPlayFab: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -642,9 +669,12 @@ PlayFab.ClientApi = {
     LoginWithSteam: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -655,9 +685,12 @@ PlayFab.ClientApi = {
     LoginWithTwitch: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -668,9 +701,12 @@ PlayFab.ClientApi = {
     LoginWithWindowsHello: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -724,9 +760,12 @@ PlayFab.ClientApi = {
     RegisterWithWindowsHello: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
-            if (result != null && result.data.SessionTicket != null) {
-                PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);

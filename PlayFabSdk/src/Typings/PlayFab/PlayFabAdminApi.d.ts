@@ -390,6 +390,11 @@ declare module PlayFabAdminModule {
          */
         RevokeInventoryItem(request: PlayFabAdminModels.RevokeInventoryItemRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Revokes access for up to 25 items across multiple users and characters.
+         * https://api.playfab.com/Documentation/Admin/method/RevokeInventoryItems
+         */
+        RevokeInventoryItems(request: PlayFabAdminModels.RevokeInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Run a task immediately regardless of its schedule.
          * https://api.playfab.com/Documentation/Admin/method/RunTask
          */
@@ -535,14 +540,14 @@ declare module PlayFabAdminModule {
 }
 
 declare module PlayFabAdminModels {
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AbortTaskInstanceRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AbortTaskInstanceRequest */
     export interface AbortTaskInstanceRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** ID of a task instance that is being aborted. */
         TaskInstanceId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ActionsOnPlayersInSegmentTaskParameter */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ActionsOnPlayersInSegmentTaskParameter */
     export interface ActionsOnPlayersInSegmentTaskParameter {
         /** ID of the action to perform on each player in segment. */
         ActionId: string;
@@ -551,7 +556,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ActionsOnPlayersInSegmentTaskSummary */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ActionsOnPlayersInSegmentTaskSummary */
     export interface ActionsOnPlayersInSegmentTaskSummary {
         /** UTC timestamp when the task completed. */
         CompletedAt?: string;
@@ -580,7 +585,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AdCampaignAttribution */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AdCampaignAttribution */
     export interface AdCampaignAttribution {
         /** UTC time stamp of attribution */
         AttributedAt: string;
@@ -591,7 +596,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AdCampaignAttributionModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AdCampaignAttributionModel */
     export interface AdCampaignAttributionModel {
         /** UTC time stamp of attribution */
         AttributedAt: string;
@@ -602,7 +607,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddNewsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddNewsRequest */
     export interface AddNewsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Body text of the news */
         Body: string;
@@ -613,14 +618,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddNewsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddNewsResult */
     export interface AddNewsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique id of the new news item */
         NewsId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddPlayerTagRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddPlayerTagRequest */
     export interface AddPlayerTagRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
@@ -629,12 +634,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddPlayerTagResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddPlayerTagResult */
     export interface AddPlayerTagResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddServerBuildRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddServerBuildRequest */
     export interface AddServerBuildRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** server host regions in which this build should be running and available */
         ActiveRegions?: string[];
@@ -656,7 +661,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddServerBuildResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddServerBuildResult */
     export interface AddServerBuildResult extends PlayFabModule.IPlayFabResultCommon  {
         /** array of regions where this build can used, when it is active */
         ActiveRegions?: string[];
@@ -687,7 +692,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddUserVirtualCurrencyRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddUserVirtualCurrencyRequest */
     export interface AddUserVirtualCurrencyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Amount to be added to the user balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647).
@@ -701,7 +706,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddVirtualCurrencyTypesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddVirtualCurrencyTypesRequest */
     export interface AddVirtualCurrencyTypesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * List of virtual currencies and their initial deposits (the amount a user is granted when signing in for the first time)
@@ -711,7 +716,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ApiCondition */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ApiCondition */
     export interface ApiCondition {
         /** Require that API calls contain an RSA encrypted payload or signed headers. */
         HasSignatureOrEncryption?: string;
@@ -720,7 +725,7 @@ declare module PlayFabAdminModels {
 
     type AuthTokenType = "Email"
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanInfo */
     export interface BanInfo {
         /** The active state of this ban. Expired bans may still have this value set to true but they will have no effect. */
         Active: boolean;
@@ -741,7 +746,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanRequest */
     export interface BanRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The duration in hours for the ban. Leave this blank for a permanent ban. */
         DurationInHours?: number;
@@ -756,26 +761,26 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanUsersRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanUsersRequest */
     export interface BanUsersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** List of ban requests to be applied. Maximum 100. */
         Bans: BanRequest[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanUsersResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanUsersResult */
     export interface BanUsersResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Information on the bans that were applied */
         BanData?: BanInfo[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BlankResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BlankResult */
     export interface BlankResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CatalogItem */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CatalogItem */
     export interface CatalogItem {
         /**
          * defines the bundle properties for the item - bundles are items which contain other items, including random drop tables
@@ -834,7 +839,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CatalogItemBundleInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CatalogItemBundleInfo */
     export interface CatalogItemBundleInfo {
         /** unique ItemId values for all items which will be added to the player inventory when the bundle is added */
         BundledItems?: string[];
@@ -848,7 +853,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CatalogItemConsumableInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CatalogItemConsumableInfo */
     export interface CatalogItemConsumableInfo {
         /** number of times this object can be used, after which it will be removed from the player inventory */
         UsageCount?: number;
@@ -866,7 +871,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CatalogItemContainerInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CatalogItemContainerInfo */
     export interface CatalogItemContainerInfo {
         /** unique ItemId values for all items which will be added to the player inventory, once the container has been unlocked */
         ItemContents?: string[];
@@ -885,7 +890,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CheckLimitedEditionItemAvailabilityRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CheckLimitedEditionItemAvailabilityRequest */
     export interface CheckLimitedEditionItemAvailabilityRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Which catalog is being updated. If null, uses the default catalog. */
         CatalogVersion?: string;
@@ -894,14 +899,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CheckLimitedEditionItemAvailabilityResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CheckLimitedEditionItemAvailabilityResult */
     export interface CheckLimitedEditionItemAvailabilityResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The amount of the specified resource remaining. */
         Amount: number;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CloudScriptFile */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CloudScriptFile */
     export interface CloudScriptFile {
         /** Contents of the Cloud Script javascript. Must be string-escaped javascript. */
         FileContents: string;
@@ -913,7 +918,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CloudScriptTaskParameter */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CloudScriptTaskParameter */
     export interface CloudScriptTaskParameter {
         /** Argument to pass to the CloudScript function. */
         Argument?: any;
@@ -922,7 +927,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CloudScriptTaskSummary */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CloudScriptTaskSummary */
     export interface CloudScriptTaskSummary {
         /** UTC timestamp when the task completed. */
         CompletedAt?: string;
@@ -945,7 +950,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CloudScriptVersionStatus */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CloudScriptVersionStatus */
     export interface CloudScriptVersionStatus {
         /** Most recent revision for this Cloud Script version */
         LatestRevision: number;
@@ -960,7 +965,7 @@ declare module PlayFabAdminModels {
         | "True"
         | "False";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ContactEmailInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ContactEmailInfo */
     export interface ContactEmailInfo {
         /** The email address */
         EmailAddress?: string;
@@ -971,7 +976,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ContactEmailInfoModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ContactEmailInfoModel */
     export interface ContactEmailInfoModel {
         /** The email address */
         EmailAddress?: string;
@@ -982,7 +987,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ContentInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ContentInfo */
     export interface ContentInfo {
         /** Key of the content */
         Key?: string;
@@ -1251,7 +1256,7 @@ declare module PlayFabAdminModels {
         | "ZM"
         | "ZW";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreateActionsOnPlayerSegmentTaskRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreateActionsOnPlayerSegmentTaskRequest */
     export interface CreateActionsOnPlayerSegmentTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Description the task */
         Description?: string;
@@ -1266,7 +1271,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreateCloudScriptTaskRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreateCloudScriptTaskRequest */
     export interface CreateCloudScriptTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Description the task */
         Description?: string;
@@ -1281,21 +1286,21 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerSharedSecretRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerSharedSecretRequest */
     export interface CreatePlayerSharedSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Friendly name for this key */
         FriendlyName?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerSharedSecretResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerSharedSecretResult */
     export interface CreatePlayerSharedSecretResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The player shared secret to use when calling Client/GetTitlePublicKey */
         SecretKey?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerStatisticDefinitionRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerStatisticDefinitionRequest */
     export interface CreatePlayerStatisticDefinitionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         AggregationMethod?: string;
@@ -1306,14 +1311,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerStatisticDefinitionResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerStatisticDefinitionResult */
     export interface CreatePlayerStatisticDefinitionResult extends PlayFabModule.IPlayFabResultCommon  {
         /** created statistic definition */
         Statistic?: PlayerStatisticDefinition;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreateTaskResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreateTaskResult */
     export interface CreateTaskResult extends PlayFabModule.IPlayFabResultCommon  {
         /** ID of the task */
         TaskId?: string;
@@ -1483,38 +1488,38 @@ declare module PlayFabAdminModels {
         | "ZMW"
         | "ZWD";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteContentRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteContentRequest */
     export interface DeleteContentRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Key of the content item to be deleted */
         Key: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerRequest */
     export interface DeletePlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerResult */
     export interface DeletePlayerResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretRequest */
     export interface DeletePlayerSharedSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The shared secret key to delete */
         SecretKey?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretResult */
     export interface DeletePlayerSharedSecretResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteStoreRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteStoreRequest */
     export interface DeleteStoreRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** catalog version of the store to delete. If null, uses the default catalog. */
         CatalogVersion?: string;
@@ -1523,29 +1528,29 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteStoreResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteStoreResult */
     export interface DeleteStoreResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteTaskRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteTaskRequest */
     export interface DeleteTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Specify either the task ID or the name of task to be deleted. */
         Identifier?: NameIdentifier;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteTitleRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteTitleRequest */
     export interface DeleteTitleRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteTitleResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteTitleResult */
     export interface DeleteTitleResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersRequest */
     export interface DeleteUsersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabIds: string[];
@@ -1557,7 +1562,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersResult */
     export interface DeleteUsersResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
@@ -1569,12 +1574,12 @@ declare module PlayFabAdminModels {
         | "Pending"
         | "Confirmed";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.EmptyResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.EmptyResult */
     export interface EmptyResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ExecuteCloudScriptResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ExecuteCloudScriptResult */
     export interface ExecuteCloudScriptResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Number of PlayFab API requests issued by the CloudScript function */
         APIRequestsIssued: number;
@@ -1619,7 +1624,7 @@ declare module PlayFabAdminModels {
         | "Processing"
         | "FailedToProcess";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GameModeInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GameModeInfo */
     export interface GameModeInfo {
         /** specific game mode type */
         Gamemode: string;
@@ -1632,7 +1637,368 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
+    type GenericErrorCodes = "Success"
+        | "InvalidParams"
+        | "AccountNotFound"
+        | "AccountBanned"
+        | "InvalidUsernameOrPassword"
+        | "InvalidTitleId"
+        | "InvalidEmailAddress"
+        | "EmailAddressNotAvailable"
+        | "InvalidUsername"
+        | "InvalidPassword"
+        | "UsernameNotAvailable"
+        | "InvalidSteamTicket"
+        | "AccountAlreadyLinked"
+        | "LinkedAccountAlreadyClaimed"
+        | "InvalidFacebookToken"
+        | "AccountNotLinked"
+        | "FailedByPaymentProvider"
+        | "CouponCodeNotFound"
+        | "InvalidContainerItem"
+        | "ContainerNotOwned"
+        | "KeyNotOwned"
+        | "InvalidItemIdInTable"
+        | "InvalidReceipt"
+        | "ReceiptAlreadyUsed"
+        | "ReceiptCancelled"
+        | "GameNotFound"
+        | "GameModeNotFound"
+        | "InvalidGoogleToken"
+        | "UserIsNotPartOfDeveloper"
+        | "InvalidTitleForDeveloper"
+        | "TitleNameConflicts"
+        | "UserisNotValid"
+        | "ValueAlreadyExists"
+        | "BuildNotFound"
+        | "PlayerNotInGame"
+        | "InvalidTicket"
+        | "InvalidDeveloper"
+        | "InvalidOrderInfo"
+        | "RegistrationIncomplete"
+        | "InvalidPlatform"
+        | "UnknownError"
+        | "SteamApplicationNotOwned"
+        | "WrongSteamAccount"
+        | "TitleNotActivated"
+        | "RegistrationSessionNotFound"
+        | "NoSuchMod"
+        | "FileNotFound"
+        | "DuplicateEmail"
+        | "ItemNotFound"
+        | "ItemNotOwned"
+        | "ItemNotRecycleable"
+        | "ItemNotAffordable"
+        | "InvalidVirtualCurrency"
+        | "WrongVirtualCurrency"
+        | "WrongPrice"
+        | "NonPositiveValue"
+        | "InvalidRegion"
+        | "RegionAtCapacity"
+        | "ServerFailedToStart"
+        | "NameNotAvailable"
+        | "InsufficientFunds"
+        | "InvalidDeviceID"
+        | "InvalidPushNotificationToken"
+        | "NoRemainingUses"
+        | "InvalidPaymentProvider"
+        | "PurchaseInitializationFailure"
+        | "DuplicateUsername"
+        | "InvalidBuyerInfo"
+        | "NoGameModeParamsSet"
+        | "BodyTooLarge"
+        | "ReservedWordInBody"
+        | "InvalidTypeInBody"
+        | "InvalidRequest"
+        | "ReservedEventName"
+        | "InvalidUserStatistics"
+        | "NotAuthenticated"
+        | "StreamAlreadyExists"
+        | "ErrorCreatingStream"
+        | "StreamNotFound"
+        | "InvalidAccount"
+        | "PurchaseDoesNotExist"
+        | "InvalidPurchaseTransactionStatus"
+        | "APINotEnabledForGameClientAccess"
+        | "NoPushNotificationARNForTitle"
+        | "BuildAlreadyExists"
+        | "BuildPackageDoesNotExist"
+        | "CustomAnalyticsEventsNotEnabledForTitle"
+        | "InvalidSharedGroupId"
+        | "NotAuthorized"
+        | "MissingTitleGoogleProperties"
+        | "InvalidItemProperties"
+        | "InvalidPSNAuthCode"
+        | "InvalidItemId"
+        | "PushNotEnabledForAccount"
+        | "PushServiceError"
+        | "ReceiptDoesNotContainInAppItems"
+        | "ReceiptContainsMultipleInAppItems"
+        | "InvalidBundleID"
+        | "JavascriptException"
+        | "InvalidSessionTicket"
+        | "UnableToConnectToDatabase"
+        | "InternalServerError"
+        | "InvalidReportDate"
+        | "ReportNotAvailable"
+        | "DatabaseThroughputExceeded"
+        | "InvalidGameTicket"
+        | "ExpiredGameTicket"
+        | "GameTicketDoesNotMatchLobby"
+        | "LinkedDeviceAlreadyClaimed"
+        | "DeviceAlreadyLinked"
+        | "DeviceNotLinked"
+        | "PartialFailure"
+        | "PublisherNotSet"
+        | "ServiceUnavailable"
+        | "VersionNotFound"
+        | "RevisionNotFound"
+        | "InvalidPublisherId"
+        | "DownstreamServiceUnavailable"
+        | "APINotIncludedInTitleUsageTier"
+        | "DAULimitExceeded"
+        | "APIRequestLimitExceeded"
+        | "InvalidAPIEndpoint"
+        | "BuildNotAvailable"
+        | "ConcurrentEditError"
+        | "ContentNotFound"
+        | "CharacterNotFound"
+        | "CloudScriptNotFound"
+        | "ContentQuotaExceeded"
+        | "InvalidCharacterStatistics"
+        | "PhotonNotEnabledForTitle"
+        | "PhotonApplicationNotFound"
+        | "PhotonApplicationNotAssociatedWithTitle"
+        | "InvalidEmailOrPassword"
+        | "FacebookAPIError"
+        | "InvalidContentType"
+        | "KeyLengthExceeded"
+        | "DataLengthExceeded"
+        | "TooManyKeys"
+        | "FreeTierCannotHaveVirtualCurrency"
+        | "MissingAmazonSharedKey"
+        | "AmazonValidationError"
+        | "InvalidPSNIssuerId"
+        | "PSNInaccessible"
+        | "ExpiredAuthToken"
+        | "FailedToGetEntitlements"
+        | "FailedToConsumeEntitlement"
+        | "TradeAcceptingUserNotAllowed"
+        | "TradeInventoryItemIsAssignedToCharacter"
+        | "TradeInventoryItemIsBundle"
+        | "TradeStatusNotValidForCancelling"
+        | "TradeStatusNotValidForAccepting"
+        | "TradeDoesNotExist"
+        | "TradeCancelled"
+        | "TradeAlreadyFilled"
+        | "TradeWaitForStatusTimeout"
+        | "TradeInventoryItemExpired"
+        | "TradeMissingOfferedAndAcceptedItems"
+        | "TradeAcceptedItemIsBundle"
+        | "TradeAcceptedItemIsStackable"
+        | "TradeInventoryItemInvalidStatus"
+        | "TradeAcceptedCatalogItemInvalid"
+        | "TradeAllowedUsersInvalid"
+        | "TradeInventoryItemDoesNotExist"
+        | "TradeInventoryItemIsConsumed"
+        | "TradeInventoryItemIsStackable"
+        | "TradeAcceptedItemsMismatch"
+        | "InvalidKongregateToken"
+        | "FeatureNotConfiguredForTitle"
+        | "NoMatchingCatalogItemForReceipt"
+        | "InvalidCurrencyCode"
+        | "NoRealMoneyPriceForCatalogItem"
+        | "TradeInventoryItemIsNotTradable"
+        | "TradeAcceptedCatalogItemIsNotTradable"
+        | "UsersAlreadyFriends"
+        | "LinkedIdentifierAlreadyClaimed"
+        | "CustomIdNotLinked"
+        | "TotalDataSizeExceeded"
+        | "DeleteKeyConflict"
+        | "InvalidXboxLiveToken"
+        | "ExpiredXboxLiveToken"
+        | "ResettableStatisticVersionRequired"
+        | "NotAuthorizedByTitle"
+        | "NoPartnerEnabled"
+        | "InvalidPartnerResponse"
+        | "APINotEnabledForGameServerAccess"
+        | "StatisticNotFound"
+        | "StatisticNameConflict"
+        | "StatisticVersionClosedForWrites"
+        | "StatisticVersionInvalid"
+        | "APIClientRequestRateLimitExceeded"
+        | "InvalidJSONContent"
+        | "InvalidDropTable"
+        | "StatisticVersionAlreadyIncrementedForScheduledInterval"
+        | "StatisticCountLimitExceeded"
+        | "StatisticVersionIncrementRateExceeded"
+        | "ContainerKeyInvalid"
+        | "CloudScriptExecutionTimeLimitExceeded"
+        | "NoWritePermissionsForEvent"
+        | "CloudScriptFunctionArgumentSizeExceeded"
+        | "CloudScriptAPIRequestCountExceeded"
+        | "CloudScriptAPIRequestError"
+        | "CloudScriptHTTPRequestError"
+        | "InsufficientGuildRole"
+        | "GuildNotFound"
+        | "OverLimit"
+        | "EventNotFound"
+        | "InvalidEventField"
+        | "InvalidEventName"
+        | "CatalogNotConfigured"
+        | "OperationNotSupportedForPlatform"
+        | "SegmentNotFound"
+        | "StoreNotFound"
+        | "InvalidStatisticName"
+        | "TitleNotQualifiedForLimit"
+        | "InvalidServiceLimitLevel"
+        | "ServiceLimitLevelInTransition"
+        | "CouponAlreadyRedeemed"
+        | "GameServerBuildSizeLimitExceeded"
+        | "GameServerBuildCountLimitExceeded"
+        | "VirtualCurrencyCountLimitExceeded"
+        | "VirtualCurrencyCodeExists"
+        | "TitleNewsItemCountLimitExceeded"
+        | "InvalidTwitchToken"
+        | "TwitchResponseError"
+        | "ProfaneDisplayName"
+        | "UserAlreadyAdded"
+        | "InvalidVirtualCurrencyCode"
+        | "VirtualCurrencyCannotBeDeleted"
+        | "IdentifierAlreadyClaimed"
+        | "IdentifierNotLinked"
+        | "InvalidContinuationToken"
+        | "ExpiredContinuationToken"
+        | "InvalidSegment"
+        | "InvalidSessionId"
+        | "SessionLogNotFound"
+        | "InvalidSearchTerm"
+        | "TwoFactorAuthenticationTokenRequired"
+        | "GameServerHostCountLimitExceeded"
+        | "PlayerTagCountLimitExceeded"
+        | "RequestAlreadyRunning"
+        | "ActionGroupNotFound"
+        | "MaximumSegmentBulkActionJobsRunning"
+        | "NoActionsOnPlayersInSegmentJob"
+        | "DuplicateStatisticName"
+        | "ScheduledTaskNameConflict"
+        | "ScheduledTaskCreateConflict"
+        | "InvalidScheduledTaskName"
+        | "InvalidTaskSchedule"
+        | "SteamNotEnabledForTitle"
+        | "LimitNotAnUpgradeOption"
+        | "NoSecretKeyEnabledForCloudScript"
+        | "TaskNotFound"
+        | "TaskInstanceNotFound"
+        | "InvalidIdentityProviderId"
+        | "MisconfiguredIdentityProvider"
+        | "InvalidScheduledTaskType"
+        | "BillingInformationRequired"
+        | "LimitedEditionItemUnavailable"
+        | "InvalidAdPlacementAndReward"
+        | "AllAdPlacementViewsAlreadyConsumed"
+        | "GoogleOAuthNotConfiguredForTitle"
+        | "GoogleOAuthError"
+        | "UserNotFriend"
+        | "InvalidSignature"
+        | "InvalidPublicKey"
+        | "GoogleOAuthNoIdTokenIncludedInResponse"
+        | "StatisticUpdateInProgress"
+        | "LeaderboardVersionNotAvailable"
+        | "StatisticAlreadyHasPrizeTable"
+        | "PrizeTableHasOverlappingRanks"
+        | "PrizeTableHasMissingRanks"
+        | "PrizeTableRankStartsAtZero"
+        | "InvalidStatistic"
+        | "ExpressionParseFailure"
+        | "ExpressionInvokeFailure"
+        | "ExpressionTooLong"
+        | "DataUpdateRateExceeded"
+        | "RestrictedEmailDomain"
+        | "EncryptionKeyDisabled"
+        | "EncryptionKeyMissing"
+        | "EncryptionKeyBroken"
+        | "NoSharedSecretKeyConfigured"
+        | "SecretKeyNotFound"
+        | "PlayerSecretAlreadyConfigured"
+        | "APIRequestsDisabledForTitle"
+        | "InvalidSharedSecretKey"
+        | "PrizeTableHasNoRanks"
+        | "ProfileDoesNotExist"
+        | "ContentS3OriginBucketNotConfigured"
+        | "InvalidEnvironmentForReceipt"
+        | "EncryptedRequestNotAllowed"
+        | "SignedRequestNotAllowed"
+        | "RequestViewConstraintParamsNotAllowed"
+        | "BadPartnerConfiguration"
+        | "XboxBPCertificateFailure"
+        | "XboxXASSExchangeFailure"
+        | "InvalidEntityId"
+        | "StatisticValueAggregationOverflow"
+        | "EmailMessageFromAddressIsMissing"
+        | "EmailMessageToAddressIsMissing"
+        | "SmtpServerAuthenticationError"
+        | "SmtpServerLimitExceeded"
+        | "SmtpServerInsufficientStorage"
+        | "SmtpServerCommunicationError"
+        | "SmtpServerGeneralFailure"
+        | "EmailClientTimeout"
+        | "EmailClientCanceledTask"
+        | "EmailTemplateMissing"
+        | "InvalidHostForTitleId"
+        | "EmailConfirmationTokenDoesNotExist"
+        | "EmailConfirmationTokenExpired"
+        | "AccountDeleted"
+        | "PlayerSecretNotConfigured"
+        | "InvalidSignatureTime"
+        | "NoContactEmailAddressFound"
+        | "InvalidAuthToken"
+        | "AuthTokenDoesNotExist"
+        | "AuthTokenExpired"
+        | "AuthTokenAlreadyUsedToResetPassword"
+        | "MembershipNameTooLong"
+        | "MembershipNotFound"
+        | "GoogleServiceAccountInvalid"
+        | "GoogleServiceAccountParseFailure"
+        | "EntityTokenMissing"
+        | "EntityTokenInvalid"
+        | "EntityTokenExpired"
+        | "EntityTokenRevoked"
+        | "InvalidProductForSubscription"
+        | "XboxInaccessible"
+        | "SubscriptionAlreadyTaken"
+        | "SmtpAddonNotEnabled"
+        | "APIConcurrentRequestLimitExceeded"
+        | "XboxRejectedXSTSExchangeRequest"
+        | "VariableNotDefined"
+        | "TemplateVersionNotDefined"
+        | "FileTooLarge"
+        | "TitleDeleted"
+        | "TitleContainsUserAccounts"
+        | "TitleDeletionPlayerCleanupFailure"
+        | "EntityFileOperationPending"
+        | "NoEntityFileOperationPending"
+        | "EntityProfileVersionMismatch"
+        | "TemplateVersionTooOld"
+        | "MembershipDefinitionInUse"
+        | "PaymentPageNotConfigured"
+        | "FailedLoginAttemptRateLimitExceeded"
+        | "EntityBlockedByGroup"
+        | "RoleDoesNotExist"
+        | "EntityIsAlreadyMember"
+        | "DuplicateRoleId"
+        | "GroupInvitationNotFound"
+        | "GroupApplicationNotFound"
+        | "OutstandingInvitationAcceptedInstead"
+        | "OutstandingApplicationAcceptedInstead"
+        | "RoleIsGroupDefaultMember"
+        | "RoleIsGroupAdmin"
+        | "RoleNameNotAvailable"
+        | "GroupNameNotAvailable"
+        | "EmailReportAlreadySent"
+        | "EmailReportRecipientBlacklisted";
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
         Parameter?: ActionsOnPlayersInSegmentTaskParameter;
@@ -1641,33 +2007,33 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetAllSegmentsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetAllSegmentsRequest */
     export interface GetAllSegmentsRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetAllSegmentsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetAllSegmentsResult */
     export interface GetAllSegmentsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of segments for this title. */
         Segments?: GetSegmentResult[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCatalogItemsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCatalogItemsRequest */
     export interface GetCatalogItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Which catalog is being requested. If null, uses the default catalog. */
         CatalogVersion?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCatalogItemsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCatalogItemsResult */
     export interface GetCatalogItemsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of items which can be purchased. */
         Catalog?: CatalogItem[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptRevisionRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptRevisionRequest */
     export interface GetCloudScriptRevisionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Revision number. If left null, defaults to the latest revision */
         Revision?: number;
@@ -1676,7 +2042,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptRevisionResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptRevisionResult */
     export interface GetCloudScriptRevisionResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Time this revision was created */
         CreatedAt: string;
@@ -1691,7 +2057,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptTaskInstanceResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptTaskInstanceResult */
     export interface GetCloudScriptTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
         Parameter?: CloudScriptTaskParameter;
@@ -1700,19 +2066,19 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptVersionsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptVersionsRequest */
     export interface GetCloudScriptVersionsRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptVersionsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptVersionsResult */
     export interface GetCloudScriptVersionsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** List of versions */
         Versions?: CloudScriptVersionStatus[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentListRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentListRequest */
     export interface GetContentListRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Limits the response to keys that begin with the specified prefix. You can use prefixes to list contents under a folder,
@@ -1722,7 +2088,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentListResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentListResult */
     export interface GetContentListResult extends PlayFabModule.IPlayFabResultCommon  {
         /** List of content items. */
         Contents?: ContentInfo[];
@@ -1733,7 +2099,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentUploadUrlRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentUploadUrlRequest */
     export interface GetContentUploadUrlRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * A standard MIME type describing the format of the contents. The same MIME type has to be set in the header when
@@ -1745,14 +2111,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentUploadUrlResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentUploadUrlResult */
     export interface GetContentUploadUrlResult extends PlayFabModule.IPlayFabResultCommon  {
         /** URL for uploading content via HTTP PUT method. The URL will expire in approximately one hour. */
         URL?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetDataReportRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetDataReportRequest */
     export interface GetDataReportRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Reporting year (UTC) */
         Day: number;
@@ -1765,21 +2131,21 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetDataReportResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetDataReportResult */
     export interface GetDataReportResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The URL where the requested report can be downloaded. */
         DownloadUrl?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakerGameInfoRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakerGameInfoRequest */
     export interface GetMatchmakerGameInfoRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique identifier of the lobby for which info is being requested */
         LobbyId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakerGameInfoResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakerGameInfoResult */
     export interface GetMatchmakerGameInfoResult extends PlayFabModule.IPlayFabResultCommon  {
         /** version identifier of the game server executable binary being run */
         BuildVersion?: string;
@@ -1804,21 +2170,21 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakerGameModesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakerGameModesRequest */
     export interface GetMatchmakerGameModesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** previously uploaded build version for which game modes are being requested */
         BuildVersion: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakerGameModesResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakerGameModesResult */
     export interface GetMatchmakerGameModesResult extends PlayFabModule.IPlayFabResultCommon  {
         /** array of game modes available for the specified build */
         GameModes?: GameModeInfo[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerIdFromAuthTokenRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerIdFromAuthTokenRequest */
     export interface GetPlayerIdFromAuthTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The auth token of the player requesting the password reset. */
         Token: string;
@@ -1827,14 +2193,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerIdFromAuthTokenResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerIdFromAuthTokenResult */
     export interface GetPlayerIdFromAuthTokenResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The player ID from the token passed in */
         PlayFabId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerProfileRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerProfileRequest */
     export interface GetPlayerProfileRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
@@ -1847,7 +2213,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerProfileResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerProfileResult */
     export interface GetPlayerProfileResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * The profile of the player. This profile is not guaranteed to be up-to-date. For a new player, this profile will not
@@ -1857,26 +2223,26 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerSegmentsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerSegmentsResult */
     export interface GetPlayerSegmentsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of segments the requested player currently belongs to. */
         Segments?: GetSegmentResult[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerSharedSecretsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerSharedSecretsRequest */
     export interface GetPlayerSharedSecretsRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerSharedSecretsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerSharedSecretsResult */
     export interface GetPlayerSharedSecretsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The player shared secret to use when calling Client/GetTitlePublicKey */
         SharedSecrets?: SharedSecret[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersInSegmentRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersInSegmentRequest */
     export interface GetPlayersInSegmentRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Continuation token if retrieving subsequent pages of results. */
         ContinuationToken?: string;
@@ -1892,7 +2258,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersInSegmentResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersInSegmentResult */
     export interface GetPlayersInSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Continuation token to use to retrieve subsequent pages of results. If token returns null there are no more results. */
         ContinuationToken?: string;
@@ -1903,40 +2269,40 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersSegmentsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersSegmentsRequest */
     export interface GetPlayersSegmentsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticDefinitionsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticDefinitionsRequest */
     export interface GetPlayerStatisticDefinitionsRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticDefinitionsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticDefinitionsResult */
     export interface GetPlayerStatisticDefinitionsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** the player statistic definitions for the title */
         Statistics?: PlayerStatisticDefinition[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticVersionsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticVersionsRequest */
     export interface GetPlayerStatisticVersionsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique name of the statistic */
         StatisticName?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticVersionsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticVersionsResult */
     export interface GetPlayerStatisticVersionsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** version change history of the statistic */
         StatisticVersions?: PlayerStatisticVersion[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerTagsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerTagsRequest */
     export interface GetPlayerTagsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Optional namespace to filter results by */
         Namespace?: string;
@@ -1945,7 +2311,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerTagsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerTagsResult */
     export interface GetPlayerTagsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
@@ -1954,14 +2320,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPolicyRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPolicyRequest */
     export interface GetPolicyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The name of the policy to read. Only supported name is 'ApiPolicy'. */
         PolicyName?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPolicyResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPolicyResponse */
     export interface GetPolicyResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The name of the policy read. */
         PolicyName?: string;
@@ -1970,35 +2336,35 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPublisherDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPublisherDataRequest */
     export interface GetPublisherDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
         Keys: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPublisherDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPublisherDataResult */
     export interface GetPublisherDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
         Data?: { [key: string]: string | null };
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetRandomResultTablesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetRandomResultTablesRequest */
     export interface GetRandomResultTablesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** catalog version to fetch tables from. Use default catalog version if null */
         CatalogVersion?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetRandomResultTablesResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetRandomResultTablesResult */
     export interface GetRandomResultTablesResult extends PlayFabModule.IPlayFabResultCommon  {
         /** array of random result tables currently available */
         Tables?: { [key: string]: RandomResultTableListing };
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetSegmentResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetSegmentResult */
     export interface GetSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Identifier of the segments AB Test, if it is attached to one. */
         ABTestParent?: string;
@@ -2009,14 +2375,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildInfoRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildInfoRequest */
     export interface GetServerBuildInfoRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique identifier of the previously uploaded build executable for which information is being requested */
         BuildId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildInfoResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildInfoResult */
     export interface GetServerBuildInfoResult extends PlayFabModule.IPlayFabResultCommon  {
         /** array of regions where this build can used, when it is active */
         ActiveRegions?: string[];
@@ -2045,21 +2411,21 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildUploadURLRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildUploadURLRequest */
     export interface GetServerBuildUploadURLRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique identifier of the game server build to upload */
         BuildId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildUploadURLResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildUploadURLResult */
     export interface GetServerBuildUploadURLResult extends PlayFabModule.IPlayFabResultCommon  {
         /** pre-authorized URL for uploading the game server build package */
         URL?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetStoreItemsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetStoreItemsRequest */
     export interface GetStoreItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** catalog version to store items from. Use default catalog version if null */
         CatalogVersion?: string;
@@ -2068,7 +2434,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetStoreItemsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetStoreItemsResult */
     export interface GetStoreItemsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The base catalog that this store is a part of. */
         CatalogVersion?: string;
@@ -2083,14 +2449,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTaskInstanceRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTaskInstanceRequest */
     export interface GetTaskInstanceRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** ID of the requested task instance. */
         TaskInstanceId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTaskInstancesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTaskInstancesRequest */
     export interface GetTaskInstancesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Optional range-from filter for task instances' StartedAt timestamp. */
         StartedAtRangeFrom?: string;
@@ -2106,7 +2472,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTaskInstancesResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTaskInstancesResult */
     export interface GetTaskInstancesResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * Basic status summaries of the queried task instances. Empty If no task instances meets the filter criteria. To get
@@ -2117,49 +2483,49 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTasksRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTasksRequest */
     export interface GetTasksRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Provide either the task ID or the task name to get a specific task. If not specified, return all defined tasks. */
         Identifier?: NameIdentifier;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTasksResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTasksResult */
     export interface GetTasksResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Result tasks. Empty if there is no task found. */
         Tasks?: ScheduledTask[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTitleDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTitleDataRequest */
     export interface GetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         Keys?: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTitleDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetTitleDataResult */
     export interface GetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** a dictionary object of key / value pairs */
         Data?: { [key: string]: string | null };
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserBansRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserBansRequest */
     export interface GetUserBansRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserBansResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserBansResult */
     export interface GetUserBansResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Information about the bans */
         BanData?: BanInfo[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserDataRequest */
     export interface GetUserDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the
@@ -2173,7 +2539,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserDataResult */
     export interface GetUserDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /** User specific data for this title. */
         Data?: { [key: string]: UserDataRecord };
@@ -2187,14 +2553,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserInventoryRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserInventoryRequest */
     export interface GetUserInventoryRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserInventoryResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetUserInventoryResult */
     export interface GetUserInventoryResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of inventory items belonging to the user. */
         Inventory?: ItemInstance[];
@@ -2207,7 +2573,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GrantedItemInstance */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GrantedItemInstance */
     export interface GrantedItemInstance {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
         Annotation?: string;
@@ -2251,7 +2617,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GrantItemsToUsersRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GrantItemsToUsersRequest */
     export interface GrantItemsToUsersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version from which items are to be granted. */
         CatalogVersion?: string;
@@ -2260,14 +2626,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GrantItemsToUsersResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GrantItemsToUsersResult */
     export interface GrantItemsToUsersResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of items granted to users. */
         ItemGrantResults?: GrantedItemInstance[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementLimitedEditionItemAvailabilityRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementLimitedEditionItemAvailabilityRequest */
     export interface IncrementLimitedEditionItemAvailabilityRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Amount to increase availability by. */
         Amount: number;
@@ -2278,26 +2644,26 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementLimitedEditionItemAvailabilityResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementLimitedEditionItemAvailabilityResult */
     export interface IncrementLimitedEditionItemAvailabilityResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementPlayerStatisticVersionRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementPlayerStatisticVersionRequest */
     export interface IncrementPlayerStatisticVersionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique name of the statistic */
         StatisticName?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementPlayerStatisticVersionResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.IncrementPlayerStatisticVersionResult */
     export interface IncrementPlayerStatisticVersionResult extends PlayFabModule.IPlayFabResultCommon  {
         /** version change history of the statistic */
         StatisticVersion?: PlayerStatisticVersion;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ItemGrant */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ItemGrant */
     export interface ItemGrant {
         /** String detailing any additional information concerning this operation. */
         Annotation?: string;
@@ -2311,8 +2677,8 @@ declare module PlayFabAdminModels {
         /** Unique identifier of the catalog item to be granted to the user. */
         ItemId: string;
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         KeysToRemove?: string[];
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2320,7 +2686,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ItemInstance */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ItemInstance */
     export interface ItemInstance {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
         Annotation?: string;
@@ -2358,7 +2724,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LinkedPlatformAccountModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LinkedPlatformAccountModel */
     export interface LinkedPlatformAccountModel {
         /** Linked account email of the user on the platform, if available */
         Email?: string;
@@ -2371,31 +2737,31 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListBuildsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListBuildsRequest */
     export interface ListBuildsRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListBuildsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListBuildsResult */
     export interface ListBuildsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** array of uploaded game server builds */
         Builds?: GetServerBuildInfoResult[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListVirtualCurrencyTypesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListVirtualCurrencyTypesRequest */
     export interface ListVirtualCurrencyTypesRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListVirtualCurrencyTypesResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListVirtualCurrencyTypesResult */
     export interface ListVirtualCurrencyTypesResult extends PlayFabModule.IPlayFabResultCommon  {
         /** List of virtual currency names defined for this title */
         VirtualCurrencies?: VirtualCurrencyData[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LocationModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LocationModel */
     export interface LocationModel {
         /** City name. */
         City?: string;
@@ -2425,7 +2791,7 @@ declare module PlayFabAdminModels {
         | "Twitch"
         | "WindowsHello";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LogStatement */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LogStatement */
     export interface LogStatement {
         /** Optional object accompanying the message as contextual information */
         Data?: any;
@@ -2435,7 +2801,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LookupUserAccountInfoRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LookupUserAccountInfoRequest */
     export interface LookupUserAccountInfoRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** User email address attached to their account */
         Email?: string;
@@ -2448,14 +2814,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LookupUserAccountInfoResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LookupUserAccountInfoResult */
     export interface LookupUserAccountInfoResult extends PlayFabModule.IPlayFabResultCommon  {
         /** User info for the user matching the request */
         UserInfo?: UserAccountInfo;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.MembershipModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.MembershipModel */
     export interface MembershipModel {
         /** Whether this membership is active. That is, whether the MembershipExpiration time has been reached. */
         IsActive: boolean;
@@ -2473,7 +2839,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyMatchmakerGameModesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyMatchmakerGameModesRequest */
     export interface ModifyMatchmakerGameModesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** previously uploaded build version for which game modes are being specified */
         BuildVersion: string;
@@ -2482,12 +2848,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyMatchmakerGameModesResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyMatchmakerGameModesResult */
     export interface ModifyMatchmakerGameModesResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyServerBuildRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyServerBuildRequest */
     export interface ModifyServerBuildRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** array of regions where this build can used, when it is active */
         ActiveRegions?: string[];
@@ -2511,7 +2877,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyServerBuildResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyServerBuildResult */
     export interface ModifyServerBuildResult extends PlayFabModule.IPlayFabResultCommon  {
         /** array of regions where this build can used, when it is active */
         ActiveRegions?: string[];
@@ -2542,7 +2908,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyUserVirtualCurrencyResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ModifyUserVirtualCurrencyResult */
     export interface ModifyUserVirtualCurrencyResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Balance of the virtual currency after modification. */
         Balance: number;
@@ -2558,14 +2924,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.NameIdentifier */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.NameIdentifier */
     export interface NameIdentifier {
         Id?: string;
         Name?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PermissionStatement */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PermissionStatement */
     export interface PermissionStatement {
         /** The action this statement effects. The only supported action is 'Execute'. */
         Action: string;
@@ -2585,7 +2951,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerLinkedAccount */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerLinkedAccount */
     export interface PlayerLinkedAccount {
         /** Linked account's email */
         Email?: string;
@@ -2598,7 +2964,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerLocation */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerLocation */
     export interface PlayerLocation {
         /** City of the player's geographic location. */
         City?: string;
@@ -2613,7 +2979,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerProfile */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerProfile */
     export interface PlayerProfile {
         /** Array of ad campaigns player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttribution[];
@@ -2658,7 +3024,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerProfileModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerProfileModel */
     export interface PlayerProfileModel {
         /** List of advertising campaigns the player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttributionModel[];
@@ -2696,7 +3062,7 @@ declare module PlayFabAdminModels {
         TitleId?: string;
         /**
          * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a
-         * whole number of cents (1/100 USD).              For example, 999 indicates nine dollars and ninety-nine cents.
+         * whole number of cents (1/100 USD).       For example, 999 indicates nine dollars and ninety-nine cents.
          */
         TotalValueToDateInUSD?: number;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
@@ -2704,7 +3070,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerProfileViewConstraints */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerProfileViewConstraints */
     export interface PlayerProfileViewConstraints {
         /** Whether to show player's avatar URL. Defaults to false */
         ShowAvatarUrl: boolean;
@@ -2741,7 +3107,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerStatistic */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerStatistic */
     export interface PlayerStatistic {
         /** Statistic ID */
         Id?: string;
@@ -2754,7 +3120,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerStatisticDefinition */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerStatisticDefinition */
     export interface PlayerStatisticDefinition {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         AggregationMethod?: string;
@@ -2767,7 +3133,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerStatisticVersion */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PlayerStatisticVersion */
     export interface PlayerStatisticVersion {
         /** time when the statistic version became active */
         ActivationTime: string;
@@ -2791,7 +3157,7 @@ declare module PlayFabAdminModels {
     type PushNotificationPlatform = "ApplePushNotificationService"
         | "GoogleCloudMessaging";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PushNotificationRegistration */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PushNotificationRegistration */
     export interface PushNotificationRegistration {
         /** Notification configured endpoint */
         NotificationEndpointARN?: string;
@@ -2800,7 +3166,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PushNotificationRegistrationModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.PushNotificationRegistrationModel */
     export interface PushNotificationRegistrationModel {
         /** Notification configured endpoint */
         NotificationEndpointARN?: string;
@@ -2813,7 +3179,7 @@ declare module PlayFabAdminModels {
         | "APNS"
         | "APNS_SANDBOX";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RandomResultTable */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RandomResultTable */
     export interface RandomResultTable {
         /** Child nodes that indicate what kind of drop table item this actually is. */
         Nodes: ResultTableNode[];
@@ -2822,7 +3188,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RandomResultTableListing */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RandomResultTableListing */
     export interface RandomResultTableListing {
         /** Catalog version this table is associated with */
         CatalogVersion?: string;
@@ -2833,7 +3199,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RefundPurchaseRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RefundPurchaseRequest */
     export interface RefundPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique order ID for the purchase in question. */
         OrderId: string;
@@ -2847,7 +3213,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RefundPurchaseResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RefundPurchaseResponse */
     export interface RefundPurchaseResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The order's updated purchase status. */
         PurchaseStatus?: string;
@@ -2862,7 +3228,7 @@ declare module PlayFabAdminModels {
         | "Brazil"
         | "Australia";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemovePlayerTagRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemovePlayerTagRequest */
     export interface RemovePlayerTagRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
@@ -2871,31 +3237,31 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemovePlayerTagResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemovePlayerTagResult */
     export interface RemovePlayerTagResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveServerBuildRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveServerBuildRequest */
     export interface RemoveServerBuildRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique identifier of the previously uploaded build executable to be removed */
         BuildId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveServerBuildResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveServerBuildResult */
     export interface RemoveServerBuildResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveVirtualCurrencyTypesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveVirtualCurrencyTypesRequest */
     export interface RemoveVirtualCurrencyTypesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** List of virtual currencies to delete */
         VirtualCurrencies: VirtualCurrencyData[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetCharacterStatisticsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetCharacterStatisticsRequest */
     export interface ResetCharacterStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
@@ -2904,12 +3270,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetCharacterStatisticsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetCharacterStatisticsResult */
     export interface ResetCharacterStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetPasswordRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetPasswordRequest */
     export interface ResetPasswordRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The new password for the player. */
         Password: string;
@@ -2918,19 +3284,19 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetPasswordResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetPasswordResult */
     export interface ResetPasswordResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetUserStatisticsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetUserStatisticsRequest */
     export interface ResetUserStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetUserStatisticsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetUserStatisticsResult */
     export interface ResetUserStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
@@ -2939,7 +3305,7 @@ declare module PlayFabAdminModels {
         | "Reinstate"
         | "Manual";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResolvePurchaseDisputeRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResolvePurchaseDisputeRequest */
     export interface ResolvePurchaseDisputeRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique order ID for the purchase in question. */
         OrderId: string;
@@ -2958,14 +3324,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResolvePurchaseDisputeResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResolvePurchaseDisputeResponse */
     export interface ResolvePurchaseDisputeResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The order's updated purchase status. */
         PurchaseStatus?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResultTableNode */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResultTableNode */
     export interface ResultTableNode {
         /** Either an ItemId, or the TableId of another random result table */
         ResultItem: string;
@@ -2979,35 +3345,46 @@ declare module PlayFabAdminModels {
     type ResultTableNodeType = "ItemId"
         | "TableId";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeAllBansForUserRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeAllBansForUserRequest */
     export interface RevokeAllBansForUserRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeAllBansForUserResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeAllBansForUserResult */
     export interface RevokeAllBansForUserResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Information on the bans that were revoked. */
         BanData?: BanInfo[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeBansRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeBansRequest */
     export interface RevokeBansRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Ids of the bans to be revoked. Maximum 100. */
         BanIds: string[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeBansResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeBansResult */
     export interface RevokeBansResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Information on the bans that were revoked */
         BanData?: BanInfo[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryItemRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryItem */
+    export interface RevokeInventoryItem {
+        /** Unique PlayFab assigned ID for a specific character owned by a user */
+        CharacterId?: string;
+        /** Unique PlayFab assigned instance identifier of the item */
+        ItemInstanceId: string;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryItemRequest */
     export interface RevokeInventoryItemRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string;
@@ -3018,19 +3395,42 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryItemsRequest */
+    export interface RevokeInventoryItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Array of player items to revoke, between 1 and 25 items. */
+        Items: RevokeInventoryItem[];
+
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryItemsResult */
+    export interface RevokeInventoryItemsResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Collection of any errors that occurred during processing. */
+        Errors?: RevokeItemError[];
+
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryResult */
     export interface RevokeInventoryResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RunTaskRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeItemError */
+    export interface RevokeItemError {
+        /** Specific error that was encountered. */
+        Error?: string;
+        /** Item information that failed to be revoked. */
+        Item?: RevokeInventoryItem;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RunTaskRequest */
     export interface RunTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Provide either the task ID or the task name to run a task. */
         Identifier?: NameIdentifier;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RunTaskResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RunTaskResult */
     export interface RunTaskResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * ID of the task instance that is started. This can be used in Get*TaskInstance (e.g. GetCloudScriptTaskInstance) API call
@@ -3040,7 +3440,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ScheduledTask */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ScheduledTask */
     export interface ScheduledTask {
         /** Description the task */
         Description?: string;
@@ -3069,7 +3469,7 @@ declare module PlayFabAdminModels {
     type ScheduledTaskType = "CloudScript"
         | "ActionsOnPlayerSegment";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ScriptExecutionError */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ScriptExecutionError */
     export interface ScriptExecutionError {
         /**
          * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,
@@ -3083,7 +3483,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailRequest */
     export interface SendAccountRecoveryEmailRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** User email address attached to their account */
         Email: string;
@@ -3092,12 +3492,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailResult */
     export interface SendAccountRecoveryEmailResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPlayerSecretRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPlayerSecretRequest */
     export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret: string;
@@ -3106,12 +3506,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPlayerSecretResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPlayerSecretResult */
     export interface SetPlayerSecretResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublishedRevisionRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublishedRevisionRequest */
     export interface SetPublishedRevisionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Revision to make the current published revision */
         Revision: number;
@@ -3120,12 +3520,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublishedRevisionResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublishedRevisionResult */
     export interface SetPublishedRevisionResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublisherDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublisherDataRequest */
     export interface SetPublisherDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
@@ -3137,12 +3537,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublisherDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPublisherDataResult */
     export interface SetPublisherDataResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetTitleDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetTitleDataRequest */
     export interface SetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
@@ -3154,12 +3554,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetTitleDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetTitleDataResult */
     export interface SetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetupPushNotificationRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetupPushNotificationRequest */
     export interface SetupPushNotificationRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Credential is the Private Key for APNS/APNS_SANDBOX, and the API Key for GCM */
         Credential: string;
@@ -3183,14 +3583,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetupPushNotificationResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetupPushNotificationResult */
     export interface SetupPushNotificationResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Amazon Resource Name for the created notification topic. */
         ARN?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SharedSecret */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SharedSecret */
     export interface SharedSecret {
         /** Flag to indicate if this key is disabled */
         Disabled: boolean;
@@ -3212,7 +3612,7 @@ declare module PlayFabAdminModels {
         | "Max"
         | "Sum";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.StatisticModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.StatisticModel */
     export interface StatisticModel {
         /** Statistic name */
         Name?: string;
@@ -3241,7 +3641,7 @@ declare module PlayFabAdminModels {
         | "ArchivalPending"
         | "Archived";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.StoreItem */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.StoreItem */
     export interface StoreItem {
         /** Store specific custom data. The data only exists as part of this store; it is not transferred to item instances */
         CustomData?: any;
@@ -3259,7 +3659,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.StoreMarketingModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.StoreMarketingModel */
     export interface StoreMarketingModel {
         /** Tagline for a store. */
         Description?: string;
@@ -3270,7 +3670,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SubscriptionModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SubscriptionModel */
     export interface SubscriptionModel {
         /** When this subscription expires. */
         Expiration: string;
@@ -3298,7 +3698,7 @@ declare module PlayFabAdminModels {
         | "FreeTrial"
         | "PaymentPending";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SubtractUserVirtualCurrencyRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SubtractUserVirtualCurrencyRequest */
     export interface SubtractUserVirtualCurrencyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         Amount: number;
@@ -3309,14 +3709,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.TagModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.TagModel */
     export interface TagModel {
         /** Full value of the tag, including namespace */
         TagValue?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.TaskInstanceBasicSummary */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.TaskInstanceBasicSummary */
     export interface TaskInstanceBasicSummary {
         /** UTC timestamp when the task completed. */
         CompletedAt?: string;
@@ -3352,7 +3752,7 @@ declare module PlayFabAdminModels {
         | "ActivatedSteam"
         | "RevokedSteam";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateBanRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateBanRequest */
     export interface UpdateBanRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The updated active state for the ban. Null for no change. */
         Active?: boolean;
@@ -3371,21 +3771,21 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateBansRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateBansRequest */
     export interface UpdateBansRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** List of bans to be updated. Maximum 100. */
         Bans: UpdateBanRequest[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateBansResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateBansResult */
     export interface UpdateBansResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Information on the bans that were updated */
         BanData?: BanInfo[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCatalogItemsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCatalogItemsRequest */
     export interface UpdateCatalogItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of catalog items to be submitted. Note that while CatalogItem has a parameter for CatalogVersion, it is not
@@ -3402,12 +3802,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCatalogItemsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCatalogItemsResult */
     export interface UpdateCatalogItemsResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCloudScriptRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCloudScriptRequest */
     export interface UpdateCloudScriptRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** PlayFab user ID of the developer initiating the request. */
         DeveloperPlayFabId?: string;
@@ -3418,7 +3818,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCloudScriptResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCloudScriptResult */
     export interface UpdateCloudScriptResult extends PlayFabModule.IPlayFabResultCommon  {
         /** New revision number created */
         Revision: number;
@@ -3427,7 +3827,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerSharedSecretRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerSharedSecretRequest */
     export interface UpdatePlayerSharedSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Disable or Enable this key */
         Disabled: boolean;
@@ -3438,12 +3838,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerSharedSecretResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerSharedSecretResult */
     export interface UpdatePlayerSharedSecretResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerStatisticDefinitionRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerStatisticDefinitionRequest */
     export interface UpdatePlayerStatisticDefinitionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         AggregationMethod?: string;
@@ -3457,14 +3857,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerStatisticDefinitionResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerStatisticDefinitionResult */
     export interface UpdatePlayerStatisticDefinitionResult extends PlayFabModule.IPlayFabResultCommon  {
         /** updated statistic definition */
         Statistic?: PlayerStatisticDefinition;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePolicyRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePolicyRequest */
     export interface UpdatePolicyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Whether to overwrite or append to the existing policy. */
         OverwritePolicy: boolean;
@@ -3475,7 +3875,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePolicyResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePolicyResponse */
     export interface UpdatePolicyResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The name of the policy that was updated. */
         PolicyName?: string;
@@ -3484,7 +3884,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateRandomResultTablesRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateRandomResultTablesRequest */
     export interface UpdateRandomResultTablesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** which catalog is being updated. If null, update the current default catalog version */
         CatalogVersion?: string;
@@ -3496,12 +3896,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateRandomResultTablesResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateRandomResultTablesResult */
     export interface UpdateRandomResultTablesResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateStoreItemsRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateStoreItemsRequest */
     export interface UpdateStoreItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version of the store to update. If null, uses the default catalog. */
         CatalogVersion?: string;
@@ -3514,12 +3914,12 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateStoreItemsResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateStoreItemsResult */
     export interface UpdateStoreItemsResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateTaskRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateTaskRequest */
     export interface UpdateTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Description the task */
         Description?: string;
@@ -3538,7 +3938,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserDataRequest */
     export interface UpdateUserDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
@@ -3546,8 +3946,8 @@ declare module PlayFabAdminModels {
          */
         Data?: { [key: string]: string | null };
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         KeysToRemove?: string[];
         /** Permission to be applied to all user data keys written in this request. Defaults to "private" if not set. */
@@ -3557,7 +3957,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserDataResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserDataResult */
     export interface UpdateUserDataResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of
@@ -3567,7 +3967,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserInternalDataRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserInternalDataRequest */
     export interface UpdateUserInternalDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
@@ -3575,8 +3975,8 @@ declare module PlayFabAdminModels {
          */
         Data?: { [key: string]: string | null };
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         KeysToRemove?: string[];
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3584,7 +3984,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserTitleDisplayNameRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserTitleDisplayNameRequest */
     export interface UpdateUserTitleDisplayNameRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** New title display name for the user - must be between 3 and 25 characters */
         DisplayName: string;
@@ -3593,14 +3993,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserTitleDisplayNameResult */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateUserTitleDisplayNameResult */
     export interface UpdateUserTitleDisplayNameResult extends PlayFabModule.IPlayFabResultCommon  {
         /** current title display name for the user (this will be the original display name if the rename attempt failed) */
         DisplayName?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserAccountInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserAccountInfo */
     export interface UserAccountInfo {
         /** User Android device information, if an Android device has been linked */
         AndroidDeviceInfo?: UserAndroidDeviceInfo;
@@ -3637,14 +4037,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserAndroidDeviceInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserAndroidDeviceInfo */
     export interface UserAndroidDeviceInfo {
         /** Android device ID */
         AndroidDeviceId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserCustomIdInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserCustomIdInfo */
     export interface UserCustomIdInfo {
         /** Custom ID */
         CustomId?: string;
@@ -3654,7 +4054,7 @@ declare module PlayFabAdminModels {
     type UserDataPermission = "Private"
         | "Public";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserDataRecord */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserDataRecord */
     export interface UserDataRecord {
         /** Timestamp for when this data was last updated. */
         LastUpdated: string;
@@ -3668,7 +4068,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserFacebookInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserFacebookInfo */
     export interface UserFacebookInfo {
         /** Facebook identifier */
         FacebookId?: string;
@@ -3677,14 +4077,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserGameCenterInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserGameCenterInfo */
     export interface UserGameCenterInfo {
         /** Gamecenter identifier */
         GameCenterId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserGoogleInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserGoogleInfo */
     export interface UserGoogleInfo {
         /** Email address of the Google account */
         GoogleEmail?: string;
@@ -3697,14 +4097,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserIosDeviceInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserIosDeviceInfo */
     export interface UserIosDeviceInfo {
         /** iOS device ID */
         IosDeviceId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserKongregateInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserKongregateInfo */
     export interface UserKongregateInfo {
         /** Kongregate ID */
         KongregateId?: string;
@@ -3732,14 +4132,14 @@ declare module PlayFabAdminModels {
         | "Twitch"
         | "WindowsHello";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserPrivateAccountInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserPrivateAccountInfo */
     export interface UserPrivateAccountInfo {
         /** user email address */
         Email?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserPsnInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserPsnInfo */
     export interface UserPsnInfo {
         /** PSN account ID */
         PsnAccountId?: string;
@@ -3748,7 +4148,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserSteamInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserSteamInfo */
     export interface UserSteamInfo {
         /** what stage of game ownership the user is listed as being in, from Steam */
         SteamActivationStatus?: string;
@@ -3761,7 +4161,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserTitleInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserTitleInfo */
     export interface UserTitleInfo {
         /** URL to the player's avatar. */
         AvatarUrl?: string;
@@ -3786,7 +4186,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserTwitchInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserTwitchInfo */
     export interface UserTwitchInfo {
         /** Twitch ID */
         TwitchId?: string;
@@ -3795,14 +4195,14 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserXboxInfo */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserXboxInfo */
     export interface UserXboxInfo {
         /** XBox user ID */
         XboxUserId?: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ValueToDateModel */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ValueToDateModel */
     export interface ValueToDateModel {
         /** ISO 4217 code of the currency used in the purchases */
         Currency?: string;
@@ -3819,7 +4219,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.VirtualCurrencyData */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.VirtualCurrencyData */
     export interface VirtualCurrencyData {
         /** unique two-character identifier for this currency type (e.g.: "CC") */
         CurrencyCode: string;
@@ -3834,7 +4234,7 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.VirtualCurrencyRechargeTime */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.VirtualCurrencyRechargeTime */
     export interface VirtualCurrencyRechargeTime {
         /**
          * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value

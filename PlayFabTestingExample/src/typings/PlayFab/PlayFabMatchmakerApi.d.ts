@@ -35,14 +35,14 @@ declare module PlayFabMatchmakerModule {
 }
 
 declare module PlayFabMatchmakerModels {
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.AuthUserRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.AuthUserRequest */
     export interface AuthUserRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Session Ticket provided by the client. */
         AuthorizationTicket: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.AuthUserResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.AuthUserResponse */
     export interface AuthUserResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Boolean indicating if the user has been authorized to use the external match-making service. */
         Authorized: boolean;
@@ -51,19 +51,19 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.DeregisterGameRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.DeregisterGameRequest */
     export interface DeregisterGameRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique identifier for the Game Server Instance that is being deregistered. */
         LobbyId: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.DeregisterGameResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.DeregisterGameResponse */
     export interface DeregisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.ItemInstance */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.ItemInstance */
     export interface ItemInstance {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
         Annotation?: string;
@@ -101,7 +101,7 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.PlayerJoinedRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.PlayerJoinedRequest */
     export interface PlayerJoinedRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Unique identifier of the Game Server Instance the user is joining. This must be a Game Server Instance started with the
@@ -113,12 +113,12 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.PlayerJoinedResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.PlayerJoinedResponse */
     export interface PlayerJoinedResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.PlayerLeftRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.PlayerLeftRequest */
     export interface PlayerLeftRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Unique identifier of the Game Server Instance the user is leaving. This must be a Game Server Instance started with the
@@ -130,7 +130,7 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.PlayerLeftResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.PlayerLeftResponse */
     export interface PlayerLeftResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
@@ -143,7 +143,7 @@ declare module PlayFabMatchmakerModels {
         | "Brazil"
         | "Australia";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.RegisterGameRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.RegisterGameRequest */
     export interface RegisterGameRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique identifier of the build running on the Game Server Instance. */
         Build: string;
@@ -170,7 +170,7 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.RegisterGameResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.RegisterGameResponse */
     export interface RegisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
@@ -180,7 +180,7 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.StartGameRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.StartGameRequest */
     export interface StartGameRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique identifier of the previously uploaded build executable which is to be started. */
         Build: string;
@@ -199,7 +199,7 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.StartGameResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.StartGameResponse */
     export interface StartGameResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique identifier for the game/lobby in the new Game Server Instance. */
         GameID?: string;
@@ -212,7 +212,7 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.UserInfoRequest */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.UserInfoRequest */
     export interface UserInfoRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Minimum catalog version for which data is requested (filters the results to only contain inventory items which have a
@@ -224,7 +224,7 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.UserInfoResponse */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.UserInfoResponse */
     export interface UserInfoResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Array of inventory items in the user's current inventory. */
         Inventory?: ItemInstance[];
@@ -245,7 +245,7 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.VirtualCurrencyRechargeTime */
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.VirtualCurrencyRechargeTime */
     export interface VirtualCurrencyRechargeTime {
         /**
          * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value
