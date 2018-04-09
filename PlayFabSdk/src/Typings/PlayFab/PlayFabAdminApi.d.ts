@@ -1579,6 +1579,23 @@ declare module PlayFabAdminModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.EntityKey */
+    export interface EntityKey {
+        /** Entity profile ID. */
+        Id: string;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        Type?: string;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        TypeString?: string;
+
+    }
+
+    type EntityTypes = "title"
+        | "master_player_account"
+        | "title_player_account"
+        | "character"
+        | "group";
+
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ExecuteCloudScriptResult */
     export interface ExecuteCloudScriptResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Number of PlayFab API requests issued by the CloudScript function */
@@ -1996,7 +2013,9 @@ declare module PlayFabAdminModels {
         | "RoleNameNotAvailable"
         | "GroupNameNotAvailable"
         | "EmailReportAlreadySent"
-        | "EmailReportRecipientBlacklisted";
+        | "EmailReportRecipientBlacklisted"
+        | "EventNamespaceNotAllowed"
+        | "EventEntityNotAllowed";
 
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
@@ -4183,6 +4202,8 @@ declare module PlayFabAdminModels {
         LastLogin?: string;
         /** source by which the user first joined the game, if known */
         Origination?: string;
+        /** Title player account entity for this user */
+        TitlePlayerAccount?: EntityKey;
 
     }
 
