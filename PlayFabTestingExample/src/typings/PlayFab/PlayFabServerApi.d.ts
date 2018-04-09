@@ -1499,6 +1499,23 @@ declare module PlayFabServerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EntityKey */
+    export interface EntityKey {
+        /** Entity profile ID. */
+        Id: string;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        Type?: string;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        TypeString?: string;
+
+    }
+
+    type EntityTypes = "title"
+        | "master_player_account"
+        | "title_player_account"
+        | "character"
+        | "group";
+
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableRequest */
     export interface EvaluateRandomResultTableRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
@@ -1975,7 +1992,9 @@ declare module PlayFabServerModels {
         | "RoleNameNotAvailable"
         | "GroupNameNotAvailable"
         | "EmailReportAlreadySent"
-        | "EmailReportRecipientBlacklisted";
+        | "EmailReportRecipientBlacklisted"
+        | "EventNamespaceNotAllowed"
+        | "EventEntityNotAllowed";
 
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest */
     export interface GetAllSegmentsRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -4322,6 +4341,8 @@ declare module PlayFabServerModels {
         LastLogin?: string;
         /** source by which the user first joined the game, if known */
         Origination?: string;
+        /** Title player account entity for this user */
+        TitlePlayerAccount?: EntityKey;
 
     }
 
