@@ -3748,6 +3748,11 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterPlayFabUserResult */
     export interface RegisterPlayFabUserResult extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         * If LoginTitlePlayerAccountEntity flag is set on the login request the title_player_account will also be logged in and
+         * returned.
+         */
+        EntityToken?: EntityTokenResponse;
         /** PlayFab unique identifier for this newly created account. */
         PlayFabId?: string;
         /** Unique token identifying the user and game at the server level, for the current session. */

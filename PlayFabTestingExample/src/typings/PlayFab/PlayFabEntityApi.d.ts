@@ -101,6 +101,11 @@ declare module PlayFabEntityModule {
          */
         GetProfile(request: PlayFabEntityModels.GetEntityProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabEntityModels.GetEntityProfileResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Retrieves the entity's profile.
+         * https://api.playfab.com/Documentation/Entity/method/GetProfiles
+         */
+        GetProfiles(request: PlayFabEntityModels.GetEntityProfilesRequest, callback: PlayFabModule.ApiCallback<PlayFabEntityModels.GetEntityProfilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Initiates file uploads to an entity's profile.
          * https://api.playfab.com/Documentation/Entity/method/InitiateFileUploads
          */
@@ -550,6 +555,25 @@ declare module PlayFabEntityModels {
     export interface GetEntityProfileResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Entity profile */
         Profile?: EntityProfileBody;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfilesRequest */
+    export interface GetEntityProfilesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
+         * JSON string.
+         */
+        DataAsObject?: boolean;
+        /** Entity keys of the profiles to load. Must be between 1 and 25 */
+        Entities: EntityKey[];
+
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfilesResponse */
+    export interface GetEntityProfilesResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Entity profiles */
+        Profiles?: EntityProfileBody[];
 
     }
 
