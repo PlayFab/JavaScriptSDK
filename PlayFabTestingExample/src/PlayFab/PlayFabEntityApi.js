@@ -21,7 +21,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.20.180409",
+        sdkVersion: "1.21.180507",
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
@@ -125,8 +125,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.20.180409";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
+PlayFab.sdkVersion = "1.21.180507";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -244,6 +244,11 @@ PlayFab.EntityApi = {
     GetProfile: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/GetProfile", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+    },
+
+    GetProfiles: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/GetProfiles", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
     InitiateFileUploads: function (request, callback, customData, extraHeaders) {
