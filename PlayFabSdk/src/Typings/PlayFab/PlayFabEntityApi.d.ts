@@ -508,7 +508,8 @@ declare module PlayFabEntityModels {
         | "master_player_account"
         | "title_player_account"
         | "character"
-        | "group";
+        | "group"
+        | "service";
 
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityWithLineage */
     export interface EntityWithLineage {
