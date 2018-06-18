@@ -3440,13 +3440,6 @@ declare module PlayFabClientModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.NameIdentifier */
-    export interface NameIdentifier {
-        Id?: string;
-        Name?: string;
-
-    }
-
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.OpenTradeRequest */
     export interface OpenTradeRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
