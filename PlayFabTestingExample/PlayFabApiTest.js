@@ -460,9 +460,9 @@ var PlayFabApiTests = {
         var getObjectCallback1 = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetObjects result");
             assert.ok(result.data.Objects != null, "Testing GetObjects Objects");
-            PlayFabApiTests.testData.testNumber = JSON.parse(result.data.Objects[PlayFabApiTests.testConstants.TEST_DATA_KEY].EscapedDataObject);
-            if (typeof PlayFabApiTests.testData.testNumber === "number")
-                PlayFabApiTests.testData.testNumber = 0; // Default number if not set yet
+            PlayFabApiTests.testData.testNumber = 0;
+            if (result.data.Objects.hasOwnProperty(PlayFabApiTests.testConstants.TEST_DATA_KEY))
+                PlayFabApiTests.testData.testNumber = JSON.parse(result.data.Objects[PlayFabApiTests.testConstants.TEST_DATA_KEY].EscapedDataObject);
             PlayFabApiTests.testData.testNumber = (PlayFabApiTests.testData.testNumber + 1) % 100; // This test is about the expected value changing - but not testing more complicated issues like bounds
             var updateDataRequest = {
                 Entity: PlayFabApiTests.testData.entityKey,

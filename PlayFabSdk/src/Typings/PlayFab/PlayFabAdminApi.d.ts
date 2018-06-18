@@ -1584,23 +1584,6 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersRequest */
-    export interface DeleteUsersRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
-        PlayFabIds: string[];
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId: string;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersResult */
-    export interface DeleteUsersResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
     type EffectType = "Allow"
         | "Deny";
 
@@ -1707,6 +1690,7 @@ declare module PlayFabAdminModels {
     }
 
     type GenericErrorCodes = "Success"
+        | "MatchmakingHopperIdInvalid"
         | "UnkownError"
         | "InvalidParams"
         | "AccountNotFound"
@@ -2075,16 +2059,47 @@ declare module PlayFabAdminModels {
         | "NoValidCertificateForAad"
         | "InvalidCertificateForAad"
         | "DuplicateDropTableId"
-        | "ComputeOK"
-        | "ComputeAccepted"
-        | "ComputeNoContent"
-        | "ComputeBadRequest"
-        | "ComputeUnauthorized"
-        | "ComputeForbidden"
-        | "ComputeNotFound"
-        | "ComputeConflict"
-        | "ComputeInternalServerError"
-        | "ComputeServiceUnavailable";
+        | "GameServerOk"
+        | "GameServerAccepted"
+        | "GameServerNoContent"
+        | "GameServerBadRequest"
+        | "GameServerUnauthorized"
+        | "GameServerForbidden"
+        | "GameServerNotFound"
+        | "GameServerConflict"
+        | "GameServerInternalServerError"
+        | "GameServerServiceUnavailable"
+        | "MatchmakingInvalidEntityKeyList"
+        | "MatchmakingInvalidTicketCreatorProfile"
+        | "MatchmakingInvalidUserAttributes"
+        | "MatchmakingCreateRequestMissing"
+        | "MatchmakingCreateRequestCreatorMissing"
+        | "MatchmakingCreateRequestCreatorIdMissing"
+        | "MatchmakingCreateRequestUserListMissing"
+        | "MatchmakingCreateRequestGiveUpAfterInvalid"
+        | "MatchmakingTicketIdMissing"
+        | "MatchmakingMatchIdMissing"
+        | "MatchmakingMatchIdIdMissing"
+        | "MatchmakingHopperIdMissing"
+        | "MatchmakingTitleIdMissing"
+        | "MatchmakingTicketIdIdMissing"
+        | "MatchmakingUserIdMissing"
+        | "MatchmakingJoinRequestUserMissing"
+        | "MatchmakingHopperConfigNotFound"
+        | "MatchmakingMatchNotFound"
+        | "MatchmakingTicketNotFound"
+        | "MatchmakingCreateTicketServerIdentityInvalid"
+        | "MatchmakingCreateTicketClientIdentityInvalid"
+        | "MatchmakingGetTicketUserMismatch"
+        | "MatchmakingJoinTicketServerIdentityInvalid"
+        | "MatchmakingJoinTicketUserIdentityMismatch"
+        | "MatchmakingCancelTicketServerIdentityInvalid"
+        | "MatchmakingCancelTicketUserIdentityMismatch"
+        | "MatchmakingGetMatchIdentityMismatch"
+        | "MatchmakingUserIdentityMismatch"
+        | "MatchmakingAlreadyJoinedTicket"
+        | "MatchmakingTicketAlreadyCompleted"
+        | "MatchmakingHopperConfigInvalid";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
@@ -3028,7 +3043,9 @@ declare module PlayFabAdminModels {
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.NameIdentifier */
     export interface NameIdentifier {
+        /** Id Identifier, if present */
         Id?: string;
+        /** Name Identifier, if present */
         Name?: string;
 
     }
@@ -3308,7 +3325,8 @@ declare module PlayFabAdminModels {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
         /**
-         * Reason for refund. In the case of Facebook this must match one of their refund or dispute resolution enums (See:
+         * The Reason parameter should correspond with the payment providers reason field, if they require one such as Facebook. In
+         * the case of Facebook this must match one of their refund or dispute resolution enums (See:
          * https://developers.facebook.com/docs/payments/implementation-guide/handling-disputes-refunds)
          */
         Reason?: string;
@@ -3419,7 +3437,8 @@ declare module PlayFabAdminModels {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
         /**
-         * Reason for refund. In the case of Facebook this must match one of their refund or dispute resolution enums (See:
+         * The Reason parameter should correspond with the payment providers reason field, if they require one such as Facebook. In
+         * the case of Facebook this must match one of their refund or dispute resolution enums (See:
          * https://developers.facebook.com/docs/payments/implementation-guide/handling-disputes-refunds)
          */
         Reason?: string;

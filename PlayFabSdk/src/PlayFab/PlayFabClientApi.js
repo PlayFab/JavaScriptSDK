@@ -21,7 +21,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.22.180529",
+        sdkVersion: "1.23.180618",
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
@@ -126,7 +126,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
-PlayFab.sdkVersion = "1.22.180529";
+PlayFab.sdkVersion = "1.23.180618";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -528,9 +528,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -544,9 +546,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -560,9 +564,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -576,9 +582,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -592,9 +600,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -608,9 +618,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -624,9 +636,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -640,9 +654,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -656,9 +672,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -672,9 +690,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -688,9 +708,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -704,9 +726,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
@@ -763,9 +787,11 @@ PlayFab.ClientApi = {
             if (result != null) {
                    if(result.data.SessionTicket != null) {
                        PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                   }                   if (result.data.EntityToken != null) {
+                   }
+                   if (result.data.EntityToken != null) {
                        PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                   }                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);

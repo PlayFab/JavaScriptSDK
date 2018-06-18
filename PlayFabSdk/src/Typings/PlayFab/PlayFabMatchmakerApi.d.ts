@@ -51,18 +51,6 @@ declare module PlayFabMatchmakerModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Matchmaker/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.DeregisterGameRequest */
-    export interface DeregisterGameRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Unique identifier for the Game Server Instance that is being deregistered. */
-        LobbyId: string;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Matchmaker/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.DeregisterGameResponse */
-    export interface DeregisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
     /** https://api.playfab.com/Documentation/Matchmaker/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.ItemInstance */
     export interface ItemInstance {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
@@ -142,43 +130,6 @@ declare module PlayFabMatchmakerModels {
         | "Japan"
         | "Brazil"
         | "Australia";
-
-    /** https://api.playfab.com/Documentation/Matchmaker/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.RegisterGameRequest */
-    export interface RegisterGameRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Unique identifier of the build running on the Game Server Instance. */
-        Build: string;
-        /**
-         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game
-         * Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
-         */
-        GameMode: string;
-        /** Previous lobby id if re-registering an existing game. */
-        LobbyId?: string;
-        /**
-         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS
-         * region and use Tags (below) to specify your custom region.
-         */
-        Region: string;
-        /** IPV4 address of the Game Server Instance. */
-        ServerHost: string;
-        /** IPV6 address of the Game Server Instance. */
-        ServerIPV6Address?: string;
-        /** Port number for communication with the Game Server Instance. */
-        ServerPort: string;
-        /** Tags for the Game Server Instance */
-        Tags?: { [key: string]: string | null };
-
-    }
-
-    /** https://api.playfab.com/Documentation/Matchmaker/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.RegisterGameResponse */
-    export interface RegisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /**
-         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
-         * game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
-         */
-        LobbyId?: string;
-
-    }
 
     /** https://api.playfab.com/Documentation/Matchmaker/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.StartGameRequest */
     export interface StartGameRequest extends PlayFabModule.IPlayFabRequestCommon {
