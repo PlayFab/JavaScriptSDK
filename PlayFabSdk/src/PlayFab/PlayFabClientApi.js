@@ -537,7 +537,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithAndroidDeviceID", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithAndroidDeviceID", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithCustomID: function (request, callback, customData, extraHeaders) {
@@ -555,7 +555,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithCustomID", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithCustomID", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithEmailAddress: function (request, callback, customData, extraHeaders) {
@@ -573,7 +573,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithEmailAddress", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithEmailAddress", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithFacebook: function (request, callback, customData, extraHeaders) {
@@ -591,7 +591,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithFacebook", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithFacebook", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithGameCenter: function (request, callback, customData, extraHeaders) {
@@ -609,7 +609,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithGameCenter", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithGameCenter", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithGoogleAccount: function (request, callback, customData, extraHeaders) {
@@ -627,7 +627,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithGoogleAccount", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithGoogleAccount", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithIOSDeviceID: function (request, callback, customData, extraHeaders) {
@@ -645,7 +645,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithIOSDeviceID", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithIOSDeviceID", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithKongregate: function (request, callback, customData, extraHeaders) {
@@ -663,7 +663,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithKongregate", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithKongregate", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithPlayFab: function (request, callback, customData, extraHeaders) {
@@ -681,7 +681,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithPlayFab", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithPlayFab", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithSteam: function (request, callback, customData, extraHeaders) {
@@ -699,7 +699,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithSteam", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithSteam", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithTwitch: function (request, callback, customData, extraHeaders) {
@@ -717,7 +717,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithTwitch", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithTwitch", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithWindowsHello: function (request, callback, customData, extraHeaders) {
@@ -735,7 +735,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithWindowsHello", request, null, null, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithWindowsHello", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     Matchmake: function (request, callback, customData, extraHeaders) {
