@@ -21,7 +21,7 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.23.180618",
+        sdkVersion: "1.24.180705",
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
@@ -125,8 +125,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
-PlayFab.sdkVersion = "1.23.180618";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
+PlayFab.sdkVersion = "1.24.180705";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -218,7 +218,7 @@ PlayFab.EntityApi = {
             if (callback != null && typeof (callback) == "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Authentication/GetEntityToken", request, authKey, authValue, overloadCallback);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Authentication/GetEntityToken", request, authKey, authValue, overloadCallback, customData, extraHeaders);
     },
 
     GetFiles: function (request, callback, customData, extraHeaders) {
