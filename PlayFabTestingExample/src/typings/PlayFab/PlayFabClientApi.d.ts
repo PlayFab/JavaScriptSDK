@@ -2314,7 +2314,7 @@ declare module PlayFabClientModels {
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerProfileRequest */
     export interface GetPlayerProfileRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
-        PlayFabId: string;
+        PlayFabId?: string;
         /**
          * If non-null, this determines which properties of the resulting player profiles to return. For API calls from the client,
          * only the allowed client profile properties for the title may be requested. These allowed properties are configured in
@@ -3946,7 +3946,9 @@ declare module PlayFabClientModels {
         | "BackEnd"
         | "GameClient"
         | "GameServer"
-        | "Partner";
+        | "Partner"
+        | "Custom"
+        | "API";
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.StartGameRequest */
     export interface StartGameRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -4668,6 +4670,8 @@ declare module PlayFabClientModels {
     export interface UserSettings {
         /** Boolean for whether this player is eligible for gathering device info. */
         GatherDeviceInfo: boolean;
+        /** Boolean for whether this player should report OnFocus play-time tracking. */
+        GatherFocusInfo: boolean;
         /** Boolean for whether this player is eligible for ad tracking. */
         NeedsAttribution: boolean;
 
