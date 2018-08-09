@@ -21,7 +21,10 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.27.180716",
+        sdkVersion: "1.28.180809",
+        requestGetParams: {
+            sdk: "JavaScriptSDK-1.28.180809"
+        },
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
@@ -47,7 +50,7 @@ if(!PlayFab._internalSettings) {
             }
         },
 
-        ExecuteRequest: function (completeUrl, request, authkey, authValue, callback, customData, extraHeaders) {
+        ExecuteRequest: function (url, request, authkey, authValue, callback, customData, extraHeaders) {
             if (callback != null && typeof (callback) != "function")
                 throw "Callback must be null of a function";
 
@@ -56,6 +59,21 @@ if(!PlayFab._internalSettings) {
 
             var startTime = new Date();
             var requestBody = JSON.stringify(request);
+
+            var completeUrl = url;
+            var getParams = PlayFab._internalSettings.requestGetParams;
+            if (getParams != null) {
+                var firstParam = true;
+                for (var key in getParams) {
+                    if (firstParam) {
+                        completeUrl += "?";
+                        firstParam = false;
+                    } else {
+                        completeUrl += "&";
+                    }
+                    completeUrl += key + "=" + getParams[key];
+                }
+            }
 
             var xhr = new XMLHttpRequest();
             // window.console.log("URL: " + completeUrl);
@@ -125,8 +143,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.27.180716";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
+PlayFab.sdkVersion = "1.28.180809";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -364,6 +382,11 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromFacebookIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
+    GetPlayFabIDsFromFacebookInstantGamesIds: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
     GetPlayFabIDsFromGameCenterIDs: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromGameCenterIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
@@ -382,6 +405,11 @@ PlayFab.ClientApi = {
     GetPlayFabIDsFromKongregateIDs: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromKongregateIDs", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
+    GetPlayFabIDsFromNintendoSwitchDeviceIds: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
     GetPlayFabIDsFromSteamIDs: function (request, callback, customData, extraHeaders) {
@@ -487,6 +515,11 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkFacebookAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
+    LinkFacebookInstantGamesId: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkFacebookInstantGamesId", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
     LinkGameCenterAccount: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkGameCenterAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
@@ -505,6 +538,11 @@ PlayFab.ClientApi = {
     LinkKongregate: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkKongregate", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
+    LinkNintendoSwitchDeviceId: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkNintendoSwitchDeviceId", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
     LinkSteamAccount: function (request, callback, customData, extraHeaders) {
@@ -594,6 +632,24 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithFacebook", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
+    LoginWithFacebookInstantGamesId: function (request, callback, customData, extraHeaders) {
+        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
+        var overloadCallback = function (result, error) {
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }
+                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            }
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithFacebookInstantGamesId", request, null, null, overloadCallback, customData, extraHeaders);
+    },
+
     LoginWithGameCenter: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
@@ -664,6 +720,24 @@ PlayFab.ClientApi = {
                 callback(result, error);
         };
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithKongregate", request, null, null, overloadCallback, customData, extraHeaders);
+    },
+
+    LoginWithNintendoSwitchDeviceId: function (request, callback, customData, extraHeaders) {
+        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
+        var overloadCallback = function (result, error) {
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }
+                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            }
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithNintendoSwitchDeviceId", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
     LoginWithPlayFab: function (request, callback, customData, extraHeaders) {
@@ -878,6 +952,11 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkFacebookAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
+    UnlinkFacebookInstantGamesId: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkFacebookInstantGamesId", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
     UnlinkGameCenterAccount: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkGameCenterAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
@@ -896,6 +975,11 @@ PlayFab.ClientApi = {
     UnlinkKongregate: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkKongregate", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
+    UnlinkNintendoSwitchDeviceId: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkNintendoSwitchDeviceId", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
     UnlinkSteamAccount: function (request, callback, customData, extraHeaders) {

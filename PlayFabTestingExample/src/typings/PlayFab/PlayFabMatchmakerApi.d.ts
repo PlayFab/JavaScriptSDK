@@ -156,10 +156,14 @@ declare module PlayFabMatchmakerModels {
         GameID?: string;
         /** IPV4 address of the new Game Server Instance. */
         ServerHostname?: string;
+        /** IPV4 address of the server */
+        ServerIPV4Address?: string;
         /** IPV6 address of the new Game Server Instance. */
         ServerIPV6Address?: string;
         /** Port number for communication with the Game Server Instance. */
         ServerPort: number;
+        /** Public DNS name (if any) of the server */
+        ServerPublicDNSName?: string;
 
     }
 

@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabEntityApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabGroupsApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -21,7 +21,10 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.27.180716",
+        sdkVersion: "1.28.180809",
+        requestGetParams: {
+            sdk: "JavaScriptSDK-1.28.180809"
+        },
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
@@ -47,7 +50,7 @@ if(!PlayFab._internalSettings) {
             }
         },
 
-        ExecuteRequest: function (completeUrl, request, authkey, authValue, callback, customData, extraHeaders) {
+        ExecuteRequest: function (url, request, authkey, authValue, callback, customData, extraHeaders) {
             if (callback != null && typeof (callback) != "function")
                 throw "Callback must be null of a function";
 
@@ -56,6 +59,21 @@ if(!PlayFab._internalSettings) {
 
             var startTime = new Date();
             var requestBody = JSON.stringify(request);
+
+            var completeUrl = url;
+            var getParams = PlayFab._internalSettings.requestGetParams;
+            if (getParams != null) {
+                var firstParam = true;
+                for (var key in getParams) {
+                    if (firstParam) {
+                        completeUrl += "?";
+                        firstParam = false;
+                    } else {
+                        completeUrl += "&";
+                    }
+                    completeUrl += key + "=" + getParams[key];
+                }
+            }
 
             var xhr = new XMLHttpRequest();
             // window.console.log("URL: " + completeUrl);
@@ -125,8 +143,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.27.180716";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
+PlayFab.sdkVersion = "1.28.180809";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -137,15 +155,10 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.EntityApi = {
+PlayFab.GroupsApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
-    },
-
-    AbortFileUploads: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/File/AbortFileUploads", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
     AcceptGroupApplication: function (request, callback, customData, extraHeaders) {
@@ -188,11 +201,6 @@ PlayFab.EntityApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/CreateRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    DeleteFiles: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/File/DeleteFiles", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
     DeleteGroup: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/DeleteGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
@@ -203,62 +211,9 @@ PlayFab.EntityApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/DeleteRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ExecuteEntityCloudScript: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/CloudScript/ExecuteEntityCloudScript", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    FinalizeFileUploads: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/File/FinalizeFileUploads", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    GetEntityToken: function (request, callback, customData, extraHeaders) {
-        var authKey = null; var authValue = null;
-        if (!authKey && PlayFab._internalSettings.sessionTicket) { authKey = "X-Authorization"; authValue = PlayFab._internalSettings.sessionTicket; }
-        if (!authKey && PlayFab.settings.developerSecretKey) { authKey = "X-SecretKey"; authValue = PlayFab.settings.developerSecretKey; }
-        var overloadCallback = function (result, error) {
-            if (result != null && result.data.EntityToken != null)
-                PlayFab._internalSettings.entityToken = result.data.EntityToken;
-            if (callback != null && typeof (callback) == "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Authentication/GetEntityToken", request, authKey, authValue, overloadCallback, customData, extraHeaders);
-    },
-
-    GetFiles: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/File/GetFiles", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    GetGlobalPolicy: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/GetGlobalPolicy", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
     GetGroup: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/GetGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    GetObjects: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Object/GetObjects", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    GetProfile: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/GetProfile", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    GetProfiles: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/GetProfiles", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    InitiateFileUploads: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/File/InitiateFileUploads", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
     InviteToGroup: function (request, callback, customData, extraHeaders) {
@@ -316,21 +271,6 @@ PlayFab.EntityApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/RemoveMembers", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    SetGlobalPolicy: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/SetGlobalPolicy", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    SetObjects: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Object/SetObjects", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
-    SetProfilePolicy: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/SetProfilePolicy", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
-
     UnblockEntity: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/UnblockEntity", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
@@ -345,12 +285,7 @@ PlayFab.EntityApi = {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/UpdateRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
-
-    WriteEvents: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Event/WriteEvents", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
-    },
 };
 
-var PlayFabEntitySDK = PlayFab.EntityApi;
+var PlayFabGroupsSDK = PlayFab.GroupsApi;
 
