@@ -21,7 +21,10 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.27.180716",
+        sdkVersion: "1.28.180809",
+        requestGetParams: {
+            sdk: "JavaScriptSDK-1.28.180809"
+        },
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
@@ -47,7 +50,7 @@ if(!PlayFab._internalSettings) {
             }
         },
 
-        ExecuteRequest: function (completeUrl, request, authkey, authValue, callback, customData, extraHeaders) {
+        ExecuteRequest: function (url, request, authkey, authValue, callback, customData, extraHeaders) {
             if (callback != null && typeof (callback) != "function")
                 throw "Callback must be null of a function";
 
@@ -56,6 +59,21 @@ if(!PlayFab._internalSettings) {
 
             var startTime = new Date();
             var requestBody = JSON.stringify(request);
+
+            var completeUrl = url;
+            var getParams = PlayFab._internalSettings.requestGetParams;
+            if (getParams != null) {
+                var firstParam = true;
+                for (var key in getParams) {
+                    if (firstParam) {
+                        completeUrl += "?";
+                        firstParam = false;
+                    } else {
+                        completeUrl += "&";
+                    }
+                    completeUrl += key + "=" + getParams[key];
+                }
+            }
 
             var xhr = new XMLHttpRequest();
             // window.console.log("URL: " + completeUrl);
@@ -125,8 +143,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_0";
-PlayFab.sdkVersion = "1.27.180716";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
+PlayFab.sdkVersion = "1.28.180809";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -341,6 +359,16 @@ PlayFab.ServerApi = {
     GetPlayFabIDsFromFacebookIDs: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetPlayFabIDsFromFacebookIDs", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
+    GetPlayFabIDsFromFacebookInstantGamesIds: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
+    GetPlayFabIDsFromNintendoSwitchDeviceIds: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     GetPlayFabIDsFromSteamIDs: function (request, callback, customData, extraHeaders) {

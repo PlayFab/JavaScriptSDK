@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabMatchmakerApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabAuthenticationApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -155,37 +155,25 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.MatchmakerApi = {
+PlayFab.AuthenticationApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    AuthUser: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/AuthUser", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
-    },
-
-    PlayerJoined: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/PlayerJoined", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
-    },
-
-    PlayerLeft: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/PlayerLeft", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
-    },
-
-    StartGame: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/StartGame", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
-    },
-
-    UserInfo: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/UserInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    GetEntityToken: function (request, callback, customData, extraHeaders) {
+        var authKey = null; var authValue = null;
+        if (!authKey && PlayFab._internalSettings.sessionTicket) { authKey = "X-Authorization"; authValue = PlayFab._internalSettings.sessionTicket; }
+        if (!authKey && PlayFab.settings.developerSecretKey) { authKey = "X-SecretKey"; authValue = PlayFab.settings.developerSecretKey; }
+        var overloadCallback = function (result, error) {
+            if (result != null && result.data.EntityToken != null)
+                PlayFab._internalSettings.entityToken = result.data.EntityToken;
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Authentication/GetEntityToken", request, authKey, authValue, overloadCallback, customData, extraHeaders);
     },
 };
 
-var PlayFabMatchmakerSDK = PlayFab.MatchmakerApi;
+var PlayFabAuthenticationSDK = PlayFab.AuthenticationApi;
 

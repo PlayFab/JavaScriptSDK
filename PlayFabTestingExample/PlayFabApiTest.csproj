@@ -26,9 +26,14 @@
     <Content Include="index.html" />
     <Content Include="src\PlayFab\PlayFabAdminApi.js" />
     <Content Include="src\PlayFab\PlayFabClientApi.js" />
-    <Content Include="src\PlayFab\PlayFabEntityApi.js" />
     <Content Include="src\PlayFab\PlayFabMatchmakerApi.js" />
     <Content Include="src\PlayFab\PlayFabServerApi.js" />
+    <Content Include="src\PlayFab\PlayFabAuthenticationApi.js" />
+    <Content Include="src\PlayFab\PlayFabCloudScriptApi.js" />
+    <Content Include="src\PlayFab\PlayFabDataApi.js" />
+    <Content Include="src\PlayFab\PlayFabEventsApi.js" />
+    <Content Include="src\PlayFab\PlayFabGroupsApi.js" />
+    <Content Include="src\PlayFab\PlayFabProfilesApi.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -36,9 +41,14 @@
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFab.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabAdminApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabClientApi.d.ts" />
-    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabEntityApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabMatchmakerApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabServerApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabAuthenticationApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabCloudScriptApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabDataApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabEventsApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabGroupsApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabProfilesApi.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">

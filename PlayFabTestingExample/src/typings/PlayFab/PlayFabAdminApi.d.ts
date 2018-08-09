@@ -2071,6 +2071,12 @@ declare module PlayFabAdminModels {
         | "ExplicitContentDetected"
         | "PIIContentDetected"
         | "InvalidScheduledTaskParameter"
+        | "PerEntityEventRateLimitExceeded"
+        | "TitleDefaultLanguageNotSet"
+        | "EmailTemplateMissingDefaultVersion"
+        | "FacebookInstantGamesIdNotLinked"
+        | "InvalidFacebookInstantGamesSignature"
+        | "FacebookInstantGamesAuthNotConfiguredForTitle"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingCreateRequestMissing"
@@ -2081,12 +2087,12 @@ declare module PlayFabAdminModels {
         | "MatchmakingTicketIdMissing"
         | "MatchmakingMatchIdMissing"
         | "MatchmakingMatchIdIdMissing"
-        | "MatchmakingHopperIdMissing"
+        | "MatchmakingQueueNameMissing"
         | "MatchmakingTitleIdMissing"
         | "MatchmakingTicketIdIdMissing"
         | "MatchmakingPlayerIdMissing"
         | "MatchmakingJoinRequestUserMissing"
-        | "MatchmakingHopperConfigNotFound"
+        | "MatchmakingQueueConfigNotFound"
         | "MatchmakingMatchNotFound"
         | "MatchmakingTicketNotFound"
         | "MatchmakingCreateTicketServerIdentityInvalid"
@@ -2100,9 +2106,12 @@ declare module PlayFabAdminModels {
         | "MatchmakingPlayerIdentityMismatch"
         | "MatchmakingAlreadyJoinedTicket"
         | "MatchmakingTicketAlreadyCompleted"
-        | "MatchmakingHopperIdInvalid"
-        | "MatchmakingHopperConfigInvalid"
-        | "MatchmakingMemberProfileInvalid";
+        | "MatchmakingQueueNameInvalid"
+        | "MatchmakingQueueConfigInvalid"
+        | "MatchmakingMemberProfileInvalid"
+        | "WriteAttemptedDuringExport"
+        | "NintendoSwitchDeviceIdNotLinked"
+        | "MatchmakingNotEnabled";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
@@ -2265,10 +2274,16 @@ declare module PlayFabAdminModels {
         Players?: string[];
         /** region in which the Game Server Instance is running */
         Region?: string;
-        /** IP address for this Game Server Instance */
+        /** IPV4 address of the game server instance */
         ServerAddress?: string;
+        /** IPV4 address of the server */
+        ServerIPV4Address?: string;
+        /** IPV6 address of the server */
+        ServerIPV6Address?: string;
         /** communication port for this Game Server Instance */
         ServerPort: number;
+        /** Public DNS name (if any) of the server */
+        ServerPublicDNSName?: string;
         /** time when the Game Server Instance was created */
         StartTime: string;
         /** unique identifier of the Game Server Instance for this lobby */
@@ -2909,7 +2924,11 @@ declare module PlayFabAdminModels {
         | "IOSDevice"
         | "AndroidDevice"
         | "Twitch"
-        | "WindowsHello";
+        | "WindowsHello"
+        | "GameServer"
+        | "CustomServer"
+        | "NintendoSwitch"
+        | "FacebookInstantGames";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LogStatement */
     export interface LogStatement {
@@ -3184,7 +3203,7 @@ declare module PlayFabAdminModels {
         TitleId?: string;
         /**
          * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a
-         * whole number of cents (1/100 USD).       For example, 999 indicates nine dollars and ninety-nine cents.
+         * whole number of cents (1/100 USD). For example, 999 indicates nine dollars and ninety-nine cents.
          */
         TotalValueToDateInUSD?: number;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
@@ -4256,7 +4275,10 @@ declare module PlayFabAdminModels {
         | "XboxLive"
         | "Parse"
         | "Twitch"
-        | "WindowsHello";
+        | "WindowsHello"
+        | "ServerCustomId"
+        | "NintendoSwitchDeviceId"
+        | "FacebookInstantGamesId";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UserPrivateAccountInfo */
     export interface UserPrivateAccountInfo {

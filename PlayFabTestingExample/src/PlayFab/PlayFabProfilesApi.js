@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabMatchmakerApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabProfilesApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -155,37 +155,42 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.MatchmakerApi = {
+PlayFab.ProfilesApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    AuthUser: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/AuthUser", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    GetGlobalPolicy: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/GetGlobalPolicy", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    PlayerJoined: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/PlayerJoined", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    GetProfile: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/GetProfile", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    PlayerLeft: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/PlayerLeft", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    GetProfiles: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/GetProfiles", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    StartGame: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/StartGame", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    SetGlobalPolicy: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/SetGlobalPolicy", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    UserInfo: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Matchmaker/UserInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    SetProfileLanguage: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/SetProfileLanguage", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+    },
+
+    SetProfilePolicy: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Profile/SetProfilePolicy", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 };
 
-var PlayFabMatchmakerSDK = PlayFab.MatchmakerApi;
+var PlayFabProfilesSDK = PlayFab.ProfilesApi;
 
