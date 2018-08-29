@@ -78,6 +78,12 @@ declare module PlayFabClientModule {
          */
         ConsumeItem(request: PlayFabClientModels.ConsumeItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Grants the player's current entitlements from Xbox Live, consuming all availble items in Xbox and granting them to the
+         * player's PlayFab inventory. This call is idempotent and will not grant previously granted items to the player.
+         * https://api.playfab.com/Documentation/Client/method/ConsumeXboxEntitlements
+         */
+        ConsumeXboxEntitlements(request: PlayFabClientModels.ConsumeXboxEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeXboxEntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
          * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
          * between a very small number of players, please see our guide:
@@ -439,6 +445,11 @@ declare module PlayFabClientModule {
          */
         LinkWindowsHello(request: PlayFabClientModels.LinkWindowsHelloAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkWindowsHelloAccountResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+         * https://api.playfab.com/Documentation/Client/method/LinkXboxAccount
+         */
+        LinkXboxAccount(request: PlayFabClientModels.LinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
          * API calls which require an authenticated user
          * https://api.playfab.com/Documentation/Client/method/LoginWithAndroidDeviceID
@@ -526,6 +537,12 @@ declare module PlayFabClientModule {
          */
         LoginWithWindowsHello(request: PlayFabClientModels.LoginWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
+         * which require an authenticated user
+         * https://api.playfab.com/Documentation/Client/method/LoginWithXbox
+         */
+        LoginWithXbox(request: PlayFabClientModels.LoginWithXboxRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific
          * active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required
          * parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is
@@ -602,7 +619,7 @@ declare module PlayFabClientModule {
          * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
          * https://api.playfab.com/Documentation/Client/method/ReportDeviceInfo
          */
-        ReportDeviceInfo(request: PlayFabClientModels.DeviceInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ReportDeviceInfo(request: PlayFabClientModels.DeviceInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title
          * can take action concerning potentially toxic players.
@@ -710,6 +727,11 @@ declare module PlayFabClientModule {
          */
         UnlinkWindowsHello(request: PlayFabClientModels.UnlinkWindowsHelloAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkWindowsHelloAccountResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Unlinks the related Xbox Live account from the user's PlayFab account
+         * https://api.playfab.com/Documentation/Client/method/UnlinkXboxAccount
+         */
+        UnlinkXboxAccount(request: PlayFabClientModels.UnlinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
          * If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented,
          * consistent with the operation of ConsumeItem.
@@ -727,7 +749,7 @@ declare module PlayFabClientModule {
          * Update the avatar URL of the player
          * https://api.playfab.com/Documentation/Client/method/UpdateAvatarUrl
          */
-        UpdateAvatarUrl(request: PlayFabClientModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateAvatarUrl(request: PlayFabClientModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Creates and updates the title-specific custom data for the user's character which is readable and writable by the client
          * https://api.playfab.com/Documentation/Client/method/UpdateCharacterData
@@ -1197,6 +1219,22 @@ declare module PlayFabClientModels {
         ItemInstanceId?: string;
         /** Number of uses remaining on the item. */
         RemainingUses: number;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumeXboxEntitlementsRequest */
+    export interface ConsumeXboxEntitlementsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Catalog version to use */
+        CatalogVersion?: string;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        XboxToken: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumeXboxEntitlementsResult */
+    export interface ConsumeXboxEntitlementsResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Details for the items purchased. */
+        Items?: ItemInstance[];
 
     }
 
@@ -1690,19 +1728,17 @@ declare module PlayFabClientModels {
         | "Pending"
         | "Confirmed";
 
-    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult */
-    export interface EmptyResult extends PlayFabModule.IPlayFabResultCommon  {
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResponse */
+    export interface EmptyResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EntityKey */
     export interface EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         Id: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        TypeString?: string;
 
     }
 
@@ -1716,13 +1752,6 @@ declare module PlayFabClientModels {
         TokenExpiration?: string;
 
     }
-
-    type EntityTypes = "title"
-        | "master_player_account"
-        | "title_player_account"
-        | "character"
-        | "group"
-        | "service";
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ExecuteCloudScriptRequest */
     export interface ExecuteCloudScriptRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -2908,7 +2937,7 @@ declare module PlayFabClientModels {
         Annotation?: string;
         /** Unique ItemId of the item to purchase. */
         ItemId: string;
-        /** How many of this item to purchase. */
+        /** How many of this item to purchase. Min 1, maximum 25. */
         Quantity: number;
         /** Items to be upgraded as a result of this purchase (upgraded items are hidden, as they are "replaced" by the new items). */
         UpgradeFromItems?: string[];
@@ -3125,6 +3154,20 @@ declare module PlayFabClientModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkXboxAccountRequest */
+    export interface LinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        ForceLink?: boolean;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        XboxToken: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkXboxAccountResult */
+    export interface LinkXboxAccountResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ListUsersCharactersRequest */
     export interface ListUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3171,7 +3214,8 @@ declare module PlayFabClientModels {
         | "GameServer"
         | "CustomServer"
         | "NintendoSwitch"
-        | "FacebookInstantGames";
+        | "FacebookInstantGames"
+        | "OpenIdConnect";
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult */
     export interface LoginResult extends PlayFabModule.IPlayFabResultCommon  {
@@ -3207,7 +3251,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Specific Operating System version for the user's device. */
         OS?: string;
@@ -3231,7 +3275,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -3249,7 +3293,7 @@ declare module PlayFabClientModels {
         Email: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Password for the PlayFab account (6-100 characters) */
         Password: string;
@@ -3271,7 +3315,7 @@ declare module PlayFabClientModels {
         FacebookInstantGamesSignature: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -3293,7 +3337,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -3313,7 +3357,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Unique Game Center player id. */
         PlayerId?: string;
@@ -3335,7 +3379,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -3364,7 +3408,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Specific Operating System version for the user's device. */
         OS?: string;
@@ -3390,7 +3434,7 @@ declare module PlayFabClientModels {
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
         /** Numeric user ID assigned by Kongregate */
         KongregateId?: string;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -3410,7 +3454,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Nintendo Switch unique identifier for the user's device. */
         NintendoSwitchDeviceId?: string;
@@ -3428,7 +3472,7 @@ declare module PlayFabClientModels {
     export interface LoginWithPlayFabRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Password for the PlayFab account (6-100 characters) */
         Password: string;
@@ -3450,7 +3494,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -3477,7 +3521,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -3495,7 +3539,7 @@ declare module PlayFabClientModels {
         ChallengeSignature: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
         PublicKeyHint: string;
@@ -3504,6 +3548,28 @@ declare module PlayFabClientModels {
          * title has been selected.
          */
         TitleId?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithXboxRequest */
+    export interface LoginWithXboxRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean;
+        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        EncryptedRequest?: string;
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
+        LoginTitlePlayerAccountEntity?: boolean;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        PlayerSecret?: string;
+        /**
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        TitleId?: string;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        XboxToken?: string;
 
     }
 
@@ -3900,7 +3966,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Password for the PlayFab account (6-100 characters) */
         Password?: string;
@@ -3948,7 +4014,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
         LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -4542,6 +4608,18 @@ declare module PlayFabClientModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkXboxAccountRequest */
+    export interface UnlinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        XboxToken: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkXboxAccountResult */
+    export interface UnlinkXboxAccountResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerInstanceRequest */
     export interface UnlockContainerInstanceRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
@@ -4728,6 +4806,8 @@ declare module PlayFabClientModels {
         CustomIdInfo?: UserCustomIdInfo;
         /** User Facebook information, if a Facebook account has been linked */
         FacebookInfo?: UserFacebookInfo;
+        /** Facebook Instant Games account information, if a Facebook Instant Games account has been linked */
+        FacebookInstantGamesIdInfo?: UserFacebookInstantGamesIdInfo;
         /** User Gamecenter information, if a Gamecenter account has been linked */
         GameCenterInfo?: UserGameCenterInfo;
         /** User Google account information, if a Google account has been linked */
@@ -4736,6 +4816,10 @@ declare module PlayFabClientModels {
         IosDeviceInfo?: UserIosDeviceInfo;
         /** User Kongregate account information, if a Kongregate account has been linked */
         KongregateInfo?: UserKongregateInfo;
+        /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
+        NintendoSwitchDeviceIdInfo?: number;
+        /** OpenID Connect information, if any OpenID Connect accounts have been linked */
+        OpenIdInfo?: UserOpenIdInfo[];
         /** Unique identifier for the user account */
         PlayFabId?: string;
         /** Personal information for the user which is considered more sensitive */
@@ -4750,6 +4834,8 @@ declare module PlayFabClientModels {
         TwitchInfo?: UserTwitchInfo;
         /** User account name in the PlayFab service */
         Username?: string;
+        /** Windows Hello account information, if a Windows Hello account has been linked */
+        WindowsHelloInfo?: UserWindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         XboxInfo?: UserXboxInfo;
 
@@ -4795,6 +4881,13 @@ declare module PlayFabClientModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserFacebookInstantGamesIdInfo */
+    export interface UserFacebookInstantGamesIdInfo {
+        /** Facebook Instant Games ID */
+        FacebookInstantGamesId?: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserGameCenterInfo */
     export interface UserGameCenterInfo {
         /** Gamecenter identifier */
@@ -4831,6 +4924,24 @@ declare module PlayFabClientModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserNintendoSwitchDeviceIdInfo */
+    export interface UserNintendoSwitchDeviceIdInfo {
+        /** Nintendo Switch Device ID */
+        NintendoSwitchDeviceId?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserOpenIdInfo */
+    export interface UserOpenIdInfo {
+        /** OpenID Connection ID */
+        ConnectionId?: string;
+        /** OpenID Issuer */
+        Issuer?: string;
+        /** OpenID Subject */
+        Subject?: string;
+
+    }
+
     type UserOrigination = "Organic"
         | "Steam"
         | "Google"
@@ -4851,7 +4962,8 @@ declare module PlayFabClientModels {
         | "WindowsHello"
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
-        | "FacebookInstantGamesId";
+        | "FacebookInstantGamesId"
+        | "OpenIdConnect";
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserPrivateAccountInfo */
     export interface UserPrivateAccountInfo {
@@ -4926,6 +5038,15 @@ declare module PlayFabClientModels {
         TwitchId?: string;
         /** Twitch Username */
         TwitchUserName?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UserWindowsHelloInfo */
+    export interface UserWindowsHelloInfo {
+        /** Windows Hello Device Name */
+        WindowsHelloDeviceName?: string;
+        /** Windows Hello Public Key Hash */
+        WindowsHelloPublicKeyHash?: string;
 
     }
 

@@ -16,21 +16,12 @@ declare module PlayFabEventsModule {
 declare module PlayFabEventsModels {
     /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.EntityKey */
     export interface EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         Id: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        TypeString?: string;
 
     }
-
-    type EntityTypes = "title"
-        | "master_player_account"
-        | "title_player_account"
-        | "character"
-        | "group"
-        | "service";
 
     /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.EventContents */
     export interface EventContents {

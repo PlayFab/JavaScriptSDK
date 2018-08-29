@@ -5,7 +5,8 @@ declare module PlayFabCloudScriptModule {
         ForgetAllCredentials(): void;
 
         /**
-         * Executes CloudScript using the Entity Profile
+         * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
+         * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
          * https://api.playfab.com/Documentation/CloudScript/method/ExecuteEntityCloudScript
          */
         ExecuteEntityCloudScript(request: PlayFabCloudScriptModels.ExecuteEntityCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -20,21 +21,12 @@ declare module PlayFabCloudScriptModels {
 
     /** https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.EntityKey */
     export interface EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         Id: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        TypeString?: string;
 
     }
-
-    type EntityTypes = "title"
-        | "master_player_account"
-        | "title_player_account"
-        | "character"
-        | "group"
-        | "service";
 
     /** https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.ExecuteCloudScriptResult */
     export interface ExecuteCloudScriptResult extends PlayFabModule.IPlayFabResultCommon  {

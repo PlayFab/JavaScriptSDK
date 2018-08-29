@@ -14,7 +14,7 @@ declare module PlayFabServerModule {
          * FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
          * https://api.playfab.com/Documentation/Server/method/AddFriend
          */
-        AddFriend(request: PlayFabServerModels.AddFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddFriend(request: PlayFabServerModels.AddFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
          * https://api.playfab.com/Documentation/Server/method/AddPlayerTag
@@ -71,7 +71,7 @@ declare module PlayFabServerModule {
          * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
          * https://api.playfab.com/Documentation/Server/method/DeleteSharedGroup
          */
-        DeleteSharedGroup(request: PlayFabServerModels.DeleteSharedGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteSharedGroup(request: PlayFabServerModels.DeleteSharedGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
          * https://api.playfab.com/Documentation/Server/method/DeleteUsers
@@ -396,7 +396,7 @@ declare module PlayFabServerModule {
          * Removes the specified friend from the the user's friend list
          * https://api.playfab.com/Documentation/Server/method/RemoveFriend
          */
-        RemoveFriend(request: PlayFabServerModels.RemoveFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveFriend(request: PlayFabServerModels.RemoveFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
          * https://api.playfab.com/Documentation/Server/method/RemovePlayerTag
@@ -457,7 +457,7 @@ declare module PlayFabServerModule {
          * Updates the tag list for a specified user in the friend list of another user
          * https://api.playfab.com/Documentation/Server/method/SetFriendTags
          */
-        SetFriendTags(request: PlayFabServerModels.SetFriendTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetFriendTags(request: PlayFabServerModels.SetFriendTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Sets the custom data of the indicated Game Server Instance
          * https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceData
@@ -525,7 +525,7 @@ declare module PlayFabServerModule {
          * Update the avatar URL of the specified player
          * https://api.playfab.com/Documentation/Server/method/UpdateAvatarUrl
          */
-        UpdateAvatarUrl(request: PlayFabServerModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateAvatarUrl(request: PlayFabServerModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Updates information of a list of existing bans specified with Ban Ids.
          * https://api.playfab.com/Documentation/Server/method/UpdateBans
@@ -579,7 +579,7 @@ declare module PlayFabServerModule {
          * Updates the key-value pair data tagged to the specified item, which is read-only from the client.
          * https://api.playfab.com/Documentation/Server/method/UpdateUserInventoryItemCustomData
          */
-        UpdateUserInventoryItemCustomData(request: PlayFabServerModels.UpdateUserInventoryItemDataRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserInventoryItemCustomData(request: PlayFabServerModels.UpdateUserInventoryItemDataRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Updates the publisher-specific custom data for the user which is readable and writable by the client
          * https://api.playfab.com/Documentation/Server/method/UpdateUserPublisherData
@@ -1504,28 +1504,19 @@ declare module PlayFabServerModels {
         | "Pending"
         | "Confirmed";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult */
-    export interface EmptyResult extends PlayFabModule.IPlayFabResultCommon  {
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse */
+    export interface EmptyResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EntityKey */
     export interface EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         Id: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        TypeString?: string;
 
     }
-
-    type EntityTypes = "title"
-        | "master_player_account"
-        | "title_player_account"
-        | "character"
-        | "group"
-        | "service";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableRequest */
     export interface EvaluateRandomResultTableRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -2026,16 +2017,16 @@ declare module PlayFabServerModels {
         | "NoValidCertificateForAad"
         | "InvalidCertificateForAad"
         | "DuplicateDropTableId"
-        | "GameServerOk"
-        | "GameServerAccepted"
-        | "GameServerNoContent"
-        | "GameServerBadRequest"
-        | "GameServerUnauthorized"
-        | "GameServerForbidden"
-        | "GameServerNotFound"
-        | "GameServerConflict"
-        | "GameServerInternalServerError"
-        | "GameServerServiceUnavailable"
+        | "MultiplayerServerError"
+        | "MultiplayerServerTooManyRequests"
+        | "MultiplayerServerNoContent"
+        | "MultiplayerServerBadRequest"
+        | "MultiplayerServerUnauthorized"
+        | "MultiplayerServerForbidden"
+        | "MultiplayerServerNotFound"
+        | "MultiplayerServerConflict"
+        | "MultiplayerServerInternalServerError"
+        | "MultiplayerServerUnavailable"
         | "ExplicitContentDetected"
         | "PIIContentDetected"
         | "InvalidScheduledTaskParameter"
@@ -2167,8 +2158,6 @@ declare module PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterLeaderboardRequest */
     export interface GetCharacterLeaderboardRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Unique PlayFab assigned ID for a specific character owned by a user */
-        CharacterId: string;
         /** Optional character type on which to filter the leaderboard entries. */
         CharacterType?: string;
         /** Maximum number of entries to retrieve. */
@@ -3069,7 +3058,8 @@ declare module PlayFabServerModels {
         | "GameServer"
         | "CustomServer"
         | "NintendoSwitch"
-        | "FacebookInstantGames";
+        | "FacebookInstantGames"
+        | "OpenIdConnect";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LogStatement */
     export interface LogStatement {
@@ -4302,6 +4292,8 @@ declare module PlayFabServerModels {
         CustomIdInfo?: UserCustomIdInfo;
         /** User Facebook information, if a Facebook account has been linked */
         FacebookInfo?: UserFacebookInfo;
+        /** Facebook Instant Games account information, if a Facebook Instant Games account has been linked */
+        FacebookInstantGamesIdInfo?: UserFacebookInstantGamesIdInfo;
         /** User Gamecenter information, if a Gamecenter account has been linked */
         GameCenterInfo?: UserGameCenterInfo;
         /** User Google account information, if a Google account has been linked */
@@ -4310,6 +4302,10 @@ declare module PlayFabServerModels {
         IosDeviceInfo?: UserIosDeviceInfo;
         /** User Kongregate account information, if a Kongregate account has been linked */
         KongregateInfo?: UserKongregateInfo;
+        /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
+        NintendoSwitchDeviceIdInfo?: number;
+        /** OpenID Connect information, if any OpenID Connect accounts have been linked */
+        OpenIdInfo?: UserOpenIdInfo[];
         /** Unique identifier for the user account */
         PlayFabId?: string;
         /** Personal information for the user which is considered more sensitive */
@@ -4324,6 +4320,8 @@ declare module PlayFabServerModels {
         TwitchInfo?: UserTwitchInfo;
         /** User account name in the PlayFab service */
         Username?: string;
+        /** Windows Hello account information, if a Windows Hello account has been linked */
+        WindowsHelloInfo?: UserWindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         XboxInfo?: UserXboxInfo;
 
@@ -4369,6 +4367,13 @@ declare module PlayFabServerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserFacebookInstantGamesIdInfo */
+    export interface UserFacebookInstantGamesIdInfo {
+        /** Facebook Instant Games ID */
+        FacebookInstantGamesId?: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserGameCenterInfo */
     export interface UserGameCenterInfo {
         /** Gamecenter identifier */
@@ -4405,6 +4410,24 @@ declare module PlayFabServerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserNintendoSwitchDeviceIdInfo */
+    export interface UserNintendoSwitchDeviceIdInfo {
+        /** Nintendo Switch Device ID */
+        NintendoSwitchDeviceId?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserOpenIdInfo */
+    export interface UserOpenIdInfo {
+        /** OpenID Connection ID */
+        ConnectionId?: string;
+        /** OpenID Issuer */
+        Issuer?: string;
+        /** OpenID Subject */
+        Subject?: string;
+
+    }
+
     type UserOrigination = "Organic"
         | "Steam"
         | "Google"
@@ -4425,7 +4448,8 @@ declare module PlayFabServerModels {
         | "WindowsHello"
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
-        | "FacebookInstantGamesId";
+        | "FacebookInstantGamesId"
+        | "OpenIdConnect";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserPrivateAccountInfo */
     export interface UserPrivateAccountInfo {
@@ -4489,6 +4513,15 @@ declare module PlayFabServerModels {
         TwitchId?: string;
         /** Twitch Username */
         TwitchUserName?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserWindowsHelloInfo */
+    export interface UserWindowsHelloInfo {
+        /** Windows Hello Device Name */
+        WindowsHelloDeviceName?: string;
+        /** Windows Hello Public Key Hash */
+        WindowsHelloPublicKeyHash?: string;
 
     }
 
