@@ -92,21 +92,12 @@ declare module PlayFabDataModels {
 
     /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.EntityKey */
     export interface EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         Id: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        TypeString?: string;
 
     }
-
-    type EntityTypes = "title"
-        | "master_player_account"
-        | "title_player_account"
-        | "character"
-        | "group"
-        | "service";
 
     /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.FinalizeFileUploadsRequest */
     export interface FinalizeFileUploadsRequest extends PlayFabModule.IPlayFabRequestCommon {

@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.28.180809",
+        sdkVersion: "1.29.180829",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.28.180809"
+            sdk: "JavaScriptSDK-1.29.180829"
         },
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
@@ -60,20 +60,24 @@ if(!PlayFab._internalSettings) {
             var startTime = new Date();
             var requestBody = JSON.stringify(request);
 
-            var completeUrl = url;
+            var urlArr = [url];
             var getParams = PlayFab._internalSettings.requestGetParams;
             if (getParams != null) {
                 var firstParam = true;
                 for (var key in getParams) {
                     if (firstParam) {
-                        completeUrl += "?";
+                        urlArr.push("?");
                         firstParam = false;
                     } else {
-                        completeUrl += "&";
+                        urlArr.push("&");
                     }
-                    completeUrl += key + "=" + getParams[key];
+                    urlArr.push(key);
+                    urlArr.push("=");
+                    urlArr.push(getParams[key]);
                 }
             }
+
+            var completeUrl = urlArr.join("");
 
             var xhr = new XMLHttpRequest();
             // window.console.log("URL: " + completeUrl);
@@ -143,8 +147,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
-PlayFab.sdkVersion = "1.28.180809";
+PlayFab.buildIdentifier = "default_manual_build";
+PlayFab.sdkVersion = "1.29.180829";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -230,6 +234,11 @@ PlayFab.ClientApi = {
     ConsumeItem: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/ConsumeItem", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
+    ConsumeXboxEntitlements: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/ConsumeXboxEntitlements", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
     CreateSharedGroup: function (request, callback, customData, extraHeaders) {
@@ -560,6 +569,11 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkWindowsHello", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
+    LinkXboxAccount: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LinkXboxAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
     LoginWithAndroidDeviceID: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         var overloadCallback = function (result, error) {
@@ -812,6 +826,24 @@ PlayFab.ClientApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithWindowsHello", request, null, null, overloadCallback, customData, extraHeaders);
     },
 
+    LoginWithXbox: function (request, callback, customData, extraHeaders) {
+        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
+        var overloadCallback = function (result, error) {
+            if (result != null) {
+                   if(result.data.SessionTicket != null) {
+                       PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                   }
+                   if (result.data.EntityToken != null) {
+                       PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                   }
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            }
+            if (callback != null && typeof (callback) == "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/LoginWithXbox", request, null, null, overloadCallback, customData, extraHeaders);
+    },
+
     Matchmake: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/Matchmake", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
@@ -995,6 +1027,11 @@ PlayFab.ClientApi = {
     UnlinkWindowsHello: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkWindowsHello", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
+    },
+
+    UnlinkXboxAccount: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.sessionTicket) throw PlayFab._internalSettings.errorLoggedIn;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Client/UnlinkXboxAccount", request, "X-Authorization", PlayFab._internalSettings.sessionTicket, callback, customData, extraHeaders);
     },
 
     UnlockContainerInstance: function (request, callback, customData, extraHeaders) {

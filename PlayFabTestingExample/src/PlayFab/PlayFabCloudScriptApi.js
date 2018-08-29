@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.28.180809",
+        sdkVersion: "1.29.180829",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.28.180809"
+            sdk: "JavaScriptSDK-1.29.180829"
         },
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
@@ -60,20 +60,24 @@ if(!PlayFab._internalSettings) {
             var startTime = new Date();
             var requestBody = JSON.stringify(request);
 
-            var completeUrl = url;
+            var urlArr = [url];
             var getParams = PlayFab._internalSettings.requestGetParams;
             if (getParams != null) {
                 var firstParam = true;
                 for (var key in getParams) {
                     if (firstParam) {
-                        completeUrl += "?";
+                        urlArr.push("?");
                         firstParam = false;
                     } else {
-                        completeUrl += "&";
+                        urlArr.push("&");
                     }
-                    completeUrl += key + "=" + getParams[key];
+                    urlArr.push(key);
+                    urlArr.push("=");
+                    urlArr.push(getParams[key]);
                 }
             }
+
+            var completeUrl = urlArr.join("");
 
             var xhr = new XMLHttpRequest();
             // window.console.log("URL: " + completeUrl);
@@ -143,8 +147,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_1";
-PlayFab.sdkVersion = "1.28.180809";
+PlayFab.buildIdentifier = "default_manual_build";
+PlayFab.sdkVersion = "1.29.180829";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";

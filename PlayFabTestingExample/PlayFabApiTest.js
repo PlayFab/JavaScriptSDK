@@ -11,7 +11,7 @@ var PlayFabApiTests = {
     testData: {
         entityToken: null,
         entityId: null,
-        entityTypeString: null,
+        entityType: null,
         playFabId: null,
         testNumber: null,
     },
@@ -425,7 +425,7 @@ var PlayFabApiTests = {
         var getTokenCallback = function (result, error) {
             PlayFabApiTests.VerifyNullError(result, error, assert, "Testing GetToken result");
             PlayFabApiTests.testData.entityId = result.data.Entity.Id;
-            PlayFabApiTests.testData.entityTypeString = result.data.Entity.TypeString;
+            PlayFabApiTests.testData.entityType = result.data.Entity.Type;
             getTokenDone();
         };
         var getTokenRequest = {};
@@ -441,7 +441,7 @@ var PlayFabApiTests = {
         var getObjectRequest = {
             Entity: {
                 Id: PlayFabApiTests.testData.entityId,
-                TypeString: PlayFabApiTests.testData.entityTypeString,
+                Type: PlayFabApiTests.testData.entityType,
             },
             EscapeObject: true,
         };
@@ -472,7 +472,7 @@ var PlayFabApiTests = {
             var updateDataRequest = {
                 Entity: {
                     Id: PlayFabApiTests.testData.entityId,
-                    TypeString: PlayFabApiTests.testData.entityTypeString,
+                    Type: PlayFabApiTests.testData.entityType,
                 },
                 Objects: [{ ObjectName: PlayFabApiTests.testConstants.TEST_DATA_KEY, DataObject: PlayFabApiTests.testData.testNumber }]
             };
