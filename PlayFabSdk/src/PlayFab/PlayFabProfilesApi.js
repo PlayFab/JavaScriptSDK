@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.29.180829",
+        sdkVersion: "1.30.180906",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.29.180829"
+            sdk: "JavaScriptSDK-1.30.180906"
         },
         sessionTicket: null,
         productionServerUrl: ".playfabapi.com",
@@ -147,8 +147,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "default_manual_build";
-PlayFab.sdkVersion = "1.29.180829";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-slave2016-3_1";
+PlayFab.sdkVersion = "1.30.180906";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";

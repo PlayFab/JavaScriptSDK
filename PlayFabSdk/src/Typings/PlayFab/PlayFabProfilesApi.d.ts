@@ -25,7 +25,8 @@ declare module PlayFabProfilesModule {
          */
         SetGlobalPolicy(request: PlayFabProfilesModels.SetGlobalPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.SetGlobalPolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Updates the entity's language
+         * Updates the entity's language. The precedence hierarchy for communication to the player is Title Player Account
+         * language, Master Player Account language, and then title default language if the first two aren't set or supported.
          * https://api.playfab.com/Documentation/Profiles/method/SetProfileLanguage
          */
         SetProfileLanguage(request: PlayFabProfilesModels.SetProfileLanguageRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.SetProfileLanguageResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
