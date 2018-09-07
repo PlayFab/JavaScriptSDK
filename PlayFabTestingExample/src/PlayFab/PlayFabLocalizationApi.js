@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabEventsApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabLocalizationApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -159,17 +159,17 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.EventsApi = {
+PlayFab.LocalizationApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    WriteEvents: function (request, callback, customData, extraHeaders) {
+    GetLanguageList: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Event/WriteEvents", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Locale/GetLanguageList", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 };
 
-var PlayFabEventsSDK = PlayFab.EventsApi;
+var PlayFabLocalizationSDK = PlayFab.LocalizationApi;
 
