@@ -21,11 +21,12 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.30.180906",
+        sdkVersion: "1.31.180917",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.30.180906"
+            sdk: "JavaScriptSDK-1.31.180917"
         },
         sessionTicket: null,
+        verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
         errorLoggedIn: "Must be logged in to call this method",
@@ -33,7 +34,15 @@ if(!PlayFab._internalSettings) {
         errorSecretKey: "Must have PlayFab.settings.developerSecretKey set to call this method",
 
         GetServerUrl: function () {
-            return "https://" + PlayFab.settings.titleId + PlayFab._internalSettings.productionServerUrl;
+            if (!(PlayFab._internalSettings.productionServerUrl.substring(0, 4) === "http")) {
+                if (PlayFab._internalSettings.verticalName) {
+                    return "https://" + PlayFab._internalSettings.verticalName + PlayFab._internalSettings.productionServerUrl;
+                } else {
+                    return "https://" + PlayFab.settings.titleId + PlayFab._internalSettings.productionServerUrl;
+                }
+            } else {
+                return PlayFab._internalSettings.productionServerUrl;
+            }
         },
 
         InjectHeaders: function (xhr, headersObj) {
@@ -148,7 +157,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-slave2016-3_1";
-PlayFab.sdkVersion = "1.30.180906";
+PlayFab.sdkVersion = "1.31.180917";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -220,11 +229,19 @@ PlayFab.ServerApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/DeleteCharacterFromUser", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
+    DeletePlayer: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/DeletePlayer", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
     DeleteSharedGroup: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/DeleteSharedGroup", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Please use DeletePlayer instead. 
+     */
     DeleteUsers: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Server/DeleteUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);

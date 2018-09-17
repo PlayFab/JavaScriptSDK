@@ -21,11 +21,12 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.30.180906",
+        sdkVersion: "1.31.180917",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.30.180906"
+            sdk: "JavaScriptSDK-1.31.180917"
         },
         sessionTicket: null,
+        verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
         productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
         errorLoggedIn: "Must be logged in to call this method",
@@ -33,7 +34,15 @@ if(!PlayFab._internalSettings) {
         errorSecretKey: "Must have PlayFab.settings.developerSecretKey set to call this method",
 
         GetServerUrl: function () {
-            return "https://" + PlayFab.settings.titleId + PlayFab._internalSettings.productionServerUrl;
+            if (!(PlayFab._internalSettings.productionServerUrl.substring(0, 4) === "http")) {
+                if (PlayFab._internalSettings.verticalName) {
+                    return "https://" + PlayFab._internalSettings.verticalName + PlayFab._internalSettings.productionServerUrl;
+                } else {
+                    return "https://" + PlayFab.settings.titleId + PlayFab._internalSettings.productionServerUrl;
+                }
+            } else {
+                return PlayFab._internalSettings.productionServerUrl;
+            }
         },
 
         InjectHeaders: function (xhr, headersObj) {
@@ -148,7 +157,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-slave2016-3_1";
-PlayFab.sdkVersion = "1.30.180906";
+PlayFab.sdkVersion = "1.31.180917";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -320,6 +329,11 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetMatchmakerGameModes", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
+    GetMatchmakingQueue: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetMatchmakingQueue", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
     GetPlayedTitleList: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayedTitleList", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
@@ -475,6 +489,11 @@ PlayFab.AdminApi = {
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/IncrementPlayerStatisticVersion", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
+    ListMatchmakingQueues: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ListMatchmakingQueues", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
     ListServerBuilds: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ListServerBuilds", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
@@ -498,6 +517,11 @@ PlayFab.AdminApi = {
     RefundPurchase: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RefundPurchase", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
+    RemoveMatchmakingQueue: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RemoveMatchmakingQueue", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     RemovePlayerTag: function (request, callback, customData, extraHeaders) {
@@ -568,6 +592,11 @@ PlayFab.AdminApi = {
     SetCatalogItems: function (request, callback, customData, extraHeaders) {
         if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
         PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetCatalogItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+    },
+
+    SetMatchmakingQueue: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetMatchmakingQueue", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
     },
 
     SetPlayerSecret: function (request, callback, customData, extraHeaders) {

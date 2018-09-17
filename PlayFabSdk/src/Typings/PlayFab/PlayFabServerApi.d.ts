@@ -66,6 +66,11 @@ declare module PlayFabServerModule {
          */
         DeleteCharacterFromUser(request: PlayFabServerModels.DeleteCharacterFromUserRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.DeleteCharacterFromUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Removes a user's player account from a title and deletes all associated data
+         * https://api.playfab.com/Documentation/Server/method/DeletePlayer
+         */
+        DeletePlayer(request: PlayFabServerModels.DeletePlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.DeletePlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
          * sharing data between a very small number of players, please see our guide:
          * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
@@ -73,7 +78,7 @@ declare module PlayFabServerModule {
          */
         DeleteSharedGroup(request: PlayFabServerModels.DeleteSharedGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+         * Deletes custom data, all account linkages, and statistics.
          * https://api.playfab.com/Documentation/Server/method/DeleteUsers
          */
         DeleteUsers(request: PlayFabServerModels.DeleteUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.DeleteUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -1461,6 +1466,18 @@ declare module PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteCharacterFromUserResult */
     export interface DeleteCharacterFromUserResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerRequest */
+    export interface DeletePlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerResult */
+    export interface DeletePlayerResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
