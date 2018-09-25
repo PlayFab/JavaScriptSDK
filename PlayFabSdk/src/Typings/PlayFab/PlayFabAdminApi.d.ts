@@ -1538,6 +1538,8 @@ declare module PlayFabAdminModels {
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteMasterPlayerAccountRequest */
     export interface DeleteMasterPlayerAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Developer created string to identify a user without PlayFab ID */
+        MetaData?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 
