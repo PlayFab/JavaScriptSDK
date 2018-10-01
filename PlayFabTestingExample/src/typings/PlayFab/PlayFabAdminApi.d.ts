@@ -169,11 +169,6 @@ declare module PlayFabAdminModule {
          */
         GetMatchmakerGameModes(request: PlayFabAdminModels.GetMatchmakerGameModesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakerGameModesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Get a matchmaking queue configuration.
-         * https://api.playfab.com/Documentation/Admin/method/GetMatchmakingQueue
-         */
-        GetMatchmakingQueue(request: PlayFabAdminModels.GetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Get the list of titles that the player has played
          * https://api.playfab.com/Documentation/Admin/method/GetPlayedTitleList
          */
@@ -334,11 +329,6 @@ declare module PlayFabAdminModule {
          */
         IncrementPlayerStatisticVersion(request: PlayFabAdminModels.IncrementPlayerStatisticVersionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementPlayerStatisticVersionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * List all matchmaking queue configs.
-         * https://api.playfab.com/Documentation/Admin/method/ListMatchmakingQueues
-         */
-        ListMatchmakingQueues(request: PlayFabAdminModels.ListMatchmakingQueuesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ListMatchmakingQueuesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Retrieves the build details for all game server executables which are currently defined for the title
          * https://api.playfab.com/Documentation/Admin/method/ListServerBuilds
          */
@@ -363,11 +353,6 @@ declare module PlayFabAdminModule {
          * https://api.playfab.com/Documentation/Admin/method/RefundPurchase
          */
         RefundPurchase(request: PlayFabAdminModels.RefundPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RefundPurchaseResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Remove a matchmaking queue config.
-         * https://api.playfab.com/Documentation/Admin/method/RemoveMatchmakingQueue
-         */
-        RemoveMatchmakingQueue(request: PlayFabAdminModels.RemoveMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RemoveMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
          * https://api.playfab.com/Documentation/Admin/method/RemovePlayerTag
@@ -441,11 +426,6 @@ declare module PlayFabAdminModule {
          * https://api.playfab.com/Documentation/Admin/method/SetCatalogItems
          */
         SetCatalogItems(request: PlayFabAdminModels.UpdateCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Create or update a matchmaking queue configuration.
-         * https://api.playfab.com/Documentation/Admin/method/SetMatchmakingQueue
-         */
-        SetMatchmakingQueue(request: PlayFabAdminModels.SetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Sets or resets the player's secret. Player secrets are used to sign API requests.
          * https://api.playfab.com/Documentation/Admin/method/SetPlayerSecret
@@ -757,12 +737,6 @@ declare module PlayFabAdminModels {
         HasSignatureOrEncryption?: string;
 
     }
-
-    type AttributeNotSpecifiedBehavior = "UseDefault"
-        | "MatchAny";
-
-    type AttributeSource = "User"
-        | "PlayerEntity";
 
     type AuthTokenType = "Email"
 
@@ -2324,20 +2298,6 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakingQueueRequest */
-    export interface GetMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The Id of the matchmaking queue to retrieve. */
-        QueueName?: string;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakingQueueResult */
-    export interface GetMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** The matchmaking queue config. */
-        MatchmakingQueue?: MatchmakingQueueConfig;
-
-    }
-
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayedTitleListRequest */
     export interface GetPlayedTitleListRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2917,18 +2877,6 @@ declare module PlayFabAdminModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListMatchmakingQueuesRequest */
-    export interface ListMatchmakingQueuesRequest extends PlayFabModule.IPlayFabRequestCommon {
-
-    }
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListMatchmakingQueuesResult */
-    export interface ListMatchmakingQueuesResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** The list of matchmaking queue configs for this title. */
-        MatchMakingQueues?: MatchmakingQueueConfig[];
-
-    }
-
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListVirtualCurrencyTypesRequest */
     export interface ListVirtualCurrencyTypesRequest extends PlayFabModule.IPlayFabRequestCommon {
 
@@ -3003,42 +2951,6 @@ declare module PlayFabAdminModels {
     export interface LookupUserAccountInfoResult extends PlayFabModule.IPlayFabResultCommon  {
         /** User info for the user matching the request */
         UserInfo?: UserAccountInfo;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.MatchmakingQueueConfig */
-    export interface MatchmakingQueueConfig {
-        /** Maximum number of players in a match. */
-        MaxMatchSize: number;
-        /** Minimum number of players in a match. */
-        MinMatchSize: number;
-        /** Unique identifier for a Queue. Chosen by the developer. */
-        Name: string;
-        /** List of rules used to find an optimal match. */
-        Rules?: MatchmakingQueueRule[];
-
-    }
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.MatchmakingQueueRule */
-    export interface MatchmakingQueueRule {
-        /** Description of the attribute used by this rule to match tickets. */
-        Attribute: QueueRuleAttribute;
-        /**
-         * Describes the behavior when an attribute is not specified in the ticket creation request or in the user's entity
-         * profile.
-         */
-        AttributeNotSpecifiedBehavior?: string;
-        /** Friendly name chosen by developer. */
-        Name: string;
-        /**
-         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
-         * prioritized over those that don't). Leave blank if this rule is always enforced.
-         */
-        SecondsUntilOptional?: number;
-        /** Type of rule being described. */
-        Type: string;
-        /** The relative weight of this rule compared to others. */
-        Weight: number;
 
     }
 
@@ -3402,15 +3314,6 @@ declare module PlayFabAdminModels {
         | "APNS"
         | "APNS_SANDBOX";
 
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.QueueRuleAttribute */
-    export interface QueueRuleAttribute {
-        /** Specifies which attribute in a ticket to use. */
-        Path: string;
-        /** Specifies which source the attribute comes from. */
-        Source: string;
-
-    }
-
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RandomResultTable */
     export interface RandomResultTable {
         /** Child nodes that indicate what kind of drop table item this actually is. */
@@ -3460,18 +3363,6 @@ declare module PlayFabAdminModels {
         | "Japan"
         | "Brazil"
         | "Australia";
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveMatchmakingQueueRequest */
-    export interface RemoveMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The Id of the matchmaking queue to remove. */
-        QueueName?: string;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveMatchmakingQueueResult */
-    export interface RemoveMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemovePlayerTagRequest */
     export interface RemovePlayerTagRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -3669,12 +3560,6 @@ declare module PlayFabAdminModels {
 
     }
 
-    type RuleType = "Unknown"
-        | "DifferenceRule"
-        | "StringEqualityRule"
-        | "MatchTotalRule"
-        | "SetIntersectionRule";
-
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RunTaskRequest */
     export interface RunTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Provide either the task ID or the task name to run a task. */
@@ -3746,18 +3631,6 @@ declare module PlayFabAdminModels {
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailResult */
     export interface SendAccountRecoveryEmailResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetMatchmakingQueueRequest */
-    export interface SetMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The matchmaking queue config. */
-        MatchmakingQueue?: MatchmakingQueueConfig;
-
-    }
-
-    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetMatchmakingQueueResult */
-    export interface SetMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -4010,7 +3883,7 @@ declare module PlayFabAdminModels {
         | "InProgress"
         | "Failed"
         | "Aborted"
-        | "Pending";
+        | "Stalled";
 
     type TitleActivationStatus = "None"
         | "ActivatedTitleKey"
