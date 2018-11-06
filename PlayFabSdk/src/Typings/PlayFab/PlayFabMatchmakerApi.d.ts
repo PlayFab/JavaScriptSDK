@@ -154,8 +154,6 @@ declare module PlayFabMatchmakerModels {
     export interface StartGameResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Unique identifier for the game/lobby in the new Game Server Instance. */
         GameID?: string;
-        /** IPV4 address of the new Game Server Instance. */
-        ServerHostname?: string;
         /** IPV4 address of the server */
         ServerIPV4Address?: string;
         /** IPV6 address of the new Game Server Instance. */

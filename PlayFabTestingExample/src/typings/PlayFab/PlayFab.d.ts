@@ -8,6 +8,7 @@
 /// <reference path="PlayFabEventsApi.d.ts" />
 /// <reference path="PlayFabGroupsApi.d.ts" />
 /// <reference path="PlayFabLocalizationApi.d.ts" />
+/// <reference path="PlayFabMultiplayerApi.d.ts" />
 /// <reference path="PlayFabProfilesApi.d.ts" />
 
 declare module PlayFabModule {
@@ -55,6 +56,7 @@ declare var PlayFab: {
     EventsApi: PlayFabEventsModule.IPlayFabEvents;
     GroupsApi: PlayFabGroupsModule.IPlayFabGroups;
     LocalizationApi: PlayFabLocalizationModule.IPlayFabLocalization;
+    MultiplayerApi: PlayFabMultiplayerModule.IPlayFabMultiplayer;
     ProfilesApi: PlayFabProfilesModule.IPlayFabProfiles;
 
 };
@@ -69,5 +71,6 @@ declare var PlayFabDataSDK: PlayFabDataModule.IPlayFabData;
 declare var PlayFabEventsSDK: PlayFabEventsModule.IPlayFabEvents;
 declare var PlayFabGroupsSDK: PlayFabGroupsModule.IPlayFabGroups;
 declare var PlayFabLocalizationSDK: PlayFabLocalizationModule.IPlayFabLocalization;
+declare var PlayFabMultiplayerSDK: PlayFabMultiplayerModule.IPlayFabMultiplayer;
 declare var PlayFabProfilesSDK: PlayFabProfilesModule.IPlayFabProfiles;
 
