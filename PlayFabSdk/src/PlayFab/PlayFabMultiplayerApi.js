@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabGroupsApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabMultiplayerApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -168,137 +168,146 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.GroupsApi = {
+PlayFab.MultiplayerApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    AcceptGroupApplication: function (request, callback, customData, extraHeaders) {
+    CreateBuildWithCustomContainer: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/AcceptGroupApplication", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/CreateBuildWithCustomContainer", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    AcceptGroupInvitation: function (request, callback, customData, extraHeaders) {
+    CreateBuildWithManagedContainer: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/AcceptGroupInvitation", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/CreateBuildWithManagedContainer", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    AddMembers: function (request, callback, customData, extraHeaders) {
+    CreateRemoteUser: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/AddMembers", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/CreateRemoteUser", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ApplyToGroup: function (request, callback, customData, extraHeaders) {
+    DeleteAsset: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ApplyToGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/DeleteAsset", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    BlockEntity: function (request, callback, customData, extraHeaders) {
+    DeleteBuild: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/BlockEntity", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/DeleteBuild", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ChangeMemberRole: function (request, callback, customData, extraHeaders) {
+    DeleteCertificate: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ChangeMemberRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/DeleteCertificate", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    CreateGroup: function (request, callback, customData, extraHeaders) {
+    DeleteRemoteUser: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/CreateGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/DeleteRemoteUser", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    CreateRole: function (request, callback, customData, extraHeaders) {
+    EnableMultiplayerServersForTitle: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/CreateRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/EnableMultiplayerServersForTitle", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    DeleteGroup: function (request, callback, customData, extraHeaders) {
+    GetAssetUploadUrl: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/DeleteGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/GetAssetUploadUrl", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    DeleteRole: function (request, callback, customData, extraHeaders) {
+    GetBuild: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/DeleteRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/GetBuild", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    GetGroup: function (request, callback, customData, extraHeaders) {
+    GetContainerRegistryCredentials: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/GetGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/GetContainerRegistryCredentials", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    InviteToGroup: function (request, callback, customData, extraHeaders) {
+    GetMultiplayerServerDetails: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/InviteToGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/GetMultiplayerServerDetails", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    IsMember: function (request, callback, customData, extraHeaders) {
+    GetRemoteLoginEndpoint: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/IsMember", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/GetRemoteLoginEndpoint", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ListGroupApplications: function (request, callback, customData, extraHeaders) {
+    GetTitleEnabledForMultiplayerServersStatus: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListGroupApplications", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/GetTitleEnabledForMultiplayerServersStatus", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ListGroupBlocks: function (request, callback, customData, extraHeaders) {
+    ListAssetSummaries: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListGroupBlocks", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ListAssetSummaries", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ListGroupInvitations: function (request, callback, customData, extraHeaders) {
+    ListBuildSummaries: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListGroupInvitations", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ListBuildSummaries", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ListGroupMembers: function (request, callback, customData, extraHeaders) {
+    ListCertificateSummaries: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListGroupMembers", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ListCertificateSummaries", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ListMembership: function (request, callback, customData, extraHeaders) {
+    ListContainerImages: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListMembership", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ListContainerImages", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    ListMembershipOpportunities: function (request, callback, customData, extraHeaders) {
+    ListContainerImageTags: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListMembershipOpportunities", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ListContainerImageTags", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    RemoveGroupApplication: function (request, callback, customData, extraHeaders) {
+    ListMultiplayerServers: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/RemoveGroupApplication", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ListMultiplayerServers", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    RemoveGroupInvitation: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/RemoveGroupInvitation", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+    ListQosServers: function (request, callback, customData, extraHeaders) {
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ListQosServers", request, null, null, callback, customData, extraHeaders);
     },
 
-    RemoveMembers: function (request, callback, customData, extraHeaders) {
+    ListVirtualMachineSummaries: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/RemoveMembers", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ListVirtualMachineSummaries", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    UnblockEntity: function (request, callback, customData, extraHeaders) {
+    RequestMultiplayerServer: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/UnblockEntity", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/RequestMultiplayerServer", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    UpdateGroup: function (request, callback, customData, extraHeaders) {
+    RolloverContainerRegistryCredentials: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/UpdateGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/RolloverContainerRegistryCredentials", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 
-    UpdateRole: function (request, callback, customData, extraHeaders) {
+    ShutdownMultiplayerServer: function (request, callback, customData, extraHeaders) {
         if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/UpdateRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/ShutdownMultiplayerServer", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+    },
+
+    UpdateBuildRegions: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/UpdateBuildRegions", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+    },
+
+    UploadCertificate: function (request, callback, customData, extraHeaders) {
+        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
+        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/MultiplayerServer/UploadCertificate", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
     },
 };
 
-var PlayFabGroupsSDK = PlayFab.GroupsApi;
+var PlayFabMultiplayerSDK = PlayFab.MultiplayerApi;
 

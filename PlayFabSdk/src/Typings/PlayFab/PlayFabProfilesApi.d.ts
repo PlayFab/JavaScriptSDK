@@ -63,6 +63,23 @@ declare module PlayFabProfilesModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityLineage */
+    export interface EntityLineage {
+        /** The Character Id of the associated entity. */
+        CharacterId?: string;
+        /** The Group Id of the associated entity. */
+        GroupId?: string;
+        /** The Master Player Account Id of the associated entity. */
+        MasterPlayerAccountId?: string;
+        /** The Namespace Id of the associated entity. */
+        NamespaceId?: string;
+        /** The Title Id of the associated entity. */
+        TitleId?: string;
+        /** The Title Player Account Id of the associated entity. */
+        TitlePlayerAccountId?: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityPermissionStatement */
     export interface EntityPermissionStatement {
         /** The action this statement effects. May be 'Read', 'Write' or '*' for both read and write. */
@@ -84,19 +101,19 @@ declare module PlayFabProfilesModels {
     export interface EntityProfileBody {
         /** The entity id and type. */
         Entity?: EntityKey;
-        /**
-         * The chain of responsibility for this entity. This is a representation of 'ownership'. It is constructed using the
-         * following formats (replace '[ID]' with the unique identifier for the given entity): Namespace: 'namespace![Namespace
-         * ID]' Title: 'title![Namespace ID]/[Title ID]' Master Player Account: 'master_player_account![Namespace
-         * ID]/[MasterPlayerAccount ID]' Title Player Account: 'title_player_account![Namespace ID]/[Title ID]/[MasterPlayerAccount
-         * ID]/[TitlePlayerAccount ID]' Character: 'character![Namespace ID]/[Title ID]/[MasterPlayerAccount
-         * ID]/[TitlePlayerAccount ID]/[Character ID]'
-         */
+        /** The chain of responsibility for this entity. Use Lineage. */
         EntityChain?: string;
         /** The files on this profile. */
         Files?: { [key: string]: EntityProfileFileMetadata };
+        /**
+         * The friendly name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
+         * player account it could represent the display name of the player, whereas on a character it could be character's name.
+         */
+        FriendlyName?: string;
         /** The language on this profile. */
         Language?: string;
+        /** The lineage of this profile. */
+        Lineage?: EntityLineage;
         /** The objects on this profile. */
         Objects?: { [key: string]: EntityDataObject };
         /**
@@ -133,7 +150,7 @@ declare module PlayFabProfilesModels {
          */
         DataAsObject?: boolean;
         /** The entity to perform this action on. */
-        Entity: EntityKey;
+        Entity?: EntityKey;
 
     }
 

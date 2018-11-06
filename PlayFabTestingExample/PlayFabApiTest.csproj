@@ -34,6 +34,7 @@
     <Content Include="src\PlayFab\PlayFabEventsApi.js" />
     <Content Include="src\PlayFab\PlayFabGroupsApi.js" />
     <Content Include="src\PlayFab\PlayFabLocalizationApi.js" />
+    <Content Include="src\PlayFab\PlayFabMultiplayerApi.js" />
     <Content Include="src\PlayFab\PlayFabProfilesApi.js" />
     <Content Include="web.config" />
   </ItemGroup>
@@ -50,6 +51,7 @@
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabEventsApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabGroupsApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabLocalizationApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabMultiplayerApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabProfilesApi.d.ts" />
   </ItemGroup>
   <ItemGroup>
