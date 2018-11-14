@@ -2075,10 +2075,11 @@ declare module PlayFabServerModels {
         | "InvalidFacebookInstantGamesSignature"
         | "FacebookInstantGamesAuthNotConfiguredForTitle"
         | "EntityProfileConstraintValidationFailed"
-        | "PlayInsightsIngestionKeyPending"
-        | "PlayInsightsIngestionKeyNotFound"
+        | "TelemetryIngestionKeyPending"
+        | "TelemetryIngestionKeyNotFound"
         | "StatisticTagRequired"
         | "StatisticTagInvalid"
+        | "DataIntegrityError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingCreateRequestMissing"
@@ -2115,7 +2116,8 @@ declare module PlayFabServerModels {
         | "NintendoSwitchDeviceIdNotLinked"
         | "MatchmakingNotEnabled"
         | "MatchmakingGetStatisticsIdentityInvalid"
-        | "MatchmakingStatisticsIdMissing";
+        | "MatchmakingStatisticsIdMissing"
+        | "CannotEnableMultiplayerServersForTitle";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest */
     export interface GetAllSegmentsRequest extends PlayFabModule.IPlayFabRequestCommon {
