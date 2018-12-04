@@ -1,6 +1,6 @@
 {
   "name": "playfab-web-sdk",
-  "version": "1.35.181114",
+  "version": "1.36.181204",
   "description": "Playfab SDK for JS client applications",
   "license": "Apache-2.0",
   "repository": {
