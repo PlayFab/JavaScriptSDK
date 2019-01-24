@@ -2097,6 +2097,7 @@ declare module PlayFabServerModels {
         | "PushNotificationTemplateMissingDefaultVersion"
         | "PushNotificationTemplateInvalidSyntax"
         | "PushNotificationTemplateNoCustomPayloadForV1"
+        | "NoLeaderboardForStatistic"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingCreateRequestMissing"
@@ -3180,8 +3181,6 @@ declare module PlayFabServerModels {
         CreateAccount?: boolean;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
-        LoginTitlePlayerAccountEntity?: boolean;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
         /** The backend server identifier for this player. */
@@ -3195,8 +3194,6 @@ declare module PlayFabServerModels {
         CreateAccount?: boolean;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
-        LoginTitlePlayerAccountEntity?: boolean;
         /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
         XboxToken: string;
 

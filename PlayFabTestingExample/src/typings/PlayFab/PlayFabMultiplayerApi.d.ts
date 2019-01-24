@@ -161,7 +161,7 @@ declare module PlayFabMultiplayerModels {
 
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.AssetReferenceParams */
     export interface AssetReferenceParams {
-        /** The asset's file name. This must be a filename with the .zip, .tar, or .tar.gz extension. */
+        /** The asset's file name. */
         FileName: string;
         /** The asset's mount path. */
         MountPath: string;
@@ -191,7 +191,9 @@ declare module PlayFabMultiplayerModels {
         | "SouthCentralUs"
         | "SoutheastAsia"
         | "WestEurope"
-        | "WestUs";
+        | "WestUs"
+        | "ChinaEast2"
+        | "ChinaNorth2";
 
     type AzureVmSize = "Standard_D1_v2"
         | "Standard_D2_v2"
@@ -218,6 +220,8 @@ declare module PlayFabMultiplayerModels {
 
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.BuildRegion */
     export interface BuildRegion {
+        /** The current multiplayer server stats for the region. */
+        CurrentServerStats?: CurrentServerStats;
         /** The maximum number of multiplayer servers for the region. */
         MaxServers: number;
         /** The build region. */
@@ -445,9 +449,22 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CurrentServerStats */
+    export interface CurrentServerStats {
+        /** The number of active multiplayer servers. */
+        Active: number;
+        /** The number of multiplayer servers still downloading game resources (such as assets). */
+        Propping: number;
+        /** The number of standingby multiplayer servers. */
+        StandingBy: number;
+        /** The total number of multiplayer servers. */
+        Total: number;
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.DeleteAssetRequest */
     export interface DeleteAssetRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The filename of the asset to delete. This must be a filename with the .zip, .tar, or .tar.gz extension. */
+        /** The filename of the asset to delete. */
         FileName: string;
 
     }
@@ -530,7 +547,7 @@ declare module PlayFabMultiplayerModels {
 
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetAssetUploadUrlRequest */
     export interface GetAssetUploadUrlRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The asset's file name to get the upload URL for. This must be a filename with the .zip, .tar, or .tar.gz extension. */
+        /** The asset's file name to get the upload URL for. */
         FileName: string;
 
     }
@@ -539,10 +556,7 @@ declare module PlayFabMultiplayerModels {
     export interface GetAssetUploadUrlResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The asset's upload URL. */
         AssetUploadUrl?: string;
-        /**
-         * The asset's file name to get the upload URL for. This must be a filename will be a file with the .zip, .tar, or .tar.gz
-         * extension.
-         */
+        /** The asset's file name to get the upload URL for. */
         FileName?: string;
 
     }
