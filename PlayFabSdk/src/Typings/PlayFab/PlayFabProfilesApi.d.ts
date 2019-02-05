@@ -99,17 +99,17 @@ declare module PlayFabProfilesModels {
 
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityProfileBody */
     export interface EntityProfileBody {
+        /**
+         * The display name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
+         * player account it could represent the display name of the player, whereas on a character it could be character's name.
+         */
+        DisplayName?: string;
         /** The entity id and type. */
         Entity?: EntityKey;
         /** The chain of responsibility for this entity. Use Lineage. */
         EntityChain?: string;
         /** The files on this profile. */
         Files?: { [key: string]: EntityProfileFileMetadata };
-        /**
-         * The friendly name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
-         * player account it could represent the display name of the player, whereas on a character it could be character's name.
-         */
-        FriendlyName?: string;
         /** The language on this profile. */
         Language?: string;
         /** The lineage of this profile. */

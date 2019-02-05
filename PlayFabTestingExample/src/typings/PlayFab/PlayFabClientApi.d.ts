@@ -1909,7 +1909,7 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.FriendInfo */
     export interface FriendInfo {
-        /** Unique lobby identifier of the Game Server Instance to which this player is currently connected. */
+        /** This field is not populated. */
         CurrentMatchmakerLobbyId?: string;
         /** Available Facebook information (if the user and PlayFab friend are also connected in Facebook). */
         FacebookInfo?: UserFacebookInfo;
@@ -4559,7 +4559,7 @@ declare module PlayFabClientModels {
         Body?: string;
         /** Unique identifier of news item. */
         NewsId?: string;
-        /** Date and time when the news items was posted. */
+        /** Date and time when the news item was posted. */
         Timestamp: string;
         /** Title of the news item. */
         Title?: string;
