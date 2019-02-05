@@ -10,6 +10,11 @@ declare module PlayFabAdminModule {
          */
         AbortTaskInstance(request: PlayFabAdminModels.AbortTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Update news item to include localized version
+         * https://api.playfab.com/Documentation/Admin/method/AddLocalizedNews
+         */
+        AddLocalizedNews(request: PlayFabAdminModels.AddLocalizedNewsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.AddLocalizedNewsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Adds a new news item to the title's news feed
          * https://api.playfab.com/Documentation/Admin/method/AddNews
          */
@@ -622,13 +627,31 @@ declare module PlayFabAdminModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddLocalizedNewsRequest */
+    export interface AddLocalizedNewsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Localized body text of the news. */
+        Body: string;
+        /** Language of the news item. */
+        Language: string;
+        /** Unique id of the updated news item. */
+        NewsId: string;
+        /** Localized title (headline) of the news item. */
+        Title: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddLocalizedNewsResult */
+    export interface AddLocalizedNewsResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddNewsRequest */
     export interface AddNewsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Body text of the news */
+        /** Default body text of the news. */
         Body: string;
         /** Time this news was published. If not set, defaults to now. */
         Timestamp?: string;
-        /** Title (headline) of the news item */
+        /** Default title (headline) of the news item. */
         Title: string;
 
     }
@@ -2094,6 +2117,12 @@ declare module PlayFabAdminModels {
         | "PushNotificationTemplateInvalidSyntax"
         | "PushNotificationTemplateNoCustomPayloadForV1"
         | "NoLeaderboardForStatistic"
+        | "TitleNewsMissingDefaultLanguage"
+        | "TitleNewsNotFound"
+        | "TitleNewsDuplicateLanguage"
+        | "TitleNewsMissingTitleOrBody"
+        | "TitleNewsInvalidLanguage"
+        | "EmailRecipientBlacklisted"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingCreateRequestMissing"
@@ -2131,7 +2160,10 @@ declare module PlayFabAdminModels {
         | "MatchmakingNotEnabled"
         | "MatchmakingGetStatisticsIdentityInvalid"
         | "MatchmakingStatisticsIdMissing"
-        | "CannotEnableMultiplayerServersForTitle";
+        | "CannotEnableMultiplayerServersForTitle"
+        | "TitleConfigNotFound"
+        | "TitleConfigUpdateConflict"
+        | "TitleConfigSerializationError";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
