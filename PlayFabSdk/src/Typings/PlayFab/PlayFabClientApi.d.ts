@@ -3137,6 +3137,17 @@ declare module PlayFabClientModels {
         ForceLink?: boolean;
         /** Game Center identifier for the player account to be linked. */
         GameCenterId: string;
+        /** The URL for the public encryption key that will be used to verify the signature. */
+        PublicKeyUrl?: string;
+        /** A random value used to compute the hash and keep it randomized. */
+        Salt?: string;
+        /** The verification signature of the authentication payload. */
+        Signature?: string;
+        /**
+         * The integer representation of date and time that the signature was created on. PlayFab will reject authentication
+         * signatures not within 10 minutes of the server's current time.
+         */
+        Timestamp?: string;
 
     }
 
@@ -3488,6 +3499,17 @@ declare module PlayFabClientModels {
         PlayerId?: string;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
+        /** The URL for the public encryption key that will be used to verify the signature. */
+        PublicKeyUrl?: string;
+        /** A random value used to compute the hash and keep it randomized. */
+        Salt?: string;
+        /** The verification signature of the authentication payload. */
+        Signature?: string;
+        /**
+         * The integer representation of date and time that the signature was created on. PlayFab will reject authentication
+         * signatures not within 10 minutes of the server's current time.
+         */
+        Timestamp?: string;
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
          * title has been selected.
