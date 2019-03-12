@@ -70,6 +70,8 @@ var PlayFabApiTests = {
             setTimeout(function () { PlayFabApiTests.PostEntityTokenTests(count + 1); }, PlayFabApiTests.testRetryDelay);
         }
         else {
+            // Continue with other tests that require login
+            // QUnit.test("EntityObjects", PlayFabApiTests.EntityObjects); // TODO: Release Entity API
         }
     },
     SetUp: function (inputTitleData) {
@@ -97,10 +99,10 @@ var PlayFabApiTests = {
             }
         };
     },
-    SimpleCallbackWrapper: function (callbackName, callback, assert) {
+    SimpleCallbackWrapper: function (callbackName, callback, assert, kwargs = null) {
         return function () {
             try {
-                callback();
+                callback(kwargs);
             }
             catch (e) {
                 console.log("Exception thrown during " + callbackName + " callback: " + e.toString() + "\n" + e.stack); // Very irritatingly, qunit doesn't report failure results until all async callbacks return, which doesn't always happen when there's an exception
@@ -175,7 +177,9 @@ var PlayFabApiTests = {
                 PlayFabApiTests.testData.playFabId = result.data.PlayFabId; // Save the PlayFabId, it will be used in other tests
             loginDone();
         };
-        PlayFabClientSDK.LoginWithCustomID(loginRequest, PlayFabApiTests.CallbackWrapper("loginCallback", loginCallback, assert));
+        var loginPromise = Promise.resolve(PlayFabClientSDK.LoginWithCustomID(loginRequest, PlayFabApiTests.CallbackWrapper("loginCallback", loginCallback, assert)));
+        // By definition, a promise object should have a .then function, and Promise.resolve(promise) should equal promise
+        assert.ok(typeof loginPromise.then === "function" && Promise.resolve(loginPromise) === loginPromise, "Testing whether the login request returned a promise object");
     },
     /* CLIENT API
      * Test that the login call sequence sends the AdvertisingId when set
@@ -203,7 +207,7 @@ var PlayFabApiTests = {
             CustomId: PlayFab.buildIdentifier,
             CreateAccount: true
         };
-        PlayFabClientSDK.LoginWithCustomID(loginRequest, PlayFabApiTests.CallbackWrapper("advertLoginCallback", advertLoginCallback, assert));
+        Promise.resolve(PlayFabClientSDK.LoginWithCustomID(loginRequest, PlayFabApiTests.CallbackWrapper("advertLoginCallback", advertLoginCallback, assert)));
     },
     /* CLIENT API
      * Test a sequence of calls that modifies saved data,

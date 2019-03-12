@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.41.190304",
+        sdkVersion: "1.42.190312",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.41.190304"
+            sdk: "JavaScriptSDK-1.42.190312"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -60,104 +60,179 @@ if(!PlayFab._internalSettings) {
         },
 
         ExecuteRequest: function (url, request, authkey, authValue, callback, customData, extraHeaders) {
-            if (callback != null && typeof (callback) != "function")
-                throw "Callback must be null of a function";
+            var resultPromise = new Promise(function (resolve, reject) {
+                if (callback != null && typeof (callback) !== "function")
+                    throw "Callback must be null of a function";
 
-            if (request == null)
-                request = {};
+                if (request == null)
+                    request = {};
 
-            var startTime = new Date();
-            var requestBody = JSON.stringify(request);
+                var startTime = new Date();
+                var requestBody = JSON.stringify(request);
 
-            var urlArr = [url];
-            var getParams = PlayFab._internalSettings.requestGetParams;
-            if (getParams != null) {
-                var firstParam = true;
-                for (var key in getParams) {
-                    if (firstParam) {
-                        urlArr.push("?");
-                        firstParam = false;
-                    } else {
-                        urlArr.push("&");
+                var urlArr = [url];
+                var getParams = PlayFab._internalSettings.requestGetParams;
+                if (getParams != null) {
+                    var firstParam = true;
+                    for (var key in getParams) {
+                        if (firstParam) {
+                            urlArr.push("?");
+                            firstParam = false;
+                        } else {
+                            urlArr.push("&");
+                        }
+                        urlArr.push(key);
+                        urlArr.push("=");
+                        urlArr.push(getParams[key]);
                     }
-                    urlArr.push(key);
-                    urlArr.push("=");
-                    urlArr.push(getParams[key]);
-                }
-            }
-
-            var completeUrl = urlArr.join("");
-
-            var xhr = new XMLHttpRequest();
-            // window.console.log("URL: " + completeUrl);
-            xhr.open("POST", completeUrl, true);
-
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("X-PlayFabSDK", "JavaScriptSDK-" + PlayFab._internalSettings.sdkVersion);
-            if (authkey != null)
-                xhr.setRequestHeader(authkey, authValue);
-            PlayFab._internalSettings.InjectHeaders(xhr, PlayFab.settings.GlobalHeaderInjection);
-            PlayFab._internalSettings.InjectHeaders(xhr, extraHeaders);
-
-            xhr.onloadend = function () {
-                if (callback == null)
-                    return;
-
-                var result;
-                try {
-                    // window.console.log("parsing json result: " + xhr.responseText);
-                    result = JSON.parse(xhr.responseText);
-                } catch (e) {
-                    result = {
-                        code: 503, // Service Unavailable
-                        status: "Service Unavailable",
-                        error: "Connection error",
-                        errorCode: 2, // PlayFabErrorCode.ConnectionError
-                        errorMessage: xhr.responseText
-                    };
                 }
 
-                result.CallBackTimeMS = new Date() - startTime;
-                result.Request = request;
-                result.CustomData = customData;
+                var completeUrl = urlArr.join("");
 
-                if (result.code === 200)
-                    callback(result, null);
-                else
+                var xhr = new XMLHttpRequest();
+                // window.console.log("URL: " + completeUrl);
+                xhr.open("POST", completeUrl, true);
+
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.setRequestHeader("X-PlayFabSDK", "JavaScriptSDK-" + PlayFab._internalSettings.sdkVersion);
+                if (authkey != null)
+                    xhr.setRequestHeader(authkey, authValue);
+                PlayFab._internalSettings.InjectHeaders(xhr, PlayFab.settings.GlobalHeaderInjection);
+                PlayFab._internalSettings.InjectHeaders(xhr, extraHeaders);
+
+                xhr.onloadend = function () {
+                    if (callback == null)
+                        return;
+
+                    var result = PlayFab._internalSettings.GetPlayFabResponse(request, xhr, startTime, customData);
+                    if (result.code === 200) {
+                        callback(result, null);
+                    } else {
+                        callback(null, result);
+                    }
+                }
+
+                xhr.onerror = function () {
+                    if (callback == null)
+                        return;
+
+                    var result = PlayFab._internalSettings.GetPlayFabResponse(request, xhr, startTime, customData);
                     callback(null, result);
-            }
-
-            xhr.onerror = function () {
-                if (callback == null)
-                    return;
-
-                var result;
-                try {
-                    result = JSON.parse(xhr.responseText);
-                } catch (e) {
-                    result = {
-                        code: 503, // Service Unavailable
-                        status: "Service Unavailable",
-                        error: "Connection error",
-                        errorCode: 2, // PlayFabErrorCode.ConnectionError
-                        errorMessage: xhr.responseText
-                    };
                 }
 
-                result.CallBackTimeMS = new Date() - startTime;
-                result.Request = request;
-                result.CustomData = customData;
+                xhr.send(requestBody);
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === 4) {
+                        var xhrResult = PlayFab._internalSettings.GetPlayFabResponse(request, this, startTime, customData);
+                        if (this.status === 200) {
+                            resolve(xhrResult);
+                        } else {
+                            reject(xhrResult);
+                        }
+                    }
+                };
+            });
+            // Return a Promise so that calls to various API methods can be handled asynchronously
+            return resultPromise;
+        },
 
-                callback(null, result);
+        GetPlayFabResponse: function(request, xhr, startTime, customData) {
+            var result = null;
+            try {
+                // window.console.log("parsing json result: " + xhr.responseText);
+                result = JSON.parse(xhr.responseText);
+            } catch (e) {
+                result = {
+                    code: 503, // Service Unavailable
+                    status: "Service Unavailable",
+                    error: "Connection error",
+                    errorCode: 2, // PlayFabErrorCode.ConnectionError
+                    errorMessage: xhr.responseText
+                };
             }
 
-            xhr.send(requestBody);
+            result.CallBackTimeMS = new Date() - startTime;
+            result.Request = request;
+            result.CustomData = customData;
+            return result;
+        },
+
+        authenticationContext: {
+            PlayFabId: null,
+            EntityId: null,
+            EntityType: null,
+            SessionTicket: null,
+            EntityToken: null
+        },
+
+        UpdateAuthenticationContext: function (authenticationContext, result) {
+            var authenticationContextUpdates = {};
+            if(result.data.PlayFabId !== null) {
+                PlayFab._internalSettings.authenticationContext.PlayFabId = result.data.PlayFabId;
+                authenticationContextUpdates.PlayFabId = result.data.PlayFabId;
+            }
+            if(result.data.SessionTicket !== null) {
+                PlayFab._internalSettings.authenticationContext.SessionTicket = result.data.SessionTicket;
+                authenticationContextUpdates.SessionTicket = result.data.SessionTicket;
+            }
+            if (result.data.EntityToken !== null) {
+                PlayFab._internalSettings.authenticationContext.EntityId = result.data.EntityToken.Entity.Id;
+                authenticationContextUpdates.EntityId = result.data.EntityToken.Entity.Id;
+                PlayFab._internalSettings.authenticationContext.EntityType = result.data.EntityToken.Entity.Type;
+                authenticationContextUpdates.EntityType = result.data.EntityToken.Entity.Type;
+                PlayFab._internalSettings.authenticationContext.EntityToken = result.data.EntityToken.EntityToken;
+                authenticationContextUpdates.EntityToken = result.data.EntityToken.EntityToken;
+            }
+            // Update the authenticationContext with values from the result
+            authenticationContext = Object.assign(authenticationContext, authenticationContextUpdates);
+            return authenticationContext;
+        },
+
+        AuthInfoMap: {
+            "X-EntityToken": {
+                authAttr: "entityToken",
+                authError: "errorEntityToken"
+            },
+            "X-Authorization": {
+                authAttr: "sessionTicket",
+                authError: "errorLoggedIn"
+            },
+            "X-SecretKey": {
+                authAttr: "developerSecretKey",
+                authError: "errorSecretKey"
+            }
+        },
+
+        GetAuthInfo: function (request, authKey) {
+            // Use the most-recently saved authKey, unless one was provided in the request via the AuthenticationContext
+            var authError = PlayFab._internalSettings.AuthInfoMap[authKey].authError;
+            var authAttr = PlayFab._internalSettings.AuthInfoMap[authKey].authAttr;
+            var defaultAuthValue = null;
+            if (authAttr === "entityToken")
+                defaultAuthValue = PlayFab._internalSettings.entityToken;
+            else if (authAttr === "sessionTicket")
+                defaultAuthValue = PlayFab._internalSettings.sessionTicket;
+            else if (authAttr === "developerSecretKey")
+                defaultAuthValue = PlayFab.settings.developerSecretKey;
+            var authValue = request.AuthenticationContext ? request.AuthenticationContext[authAttr] : defaultAuthValue;
+            return {"authKey": authKey, "authValue": authValue, "authError": authError};
+        },
+
+        ExecuteRequestWrapper: function (apiURL, request, authKey, callback, customData, extraHeaders) {
+            var authValue = null;
+            if (authKey !== null){
+                var authInfo = PlayFab._internalSettings.GetAuthInfo(request, authKey=authKey);
+                var authKey = authInfo.authKey, authValue = authInfo.authValue, authError = authInfo.authError;
+
+                if (!authValue) throw authError;
+            }
+            return PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + apiURL, request, authKey, authValue, callback, customData, extraHeaders);
         }
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
-PlayFab.sdkVersion = "1.41.190304";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-1_0";
+PlayFab.sdkVersion = "1.42.190312";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -175,553 +250,443 @@ PlayFab.AdminApi = {
     },
 
     AbortTaskInstance: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AbortTaskInstance", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AbortTaskInstance", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     AddLocalizedNews: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddLocalizedNews", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AddLocalizedNews", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     AddNews: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddNews", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AddNews", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     AddPlayerTag: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddPlayerTag", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AddPlayerTag", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     AddServerBuild: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddServerBuild", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AddServerBuild", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     AddUserVirtualCurrency: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddUserVirtualCurrency", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AddUserVirtualCurrency", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     AddVirtualCurrencyTypes: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/AddVirtualCurrencyTypes", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AddVirtualCurrencyTypes", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     BanUsers: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/BanUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/BanUsers", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     CheckLimitedEditionItemAvailability: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CheckLimitedEditionItemAvailability", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CheckLimitedEditionItemAvailability", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     CreateActionsOnPlayersInSegmentTask: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CreateActionsOnPlayersInSegmentTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreateActionsOnPlayersInSegmentTask", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     CreateCloudScriptTask: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CreateCloudScriptTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreateCloudScriptTask", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     CreateOpenIdConnection: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CreateOpenIdConnection", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreateOpenIdConnection", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     CreatePlayerSharedSecret: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CreatePlayerSharedSecret", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreatePlayerSharedSecret", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     CreatePlayerStatisticDefinition: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/CreatePlayerStatisticDefinition", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreatePlayerStatisticDefinition", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteContent: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteContent", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteContent", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteMasterPlayerAccount: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteMasterPlayerAccount", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteMasterPlayerAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteOpenIdConnection: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteOpenIdConnection", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteOpenIdConnection", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeletePlayer: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeletePlayer", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeletePlayer", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeletePlayerSharedSecret: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeletePlayerSharedSecret", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeletePlayerSharedSecret", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteStore: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteStore", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteStore", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteTask: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteTask", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteTitle: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/DeleteTitle", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteTitle", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ExportMasterPlayerData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ExportMasterPlayerData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ExportMasterPlayerData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetActionsOnPlayersInSegmentTaskInstance: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetActionsOnPlayersInSegmentTaskInstance", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetActionsOnPlayersInSegmentTaskInstance", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetAllSegments: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetAllSegments", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetAllSegments", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetCatalogItems: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetCatalogItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetCatalogItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetCloudScriptRevision: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetCloudScriptRevision", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetCloudScriptRevision", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetCloudScriptTaskInstance: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetCloudScriptTaskInstance", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetCloudScriptTaskInstance", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetCloudScriptVersions: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetCloudScriptVersions", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetCloudScriptVersions", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetContentList: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetContentList", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetContentList", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetContentUploadUrl: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetContentUploadUrl", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetContentUploadUrl", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetDataReport: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetDataReport", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetDataReport", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetMatchmakerGameInfo: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetMatchmakerGameInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetMatchmakerGameInfo", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetMatchmakerGameModes: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetMatchmakerGameModes", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetMatchmakerGameModes", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayedTitleList: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayedTitleList", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayedTitleList", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerIdFromAuthToken: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerIdFromAuthToken", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerIdFromAuthToken", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerProfile: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerProfile", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerProfile", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerSegments: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerSegments", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerSegments", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerSharedSecrets: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerSharedSecrets", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerSharedSecrets", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayersInSegment: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayersInSegment", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayersInSegment", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerStatisticDefinitions: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerStatisticDefinitions", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerStatisticDefinitions", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerStatisticVersions: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerStatisticVersions", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerStatisticVersions", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerTags: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPlayerTags", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerTags", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPolicy: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPolicy", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPolicy", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPublisherData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetPublisherData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPublisherData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetRandomResultTables: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetRandomResultTables", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetRandomResultTables", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetServerBuildInfo: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetServerBuildInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetServerBuildInfo", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetServerBuildUploadUrl: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetServerBuildUploadUrl", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetServerBuildUploadUrl", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetStoreItems: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetStoreItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetStoreItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetTaskInstances: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetTaskInstances", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetTaskInstances", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetTasks: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetTasks", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetTasks", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetTitleData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetTitleData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetTitleData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetTitleInternalData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetTitleInternalData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetTitleInternalData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserAccountInfo: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserAccountInfo", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserAccountInfo", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserBans: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserBans", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserBans", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserInternalData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserInternalData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserInternalData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserInventory: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserInventory", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserInventory", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserPublisherData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserPublisherData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserPublisherData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserPublisherInternalData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserPublisherInternalData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserPublisherInternalData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserPublisherReadOnlyData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserPublisherReadOnlyData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserPublisherReadOnlyData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetUserReadOnlyData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GetUserReadOnlyData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetUserReadOnlyData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GrantItemsToUsers: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/GrantItemsToUsers", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GrantItemsToUsers", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     IncrementLimitedEditionItemAvailability: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/IncrementLimitedEditionItemAvailability", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/IncrementLimitedEditionItemAvailability", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     IncrementPlayerStatisticVersion: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/IncrementPlayerStatisticVersion", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/IncrementPlayerStatisticVersion", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ListOpenIdConnection: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ListOpenIdConnection", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ListOpenIdConnection", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ListServerBuilds: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ListServerBuilds", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ListServerBuilds", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ListVirtualCurrencyTypes: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ListVirtualCurrencyTypes", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ListVirtualCurrencyTypes", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ModifyMatchmakerGameModes: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ModifyMatchmakerGameModes", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ModifyMatchmakerGameModes", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ModifyServerBuild: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ModifyServerBuild", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ModifyServerBuild", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RefundPurchase: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RefundPurchase", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RefundPurchase", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RemovePlayerTag: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RemovePlayerTag", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RemovePlayerTag", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RemoveServerBuild: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RemoveServerBuild", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RemoveServerBuild", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RemoveVirtualCurrencyTypes: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RemoveVirtualCurrencyTypes", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RemoveVirtualCurrencyTypes", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ResetCharacterStatistics: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetCharacterStatistics", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ResetCharacterStatistics", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ResetPassword: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetPassword", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ResetPassword", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ResetUserStatistics: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResetUserStatistics", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ResetUserStatistics", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ResolvePurchaseDispute: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/ResolvePurchaseDispute", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ResolvePurchaseDispute", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RevokeAllBansForUser: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RevokeAllBansForUser", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RevokeAllBansForUser", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RevokeBans: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RevokeBans", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RevokeBans", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RevokeInventoryItem: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RevokeInventoryItem", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RevokeInventoryItem", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RevokeInventoryItems: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RevokeInventoryItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RevokeInventoryItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     RunTask: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/RunTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RunTask", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SendAccountRecoveryEmail: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SendAccountRecoveryEmail", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SendAccountRecoveryEmail", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetCatalogItems: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetCatalogItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetCatalogItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetPlayerSecret: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetPlayerSecret", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetPlayerSecret", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetPublishedRevision: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetPublishedRevision", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetPublishedRevision", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetPublisherData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetPublisherData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetPublisherData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetStoreItems: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetStoreItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetStoreItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetTitleData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetTitleData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetTitleData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetTitleInternalData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetTitleInternalData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetTitleInternalData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetupPushNotification: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SetupPushNotification", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetupPushNotification", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SubtractUserVirtualCurrency: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/SubtractUserVirtualCurrency", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SubtractUserVirtualCurrency", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateBans: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateBans", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateBans", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateCatalogItems: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateCatalogItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateCatalogItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateCloudScript: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateCloudScript", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateCloudScript", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateOpenIdConnection: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateOpenIdConnection", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateOpenIdConnection", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdatePlayerSharedSecret: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdatePlayerSharedSecret", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdatePlayerSharedSecret", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdatePlayerStatisticDefinition: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdatePlayerStatisticDefinition", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdatePlayerStatisticDefinition", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdatePolicy: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdatePolicy", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdatePolicy", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateRandomResultTables: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateRandomResultTables", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateRandomResultTables", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateStoreItems: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateStoreItems", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateStoreItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateTask: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateTask", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateTask", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateUserData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateUserData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateUserData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateUserInternalData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateUserInternalData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateUserInternalData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateUserPublisherData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateUserPublisherData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateUserPublisherData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateUserPublisherInternalData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateUserPublisherInternalData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateUserPublisherInternalData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateUserPublisherReadOnlyData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateUserPublisherReadOnlyData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateUserPublisherReadOnlyData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateUserReadOnlyData: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateUserReadOnlyData", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateUserReadOnlyData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateUserTitleDisplayName: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab.settings.developerSecretKey) throw PlayFab._internalSettings.errorSecretKey;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Admin/UpdateUserTitleDisplayName", request, "X-SecretKey", PlayFab.settings.developerSecretKey, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateUserTitleDisplayName", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 };
 
