@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.41.190304",
+        sdkVersion: "1.42.190312",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.41.190304"
+            sdk: "JavaScriptSDK-1.42.190312"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -60,104 +60,179 @@ if(!PlayFab._internalSettings) {
         },
 
         ExecuteRequest: function (url, request, authkey, authValue, callback, customData, extraHeaders) {
-            if (callback != null && typeof (callback) != "function")
-                throw "Callback must be null of a function";
+            var resultPromise = new Promise(function (resolve, reject) {
+                if (callback != null && typeof (callback) !== "function")
+                    throw "Callback must be null of a function";
 
-            if (request == null)
-                request = {};
+                if (request == null)
+                    request = {};
 
-            var startTime = new Date();
-            var requestBody = JSON.stringify(request);
+                var startTime = new Date();
+                var requestBody = JSON.stringify(request);
 
-            var urlArr = [url];
-            var getParams = PlayFab._internalSettings.requestGetParams;
-            if (getParams != null) {
-                var firstParam = true;
-                for (var key in getParams) {
-                    if (firstParam) {
-                        urlArr.push("?");
-                        firstParam = false;
-                    } else {
-                        urlArr.push("&");
+                var urlArr = [url];
+                var getParams = PlayFab._internalSettings.requestGetParams;
+                if (getParams != null) {
+                    var firstParam = true;
+                    for (var key in getParams) {
+                        if (firstParam) {
+                            urlArr.push("?");
+                            firstParam = false;
+                        } else {
+                            urlArr.push("&");
+                        }
+                        urlArr.push(key);
+                        urlArr.push("=");
+                        urlArr.push(getParams[key]);
                     }
-                    urlArr.push(key);
-                    urlArr.push("=");
-                    urlArr.push(getParams[key]);
-                }
-            }
-
-            var completeUrl = urlArr.join("");
-
-            var xhr = new XMLHttpRequest();
-            // window.console.log("URL: " + completeUrl);
-            xhr.open("POST", completeUrl, true);
-
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("X-PlayFabSDK", "JavaScriptSDK-" + PlayFab._internalSettings.sdkVersion);
-            if (authkey != null)
-                xhr.setRequestHeader(authkey, authValue);
-            PlayFab._internalSettings.InjectHeaders(xhr, PlayFab.settings.GlobalHeaderInjection);
-            PlayFab._internalSettings.InjectHeaders(xhr, extraHeaders);
-
-            xhr.onloadend = function () {
-                if (callback == null)
-                    return;
-
-                var result;
-                try {
-                    // window.console.log("parsing json result: " + xhr.responseText);
-                    result = JSON.parse(xhr.responseText);
-                } catch (e) {
-                    result = {
-                        code: 503, // Service Unavailable
-                        status: "Service Unavailable",
-                        error: "Connection error",
-                        errorCode: 2, // PlayFabErrorCode.ConnectionError
-                        errorMessage: xhr.responseText
-                    };
                 }
 
-                result.CallBackTimeMS = new Date() - startTime;
-                result.Request = request;
-                result.CustomData = customData;
+                var completeUrl = urlArr.join("");
 
-                if (result.code === 200)
-                    callback(result, null);
-                else
+                var xhr = new XMLHttpRequest();
+                // window.console.log("URL: " + completeUrl);
+                xhr.open("POST", completeUrl, true);
+
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.setRequestHeader("X-PlayFabSDK", "JavaScriptSDK-" + PlayFab._internalSettings.sdkVersion);
+                if (authkey != null)
+                    xhr.setRequestHeader(authkey, authValue);
+                PlayFab._internalSettings.InjectHeaders(xhr, PlayFab.settings.GlobalHeaderInjection);
+                PlayFab._internalSettings.InjectHeaders(xhr, extraHeaders);
+
+                xhr.onloadend = function () {
+                    if (callback == null)
+                        return;
+
+                    var result = PlayFab._internalSettings.GetPlayFabResponse(request, xhr, startTime, customData);
+                    if (result.code === 200) {
+                        callback(result, null);
+                    } else {
+                        callback(null, result);
+                    }
+                }
+
+                xhr.onerror = function () {
+                    if (callback == null)
+                        return;
+
+                    var result = PlayFab._internalSettings.GetPlayFabResponse(request, xhr, startTime, customData);
                     callback(null, result);
-            }
-
-            xhr.onerror = function () {
-                if (callback == null)
-                    return;
-
-                var result;
-                try {
-                    result = JSON.parse(xhr.responseText);
-                } catch (e) {
-                    result = {
-                        code: 503, // Service Unavailable
-                        status: "Service Unavailable",
-                        error: "Connection error",
-                        errorCode: 2, // PlayFabErrorCode.ConnectionError
-                        errorMessage: xhr.responseText
-                    };
                 }
 
-                result.CallBackTimeMS = new Date() - startTime;
-                result.Request = request;
-                result.CustomData = customData;
+                xhr.send(requestBody);
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === 4) {
+                        var xhrResult = PlayFab._internalSettings.GetPlayFabResponse(request, this, startTime, customData);
+                        if (this.status === 200) {
+                            resolve(xhrResult);
+                        } else {
+                            reject(xhrResult);
+                        }
+                    }
+                };
+            });
+            // Return a Promise so that calls to various API methods can be handled asynchronously
+            return resultPromise;
+        },
 
-                callback(null, result);
+        GetPlayFabResponse: function(request, xhr, startTime, customData) {
+            var result = null;
+            try {
+                // window.console.log("parsing json result: " + xhr.responseText);
+                result = JSON.parse(xhr.responseText);
+            } catch (e) {
+                result = {
+                    code: 503, // Service Unavailable
+                    status: "Service Unavailable",
+                    error: "Connection error",
+                    errorCode: 2, // PlayFabErrorCode.ConnectionError
+                    errorMessage: xhr.responseText
+                };
             }
 
-            xhr.send(requestBody);
+            result.CallBackTimeMS = new Date() - startTime;
+            result.Request = request;
+            result.CustomData = customData;
+            return result;
+        },
+
+        authenticationContext: {
+            PlayFabId: null,
+            EntityId: null,
+            EntityType: null,
+            SessionTicket: null,
+            EntityToken: null
+        },
+
+        UpdateAuthenticationContext: function (authenticationContext, result) {
+            var authenticationContextUpdates = {};
+            if(result.data.PlayFabId !== null) {
+                PlayFab._internalSettings.authenticationContext.PlayFabId = result.data.PlayFabId;
+                authenticationContextUpdates.PlayFabId = result.data.PlayFabId;
+            }
+            if(result.data.SessionTicket !== null) {
+                PlayFab._internalSettings.authenticationContext.SessionTicket = result.data.SessionTicket;
+                authenticationContextUpdates.SessionTicket = result.data.SessionTicket;
+            }
+            if (result.data.EntityToken !== null) {
+                PlayFab._internalSettings.authenticationContext.EntityId = result.data.EntityToken.Entity.Id;
+                authenticationContextUpdates.EntityId = result.data.EntityToken.Entity.Id;
+                PlayFab._internalSettings.authenticationContext.EntityType = result.data.EntityToken.Entity.Type;
+                authenticationContextUpdates.EntityType = result.data.EntityToken.Entity.Type;
+                PlayFab._internalSettings.authenticationContext.EntityToken = result.data.EntityToken.EntityToken;
+                authenticationContextUpdates.EntityToken = result.data.EntityToken.EntityToken;
+            }
+            // Update the authenticationContext with values from the result
+            authenticationContext = Object.assign(authenticationContext, authenticationContextUpdates);
+            return authenticationContext;
+        },
+
+        AuthInfoMap: {
+            "X-EntityToken": {
+                authAttr: "entityToken",
+                authError: "errorEntityToken"
+            },
+            "X-Authorization": {
+                authAttr: "sessionTicket",
+                authError: "errorLoggedIn"
+            },
+            "X-SecretKey": {
+                authAttr: "developerSecretKey",
+                authError: "errorSecretKey"
+            }
+        },
+
+        GetAuthInfo: function (request, authKey) {
+            // Use the most-recently saved authKey, unless one was provided in the request via the AuthenticationContext
+            var authError = PlayFab._internalSettings.AuthInfoMap[authKey].authError;
+            var authAttr = PlayFab._internalSettings.AuthInfoMap[authKey].authAttr;
+            var defaultAuthValue = null;
+            if (authAttr === "entityToken")
+                defaultAuthValue = PlayFab._internalSettings.entityToken;
+            else if (authAttr === "sessionTicket")
+                defaultAuthValue = PlayFab._internalSettings.sessionTicket;
+            else if (authAttr === "developerSecretKey")
+                defaultAuthValue = PlayFab.settings.developerSecretKey;
+            var authValue = request.AuthenticationContext ? request.AuthenticationContext[authAttr] : defaultAuthValue;
+            return {"authKey": authKey, "authValue": authValue, "authError": authError};
+        },
+
+        ExecuteRequestWrapper: function (apiURL, request, authKey, callback, customData, extraHeaders) {
+            var authValue = null;
+            if (authKey !== null){
+                var authInfo = PlayFab._internalSettings.GetAuthInfo(request, authKey=authKey);
+                var authKey = authInfo.authKey, authValue = authInfo.authValue, authError = authInfo.authError;
+
+                if (!authValue) throw authError;
+            }
+            return PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + apiURL, request, authKey, authValue, callback, customData, extraHeaders);
         }
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
-PlayFab.sdkVersion = "1.41.190304";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-1_0";
+PlayFab.sdkVersion = "1.42.190312";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -175,128 +250,103 @@ PlayFab.GroupsApi = {
     },
 
     AcceptGroupApplication: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/AcceptGroupApplication", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/AcceptGroupApplication", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     AcceptGroupInvitation: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/AcceptGroupInvitation", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/AcceptGroupInvitation", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     AddMembers: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/AddMembers", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/AddMembers", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ApplyToGroup: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ApplyToGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/ApplyToGroup", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     BlockEntity: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/BlockEntity", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/BlockEntity", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ChangeMemberRole: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ChangeMemberRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/ChangeMemberRole", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     CreateGroup: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/CreateGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/CreateGroup", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     CreateRole: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/CreateRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/CreateRole", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     DeleteGroup: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/DeleteGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/DeleteGroup", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     DeleteRole: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/DeleteRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/DeleteRole", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetGroup: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/GetGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/GetGroup", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     InviteToGroup: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/InviteToGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/InviteToGroup", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     IsMember: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/IsMember", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/IsMember", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListGroupApplications: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListGroupApplications", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/ListGroupApplications", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListGroupBlocks: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListGroupBlocks", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/ListGroupBlocks", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListGroupInvitations: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListGroupInvitations", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/ListGroupInvitations", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListGroupMembers: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListGroupMembers", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/ListGroupMembers", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListMembership: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListMembership", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/ListMembership", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListMembershipOpportunities: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/ListMembershipOpportunities", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/ListMembershipOpportunities", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     RemoveGroupApplication: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/RemoveGroupApplication", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/RemoveGroupApplication", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     RemoveGroupInvitation: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/RemoveGroupInvitation", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/RemoveGroupInvitation", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     RemoveMembers: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/RemoveMembers", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/RemoveMembers", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UnblockEntity: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/UnblockEntity", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/UnblockEntity", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UpdateGroup: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/UpdateGroup", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/UpdateGroup", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UpdateRole: function (request, callback, customData, extraHeaders) {
-        if (!PlayFab._internalSettings.entityToken) throw PlayFab._internalSettings.errorEntityToken;
-        PlayFab._internalSettings.ExecuteRequest(PlayFab._internalSettings.GetServerUrl() + "/Group/UpdateRole", request, "X-EntityToken", PlayFab._internalSettings.entityToken, callback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Group/UpdateRole", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 };
 

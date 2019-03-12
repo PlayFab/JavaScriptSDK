@@ -5,6 +5,16 @@ declare module PlayFabMultiplayerModule {
         ForgetAllCredentials(): void;
 
         /**
+         * Cancel all active tickets the player is a member of in a given queue.
+         * https://api.playfab.com/Documentation/Multiplayer/method/CancelAllMatchmakingTicketsForPlayer
+         */
+        CancelAllMatchmakingTicketsForPlayer(request: PlayFabMultiplayerModels.CancelAllMatchmakingTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelAllMatchmakingTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Cancel a matchmaking ticket.
+         * https://api.playfab.com/Documentation/Multiplayer/method/CancelMatchmakingTicket
+         */
+        CancelMatchmakingTicket(request: PlayFabMultiplayerModels.CancelMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Creates a multiplayer server build with a custom container.
          * https://api.playfab.com/Documentation/Multiplayer/method/CreateBuildWithCustomContainer
          */
@@ -15,10 +25,21 @@ declare module PlayFabMultiplayerModule {
          */
         CreateBuildWithManagedContainer(request: PlayFabMultiplayerModels.CreateBuildWithManagedContainerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithManagedContainerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Create a matchmaking ticket as a client.
+         * https://api.playfab.com/Documentation/Multiplayer/method/CreateMatchmakingTicket
+         */
+        CreateMatchmakingTicket(request: PlayFabMultiplayerModels.CreateMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Creates a remote user to log on to a VM for a multiplayer server build.
          * https://api.playfab.com/Documentation/Multiplayer/method/CreateRemoteUser
          */
         CreateRemoteUser(request: PlayFabMultiplayerModels.CreateRemoteUserRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateRemoteUserResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Create a matchmaking ticket as a server. The matchmaking service automatically starts matching the ticket against other
+         * matchmaking tickets.
+         * https://api.playfab.com/Documentation/Multiplayer/method/CreateServerMatchmakingTicket
+         */
+        CreateServerMatchmakingTicket(request: PlayFabMultiplayerModels.CreateServerMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Deletes a multiplayer server game asset for a title.
          * https://api.playfab.com/Documentation/Multiplayer/method/DeleteAsset
@@ -60,10 +81,30 @@ declare module PlayFabMultiplayerModule {
          */
         GetContainerRegistryCredentials(request: PlayFabMultiplayerModels.GetContainerRegistryCredentialsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetContainerRegistryCredentialsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Get a match.
+         * https://api.playfab.com/Documentation/Multiplayer/method/GetMatch
+         */
+        GetMatch(request: PlayFabMultiplayerModels.GetMatchRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Get a matchmaking queue configuration.
+         * https://api.playfab.com/Documentation/Multiplayer/method/GetMatchmakingQueue
+         */
+        GetMatchmakingQueue(request: PlayFabMultiplayerModels.GetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Get a matchmaking ticket by ticket Id.
+         * https://api.playfab.com/Documentation/Multiplayer/method/GetMatchmakingTicket
+         */
+        GetMatchmakingTicket(request: PlayFabMultiplayerModels.GetMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Gets multiplayer server session details for a build.
          * https://api.playfab.com/Documentation/Multiplayer/method/GetMultiplayerServerDetails
          */
         GetMultiplayerServerDetails(request: PlayFabMultiplayerModels.GetMultiplayerServerDetailsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Get the statistics for a queue.
+         * https://api.playfab.com/Documentation/Multiplayer/method/GetQueueStatistics
+         */
+        GetQueueStatistics(request: PlayFabMultiplayerModels.GetQueueStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetQueueStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Gets a remote login endpoint to a VM that is hosting a multiplayer server build.
          * https://api.playfab.com/Documentation/Multiplayer/method/GetRemoteLoginEndpoint
@@ -74,6 +115,11 @@ declare module PlayFabMultiplayerModule {
          * https://api.playfab.com/Documentation/Multiplayer/method/GetTitleEnabledForMultiplayerServersStatus
          */
         GetTitleEnabledForMultiplayerServersStatus(request: PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Join a matchmaking ticket.
+         * https://api.playfab.com/Documentation/Multiplayer/method/JoinMatchmakingTicket
+         */
+        JoinMatchmakingTicket(request: PlayFabMultiplayerModels.JoinMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Lists archived multiplayer server sessions for a build.
          * https://api.playfab.com/Documentation/Multiplayer/method/ListArchivedMultiplayerServers
@@ -105,6 +151,16 @@ declare module PlayFabMultiplayerModule {
          */
         ListContainerImageTags(request: PlayFabMultiplayerModels.ListContainerImageTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListContainerImageTagsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * List all matchmaking queue configs.
+         * https://api.playfab.com/Documentation/Multiplayer/method/ListMatchmakingQueues
+         */
+        ListMatchmakingQueues(request: PlayFabMultiplayerModels.ListMatchmakingQueuesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingQueuesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * List all matchmaking ticket Ids the user is a member of.
+         * https://api.playfab.com/Documentation/Multiplayer/method/ListMatchmakingTicketsForPlayer
+         */
+        ListMatchmakingTicketsForPlayer(request: PlayFabMultiplayerModels.ListMatchmakingTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Lists multiplayer server sessions for a build.
          * https://api.playfab.com/Documentation/Multiplayer/method/ListMultiplayerServers
          */
@@ -120,6 +176,11 @@ declare module PlayFabMultiplayerModule {
          */
         ListVirtualMachineSummaries(request: PlayFabMultiplayerModels.ListVirtualMachineSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListVirtualMachineSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Remove a matchmaking queue config.
+         * https://api.playfab.com/Documentation/Multiplayer/method/RemoveMatchmakingQueue
+         */
+        RemoveMatchmakingQueue(request: PlayFabMultiplayerModels.RemoveMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RemoveMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Request a multiplayer server session. Accepts tokens for title and if game client accesss is enabled, allows game client
          * to request a server with player entity token.
          * https://api.playfab.com/Documentation/Multiplayer/method/RequestMultiplayerServer
@@ -130,6 +191,11 @@ declare module PlayFabMultiplayerModule {
          * https://api.playfab.com/Documentation/Multiplayer/method/RolloverContainerRegistryCredentials
          */
         RolloverContainerRegistryCredentials(request: PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Create or update a matchmaking queue configuration.
+         * https://api.playfab.com/Documentation/Multiplayer/method/SetMatchmakingQueue
+         */
+        SetMatchmakingQueue(request: PlayFabMultiplayerModels.SetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Shuts down a multiplayer server session.
          * https://api.playfab.com/Documentation/Multiplayer/method/ShutdownMultiplayerServer
@@ -257,6 +323,38 @@ declare module PlayFabMultiplayerModels {
         CreationTime?: string;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CancelAllMatchmakingTicketsForPlayerRequest */
+    export interface CancelAllMatchmakingTicketsForPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The entity key of the player whose tickets should be canceled. */
+        Entity?: EntityKey;
+        /** The Id of the queue from which a player's tickets should be canceled. */
+        QueueName: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CancelAllMatchmakingTicketsForPlayerResult */
+    export interface CancelAllMatchmakingTicketsForPlayerResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    type CancellationReason = "Requested"
+        | "Internal"
+        | "Timeout";
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CancelMatchmakingTicketRequest */
+    export interface CancelMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The Id of the queue to join. */
+        QueueName: string;
+        /** The Id of the ticket to find a match for. */
+        TicketId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CancelMatchmakingTicketResult */
+    export interface CancelMatchmakingTicketResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -423,6 +521,26 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CreateMatchmakingTicketRequest */
+    export interface CreateMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The User who created this ticket. */
+        Creator: MatchmakingPlayer;
+        /** How long to attempt matching this ticket in seconds. */
+        GiveUpAfterSeconds: number;
+        /** A list of Entity Keys of other users to match with. */
+        MembersToMatchWith?: EntityKey[];
+        /** The Id of a match queue. */
+        QueueName: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CreateMatchmakingTicketResult */
+    export interface CreateMatchmakingTicketResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The Id of the ticket to find a match for. */
+        TicketId: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CreateRemoteUserRequest */
     export interface CreateRemoteUserRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of to create the remote user for. */
@@ -446,6 +564,17 @@ declare module PlayFabMultiplayerModels {
         Password?: string;
         /** The username for the remote user that was created. */
         Username?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CreateServerMatchmakingTicketRequest */
+    export interface CreateServerMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** How long to attempt matching this ticket in seconds. */
+        GiveUpAfterSeconds: number;
+        /** The users who will be part of this ticket. */
+        Members: MatchmakingPlayer[];
+        /** The Id of a match queue. */
+        QueueName: string;
 
     }
 
@@ -510,6 +639,15 @@ declare module PlayFabMultiplayerModels {
     export interface EnableMultiplayerServersForTitleResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The enabled status for the multiplayer server features for the title. */
         Status?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.EntityKey */
+    export interface EntityKey {
+        /** Unique ID of the entity. */
+        Id: string;
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        Type?: string;
 
     }
 
@@ -628,6 +766,94 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMatchmakingQueueRequest */
+    export interface GetMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The Id of the matchmaking queue to retrieve. */
+        QueueName?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMatchmakingQueueResult */
+    export interface GetMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The matchmaking queue config. */
+        MatchmakingQueue?: MatchmakingQueueConfig;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMatchmakingTicketRequest */
+    export interface GetMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
+         * object.
+         */
+        EscapeObject: boolean;
+        /** The Id of the queue to find a match for. */
+        QueueName: string;
+        /** The Id of the ticket to find a match for. */
+        TicketId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMatchmakingTicketResult */
+    export interface GetMatchmakingTicketResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
+        CancellationReason?: string;
+        /** The server date and time at which ticket was created. */
+        Created: string;
+        /** The Creator's entity key. */
+        Creator: EntityKey;
+        /** How long to attempt matching this ticket in seconds. */
+        GiveUpAfterSeconds: number;
+        /** The Id of a match. */
+        MatchId?: string;
+        /** A list of Users that have joined this ticket. */
+        Members: MatchmakingPlayer[];
+        /** A list of PlayFab Ids of Users to match with. */
+        MembersToMatchWith?: EntityKey[];
+        /** The Id of a match queue. */
+        QueueName: string;
+        /**
+         * The current ticket status. Possible values are: WaitingForPlayers, WaitingForMatch, WaitingForServer, Canceled and
+         * Matched.
+         */
+        Status: string;
+        /** The Id of the ticket to find a match for. */
+        TicketId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMatchRequest */
+    export interface GetMatchRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
+         * object.
+         */
+        EscapeObject: boolean;
+        /** The Id of a match. */
+        MatchId: string;
+        /** The Id of the queue to join. */
+        QueueName: string;
+        /** Determines whether the matchmaking attributes for each user should be returned in the response for match request. */
+        ReturnMemberAttributes: boolean;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMatchResult */
+    export interface GetMatchResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The Id of a match. */
+        MatchId: string;
+        /** A list of Users that are matched together, along with their team assignments. */
+        Members: MatchmakingPlayerWithTeamAssignment[];
+        /**
+         * A list of regions that the match could be played in sorted by preference. This value is only set if the queue has a
+         * region selection rule.
+         */
+        RegionPreferences?: string[];
+        /** The details of the server that the match has been allocated to. */
+        ServerDetails?: ServerDetails;
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMultiplayerServerDetailsRequest */
     export interface GetMultiplayerServerDetailsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server to get details for. */
@@ -667,6 +893,22 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetQueueStatisticsRequest */
+    export interface GetQueueStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The name of the queue. */
+        QueueName: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetQueueStatisticsResult */
+    export interface GetQueueStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The current number of players in the matchmaking queue, who are waiting to be matched. */
+        NumberOfPlayersMatching?: number;
+        /** Statistics representing the time (in seconds) it takes for tickets to find a match. */
+        TimeToMatchStatisticsInSeconds?: Statistics;
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetRemoteLoginEndpointRequest */
     export interface GetRemoteLoginEndpointRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server to get remote login information for. */
@@ -696,6 +938,22 @@ declare module PlayFabMultiplayerModels {
     export interface GetTitleEnabledForMultiplayerServersStatusResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The enabled status for the multiplayer server features for the title. */
         Status?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.JoinMatchmakingTicketRequest */
+    export interface JoinMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The User who wants to join the ticket. Their Id must be listed in PlayFabIdsToMatchWith. */
+        Member: MatchmakingPlayer;
+        /** The Id of the queue to join. */
+        QueueName: string;
+        /** The Id of the ticket to find a match for. */
+        TicketId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.JoinMatchmakingTicketResult */
+    export interface JoinMatchmakingTicketResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -793,6 +1051,34 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListMatchmakingQueuesRequest */
+    export interface ListMatchmakingQueuesRequest extends PlayFabModule.IPlayFabRequestCommon {
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListMatchmakingQueuesResult */
+    export interface ListMatchmakingQueuesResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of matchmaking queue configs for this title. */
+        MatchMakingQueues?: MatchmakingQueueConfig[];
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListMatchmakingTicketsForPlayerRequest */
+    export interface ListMatchmakingTicketsForPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The entity key for which to find the ticket Ids. */
+        Entity?: EntityKey;
+        /** The Id of the queue to find a match for. */
+        QueueName: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListMatchmakingTicketsForPlayerResult */
+    export interface ListMatchmakingTicketsForPlayerResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of ticket Ids the user is a member of. */
+        TicketIds: string[];
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListMultiplayerServersRequest */
     export interface ListMultiplayerServersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer servers to list. */
@@ -857,6 +1143,84 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MatchmakingPlayer */
+    export interface MatchmakingPlayer {
+        /** The user's attributes custom to the title. */
+        Attributes?: MatchmakingPlayerAttributes;
+        /** The entity key of the matchmaking user. */
+        Entity: EntityKey;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MatchmakingPlayerAttributes */
+    export interface MatchmakingPlayerAttributes {
+        /** A data object representing a user's attributes. */
+        DataObject?: any;
+        /** An escaped data object representing a user's attributes. */
+        EscapedDataObject?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MatchmakingPlayerWithTeamAssignment */
+    export interface MatchmakingPlayerWithTeamAssignment {
+        /**
+         * The user's attributes custom to the title. These attributes will be null unless the request has ReturnMemberAttributes
+         * flag set to true.
+         */
+        Attributes?: MatchmakingPlayerAttributes;
+        /** The entity key of the matchmaking user. */
+        Entity: EntityKey;
+        /** The Id of the team the User has been assigned to by matchmaking. */
+        TeamId?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MatchmakingQueueConfig */
+    export interface MatchmakingQueueConfig {
+        /** This is the buildId that will be used to allocate the multiplayer server for the match. */
+        BuildId?: string;
+        /** Maximum number of players in a match. */
+        MaxMatchSize: number;
+        /** Minimum number of players in a match. */
+        MinMatchSize: number;
+        /** Unique identifier for a Queue. Chosen by the developer. */
+        Name: string;
+        /** List of rules used to find an optimal match. */
+        Rules?: MatchmakingQueueRule[];
+        /** Boolean flag to enable server allocation for the queue. */
+        ServerAllocationEnabled: boolean;
+        /** Controls which statistics are visible to players. */
+        StatisticsVisibilityToPlayers?: StatisticsVisibilityToPlayers;
+        /** The team configuration for a match. This may be null if there are no teams. */
+        Teams?: MatchmakingQueueTeam[];
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MatchmakingQueueRule */
+    export interface MatchmakingQueueRule {
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
+        /** Type of rule being described. */
+        Type: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MatchmakingQueueTeam */
+    export interface MatchmakingQueueTeam {
+        /** The maximum number of players required for the team. */
+        MaxTeamSize: number;
+        /** The minimum number of players required for the team. */
+        MinTeamSize: number;
+        /** A name to identify the team. This is case insensitive. */
+        Name: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MultiplayerServerSummary */
     export interface MultiplayerServerSummary {
         /** The connected players in the multiplayer server. */
@@ -896,6 +1260,18 @@ declare module PlayFabMultiplayerModels {
         Region?: string;
         /** The QoS server URL. */
         ServerUrl?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.RemoveMatchmakingQueueRequest */
+    export interface RemoveMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The Id of the matchmaking queue to remove. */
+        QueueName?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.RemoveMatchmakingQueueResult */
+    export interface RemoveMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -964,6 +1340,37 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    type RuleType = "Unknown"
+        | "DifferenceRule"
+        | "StringEqualityRule"
+        | "MatchTotalRule"
+        | "SetIntersectionRule"
+        | "TeamSizeBalanceRule"
+        | "RegionSelectionRule"
+        | "TeamDifferenceRule"
+        | "TeamTicketSizeSimilarityRule";
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ServerDetails */
+    export interface ServerDetails {
+        /** The IPv4 address of the virtual machine that is hosting this multiplayer server. */
+        IPV4Address: string;
+        /** The ports the multiplayer server uses. */
+        Ports: Port[];
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.SetMatchmakingQueueRequest */
+    export interface SetMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The matchmaking queue config. */
+        MatchmakingQueue?: MatchmakingQueueConfig;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.SetMatchmakingQueueResult */
+    export interface SetMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ShutdownMultiplayerServerRequest */
     export interface ShutdownMultiplayerServerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server to delete. */
@@ -972,6 +1379,28 @@ declare module PlayFabMultiplayerModels {
         Region: string;
         /** A guid string session ID of the multiplayer server to shut down. */
         SessionId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.Statistics */
+    export interface Statistics {
+        /** The average. */
+        Average: number;
+        /** The 50th percentile. */
+        Percentile50: number;
+        /** The 90th percentile. */
+        Percentile90: number;
+        /** The 99th percentile. */
+        Percentile99: number;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.StatisticsVisibilityToPlayers */
+    export interface StatisticsVisibilityToPlayers {
+        /** Whether to allow players to view the current number of players in the matchmaking queue. */
+        ShowNumberOfPlayersMatching: boolean;
+        /** Whether to allow players to view statistics representing the time it takes for tickets to find a match. */
+        ShowTimeToMatch: boolean;
 
     }
 

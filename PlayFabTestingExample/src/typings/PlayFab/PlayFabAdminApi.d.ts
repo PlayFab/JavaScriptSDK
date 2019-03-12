@@ -1352,7 +1352,12 @@ declare module PlayFabAdminModels {
         ClientSecret: string;
         /** A name for the connection that identifies it within the title. */
         ConnectionId: string;
-        /** The issuer URL or discovery document URL to read issuer information from */
+        /**
+         * The discovery document URL to read issuer information from. This must be the absolute URL to the JSON OpenId
+         * Configuration document and must be accessible from the internet. If you don't know it, try your issuer URL followed by
+         * "/.well-known/openid-configuration". For example, if the issuer is https://example.com, try
+         * https://example.com/.well-known/openid-configuration
+         */
         IssuerDiscoveryUrl?: string;
         /** Manually specified information for an OpenID Connect issuer. */
         IssuerInformation?: OpenIdIssuerInformation;
@@ -2138,8 +2143,7 @@ declare module PlayFabAdminModels {
         | "EntityProfileConstraintValidationFailed"
         | "TelemetryIngestionKeyPending"
         | "TelemetryIngestionKeyNotFound"
-        | "StatisticTagRequired"
-        | "StatisticTagInvalid"
+        | "StatisticChildNameInvalid"
         | "DataIntegrityError"
         | "VirtualCurrencyCannotBeSetToOlderVersion"
         | "VirtualCurrencyMustBeWithinIntegerRange"
@@ -2182,57 +2186,25 @@ declare module PlayFabAdminModels {
         | "PushNotificationTemplateMissingName"
         | "CannotEnableMultiplayerServersForTitle"
         | "WriteAttemptedDuringExport"
+        | "MultiplayerServerTitleQuotaCoresExceeded"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
-        | "MatchmakingCreateTicketRequestMissing"
-        | "MatchmakingCreateTicketCreatorMissing"
-        | "MatchmakingCreateTicketCreatorIdMissing"
-        | "MatchmakingCreateTicketMemberListMissing"
-        | "MatchmakingCreateTicketGiveUpAfterInvalid"
-        | "MatchmakingTicketIdMissing"
-        | "MatchmakingMatchIdMissing"
-        | "MatchmakingMatchIdIdMissing"
-        | "MatchmakingQueueNameMissing"
-        | "MatchmakingTitleIdMissing"
-        | "MatchmakingTicketIdIdMissing"
-        | "MatchmakingPlayerIdMissing"
-        | "MatchmakingJoinTicketPlayerMissing"
-        | "MatchmakingQueueConfigNotFound"
+        | "MatchmakingQueueNotFound"
         | "MatchmakingMatchNotFound"
         | "MatchmakingTicketNotFound"
-        | "MatchmakingCreateTicketServerIdentityInvalid"
-        | "MatchmakingCreateTicketClientIdentityInvalid"
-        | "MatchmakingGetTicketPlayerMismatch"
-        | "MatchmakingJoinTicketServerIdentityInvalid"
-        | "MatchmakingJoinTicketPlayerIdentityMismatch"
-        | "MatchmakingCancelTicketServerIdentityInvalid"
-        | "MatchmakingCancelTicketPlayerIdentityMismatch"
-        | "MatchmakingGetMatchIdentityMismatch"
-        | "MatchmakingPlayerIdentityMismatch"
         | "MatchmakingAlreadyJoinedTicket"
         | "MatchmakingTicketAlreadyCompleted"
-        | "MatchmakingClientTimeout"
         | "MatchmakingQueueConfigInvalid"
         | "MatchmakingMemberProfileInvalid"
         | "NintendoSwitchDeviceIdNotLinked"
         | "MatchmakingNotEnabled"
-        | "MatchmakingGetStatisticsIdentityInvalid"
-        | "MatchmakingBucketOwnerNotFound"
-        | "MatchmakingCancelAllTicketsUnauthorized"
-        | "MatchmakingListTicketsUnauthorized"
         | "MatchmakingPlayerAttributesTooLarge"
         | "MatchmakingNumberOfPlayersInTicketTooLarge"
-        | "MatchmakingMatchTotalAttributeIsNegative"
-        | "MatchmakingAttributeTypeInvalid"
-        | "MatchmakingMatchTotalAttributeTooLarge"
-        | "MatchmakingMatchTotalAttributeSumTooLarge"
-        | "MatchmakingTicketUnmatchable"
-        | "MatchmakingCommonRegionMissing"
-        | "MatchmakingLatencyMeasurementMissing"
-        | "MatchmakingStatisticsNotFound"
+        | "MatchmakingAttributeInvalid"
         | "MatchmakingPlayerHasNotJoinedTicket"
         | "MatchmakingRateLimitExceeded"
         | "MatchmakingTicketMembershipLimitExceeded"
+        | "MatchmakingUnauthorized"
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
@@ -2249,7 +2221,14 @@ declare module PlayFabAdminModels {
         | "CatalogConfigTooManyContentTypes"
         | "CatalogConfigContentTypeTooLong"
         | "CatalogConfigTooManyTags"
-        | "CatalogConfigTagTooLong";
+        | "CatalogConfigTagTooLong"
+        | "ExportInvalidStatusUpdate"
+        | "ExportInvalidPrefix"
+        | "ExportBlobContainerDoesNotExist"
+        | "ExportEventNameNotFound"
+        | "ExportExportTitleIdNotFound"
+        | "ExportCouldNotUpdate"
+        | "ExportInvalidStorageType";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
