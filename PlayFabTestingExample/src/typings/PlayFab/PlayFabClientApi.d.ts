@@ -1212,7 +1212,7 @@ declare module PlayFabClientModels {
     }
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CharacterResult */
-    export interface CharacterResult extends PlayFabModule.IPlayFabResultCommon  {
+    export interface CharacterResult {
         /** The id for this character on this player. */
         CharacterId?: string;
         /** The name of this character. */
@@ -1818,7 +1818,7 @@ declare module PlayFabClientModels {
     }
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EntityTokenResponse */
-    export interface EntityTokenResponse extends PlayFabModule.IPlayFabResultCommon  {
+    export interface EntityTokenResponse {
         /** The entity id and type. */
         Entity?: EntityKey;
         /** The token used to set X-EntityToken for all entity based API calls. */
@@ -1909,8 +1909,6 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.FriendInfo */
     export interface FriendInfo {
-        /** This field is not populated. */
-        CurrentMatchmakerLobbyId?: string;
         /** Available Facebook information (if the user and PlayFab friend are also connected in Facebook). */
         FacebookInfo?: UserFacebookInfo;
         /** PlayFab unique identifier for this friend. */
@@ -2393,7 +2391,7 @@ declare module PlayFabClientModels {
         GetCharacterInventories: boolean;
         /** Whether to get the list of characters. Defaults to false. */
         GetCharacterList: boolean;
-        /** Whether to get player profile. Defaults to false. */
+        /** Whether to get player profile. Defaults to false. Has no effect for a new player. */
         GetPlayerProfile: boolean;
         /** Whether to get player statistics. Defaults to false. */
         GetPlayerStatistics: boolean;
@@ -2768,7 +2766,7 @@ declare module PlayFabClientModels {
     }
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSegmentResult */
-    export interface GetSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
+    export interface GetSegmentResult {
         /** Identifier of the segments AB Test, if it is attached to one. */
         ABTestParent?: string;
         /** Unique identifier for this segment. */
@@ -3037,7 +3035,7 @@ declare module PlayFabClientModels {
     }
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ItemPurchaseRequest */
-    export interface ItemPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
+    export interface ItemPurchaseRequest {
         /** Title-specific text concerning this purchase. */
         Annotation?: string;
         /** Unique ItemId of the item to purchase. */
@@ -5112,6 +5110,8 @@ declare module PlayFabClientModels {
         GoogleId?: string;
         /** Locale of the Google account */
         GoogleLocale?: string;
+        /** Name of the Google account user */
+        GoogleName?: string;
 
     }
 
@@ -5209,6 +5209,8 @@ declare module PlayFabClientModels {
         SteamCurrency?: string;
         /** Steam identifier */
         SteamId?: string;
+        /** Steam display name */
+        SteamName?: string;
 
     }
 

@@ -805,7 +805,7 @@ declare module PlayFabAdminModels {
     }
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanRequest */
-    export interface BanRequest extends PlayFabModule.IPlayFabRequestCommon {
+    export interface BanRequest {
         /** The duration in hours for the ban. Leave this blank for a permanent ban. */
         DurationInHours?: number;
         /** IP address to be banned. May affect multiple players. */
@@ -1678,7 +1678,7 @@ declare module PlayFabAdminModels {
     }
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ExecuteCloudScriptResult */
-    export interface ExecuteCloudScriptResult extends PlayFabModule.IPlayFabResultCommon  {
+    export interface ExecuteCloudScriptResult {
         /** Number of PlayFab API requests issued by the CloudScript function */
         APIRequestsIssued: number;
         /** Information about the error, if any, that occurred during execution */
@@ -2187,6 +2187,7 @@ declare module PlayFabAdminModels {
         | "CannotEnableMultiplayerServersForTitle"
         | "WriteAttemptedDuringExport"
         | "MultiplayerServerTitleQuotaCoresExceeded"
+        | "AutomationRuleNotFound"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2205,6 +2206,7 @@ declare module PlayFabAdminModels {
         | "MatchmakingRateLimitExceeded"
         | "MatchmakingTicketMembershipLimitExceeded"
         | "MatchmakingUnauthorized"
+        | "MatchmakingQueueLimitExceeded"
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
@@ -2222,13 +2224,27 @@ declare module PlayFabAdminModels {
         | "CatalogConfigContentTypeTooLong"
         | "CatalogConfigTooManyTags"
         | "CatalogConfigTagTooLong"
+        | "CatalogConfigInvalidDeepLinkObject"
+        | "CatalogConfigInvalidDeepLinkPlatform"
+        | "CatalogConfigInvalidDeepLinkFormat"
+        | "CatalogConfigInvalidDisplayPropertyObject"
+        | "CatalogConfigInvalidDisplayPropertyName"
+        | "CatalogConfigInvalidDisplayPropertyType"
+        | "CatalogConfigDisplayPropertyMappingLimit"
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
         | "ExportEventNameNotFound"
         | "ExportExportTitleIdNotFound"
         | "ExportCouldNotUpdate"
-        | "ExportInvalidStorageType";
+        | "ExportInvalidStorageType"
+        | "ExportAmazonBucketDoesNotExist"
+        | "ExportInvalidBlobStorage"
+        | "ExportKustoException"
+        | "ExportKustoExceptionNew_SomeResources"
+        | "ExportKustoExceptionEdit"
+        | "ExportKustoConnectionFailed"
+        | "ExportUnknownError";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
@@ -2615,7 +2631,7 @@ declare module PlayFabAdminModels {
     }
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetSegmentResult */
-    export interface GetSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
+    export interface GetSegmentResult {
         /** Identifier of the segments AB Test, if it is attached to one. */
         ABTestParent?: string;
         /** Unique identifier for this segment. */
@@ -4054,7 +4070,7 @@ declare module PlayFabAdminModels {
         | "RevokedSteam";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateBanRequest */
-    export interface UpdateBanRequest extends PlayFabModule.IPlayFabRequestCommon {
+    export interface UpdateBanRequest {
         /** The updated active state for the ban. Null for no change. */
         Active?: boolean;
         /** The id of the ban to be updated. */
@@ -4425,6 +4441,8 @@ declare module PlayFabAdminModels {
         GoogleId?: string;
         /** Locale of the Google account */
         GoogleLocale?: string;
+        /** Name of the Google account user */
+        GoogleName?: string;
 
     }
 
@@ -4511,6 +4529,8 @@ declare module PlayFabAdminModels {
         SteamCurrency?: string;
         /** Steam identifier */
         SteamId?: string;
+        /** Steam display name */
+        SteamName?: string;
 
     }
 

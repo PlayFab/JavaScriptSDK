@@ -123,6 +123,8 @@ declare module PlayFabProfilesModels {
          * profile, not global statements from titles and namespaces.
          */
         Permissions?: EntityPermissionStatement[];
+        /** The statistics on this profile. */
+        Statistics?: { [key: string]: EntityStatisticValue };
         /**
          * The version number of the profile in persistent storage at the time of the read. Used for optional optimistic
          * concurrency during update.
@@ -141,6 +143,32 @@ declare module PlayFabProfilesModels {
         LastModified: string;
         /** Storage service's reported byte count */
         Size: number;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityStatisticChildValue */
+    export interface EntityStatisticChildValue {
+        /** Child name value, if child statistic */
+        ChildName?: string;
+        /** Child statistic metadata */
+        Metadata?: string;
+        /** Child statistic value */
+        Value: number;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityStatisticValue */
+    export interface EntityStatisticValue {
+        /** Child statistic values */
+        ChildStatistics?: { [key: string]: EntityStatisticChildValue };
+        /** Statistic metadata */
+        Metadata?: string;
+        /** Statistic name */
+        Name?: string;
+        /** Statistic value */
+        Value?: number;
+        /** Statistic version */
+        Version: number;
 
     }
 
