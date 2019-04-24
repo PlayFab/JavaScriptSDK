@@ -323,6 +323,8 @@ declare module PlayFabMultiplayerModels {
         CreationTime?: string;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
+        /** The configuration and status for each region in the build. */
+        RegionConfigurations?: BuildRegion[];
 
     }
 
