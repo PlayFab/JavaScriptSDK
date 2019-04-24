@@ -2188,6 +2188,9 @@ declare module PlayFabAdminModels {
         | "WriteAttemptedDuringExport"
         | "MultiplayerServerTitleQuotaCoresExceeded"
         | "AutomationRuleNotFound"
+        | "EntityAPIKeyLimitExceeded"
+        | "EntityAPIKeyNotFound"
+        | "EntityAPIKeyOrSecretInvalid"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2219,18 +2222,7 @@ declare module PlayFabAdminModels {
         | "CatalogItemIdInvalid"
         | "CatalogSearchParameterInvalid"
         | "CatalogFeatureDisabled"
-        | "CatalogConfigMissing"
-        | "CatalogConfigTooManyContentTypes"
-        | "CatalogConfigContentTypeTooLong"
-        | "CatalogConfigTooManyTags"
-        | "CatalogConfigTagTooLong"
-        | "CatalogConfigInvalidDeepLinkObject"
-        | "CatalogConfigInvalidDeepLinkPlatform"
-        | "CatalogConfigInvalidDeepLinkFormat"
-        | "CatalogConfigInvalidDisplayPropertyObject"
-        | "CatalogConfigInvalidDisplayPropertyName"
-        | "CatalogConfigInvalidDisplayPropertyType"
-        | "CatalogConfigDisplayPropertyMappingLimit"
+        | "CatalogConfigInvalid"
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
@@ -2244,7 +2236,10 @@ declare module PlayFabAdminModels {
         | "ExportKustoExceptionNew_SomeResources"
         | "ExportKustoExceptionEdit"
         | "ExportKustoConnectionFailed"
-        | "ExportUnknownError";
+        | "ExportUnknownError"
+        | "ExportCantEditPendingExport"
+        | "ExportLimitExports"
+        | "ExportLimitEvents";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {

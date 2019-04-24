@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.43.190410",
+        sdkVersion: "1.44.190424",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.43.190410"
+            sdk: "JavaScriptSDK-1.44.190424"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-2_0";
-PlayFab.sdkVersion = "1.43.190410";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-2_1";
+PlayFab.sdkVersion = "1.44.190424";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -249,6 +249,22 @@ PlayFab.AuthenticationApi = {
         PlayFab._internalSettings.entityToken = null;
     },
 
+    ActivateKey: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/APIKey/ActivateKey", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    CreateKey: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/APIKey/CreateKey", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeactivateKey: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/APIKey/DeactivateKey", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteKey: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/APIKey/DeleteKey", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     GetEntityToken: function (request, callback, customData, extraHeaders) {
         var authKey = null; var authValue = null;
         if (!authKey && PlayFab._internalSettings.sessionTicket) { var authInfo = PlayFab._internalSettings.GetAuthInfo(request, authKey="X-Authorization"); authKey = authInfo.authKey, authValue = authInfo.authValue; }
@@ -260,6 +276,10 @@ PlayFab.AuthenticationApi = {
                 callback(result, error);
         };
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Authentication/GetEntityToken", request, authKey, overloadCallback, customData, extraHeaders);
+    },
+
+    GetKeys: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/APIKey/GetKeys", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 };
 
