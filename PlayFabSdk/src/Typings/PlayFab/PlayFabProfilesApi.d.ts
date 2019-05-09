@@ -99,6 +99,8 @@ declare module PlayFabProfilesModels {
 
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityProfileBody */
     export interface EntityProfileBody {
+        /** Avatar URL for the entity. */
+        AvatarUrl?: string;
         /** The creation time of this profile in UTC. */
         Created: string;
         /**

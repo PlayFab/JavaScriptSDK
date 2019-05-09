@@ -92,7 +92,7 @@ declare module PlayFabClientModule {
          * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
          * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
          * between a very small number of players, please see our guide:
-         * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+         * https://docs.microsoft.com/en-us/gaming/playfab/features/social/groups/using-shared-group-data
          * https://api.playfab.com/Documentation/Client/method/CreateSharedGroup
          */
         CreateSharedGroup(request: PlayFabClientModels.CreateSharedGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CreateSharedGroupResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -210,7 +210,7 @@ declare module PlayFabClientModule {
         GetPaymentToken(request: PlayFabClientModels.GetPaymentTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPaymentTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
-         * https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+         * https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/photon/quickstart for more details.
          * https://api.playfab.com/Documentation/Client/method/GetPhotonAuthenticationToken
          */
         GetPhotonAuthenticationToken(request: PlayFabClientModels.GetPhotonAuthenticationTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPhotonAuthenticationTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;

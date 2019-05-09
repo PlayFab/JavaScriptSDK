@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.44.190424",
+        sdkVersion: "1.45.190509",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.44.190424"
+            sdk: "JavaScriptSDK-1.45.190509"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-2_1";
-PlayFab.sdkVersion = "1.44.190424";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.45.190509";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -255,6 +255,10 @@ PlayFab.ServerApi = {
 
     AddFriend: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/AddFriend", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    AddGenericID: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/AddGenericID", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     AddPlayerTag: function (request, callback, customData, extraHeaders) {
@@ -295,6 +299,10 @@ PlayFab.ServerApi = {
 
     DeletePlayer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/DeletePlayer", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    DeletePushNotificationTemplate: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/DeletePushNotificationTemplate", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteSharedGroup: function (request, callback, customData, extraHeaders) {
@@ -413,6 +421,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    GetPlayFabIDsFromGenericIDs: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromGenericIDs", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     GetPlayFabIDsFromNintendoSwitchDeviceIds: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -513,6 +525,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GrantItemsToUsers", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    LinkServerCustomId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkServerCustomId", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     LinkXboxAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkXboxAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -565,6 +581,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/RemoveFriend", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    RemoveGenericID: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/RemoveGenericID", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     RemovePlayerTag: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/RemovePlayerTag", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -593,6 +613,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/RevokeInventoryItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    SavePushNotificationTemplate: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SavePushNotificationTemplate", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     SendCustomAccountRecoveryEmail: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SendCustomAccountRecoveryEmail", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -603,6 +627,10 @@ PlayFab.ServerApi = {
 
     SendPushNotification: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SendPushNotification", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    SendPushNotificationFromTemplate: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SendPushNotificationFromTemplate", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetFriendTags: function (request, callback, customData, extraHeaders) {
@@ -643,6 +671,10 @@ PlayFab.ServerApi = {
 
     SubtractUserVirtualCurrency: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UnlinkServerCustomId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkServerCustomId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UnlinkXboxAccount: function (request, callback, customData, extraHeaders) {
