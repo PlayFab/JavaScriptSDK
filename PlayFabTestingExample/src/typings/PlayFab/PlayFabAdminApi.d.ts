@@ -3801,7 +3801,8 @@ declare module PlayFabAdminModels {
     }
 
     type ScheduledTaskType = "CloudScript"
-        | "ActionsOnPlayerSegment";
+        | "ActionsOnPlayerSegment"
+        | "CloudScriptAzureFunctions";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ScriptExecutionError */
     export interface ScriptExecutionError {
