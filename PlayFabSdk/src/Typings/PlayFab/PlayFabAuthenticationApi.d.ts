@@ -10,6 +10,11 @@ declare module PlayFabAuthenticationModule {
          * https://api.playfab.com/Documentation/Authentication/method/GetEntityToken
          */
         GetEntityToken(request: PlayFabAuthenticationModels.GetEntityTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.GetEntityTokenResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Method for a server to validate a client provided EntityToken. Only callable by the title entity.
+         * https://api.playfab.com/Documentation/Authentication/method/ValidateEntityToken
+         */
+        ValidateEntityToken(request: PlayFabAuthenticationModels.ValidateEntityTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.ValidateEntityTokenResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
 
     }
 }
@@ -21,6 +26,23 @@ declare module PlayFabAuthenticationModels {
         Id: string;
         /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.EntityLineage */
+    export interface EntityLineage {
+        /** The Character Id of the associated entity. */
+        CharacterId?: string;
+        /** The Group Id of the associated entity. */
+        GroupId?: string;
+        /** The Master Player Account Id of the associated entity. */
+        MasterPlayerAccountId?: string;
+        /** The Namespace Id of the associated entity. */
+        NamespaceId?: string;
+        /** The Title Id of the associated entity. */
+        TitleId?: string;
+        /** The Title Player Account Id of the associated entity. */
+        TitlePlayerAccountId?: string;
 
     }
 
@@ -39,6 +61,22 @@ declare module PlayFabAuthenticationModels {
         EntityToken?: string;
         /** The time the token will expire, if it is an expiring token, in UTC. */
         TokenExpiration?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenRequest */
+    export interface ValidateEntityTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Client EntityToken */
+        EntityToken: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenResponse */
+    export interface ValidateEntityTokenResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The entity id and type. */
+        Entity?: EntityKey;
+        /** The lineage of this profile. */
+        Lineage?: EntityLineage;
 
     }
 
