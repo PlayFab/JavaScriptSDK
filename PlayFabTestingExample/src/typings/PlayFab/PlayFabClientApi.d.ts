@@ -4911,7 +4911,7 @@ declare module PlayFabClientModels {
     export interface UpdateCharacterStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
-        /** Statistics to be updated with the provided values. */
+        /** Statistics to be updated with the provided values, in the Key(string), Value(int) pattern. */
         CharacterStatistics?: { [key: string]: number };
 
     }
