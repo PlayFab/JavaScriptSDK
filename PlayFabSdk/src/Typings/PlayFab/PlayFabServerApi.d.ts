@@ -2273,7 +2273,9 @@ declare module PlayFabServerModels {
         | "ExportUnknownError"
         | "ExportCantEditPendingExport"
         | "ExportLimitExports"
-        | "ExportLimitEvents";
+        | "ExportLimitEvents"
+        | "TitleNotEnabledForParty"
+        | "PartyVersionNotFound";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericPlayFabIdPair */
     export interface GenericPlayFabIdPair {
