@@ -2265,7 +2265,9 @@ declare module PlayFabAdminModels {
         | "ExportUnknownError"
         | "ExportCantEditPendingExport"
         | "ExportLimitExports"
-        | "ExportLimitEvents";
+        | "ExportLimitEvents"
+        | "TitleNotEnabledForParty"
+        | "PartyVersionNotFound";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
