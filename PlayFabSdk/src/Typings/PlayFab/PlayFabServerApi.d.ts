@@ -2203,6 +2203,7 @@ declare module PlayFabServerModels {
         | "EconomyServiceInternalError"
         | "QueryRateLimitExceeded"
         | "EntityAPIKeyCreationDisabledForEntity"
+        | "ForbiddenByEntityPolicy"
         | "StudioCreationRateLimited"
         | "StudioCreationInProgress"
         | "DuplicateStudioName"
@@ -2221,6 +2222,14 @@ declare module PlayFabServerModels {
         | "CloudScriptAzureFunctionsArgumentSizeExceeded"
         | "CloudScriptAzureFunctionsReturnSizeExceeded"
         | "CloudScriptAzureFunctionsHTTPRequestError"
+        | "VirtualCurrencyBetaGetError"
+        | "VirtualCurrencyBetaCreateError"
+        | "VirtualCurrencyBetaInitialDepositSaveError"
+        | "VirtualCurrencyBetaSaveError"
+        | "VirtualCurrencyBetaDeleteError"
+        | "VirtualCurrencyBetaRestoreError"
+        | "VirtualCurrencyBetaSaveConflict"
+        | "VirtualCurrencyBetaUpdateError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2260,22 +2269,30 @@ declare module PlayFabServerModels {
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
-        | "ExportEventNameNotFound"
-        | "ExportExportTitleIdNotFound"
+        | "ExportNotFound"
         | "ExportCouldNotUpdate"
         | "ExportInvalidStorageType"
         | "ExportAmazonBucketDoesNotExist"
         | "ExportInvalidBlobStorage"
         | "ExportKustoException"
-        | "ExportKustoExceptionPartialErrorOnNewExport"
-        | "ExportKustoExceptionEdit"
         | "ExportKustoConnectionFailed"
         | "ExportUnknownError"
         | "ExportCantEditPendingExport"
         | "ExportLimitExports"
         | "ExportLimitEvents"
         | "TitleNotEnabledForParty"
-        | "PartyVersionNotFound";
+        | "PartyVersionNotFound"
+        | "MultiplayerServerBuildReferencedByMatchmakingQueue"
+        | "ExperimentationExperimentStopped"
+        | "ExperimentationExperimentRunning"
+        | "ExperimentationExperimentNotFound"
+        | "ExperimentationExperimentNeverStarted"
+        | "ExperimentationExperimentDeleted"
+        | "ExperimentationClientTimeout"
+        | "ExperimentationExceededVariantNameLength"
+        | "ExperimentationExceededMaxVariantLength"
+        | "ExperimentInvalidId"
+        | "SnapshotNotFound";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericPlayFabIdPair */
     export interface GenericPlayFabIdPair {
@@ -4090,7 +4107,7 @@ declare module PlayFabServerModels {
         Id?: string;
         /** IOS JSON for the notification template. */
         IOSPayload?: string;
-        /** Dictionary of localized push notification templates. */
+        /** Dictionary of localized push notification templates with the language as the key. */
         LocalizedPushNotificationTemplates?: { [key: string]: LocalizedPushNotificationProperties };
         /** Name of the push notification template. */
         Name: string;
@@ -4275,7 +4292,7 @@ declare module PlayFabServerModels {
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretRequest */
     export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
-        PlayerSecret: string;
+        PlayerSecret?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 

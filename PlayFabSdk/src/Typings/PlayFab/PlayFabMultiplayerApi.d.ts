@@ -336,8 +336,7 @@ declare module PlayFabMultiplayerModels {
 
     type CancellationReason = "Requested"
         | "Internal"
-        | "Timeout"
-        | "ServerAllocationFailed";
+        | "Timeout";
 
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CancelMatchmakingTicketRequest */
     export interface CancelMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -417,12 +416,8 @@ declare module PlayFabMultiplayerModels {
         ContainerFlavor?: string;
         /** The container reference, consisting of the image name and tag. */
         ContainerImageReference?: ContainerImageReference;
-        /** The name of the container repository. */
-        ContainerRepositoryName?: string;
         /** The container command to run when the multiplayer server has been allocated, including any arguments. */
         ContainerRunCommand?: string;
-        /** The tag for the container. */
-        ContainerTag?: string;
         /** The list of game assets related to the build. */
         GameAssetReferences?: AssetReferenceParams[];
         /** The game certificates for the build. */
@@ -794,6 +789,8 @@ declare module PlayFabMultiplayerModels {
     export interface GetMatchmakingTicketResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
         CancellationReason?: string;
+        /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
+        CancellationReasonString?: string;
         /** The server date and time at which ticket was created. */
         Created: string;
         /** The Creator's entity key. */

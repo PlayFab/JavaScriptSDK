@@ -2195,6 +2195,7 @@ declare module PlayFabAdminModels {
         | "EconomyServiceInternalError"
         | "QueryRateLimitExceeded"
         | "EntityAPIKeyCreationDisabledForEntity"
+        | "ForbiddenByEntityPolicy"
         | "StudioCreationRateLimited"
         | "StudioCreationInProgress"
         | "DuplicateStudioName"
@@ -2213,6 +2214,14 @@ declare module PlayFabAdminModels {
         | "CloudScriptAzureFunctionsArgumentSizeExceeded"
         | "CloudScriptAzureFunctionsReturnSizeExceeded"
         | "CloudScriptAzureFunctionsHTTPRequestError"
+        | "VirtualCurrencyBetaGetError"
+        | "VirtualCurrencyBetaCreateError"
+        | "VirtualCurrencyBetaInitialDepositSaveError"
+        | "VirtualCurrencyBetaSaveError"
+        | "VirtualCurrencyBetaDeleteError"
+        | "VirtualCurrencyBetaRestoreError"
+        | "VirtualCurrencyBetaSaveConflict"
+        | "VirtualCurrencyBetaUpdateError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2252,22 +2261,30 @@ declare module PlayFabAdminModels {
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
-        | "ExportEventNameNotFound"
-        | "ExportExportTitleIdNotFound"
+        | "ExportNotFound"
         | "ExportCouldNotUpdate"
         | "ExportInvalidStorageType"
         | "ExportAmazonBucketDoesNotExist"
         | "ExportInvalidBlobStorage"
         | "ExportKustoException"
-        | "ExportKustoExceptionPartialErrorOnNewExport"
-        | "ExportKustoExceptionEdit"
         | "ExportKustoConnectionFailed"
         | "ExportUnknownError"
         | "ExportCantEditPendingExport"
         | "ExportLimitExports"
         | "ExportLimitEvents"
         | "TitleNotEnabledForParty"
-        | "PartyVersionNotFound";
+        | "PartyVersionNotFound"
+        | "MultiplayerServerBuildReferencedByMatchmakingQueue"
+        | "ExperimentationExperimentStopped"
+        | "ExperimentationExperimentRunning"
+        | "ExperimentationExperimentNotFound"
+        | "ExperimentationExperimentNeverStarted"
+        | "ExperimentationExperimentDeleted"
+        | "ExperimentationClientTimeout"
+        | "ExperimentationExceededVariantNameLength"
+        | "ExperimentationExceededMaxVariantLength"
+        | "ExperimentInvalidId"
+        | "SnapshotNotFound";
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetActionsOnPlayersInSegmentTaskInstanceResult */
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
@@ -3839,7 +3856,7 @@ declare module PlayFabAdminModels {
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetPlayerSecretRequest */
     export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
-        PlayerSecret: string;
+        PlayerSecret?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
 

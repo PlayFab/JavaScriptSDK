@@ -20,6 +20,11 @@ declare module PlayFabProfilesModule {
          */
         GetProfiles(request: PlayFabProfilesModels.GetEntityProfilesRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetEntityProfilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Retrieves the title player accounts associated with the given master player account.
+         * https://api.playfab.com/Documentation/Profiles/method/GetTitlePlayersFromMasterPlayerAccountIds
+         */
+        GetTitlePlayersFromMasterPlayerAccountIds(request: PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Sets the global title access policy
          * https://api.playfab.com/Documentation/Profiles/method/SetGlobalPolicy
          */
@@ -116,6 +121,8 @@ declare module PlayFabProfilesModels {
         Files?: { [key: string]: EntityProfileFileMetadata };
         /** The language on this profile. */
         Language?: string;
+        /** Leaderboard metadata for the entity. */
+        LeaderboardMetadata?: string;
         /** The lineage of this profile. */
         Lineage?: EntityLineage;
         /** The objects on this profile. */
@@ -224,6 +231,22 @@ declare module PlayFabProfilesModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetTitlePlayersFromMasterPlayerAccountIdsRequest */
+    export interface GetTitlePlayersFromMasterPlayerAccountIdsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Master player account ids. */
+        MasterPlayerAccountIds: string[];
+        /** Id of title to get players from. */
+        TitleId?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetTitlePlayersFromMasterPlayerAccountIdsResponse */
+    export interface GetTitlePlayersFromMasterPlayerAccountIdsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Dictionary of master player ids mapped to title player entity keys and id pairs */
+        TitlePlayerAccounts?: { [key: string]: EntityKey };
+
+    }
+
     type OperationTypes = "Created"
         | "Updated"
         | "Deleted"
@@ -265,7 +288,7 @@ declare module PlayFabProfilesModels {
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** The expected version of a profile to perform this update on */
-        ExpectedVersion: number;
+        ExpectedVersion?: number;
         /** The language to set on the given entity. Deletes the profile's language if passed in a null string. */
         Language?: string;
 
