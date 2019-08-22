@@ -64,6 +64,26 @@ declare module PlayFabAuthenticationModels {
 
     }
 
+    type LoginIdentityProvider = "Unknown"
+        | "PlayFab"
+        | "Custom"
+        | "GameCenter"
+        | "GooglePlay"
+        | "Steam"
+        | "XBoxLive"
+        | "PSN"
+        | "Kongregate"
+        | "Facebook"
+        | "IOSDevice"
+        | "AndroidDevice"
+        | "Twitch"
+        | "WindowsHello"
+        | "GameServer"
+        | "CustomServer"
+        | "NintendoSwitch"
+        | "FacebookInstantGames"
+        | "OpenIdConnect";
+
     /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenRequest */
     export interface ValidateEntityTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Client EntityToken */
@@ -75,6 +95,8 @@ declare module PlayFabAuthenticationModels {
     export interface ValidateEntityTokenResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
+        /** The identity provider for this entity, for the given login */
+        IdentityProvider?: string;
         /** The lineage of this profile. */
         Lineage?: EntityLineage;
 

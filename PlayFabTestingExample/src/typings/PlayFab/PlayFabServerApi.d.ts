@@ -3177,9 +3177,9 @@ declare module PlayFabServerModels {
         RemainingUses?: number;
         /** Result of this operation. */
         Result: boolean;
-        /** Currency type for the cost of the catalog item. */
+        /** Currency type for the cost of the catalog item. Not available when granting items. */
         UnitCurrency?: string;
-        /** Cost of the catalog item in the given currency. */
+        /** Cost of the catalog item in the given currency. Not available when granting items. */
         UnitPrice: number;
         /** The number of uses that were added or removed to this item in this call. */
         UsesIncrementedBy?: number;
@@ -3296,9 +3296,9 @@ declare module PlayFabServerModels {
         PurchaseDate?: string;
         /** Total number of remaining uses, if this is a consumable item. */
         RemainingUses?: number;
-        /** Currency type for the cost of the catalog item. */
+        /** Currency type for the cost of the catalog item. Not available when granting items. */
         UnitCurrency?: string;
-        /** Cost of the catalog item in the given currency. */
+        /** Cost of the catalog item in the given currency. Not available when granting items. */
         UnitPrice: number;
         /** The number of uses that were added or removed to this item in this call. */
         UsesIncrementedBy?: number;
@@ -3340,7 +3340,7 @@ declare module PlayFabServerModels {
         ForceLink?: boolean;
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string;
 
     }
@@ -3427,7 +3427,7 @@ declare module PlayFabServerModels {
         CreateAccount?: boolean;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string;
 
     }
@@ -4500,7 +4500,7 @@ declare module PlayFabServerModels {
     export interface UnlinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string;
 
     }
