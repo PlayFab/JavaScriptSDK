@@ -1296,7 +1296,7 @@ declare module PlayFabClientModels {
     export interface ConsumeXboxEntitlementsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Catalog version to use */
         CatalogVersion?: string;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string;
 
     }
@@ -3025,9 +3025,9 @@ declare module PlayFabClientModels {
         PurchaseDate?: string;
         /** Total number of remaining uses, if this is a consumable item. */
         RemainingUses?: number;
-        /** Currency type for the cost of the catalog item. */
+        /** Currency type for the cost of the catalog item. Not available when granting items. */
         UnitCurrency?: string;
-        /** Cost of the catalog item in the given currency. */
+        /** Cost of the catalog item in the given currency. Not available when granting items. */
         UnitPrice: number;
         /** The number of uses that were added or removed to this item in this call. */
         UsesIncrementedBy?: number;
@@ -3304,7 +3304,7 @@ declare module PlayFabClientModels {
     export interface LinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string;
 
     }
@@ -3744,7 +3744,7 @@ declare module PlayFabClientModels {
          * title has been selected.
          */
         TitleId?: string;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken?: string;
 
     }
@@ -4072,6 +4072,24 @@ declare module PlayFabClientModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseReceiptFulfillment */
+    export interface PurchaseReceiptFulfillment {
+        /** Items granted to the player in fulfillment of the validated receipt. */
+        FulfilledItems?: ItemInstance[];
+        /**
+         * Source of the payment price information for the recorded purchase transaction. A value of 'Request' indicates that the
+         * price specified in the request was used, whereas a value of 'Catalog' indicates that the real-money price of the catalog
+         * item matching the product ID in the validated receipt transaction and the currency specified in the request (defaulting
+         * to USD) was used.
+         */
+        RecordedPriceSource?: string;
+        /** Currency used to purchase the items (ISO 4217 currency code). */
+        RecordedTransactionCurrency?: string;
+        /** Amount of the stated currency paid for the items, in centesimal units */
+        RecordedTransactionTotal?: number;
+
+    }
+
     type PushNotificationPlatform = "ApplePushNotificationService"
         | "GoogleCloudMessaging";
 
@@ -4286,6 +4304,8 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesRequest */
     export interface RestoreIOSPurchasesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Catalog version of the restored items. If null, defaults to primary catalog. */
+        CatalogVersion?: string;
         /** Base64 encoded receipt data, passed back by the App Store as a result of a successful purchase. */
         ReceiptData: string;
 
@@ -4293,6 +4313,8 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesResult */
     export interface RestoreIOSPurchasesResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        Fulfillments?: PurchaseReceiptFulfillment[];
 
     }
 
@@ -4815,7 +4837,7 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkXboxAccountRequest */
     export interface UnlinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string;
 
     }
@@ -5268,11 +5290,11 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptRequest */
     export interface ValidateAmazonReceiptRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Catalog version to use when granting receipt item. If null, defaults to primary catalog. */
+        /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
         CatalogVersion?: string;
-        /** Currency used for the purchase. */
+        /** Currency used to pay for the purchase (ISO 4217 currency code). */
         CurrencyCode: string;
-        /** Amount of the stated currency paid for the object. */
+        /** Amount of the stated currency paid, in centesimal units. */
         PurchasePrice: number;
         /** ReceiptId returned by the Amazon App Store in-app purchase API */
         ReceiptId: string;
@@ -5283,14 +5305,18 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptResult */
     export interface ValidateAmazonReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        Fulfillments?: PurchaseReceiptFulfillment[];
 
     }
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseRequest */
     export interface ValidateGooglePlayPurchaseRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Currency used for the purchase. */
+        /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
+        CatalogVersion?: string;
+        /** Currency used to pay for the purchase (ISO 4217 currency code). */
         CurrencyCode?: string;
-        /** Amount of the stated currency paid for the object. */
+        /** Amount of the stated currency paid, in centesimal units. */
         PurchasePrice?: number;
         /** Original JSON string returned by the Google Play IAB API. */
         ReceiptJson: string;
@@ -5301,14 +5327,18 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseResult */
     export interface ValidateGooglePlayPurchaseResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        Fulfillments?: PurchaseReceiptFulfillment[];
 
     }
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptRequest */
     export interface ValidateIOSReceiptRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Currency used for the purchase. */
+        /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
+        CatalogVersion?: string;
+        /** Currency used to pay for the purchase (ISO 4217 currency code). */
         CurrencyCode: string;
-        /** Amount of the stated currency paid for the object. */
+        /** Amount of the stated currency paid, in centesimal units. */
         PurchasePrice: number;
         /** Base64 encoded receipt data, passed back by the App Store as a result of a successful purchase. */
         ReceiptData: string;
@@ -5317,16 +5347,18 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptResult */
     export interface ValidateIOSReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        Fulfillments?: PurchaseReceiptFulfillment[];
 
     }
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptRequest */
     export interface ValidateWindowsReceiptRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Catalog version to use when granting receipt item. If null, defaults to primary catalog. */
+        /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
         CatalogVersion?: string;
-        /** Currency used for the purchase. */
+        /** Currency used to pay for the purchase (ISO 4217 currency code). */
         CurrencyCode: string;
-        /** Amount of the stated currency paid for the object. */
+        /** Amount of the stated currency paid, in centesimal units. */
         PurchasePrice: number;
         /** XML Receipt returned by the Windows App Store in-app purchase API */
         Receipt: string;
@@ -5335,6 +5367,8 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptResult */
     export interface ValidateWindowsReceiptResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        Fulfillments?: PurchaseReceiptFulfillment[];
 
     }
 

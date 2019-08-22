@@ -2914,9 +2914,9 @@ declare module PlayFabAdminModels {
         RemainingUses?: number;
         /** Result of this operation. */
         Result: boolean;
-        /** Currency type for the cost of the catalog item. */
+        /** Currency type for the cost of the catalog item. Not available when granting items. */
         UnitCurrency?: string;
-        /** Cost of the catalog item in the given currency. */
+        /** Cost of the catalog item in the given currency. Not available when granting items. */
         UnitPrice: number;
         /** The number of uses that were added or removed to this item in this call. */
         UsesIncrementedBy?: number;
@@ -3021,9 +3021,9 @@ declare module PlayFabAdminModels {
         PurchaseDate?: string;
         /** Total number of remaining uses, if this is a consumable item. */
         RemainingUses?: number;
-        /** Currency type for the cost of the catalog item. */
+        /** Currency type for the cost of the catalog item. Not available when granting items. */
         UnitCurrency?: string;
-        /** Cost of the catalog item in the given currency. */
+        /** Cost of the catalog item in the given currency. Not available when granting items. */
         UnitPrice: number;
         /** The number of uses that were added or removed to this item in this call. */
         UsesIncrementedBy?: number;

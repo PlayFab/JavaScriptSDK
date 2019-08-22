@@ -161,6 +161,11 @@ declare module PlayFabMultiplayerModule {
          */
         ListMultiplayerServers(request: PlayFabMultiplayerModels.ListMultiplayerServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMultiplayerServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Lists quality of service servers for party.
+         * https://api.playfab.com/Documentation/Multiplayer/method/ListPartyQosServers
+         */
+        ListPartyQosServers(request: PlayFabMultiplayerModels.ListPartyQosServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListPartyQosServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Lists quality of service servers.
          * https://api.playfab.com/Documentation/Multiplayer/method/ListQosServers
          */
@@ -1091,6 +1096,24 @@ declare module PlayFabMultiplayerModels {
         MultiplayerServerSummaries?: MultiplayerServerSummary[];
         /** The page size on the response. */
         PageSize: number;
+        /** The skip token for the paged response. */
+        SkipToken?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListPartyQosServersRequest */
+    export interface ListPartyQosServersRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Qos servers version */
+        Version: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListPartyQosServersResponse */
+    export interface ListPartyQosServersResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The page size on the response. */
+        PageSize: number;
+        /** The list of QoS servers. */
+        QosServers?: QosServer[];
         /** The skip token for the paged response. */
         SkipToken?: string;
 
