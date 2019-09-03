@@ -2196,6 +2196,7 @@ declare module PlayFabAdminModels {
         | "QueryRateLimitExceeded"
         | "EntityAPIKeyCreationDisabledForEntity"
         | "ForbiddenByEntityPolicy"
+        | "UpdateInventoryRateLimitExceeded"
         | "StudioCreationRateLimited"
         | "StudioCreationInProgress"
         | "DuplicateStudioName"
@@ -2733,7 +2734,7 @@ declare module PlayFabAdminModels {
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetStoreItemsRequest */
     export interface GetStoreItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** catalog version to store items from. Use default catalog version if null */
+        /** Catalog version to store items from. Use default catalog version if null */
         CatalogVersion?: string;
         /** Unqiue identifier for the store which is being requested. */
         StoreId: string;

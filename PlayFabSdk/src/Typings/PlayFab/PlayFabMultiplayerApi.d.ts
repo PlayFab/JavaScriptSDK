@@ -171,6 +171,11 @@ declare module PlayFabMultiplayerModule {
          */
         ListQosServers(request: PlayFabMultiplayerModels.ListQosServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Lists quality of service servers.
+         * https://api.playfab.com/Documentation/Multiplayer/method/ListQosServersForTitle
+         */
+        ListQosServersForTitle(request: PlayFabMultiplayerModels.ListQosServersForTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Lists virtual machines for a title.
          * https://api.playfab.com/Documentation/Multiplayer/method/ListVirtualMachineSummaries
          */
@@ -484,6 +489,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences: AssetReferenceParams[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReferenceParams[];
+        /** The instrumentation configuration for the build. */
+        InstrumentationConfiguration?: InstrumentationConfiguration;
         /**
          * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
          * Game Server SDK (GSDK).
@@ -516,6 +523,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences?: AssetReference[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReference[];
+        /** The instrumentation configuration for this build. */
+        InstrumentationConfiguration?: InstrumentationConfiguration;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
         /** The number of multiplayer servers to host on a single VM of the build. */
@@ -739,6 +748,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences?: AssetReference[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReference[];
+        /** The instrumentation configuration of the build. */
+        InstrumentationConfiguration?: InstrumentationConfiguration;
         /**
          * Metadata of the build. The keys are case insensitive. The build metadata is made available to the server through Game
          * Server SDK (GSDK).
@@ -951,6 +962,17 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.InstrumentationConfiguration */
+    export interface InstrumentationConfiguration {
+        /**
+         * The list of processes to be monitored on a VM for this build. Providing processes will turn on performance metrics
+         * collection for this build. Process names should not include extensions. If the game server process is: GameServer.exe;
+         * then, ProcessesToMonitor = [ GameServer ]
+         */
+        ProcessesToMonitor?: string[];
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.JoinMatchmakingTicketRequest */
     export interface JoinMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The User who wants to join the ticket. Their Id must be listed in PlayFabIdsToMatchWith. */
@@ -1110,6 +1132,22 @@ declare module PlayFabMultiplayerModels {
 
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListPartyQosServersResponse */
     export interface ListPartyQosServersResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The page size on the response. */
+        PageSize: number;
+        /** The list of QoS servers. */
+        QosServers?: QosServer[];
+        /** The skip token for the paged response. */
+        SkipToken?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListQosServersForTitleRequest */
+    export interface ListQosServersForTitleRequest extends PlayFabModule.IPlayFabRequestCommon {
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListQosServersForTitleResponse */
+    export interface ListQosServersForTitleResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The page size on the response. */
         PageSize: number;
         /** The list of QoS servers. */

@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.50.190821",
+        sdkVersion: "1.52.190903",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.50.190821"
+            sdk: "JavaScriptSDK-1.52.190903"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -232,7 +232,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-1_2";
-PlayFab.sdkVersion = "1.50.190821";
+PlayFab.sdkVersion = "1.52.190903";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -457,6 +457,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetSharedGroupData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    GetStoreItems: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetStoreItems", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     GetTime: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetTime", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -539,6 +543,10 @@ PlayFab.ServerApi = {
 
     LoginWithXbox: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithXbox", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    LoginWithXboxId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithXboxId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ModifyItemUses: function (request, callback, customData, extraHeaders) {
