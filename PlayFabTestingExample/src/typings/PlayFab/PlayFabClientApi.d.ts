@@ -2801,7 +2801,7 @@ declare module PlayFabClientModels {
 
     /** https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetStoreItemsRequest */
     export interface GetStoreItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** catalog version to store items from. Use default catalog version if null */
+        /** Catalog version to store items from. Use default catalog version if null */
         CatalogVersion?: string;
         /** Unqiue identifier for the store which is being requested. */
         StoreId: string;
