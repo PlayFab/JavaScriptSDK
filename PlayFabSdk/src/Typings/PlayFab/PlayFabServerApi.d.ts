@@ -1627,7 +1627,7 @@ declare module PlayFabServerModels {
     export interface EntityKey {
         /** Unique ID of the entity. */
         Id: string;
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string;
 
     }
@@ -2242,6 +2242,13 @@ declare module PlayFabServerModels {
         | "VirtualCurrencyBetaRestoreError"
         | "VirtualCurrencyBetaSaveConflict"
         | "VirtualCurrencyBetaUpdateError"
+        | "InsightsManagementDatabaseNotFound"
+        | "InsightsManagementOperationNotFound"
+        | "InsightsManagementErrorPendingOperationExists"
+        | "InsightsManagementSetPerformanceLevelInvalidParameter"
+        | "InsightsManagementSetStorageRetentionInvalidParameter"
+        | "InsightsManagementGetStorageUsageInvalidParameter"
+        | "InsightsManagementGetOperationStatusInvalidParameter"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2304,6 +2311,7 @@ declare module PlayFabServerModels {
         | "ExperimentationExceededVariantNameLength"
         | "ExperimentationExceededMaxVariantLength"
         | "ExperimentInvalidId"
+        | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericPlayFabIdPair */

@@ -23,7 +23,7 @@ declare module PlayFabCloudScriptModels {
     export interface EntityKey {
         /** Unique ID of the entity. */
         Id: string;
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string;
 
     }
