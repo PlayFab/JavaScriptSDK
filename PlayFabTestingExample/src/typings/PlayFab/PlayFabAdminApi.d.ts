@@ -2430,7 +2430,10 @@ declare module PlayFabAdminModels {
 
     /** https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetDataReportResult */
     export interface GetDataReportResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** The URL where the requested report can be downloaded. */
+        /**
+         * The URL where the requested report can be downloaded. This can be any PlayFab generated reports. The full list of
+         * reports can be found at: https://docs.microsoft.com/en-us/gaming/playfab/features/analytics/reports/quickstart.
+         */
         DownloadUrl?: string;
 
     }
@@ -2903,7 +2906,10 @@ declare module PlayFabAdminModels {
         CatalogVersion?: string;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string;
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;
@@ -3014,7 +3020,10 @@ declare module PlayFabAdminModels {
         BundleParent?: string;
         /** Catalog version for the inventory item, when this instance was created. */
         CatalogVersion?: string;
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;

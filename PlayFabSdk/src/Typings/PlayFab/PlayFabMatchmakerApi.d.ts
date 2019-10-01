@@ -64,7 +64,10 @@ declare module PlayFabMatchmakerModels {
         BundleParent?: string;
         /** Catalog version for the inventory item, when this instance was created. */
         CatalogVersion?: string;
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         CustomData?: { [key: string]: string | null };
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string;
