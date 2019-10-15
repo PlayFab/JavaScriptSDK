@@ -117,6 +117,8 @@ declare module PlayFabProfilesModels {
         Entity?: EntityKey;
         /** The chain of responsibility for this entity. Use Lineage. */
         EntityChain?: string;
+        /** The experiment variants of this profile. */
+        ExperimentVariants?: string[];
         /** The files on this profile. */
         Files?: { [key: string]: EntityProfileFileMetadata };
         /** The language on this profile. */

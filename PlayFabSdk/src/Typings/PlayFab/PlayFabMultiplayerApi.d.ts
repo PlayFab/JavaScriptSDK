@@ -15,6 +15,11 @@ declare module PlayFabMultiplayerModule {
          */
         CancelMatchmakingTicket(request: PlayFabMultiplayerModels.CancelMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Creates a multiplayer server build alias.
+         * https://api.playfab.com/Documentation/Multiplayer/method/CreateBuildAlias
+         */
+        CreateBuildAlias(request: PlayFabMultiplayerModels.CreateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Creates a multiplayer server build with a custom container.
          * https://api.playfab.com/Documentation/Multiplayer/method/CreateBuildWithCustomContainer
          */
@@ -51,6 +56,11 @@ declare module PlayFabMultiplayerModule {
          */
         DeleteBuild(request: PlayFabMultiplayerModels.DeleteBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Deletes a multiplayer server build alias.
+         * https://api.playfab.com/Documentation/Multiplayer/method/DeleteBuildAlias
+         */
+        DeleteBuildAlias(request: PlayFabMultiplayerModels.DeleteBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Deletes a multiplayer server game certificate.
          * https://api.playfab.com/Documentation/Multiplayer/method/DeleteCertificate
          */
@@ -75,6 +85,11 @@ declare module PlayFabMultiplayerModule {
          * https://api.playfab.com/Documentation/Multiplayer/method/GetBuild
          */
         GetBuild(request: PlayFabMultiplayerModels.GetBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetBuildResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Gets a multiplayer server build alias.
+         * https://api.playfab.com/Documentation/Multiplayer/method/GetBuildAlias
+         */
+        GetBuildAlias(request: PlayFabMultiplayerModels.GetBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Gets the credentials to the container registry.
          * https://api.playfab.com/Documentation/Multiplayer/method/GetContainerRegistryCredentials
@@ -130,6 +145,12 @@ declare module PlayFabMultiplayerModule {
          * https://api.playfab.com/Documentation/Multiplayer/method/ListAssetSummaries
          */
         ListAssetSummaries(request: PlayFabMultiplayerModels.ListAssetSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListAssetSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
+         * game client to request list of builds with player entity token.
+         * https://api.playfab.com/Documentation/Multiplayer/method/ListBuildAliases
+         */
+        ListBuildAliases(request: PlayFabMultiplayerModels.MultiplayerEmptyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListBuildAliasesForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
          * access is enabled, allows game client to request list of builds with player entity token.
@@ -197,6 +218,11 @@ declare module PlayFabMultiplayerModule {
          * https://api.playfab.com/Documentation/Multiplayer/method/ShutdownMultiplayerServer
          */
         ShutdownMultiplayerServer(request: PlayFabMultiplayerModels.ShutdownMultiplayerServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Creates a multiplayer server build alias.
+         * https://api.playfab.com/Documentation/Multiplayer/method/UpdateBuildAlias
+         */
+        UpdateBuildAlias(request: PlayFabMultiplayerModels.UpdateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Updates a multiplayer server build's regions.
          * https://api.playfab.com/Documentation/Multiplayer/method/UpdateBuildRegions
@@ -287,6 +313,28 @@ declare module PlayFabMultiplayerModels {
         | "Standard_A3"
         | "Standard_A4";
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.BuildAliasDetailsResponse */
+    export interface BuildAliasDetailsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The guid string alias Id of the alias to be created or updated. */
+        AliasId?: string;
+        /** The alias name. */
+        AliasName?: string;
+        /** Array of build selection criteria. */
+        BuildSelectionCriteria?: BuildSelectionCriterion[];
+        /** The page size on the response. */
+        PageSize: number;
+        /** The skip token for the paged response. */
+        SkipToken?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.BuildAliasParams */
+    export interface BuildAliasParams {
+        /** The guid string alias ID to use for the request. */
+        AliasId: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.BuildRegion */
     export interface BuildRegion {
         /** The current multiplayer server stats for the region. */
@@ -313,6 +361,13 @@ declare module PlayFabMultiplayerModels {
         Region: string;
         /** The number of standby multiplayer servers for the region. */
         StandbyServers: number;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.BuildSelectionCriterion */
+    export interface BuildSelectionCriterion {
+        /** Dictionary of build ids and their respective weights for distribution of allocation requests. */
+        BuildWeightDistribution?: { [key: string]: number };
 
     }
 
@@ -416,6 +471,15 @@ declare module PlayFabMultiplayerModels {
         Total: number;
         /** The AzureVmFamily */
         VmFamily?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.CreateBuildAliasRequest */
+    export interface CreateBuildAliasRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The alias name. */
+        AliasName: string;
+        /** Array of build selection criteria. */
+        BuildSelectionCriteria?: BuildSelectionCriterion[];
 
     }
 
@@ -618,6 +682,13 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.DeleteBuildAliasRequest */
+    export interface DeleteBuildAliasRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The guid string alias ID of the alias to perform the action on. */
+        AliasId: string;
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.DeleteBuildRequest */
     export interface DeleteBuildRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the build to delete. */
@@ -716,6 +787,13 @@ declare module PlayFabMultiplayerModels {
         AssetUploadUrl?: string;
         /** The asset's file name to get the upload URL for. */
         FileName?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetBuildAliasRequest */
+    export interface GetBuildAliasRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The guid string alias ID of the alias to perform the action on. */
+        AliasId: string;
 
     }
 
@@ -1010,6 +1088,13 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListBuildAliasesForTitleResponse */
+    export interface ListBuildAliasesForTitleResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of build aliases for the title */
+        BuildAliases?: BuildAliasDetailsResponse[];
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.ListBuildSummariesRequest */
     export interface ListBuildSummariesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The page size for the request. */
@@ -1230,6 +1315,11 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MultiplayerEmptyRequest */
+    export interface MultiplayerEmptyRequest extends PlayFabModule.IPlayFabRequestCommon {
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.MultiplayerServerSummary */
     export interface MultiplayerServerSummary {
         /** The connected players in the multiplayer server. */
@@ -1274,8 +1364,10 @@ declare module PlayFabMultiplayerModels {
 
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.RequestMultiplayerServerRequest */
     export interface RequestMultiplayerServerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The identifiers of the build alias to use for the request. */
+        BuildAliasParams?: BuildAliasParams;
         /** The guid string build ID of the multiplayer server to request. */
-        BuildId: string;
+        BuildId?: string;
         /**
          * Initial list of players (potentially matchmade) allowed to connect to the game. This list is passed to the game server
          * when requested (via GSDK) and can be used to validate players connecting to it.
@@ -1380,6 +1472,17 @@ declare module PlayFabMultiplayerModels {
     export interface TitleMultiplayerServersQuotas {
         /** The core capacity for the various regions and VM Family */
         CoreCapacities?: CoreCapacity[];
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.UpdateBuildAliasRequest */
+    export interface UpdateBuildAliasRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The guid string alias Id of the alias to be updated. */
+        AliasId: string;
+        /** The alias name. */
+        AliasName?: string;
+        /** Array of build selection criteria. */
+        BuildSelectionCriteria?: BuildSelectionCriterion[];
 
     }
 

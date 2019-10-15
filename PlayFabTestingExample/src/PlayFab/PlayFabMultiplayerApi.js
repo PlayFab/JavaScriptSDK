@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.54.191001",
+        sdkVersion: "1.55.191015",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.54.191001"
+            sdk: "JavaScriptSDK-1.55.191015"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-1_1";
-PlayFab.sdkVersion = "1.54.191001";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-2_0";
+PlayFab.sdkVersion = "1.55.191015";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -255,6 +255,10 @@ PlayFab.MultiplayerApi = {
 
     CancelMatchmakingTicket: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/CancelMatchmakingTicket", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    CreateBuildAlias: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/CreateBuildAlias", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     CreateBuildWithCustomContainer: function (request, callback, customData, extraHeaders) {
@@ -285,6 +289,10 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/DeleteBuild", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    DeleteBuildAlias: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/DeleteBuildAlias", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     DeleteCertificate: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/DeleteCertificate", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -303,6 +311,10 @@ PlayFab.MultiplayerApi = {
 
     GetBuild: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetBuild", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetBuildAlias: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetBuildAlias", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetContainerRegistryCredentials: function (request, callback, customData, extraHeaders) {
@@ -347,6 +359,10 @@ PlayFab.MultiplayerApi = {
 
     ListAssetSummaries: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListAssetSummaries", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListBuildAliases: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListBuildAliases", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListBuildSummaries: function (request, callback, customData, extraHeaders) {
@@ -399,6 +415,10 @@ PlayFab.MultiplayerApi = {
 
     ShutdownMultiplayerServer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ShutdownMultiplayerServer", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UpdateBuildAlias: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/UpdateBuildAlias", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UpdateBuildRegions: function (request, callback, customData, extraHeaders) {

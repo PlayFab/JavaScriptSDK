@@ -3372,6 +3372,8 @@ declare module PlayFabAdminModels {
         Locations?: { [key: string]: PlayerLocation };
         /** Player account origination */
         Origination?: string;
+        /** List of player variants for experimentation */
+        PlayerExperimentVariants?: string[];
         /** PlayFab Player ID */
         PlayerId?: string;
         /** Array of player statistics */
