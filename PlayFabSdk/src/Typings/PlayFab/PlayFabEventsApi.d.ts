@@ -5,12 +5,13 @@ declare module PlayFabEventsModule {
         ForgetAllCredentials(): void;
 
         /**
-         * Write batches of entity based events to PlayStream.
+         * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
          * https://api.playfab.com/Documentation/Events/method/WriteEvents
          */
         WriteEvents(request: PlayFabEventsModels.WriteEventsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Write batches of entity based events to as Telemetry events (bypass PlayStream).
+         * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
+         * with 'custom.'
          * https://api.playfab.com/Documentation/Events/method/WriteTelemetryEvents
          */
         WriteTelemetryEvents(request: PlayFabEventsModels.WriteEventsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -32,7 +33,7 @@ declare module PlayFabEventsModels {
     export interface EventContents {
         /** Entity associated with the event. If null, the event will apply to the calling entity. */
         Entity?: EntityKey;
-        /** The namespace in which the event is defined. It must begin with 'com.playfab.events.' */
+        /** The namespace in which the event is defined. Allowed namespaces can vary by API. */
         EventNamespace: string;
         /** The name of this event. */
         Name: string;
