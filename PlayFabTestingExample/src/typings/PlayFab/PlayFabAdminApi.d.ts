@@ -2230,6 +2230,8 @@ declare module PlayFabAdminModels {
         | "InsightsManagementSetStorageRetentionInvalidParameter"
         | "InsightsManagementGetStorageUsageInvalidParameter"
         | "InsightsManagementGetOperationStatusInvalidParameter"
+        | "DuplicatePurchaseTransactionId"
+        | "EvaluationModePlayerCountExceeded"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2266,6 +2268,8 @@ declare module PlayFabAdminModels {
         | "CatalogConfigInvalid"
         | "CatalogUnauthorized"
         | "CatalogItemTypeInvalid"
+        | "CatalogBadRequest"
+        | "CatalogTooManyRequests"
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
@@ -2292,6 +2296,7 @@ declare module PlayFabAdminModels {
         | "ExperimentationExceededVariantNameLength"
         | "ExperimentationExceededMaxVariantLength"
         | "ExperimentInvalidId"
+        | "ExperimentationNoScorecard"
         | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
@@ -3411,6 +3416,8 @@ declare module PlayFabAdminModels {
         Created?: string;
         /** Player display name */
         DisplayName?: string;
+        /** List of experiment variants for the player. */
+        ExperimentVariants?: string[];
         /** UTC time when the player most recently logged in to the title */
         LastLogin?: string;
         /** List of all authentication systems linked to this player account */
@@ -3457,6 +3464,8 @@ declare module PlayFabAdminModels {
         ShowCreated: boolean;
         /** Whether to show the display name. Defaults to false */
         ShowDisplayName: boolean;
+        /** Whether to show player's experiment variants. Defaults to false */
+        ShowExperimentVariants: boolean;
         /** Whether to show the last login time. Defaults to false */
         ShowLastLogin: boolean;
         /** Whether to show the linked accounts. Defaults to false */

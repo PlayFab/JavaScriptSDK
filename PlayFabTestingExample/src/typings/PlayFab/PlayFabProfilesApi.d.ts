@@ -244,6 +244,8 @@ declare module PlayFabProfilesModels {
 
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetTitlePlayersFromMasterPlayerAccountIdsResponse */
     export interface GetTitlePlayersFromMasterPlayerAccountIdsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Optional id of title to get players from, required if calling using a master_player_account. */
+        TitleId?: string;
         /** Dictionary of master player ids mapped to title player entity keys and id pairs */
         TitlePlayerAccounts?: { [key: string]: EntityKey };
 
