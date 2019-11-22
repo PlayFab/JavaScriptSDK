@@ -212,7 +212,8 @@ declare module PlayFabAdminModule {
          * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
          * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
          * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
-         * in the results. AB Test segments are currently not supported by this operation.
+         * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
+         * called 30 times in one minute. You will be returned an error if you exceed this threshold.
          * https://api.playfab.com/Documentation/Admin/method/GetPlayersInSegment
          */
         GetPlayersInSegment(request: PlayFabAdminModels.GetPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -2232,6 +2233,10 @@ declare module PlayFabAdminModels {
         | "InsightsManagementGetOperationStatusInvalidParameter"
         | "DuplicatePurchaseTransactionId"
         | "EvaluationModePlayerCountExceeded"
+        | "GetPlayersInSegmentRateLimitExceeded"
+        | "CloudScriptFunctionNameSizeExceeded"
+        | "InsightsManagementTitleInEvaluationMode"
+        | "CloudScriptAzureFunctionsQueueRequestError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2284,6 +2289,7 @@ declare module PlayFabAdminModels {
         | "ExportCantEditPendingExport"
         | "ExportLimitExports"
         | "ExportLimitEvents"
+        | "ExportInvalidPartitionStatusModification"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
@@ -2297,6 +2303,8 @@ declare module PlayFabAdminModels {
         | "ExperimentationExceededMaxVariantLength"
         | "ExperimentInvalidId"
         | "ExperimentationNoScorecard"
+        | "ExperimentationTreatmentAssignmentFailed"
+        | "ExperimentationTreatmentAssignmentDisabled"
         | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
