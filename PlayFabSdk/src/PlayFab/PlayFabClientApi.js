@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.56.191029",
+        sdkVersion: "1.57.191121",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.56.191029"
+            sdk: "JavaScriptSDK-1.57.191121"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
-PlayFab.sdkVersion = "1.56.191029";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.57.191121";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -1291,7 +1291,7 @@ PlayFab.ClientApi = {
 var PlayFabClientSDK = PlayFab.ClientApi;
 
 PlayFab.RegisterWithPhaser = function() {
-    if ( typeof Phaser === "undefined" )
+    if ( typeof Phaser === "undefined" || typeof Phaser.Plugin === "undefined" )
         return;
 
     Phaser.Plugin.PlayFab = function (game, parent) {
