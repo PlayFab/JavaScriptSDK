@@ -111,6 +111,11 @@ declare module PlayFabMultiplayerModule {
          */
         GetMultiplayerServerDetails(request: PlayFabMultiplayerModels.GetMultiplayerServerDetailsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Gets multiplayer server logs after a server has terminated.
+         * https://api.playfab.com/Documentation/Multiplayer/method/GetMultiplayerServerLogs
+         */
+        GetMultiplayerServerLogs(request: PlayFabMultiplayerModels.GetMultiplayerServerLogsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerLogsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Get the statistics for a queue.
          * https://api.playfab.com/Documentation/Multiplayer/method/GetQueueStatistics
          */
@@ -218,6 +223,11 @@ declare module PlayFabMultiplayerModule {
          * https://api.playfab.com/Documentation/Multiplayer/method/ShutdownMultiplayerServer
          */
         ShutdownMultiplayerServer(request: PlayFabMultiplayerModels.ShutdownMultiplayerServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Untags a container image.
+         * https://api.playfab.com/Documentation/Multiplayer/method/UntagContainerImage
+         */
+        UntagContainerImage(request: PlayFabMultiplayerModels.UntagContainerImageRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Creates a multiplayer server build alias.
          * https://api.playfab.com/Documentation/Multiplayer/method/UpdateBuildAlias
@@ -339,11 +349,13 @@ declare module PlayFabMultiplayerModels {
     export interface BuildRegion {
         /** The current multiplayer server stats for the region. */
         CurrentServerStats?: CurrentServerStats;
+        /** Optional settings to control dynamic adjustment of standby target */
+        DynamicStandbySettings?: DynamicStandbySettings;
         /** The maximum number of multiplayer servers for the region. */
         MaxServers: number;
         /** The build region. */
         Region?: string;
-        /** The number of standby multiplayer servers for the region. */
+        /** The target number of standby multiplayer servers for the region. */
         StandbyServers: number;
         /**
          * The status of multiplayer servers in the build region. Valid values are - Unknown, Initialized, Deploying, Deployed,
@@ -355,6 +367,8 @@ declare module PlayFabMultiplayerModels {
 
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.BuildRegionParams */
     export interface BuildRegionParams {
+        /** Optional settings to control dynamic adjustment of standby target. If not specified, dynamic standby is disabled */
+        DynamicStandbySettings?: DynamicStandbySettings;
         /** The maximum number of multiplayer servers for the region. */
         MaxServers: number;
         /** The build region. */
@@ -716,6 +730,29 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.DynamicStandbySettings */
+    export interface DynamicStandbySettings {
+        /**
+         * List of auto standing by trigger values and corresponding standing by multiplier. Defaults to 1.5X at 50%, 3X at 25%,
+         * and 4X at 5%
+         */
+        DynamicFloorMultiplierThresholds?: DynamicStandbyThreshold[];
+        /** When true, dynamic standby will be enabled */
+        IsEnabled: boolean;
+        /** The time it takes to reduce target standing by to configured floor value after an increase. Defaults to 30 minutes */
+        RampDownSeconds?: number;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.DynamicStandbyThreshold */
+    export interface DynamicStandbyThreshold {
+        /** When the trigger threshold is reached, multiply by this value */
+        Multiplier: number;
+        /** The multiplier will be applied when the actual standby divided by target standby floor is less than this value */
+        TriggerThresholdPercentage: number;
+
+    }
+
     /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.EmptyResponse */
     export interface EmptyResponse extends PlayFabModule.IPlayFabResultCommon  {
 
@@ -978,6 +1015,22 @@ declare module PlayFabMultiplayerModels {
         State?: string;
         /** The virtual machine ID that the multiplayer server is located on. */
         VmId?: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMultiplayerServerLogsRequest */
+    export interface GetMultiplayerServerLogsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The region of the multiplayer server to get logs for. */
+        Region: string;
+        /** The server ID of multiplayer server to get logs for. */
+        ServerId: string;
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.GetMultiplayerServerLogsResponse */
+    export interface GetMultiplayerServerLogsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** URL for logs download. */
+        LogDownloadUrl?: string;
 
     }
 
@@ -1472,6 +1525,15 @@ declare module PlayFabMultiplayerModels {
     export interface TitleMultiplayerServersQuotas {
         /** The core capacity for the various regions and VM Family */
         CoreCapacities?: CoreCapacity[];
+
+    }
+
+    /** https://api.playfab.com/Documentation/Multiplayer/datatype/PlayFab.Multiplayer.Models/PlayFab.Multiplayer.Models.UntagContainerImageRequest */
+    export interface UntagContainerImageRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The container image which tag we want to remove. */
+        ImageName?: string;
+        /** The tag we want to remove. */
+        Tag?: string;
 
     }
 

@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.57.191121",
+        sdkVersion: "1.58.191218",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.57.191121"
+            sdk: "JavaScriptSDK-1.58.191218"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
-PlayFab.sdkVersion = "1.57.191121";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
+PlayFab.sdkVersion = "1.58.191218";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -333,6 +333,10 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetMultiplayerServerDetails", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    GetMultiplayerServerLogs: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetMultiplayerServerLogs", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     GetQueueStatistics: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/GetQueueStatistics", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -415,6 +419,10 @@ PlayFab.MultiplayerApi = {
 
     ShutdownMultiplayerServer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ShutdownMultiplayerServer", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UntagContainerImage: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/UntagContainerImage", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UpdateBuildAlias: function (request, callback, customData, extraHeaders) {

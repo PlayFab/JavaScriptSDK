@@ -2256,6 +2256,7 @@ declare module PlayFabServerModels {
         | "CloudScriptFunctionNameSizeExceeded"
         | "InsightsManagementTitleInEvaluationMode"
         | "CloudScriptAzureFunctionsQueueRequestError"
+        | "EvaluationModeTitleCountExceeded"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2309,6 +2310,9 @@ declare module PlayFabServerModels {
         | "ExportLimitExports"
         | "ExportLimitEvents"
         | "ExportInvalidPartitionStatusModification"
+        | "ExportCouldNotCreate"
+        | "ExportNoBackingDatabaseFound"
+        | "ExportCouldNotDelete"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
@@ -2318,8 +2322,8 @@ declare module PlayFabServerModels {
         | "ExperimentationExperimentNeverStarted"
         | "ExperimentationExperimentDeleted"
         | "ExperimentationClientTimeout"
-        | "ExperimentationExceededVariantNameLength"
-        | "ExperimentationExceededMaxVariantLength"
+        | "ExperimentationInvalidVariantConfiguration"
+        | "ExperimentationInvalidVariableConfiguration"
         | "ExperimentInvalidId"
         | "ExperimentationNoScorecard"
         | "ExperimentationTreatmentAssignmentFailed"
@@ -3188,7 +3192,7 @@ declare module PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantCharacterToUserRequest */
     export interface GrantCharacterToUserRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Non-unique display name of the character being granted (1-20 characters in length). */
+        /** Non-unique display name of the character being granted (1-40 characters in length). */
         CharacterName: string;
         /** Type of the character being granted; statistics can be sliced based on this value. */
         CharacterType: string;
@@ -5181,7 +5185,7 @@ declare module PlayFabServerModels {
         /** Name of the variable. */
         Name: string;
         /** Value of the variable. */
-        Value: string;
+        Value?: string;
 
     }
 
@@ -5216,6 +5220,8 @@ declare module PlayFabServerModels {
         Body?: { [key: string]: any };
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        EventCustomTags?: { [key: string]: string | null };
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -5223,7 +5229,7 @@ declare module PlayFabServerModels {
         EventName: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         Timestamp?: string;
 
     }
@@ -5232,6 +5238,8 @@ declare module PlayFabServerModels {
     export interface WriteServerPlayerEventRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any };
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        EventCustomTags?: { [key: string]: string | null };
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -5239,7 +5247,7 @@ declare module PlayFabServerModels {
         EventName: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         Timestamp?: string;
 
     }
@@ -5248,12 +5256,14 @@ declare module PlayFabServerModels {
     export interface WriteTitleEventRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any };
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        EventCustomTags?: { [key: string]: string | null };
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
          */
         EventName: string;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         Timestamp?: string;
 
     }
