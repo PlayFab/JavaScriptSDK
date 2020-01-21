@@ -7,12 +7,12 @@ declare module PlayFabAuthenticationModule {
         /**
          * Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
          * Entity Token.
-         * https://api.playfab.com/Documentation/Authentication/method/GetEntityToken
+         * https://docs.microsoft.com/rest/api/playfab/authentication/authentication/getentitytoken
          */
         GetEntityToken(request: PlayFabAuthenticationModels.GetEntityTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.GetEntityTokenResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Method for a server to validate a client provided EntityToken. Only callable by the title entity.
-         * https://api.playfab.com/Documentation/Authentication/method/ValidateEntityToken
+         * https://docs.microsoft.com/rest/api/playfab/authentication/authentication/validateentitytoken
          */
         ValidateEntityToken(request: PlayFabAuthenticationModels.ValidateEntityTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.ValidateEntityTokenResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
 
@@ -20,7 +20,6 @@ declare module PlayFabAuthenticationModule {
 }
 
 declare module PlayFabAuthenticationModels {
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.EntityKey */
     export interface EntityKey {
         /** Unique ID of the entity. */
         Id: string;
@@ -29,7 +28,6 @@ declare module PlayFabAuthenticationModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.EntityLineage */
     export interface EntityLineage {
         /** The Character Id of the associated entity. */
         CharacterId?: string;
@@ -46,14 +44,12 @@ declare module PlayFabAuthenticationModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetEntityTokenRequest */
     export interface GetEntityTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity?: EntityKey;
 
     }
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetEntityTokenResponse */
     export interface GetEntityTokenResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
@@ -84,14 +80,12 @@ declare module PlayFabAuthenticationModels {
         | "FacebookInstantGames"
         | "OpenIdConnect";
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenRequest */
     export interface ValidateEntityTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Client EntityToken */
         EntityToken: string;
 
     }
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenResponse */
     export interface ValidateEntityTokenResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;

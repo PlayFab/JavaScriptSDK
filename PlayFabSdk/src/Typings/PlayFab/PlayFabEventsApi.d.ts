@@ -6,13 +6,13 @@ declare module PlayFabEventsModule {
 
         /**
          * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
-         * https://api.playfab.com/Documentation/Events/method/WriteEvents
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/writeevents
          */
         WriteEvents(request: PlayFabEventsModels.WriteEventsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
          * with 'custom.'
-         * https://api.playfab.com/Documentation/Events/method/WriteTelemetryEvents
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/writetelemetryevents
          */
         WriteTelemetryEvents(request: PlayFabEventsModels.WriteEventsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
 
@@ -20,7 +20,6 @@ declare module PlayFabEventsModule {
 }
 
 declare module PlayFabEventsModels {
-    /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.EntityKey */
     export interface EntityKey {
         /** Unique ID of the entity. */
         Id: string;
@@ -29,7 +28,6 @@ declare module PlayFabEventsModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.EventContents */
     export interface EventContents {
         /** Entity associated with the event. If null, the event will apply to the calling entity. */
         Entity?: EntityKey;
@@ -57,14 +55,12 @@ declare module PlayFabEventsModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.WriteEventsRequest */
     export interface WriteEventsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Collection of events to write to PlayStream. */
         Events: EventContents[];
 
     }
 
-    /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.WriteEventsResponse */
     export interface WriteEventsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /**
          * The unique identifiers assigned by the server to the events, in the same order as the events in the request. Only
