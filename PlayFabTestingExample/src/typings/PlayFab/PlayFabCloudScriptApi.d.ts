@@ -7,7 +7,7 @@ declare module PlayFabCloudScriptModule {
         /**
          * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
          * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
-         * https://api.playfab.com/Documentation/CloudScript/method/ExecuteEntityCloudScript
+         * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/executeentitycloudscript
          */
         ExecuteEntityCloudScript(request: PlayFabCloudScriptModels.ExecuteEntityCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
 
@@ -19,7 +19,6 @@ declare module PlayFabCloudScriptModels {
         | "Latest"
         | "Specific";
 
-    /** https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.EntityKey */
     export interface EntityKey {
         /** Unique ID of the entity. */
         Id: string;
@@ -28,7 +27,6 @@ declare module PlayFabCloudScriptModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.ExecuteCloudScriptResult */
     export interface ExecuteCloudScriptResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Number of PlayFab API requests issued by the CloudScript function */
         APIRequestsIssued: number;
@@ -67,7 +65,6 @@ declare module PlayFabCloudScriptModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.ExecuteEntityCloudScriptRequest */
     export interface ExecuteEntityCloudScriptRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity?: EntityKey;
@@ -91,7 +88,6 @@ declare module PlayFabCloudScriptModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.LogStatement */
     export interface LogStatement {
         /** Optional object accompanying the message as contextual information */
         Data?: any;
@@ -101,7 +97,6 @@ declare module PlayFabCloudScriptModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.ScriptExecutionError */
     export interface ScriptExecutionError {
         /**
          * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,

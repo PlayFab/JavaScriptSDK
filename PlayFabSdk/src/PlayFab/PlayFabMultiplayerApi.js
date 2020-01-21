@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.58.191218",
+        sdkVersion: "1.59.200121",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.58.191218"
+            sdk: "JavaScriptSDK-1.59.200121"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
-PlayFab.sdkVersion = "1.58.191218";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.59.200121";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -253,8 +253,16 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/CancelAllMatchmakingTicketsForPlayer", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    CancelAllServerBackfillTicketsForPlayer: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/CancelAllServerBackfillTicketsForPlayer", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     CancelMatchmakingTicket: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/CancelMatchmakingTicket", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    CancelServerBackfillTicket: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/CancelServerBackfillTicket", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     CreateBuildAlias: function (request, callback, customData, extraHeaders) {
@@ -275,6 +283,10 @@ PlayFab.MultiplayerApi = {
 
     CreateRemoteUser: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/CreateRemoteUser", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    CreateServerBackfillTicket: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/CreateServerBackfillTicket", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     CreateServerMatchmakingTicket: function (request, callback, customData, extraHeaders) {
@@ -345,6 +357,10 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetRemoteLoginEndpoint", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    GetServerBackfillTicket: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/GetServerBackfillTicket", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     GetTitleEnabledForMultiplayerServersStatus: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetTitleEnabledForMultiplayerServersStatus", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -403,6 +419,10 @@ PlayFab.MultiplayerApi = {
 
     ListQosServersForTitle: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListQosServersForTitle", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListServerBackfillTicketsForPlayer: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/ListServerBackfillTicketsForPlayer", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListVirtualMachineSummaries: function (request, callback, customData, extraHeaders) {

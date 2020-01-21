@@ -6,37 +6,37 @@ declare module PlayFabDataModule {
 
         /**
          * Abort pending file uploads to an entity's profile.
-         * https://api.playfab.com/Documentation/Data/method/AbortFileUploads
+         * https://docs.microsoft.com/rest/api/playfab/data/file/abortfileuploads
          */
         AbortFileUploads(request: PlayFabDataModels.AbortFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.AbortFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Delete files on an entity's profile.
-         * https://api.playfab.com/Documentation/Data/method/DeleteFiles
+         * https://docs.microsoft.com/rest/api/playfab/data/file/deletefiles
          */
         DeleteFiles(request: PlayFabDataModels.DeleteFilesRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.DeleteFilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Finalize file uploads to an entity's profile.
-         * https://api.playfab.com/Documentation/Data/method/FinalizeFileUploads
+         * https://docs.microsoft.com/rest/api/playfab/data/file/finalizefileuploads
          */
         FinalizeFileUploads(request: PlayFabDataModels.FinalizeFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.FinalizeFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Retrieves file metadata from an entity's profile.
-         * https://api.playfab.com/Documentation/Data/method/GetFiles
+         * https://docs.microsoft.com/rest/api/playfab/data/file/getfiles
          */
         GetFiles(request: PlayFabDataModels.GetFilesRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.GetFilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Retrieves objects from an entity's profile.
-         * https://api.playfab.com/Documentation/Data/method/GetObjects
+         * https://docs.microsoft.com/rest/api/playfab/data/object/getobjects
          */
         GetObjects(request: PlayFabDataModels.GetObjectsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.GetObjectsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Initiates file uploads to an entity's profile.
-         * https://api.playfab.com/Documentation/Data/method/InitiateFileUploads
+         * https://docs.microsoft.com/rest/api/playfab/data/file/initiatefileuploads
          */
         InitiateFileUploads(request: PlayFabDataModels.InitiateFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.InitiateFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Sets objects on an entity's profile.
-         * https://api.playfab.com/Documentation/Data/method/SetObjects
+         * https://docs.microsoft.com/rest/api/playfab/data/object/setobjects
          */
         SetObjects(request: PlayFabDataModels.SetObjectsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.SetObjectsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
 
@@ -44,7 +44,6 @@ declare module PlayFabDataModule {
 }
 
 declare module PlayFabDataModels {
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.AbortFileUploadsRequest */
     export interface AbortFileUploadsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity: EntityKey;
@@ -58,7 +57,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.AbortFileUploadsResponse */
     export interface AbortFileUploadsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
@@ -67,7 +65,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.DeleteFilesRequest */
     export interface DeleteFilesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity: EntityKey;
@@ -81,7 +78,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.DeleteFilesResponse */
     export interface DeleteFilesResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
@@ -90,7 +86,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.EntityKey */
     export interface EntityKey {
         /** Unique ID of the entity. */
         Id: string;
@@ -99,7 +94,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.FinalizeFileUploadsRequest */
     export interface FinalizeFileUploadsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity: EntityKey;
@@ -108,7 +102,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.FinalizeFileUploadsResponse */
     export interface FinalizeFileUploadsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
@@ -119,7 +112,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetFileMetadata */
     export interface GetFileMetadata {
         /** Checksum value for the file */
         Checksum?: string;
@@ -134,14 +126,12 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetFilesRequest */
     export interface GetFilesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity: EntityKey;
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetFilesResponse */
     export interface GetFilesResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
@@ -152,7 +142,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetObjectsRequest */
     export interface GetObjectsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity: EntityKey;
@@ -164,7 +153,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetObjectsResponse */
     export interface GetObjectsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
@@ -175,7 +163,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.InitiateFileUploadMetadata */
     export interface InitiateFileUploadMetadata {
         /** Name of the file. */
         FileName?: string;
@@ -184,7 +171,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.InitiateFileUploadsRequest */
     export interface InitiateFileUploadsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity: EntityKey;
@@ -198,7 +184,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.InitiateFileUploadsResponse */
     export interface InitiateFileUploadsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
@@ -209,7 +194,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.ObjectResult */
     export interface ObjectResult {
         /** Un-escaped JSON object, if EscapeObject false or default. */
         DataObject?: any;
@@ -225,7 +209,6 @@ declare module PlayFabDataModels {
         | "Deleted"
         | "None";
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.SetObject */
     export interface SetObject {
         /**
          * Body of the object to be saved. If empty and DeleteObject is true object will be deleted if it exists, or no operation
@@ -244,7 +227,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.SetObjectInfo */
     export interface SetObjectInfo {
         /** Name of the object */
         ObjectName?: string;
@@ -255,7 +237,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.SetObjectsRequest */
     export interface SetObjectsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The entity to perform this action on. */
         Entity: EntityKey;
@@ -270,7 +251,6 @@ declare module PlayFabDataModels {
 
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.SetObjectsResponse */
     export interface SetObjectsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** New version of the entity profile. */
         ProfileVersion: number;

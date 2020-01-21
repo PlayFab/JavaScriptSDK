@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.58.191218",
+        sdkVersion: "1.59.200121",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.58.191218"
+            sdk: "JavaScriptSDK-1.59.200121"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
-PlayFab.sdkVersion = "1.58.191218";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.59.200121";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -529,6 +529,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GrantItemsToUsers", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    LinkPSNAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkPSNAccount", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     LinkServerCustomId: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkServerCustomId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -679,6 +683,10 @@ PlayFab.ServerApi = {
 
     SubtractUserVirtualCurrency: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UnlinkPSNAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkPSNAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UnlinkServerCustomId: function (request, callback, customData, extraHeaders) {
