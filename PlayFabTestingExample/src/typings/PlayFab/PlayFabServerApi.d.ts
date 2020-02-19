@@ -2287,6 +2287,8 @@ declare module PlayFabServerModels {
         | "ExperimentationNoScorecard"
         | "ExperimentationTreatmentAssignmentFailed"
         | "ExperimentationTreatmentAssignmentDisabled"
+        | "ExperimentationInvalidDuration"
+        | "ExperimentationMaxExperimentsReached"
         | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
