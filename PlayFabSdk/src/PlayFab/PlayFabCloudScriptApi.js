@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.59.200121",
+        sdkVersion: "1.60.200218",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.59.200121"
+            sdk: "JavaScriptSDK-1.60.200218"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
-PlayFab.sdkVersion = "1.59.200121";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
+PlayFab.sdkVersion = "1.60.200218";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -251,6 +251,50 @@ PlayFab.CloudScriptApi = {
 
     ExecuteEntityCloudScript: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/ExecuteEntityCloudScript", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ExecuteFunction: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/ExecuteFunction", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListFunctions: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/ListFunctions", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListHttpFunctions: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/ListHttpFunctions", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListQueuedFunctions: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/ListQueuedFunctions", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    PostFunctionResultForEntityTriggeredAction: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/PostFunctionResultForEntityTriggeredAction", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    PostFunctionResultForFunctionExecution: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/PostFunctionResultForFunctionExecution", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    PostFunctionResultForPlayerTriggeredAction: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/PostFunctionResultForPlayerTriggeredAction", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    PostFunctionResultForScheduledTask: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/PostFunctionResultForScheduledTask", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    RegisterHttpFunction: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/RegisterHttpFunction", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    RegisterQueuedFunction: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/RegisterQueuedFunction", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UnregisterFunction: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/UnregisterFunction", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 };
 

@@ -62,6 +62,11 @@ declare module PlayFabAdminModule {
          */
         CreateCloudScriptTask(request: PlayFabAdminModels.CreateCloudScriptTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Create a Insights Scheduled Scaling task, which can scale Insights Performance Units on a schedule
+         * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/createinsightsscheduledscalingtask
+         */
+        CreateInsightsScheduledScalingTask(request: PlayFabAdminModels.CreateInsightsScheduledScalingTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Registers a relationship between a title and an Open ID Connect provider.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/createopenidconnection
          */
@@ -1309,6 +1314,20 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface CreateInsightsScheduledScalingTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Description the task */
+        Description?: string;
+        /** Whether the schedule is active. Inactive schedule will not trigger task execution. */
+        IsActive: boolean;
+        /** Name of the task. This is a unique identifier for tasks in the title. */
+        Name: string;
+        /** Task details related to Insights Scaling */
+        Parameter: InsightsScalingTaskParameter;
+        /** Cron expression for the run schedule of the task. The expression should be in UTC. */
+        Schedule?: string;
+
+    }
+
     export interface CreateOpenIdConnectionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The client ID given by the ID provider. */
         ClientId: string;
@@ -2249,6 +2268,8 @@ declare module PlayFabAdminModels {
         | "ExperimentationNoScorecard"
         | "ExperimentationTreatmentAssignmentFailed"
         | "ExperimentationTreatmentAssignmentDisabled"
+        | "ExperimentationInvalidDuration"
+        | "ExperimentationMaxExperimentsReached"
         | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
@@ -2867,6 +2888,12 @@ declare module PlayFabAdminModels {
     export interface IncrementPlayerStatisticVersionResult extends PlayFabModule.IPlayFabResultCommon  {
         /** version change history of the statistic */
         StatisticVersion?: PlayerStatisticVersion;
+
+    }
+
+    export interface InsightsScalingTaskParameter {
+        /** Insights Performance Level to scale to. */
+        Level: number;
 
     }
 
@@ -3669,7 +3696,8 @@ declare module PlayFabAdminModels {
 
     type ScheduledTaskType = "CloudScript"
         | "ActionsOnPlayerSegment"
-        | "CloudScriptAzureFunctions";
+        | "CloudScriptAzureFunctions"
+        | "InsightsScheduledScaling";
 
     export interface ScriptExecutionError {
         /**
