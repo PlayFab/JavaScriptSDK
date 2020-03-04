@@ -2216,6 +2216,12 @@ declare module PlayFabServerModels {
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
+        | "LimitNotFound"
+        | "LimitNotAvailableViaAPI"
+        | "InsightsManagementSetStorageRetentionBelowMinimum"
+        | "InsightsManagementSetStorageRetentionAboveMaximum"
+        | "AppleNotEnabledForTitle"
+        | "InsightsManagementNewActiveEventArchiveLimitInvalid"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -3355,7 +3361,8 @@ declare module PlayFabServerModels {
         | "CustomServer"
         | "NintendoSwitch"
         | "FacebookInstantGames"
-        | "OpenIdConnect";
+        | "OpenIdConnect"
+        | "Apple";
 
     export interface LoginWithServerCustomIdRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -4427,7 +4434,7 @@ declare module PlayFabServerModels {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string;
         /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
-        XboxToken: string;
+        XboxToken?: string;
 
     }
 

@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabEventsApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabExperimentationApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -243,20 +243,44 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.EventsApi = {
+PlayFab.ExperimentationApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    WriteEvents: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/WriteEvents", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateExperiment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/CreateExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    WriteTelemetryEvents: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/WriteTelemetryEvents", request, "X-EntityToken", callback, customData, extraHeaders);
+    DeleteExperiment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/DeleteExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetExperiments: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/GetExperiments", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetLatestScorecard: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/GetLatestScorecard", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetTreatmentAssignment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/GetTreatmentAssignment", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    StartExperiment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/StartExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    StopExperiment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/StopExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UpdateExperiment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/UpdateExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 };
 
-var PlayFabEventsSDK = PlayFab.EventsApi;
+var PlayFabExperimentationSDK = PlayFab.ExperimentationApi;
 

@@ -6,6 +6,7 @@
 /// <reference path="PlayFabCloudScriptApi.d.ts" />
 /// <reference path="PlayFabDataApi.d.ts" />
 /// <reference path="PlayFabEventsApi.d.ts" />
+/// <reference path="PlayFabExperimentationApi.d.ts" />
 /// <reference path="PlayFabGroupsApi.d.ts" />
 /// <reference path="PlayFabLocalizationApi.d.ts" />
 /// <reference path="PlayFabMultiplayerApi.d.ts" />
@@ -54,6 +55,7 @@ declare var PlayFab: {
     CloudScriptApi: PlayFabCloudScriptModule.IPlayFabCloudScript;
     DataApi: PlayFabDataModule.IPlayFabData;
     EventsApi: PlayFabEventsModule.IPlayFabEvents;
+    ExperimentationApi: PlayFabExperimentationModule.IPlayFabExperimentation;
     GroupsApi: PlayFabGroupsModule.IPlayFabGroups;
     LocalizationApi: PlayFabLocalizationModule.IPlayFabLocalization;
     MultiplayerApi: PlayFabMultiplayerModule.IPlayFabMultiplayer;
@@ -69,6 +71,7 @@ declare var PlayFabAuthenticationSDK: PlayFabAuthenticationModule.IPlayFabAuthen
 declare var PlayFabCloudScriptSDK: PlayFabCloudScriptModule.IPlayFabCloudScript;
 declare var PlayFabDataSDK: PlayFabDataModule.IPlayFabData;
 declare var PlayFabEventsSDK: PlayFabEventsModule.IPlayFabEvents;
+declare var PlayFabExperimentationSDK: PlayFabExperimentationModule.IPlayFabExperimentation;
 declare var PlayFabGroupsSDK: PlayFabGroupsModule.IPlayFabGroups;
 declare var PlayFabLocalizationSDK: PlayFabLocalizationModule.IPlayFabLocalization;
 declare var PlayFabMultiplayerSDK: PlayFabMultiplayerModule.IPlayFabMultiplayer;
