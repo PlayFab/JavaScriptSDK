@@ -78,7 +78,8 @@ declare module PlayFabAuthenticationModels {
         | "CustomServer"
         | "NintendoSwitch"
         | "FacebookInstantGames"
-        | "OpenIdConnect";
+        | "OpenIdConnect"
+        | "Apple";
 
     export interface ValidateEntityTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Client EntityToken */

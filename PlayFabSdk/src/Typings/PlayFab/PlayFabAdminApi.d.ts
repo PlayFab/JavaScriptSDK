@@ -2197,6 +2197,12 @@ declare module PlayFabAdminModels {
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
+        | "LimitNotFound"
+        | "LimitNotAvailableViaAPI"
+        | "InsightsManagementSetStorageRetentionBelowMinimum"
+        | "InsightsManagementSetStorageRetentionAboveMaximum"
+        | "AppleNotEnabledForTitle"
+        | "InsightsManagementNewActiveEventArchiveLimitInvalid"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -3033,7 +3039,8 @@ declare module PlayFabAdminModels {
         | "CustomServer"
         | "NintendoSwitch"
         | "FacebookInstantGames"
-        | "OpenIdConnect";
+        | "OpenIdConnect"
+        | "Apple";
 
     export interface LogStatement {
         /** Optional object accompanying the message as contextual information */
