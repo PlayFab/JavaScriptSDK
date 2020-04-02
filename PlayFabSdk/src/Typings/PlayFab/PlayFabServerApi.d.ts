@@ -2221,7 +2221,11 @@ declare module PlayFabServerModels {
         | "InsightsManagementSetStorageRetentionBelowMinimum"
         | "InsightsManagementSetStorageRetentionAboveMaximum"
         | "AppleNotEnabledForTitle"
-        | "InsightsManagementNewActiveEventArchiveLimitInvalid"
+        | "InsightsManagementNewActiveEventExportLimitInvalid"
+        | "InsightsManagementSetPerformanceRateLimited"
+        | "PartyRequestsThrottledFromRateLimiter"
+        | "XboxServiceTooManyRequests"
+        | "NintendoSwitchNotEnabledForTitle"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2278,6 +2282,12 @@ declare module PlayFabServerModels {
         | "ExportCouldNotCreate"
         | "ExportNoBackingDatabaseFound"
         | "ExportCouldNotDelete"
+        | "ExportCannotDetermineEventQuery"
+        | "ExportInvalidQuerySchemaModification"
+        | "ExportQuerySchemaMissingRequiredColumns"
+        | "ExportCannotParseQuery"
+        | "ExportControlCommandsNotAllowed"
+        | "ExportQueryMissingTableReference"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
@@ -2295,7 +2305,9 @@ declare module PlayFabServerModels {
         | "ExperimentationTreatmentAssignmentDisabled"
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
+        | "ExperimentationExperimentSchedulingInProgress"
         | "MaxActionDepthExceeded"
+        | "TitleNotOnUpdatedPricingPlan"
         | "SnapshotNotFound";
 
     export interface GenericPlayFabIdPair {
@@ -3362,7 +3374,8 @@ declare module PlayFabServerModels {
         | "NintendoSwitch"
         | "FacebookInstantGames"
         | "OpenIdConnect"
-        | "Apple";
+        | "Apple"
+        | "NintendoSwitchAccount";
 
     export interface LoginWithServerCustomIdRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -4675,6 +4688,8 @@ declare module PlayFabServerModels {
     export interface UserAccountInfo {
         /** User Android device information, if an Android device has been linked */
         AndroidDeviceInfo?: UserAndroidDeviceInfo;
+        /** Sign in with Apple account information, if an Apple account has been linked */
+        AppleAccountInfo?: UserAppleIdInfo;
         /** Timestamp indicating when the user account was created */
         Created: string;
         /** Custom ID information, if a custom ID has been assigned */
@@ -4692,6 +4707,8 @@ declare module PlayFabServerModels {
         /** User Kongregate account information, if a Kongregate account has been linked */
         KongregateInfo?: UserKongregateInfo;
         /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
+        NintendoSwitchAccountInfo?: number;
+        /** Nintendo Switch device information, if a Nintendo Switch device has been linked */
         NintendoSwitchDeviceIdInfo?: number;
         /** OpenID Connect information, if any OpenID Connect accounts have been linked */
         OpenIdInfo?: UserOpenIdInfo[];
@@ -4719,6 +4736,12 @@ declare module PlayFabServerModels {
     export interface UserAndroidDeviceInfo {
         /** Android device ID */
         AndroidDeviceId?: string;
+
+    }
+
+    export interface UserAppleIdInfo {
+        /** Apple subject ID */
+        AppleSubjectId?: string;
 
     }
 
@@ -4792,6 +4815,12 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface UserNintendoSwitchAccountIdInfo {
+        /** Nintendo Switch account subject ID */
+        NintendoSwitchAccountSubjectId?: string;
+
+    }
+
     export interface UserNintendoSwitchDeviceIdInfo {
         /** Nintendo Switch Device ID */
         NintendoSwitchDeviceId?: string;
@@ -4829,7 +4858,9 @@ declare module PlayFabServerModels {
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
         | "FacebookInstantGamesId"
-        | "OpenIdConnect";
+        | "OpenIdConnect"
+        | "Apple"
+        | "NintendoSwitchAccount";
 
     export interface UserPrivateAccountInfo {
         /** user email address */

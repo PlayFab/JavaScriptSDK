@@ -33,6 +33,7 @@
     <Content Include="src\PlayFab\PlayFabDataApi.js" />
     <Content Include="src\PlayFab\PlayFabEventsApi.js" />
     <Content Include="src\PlayFab\PlayFabExperimentationApi.js" />
+    <Content Include="src\PlayFab\PlayFabInsightsApi.js" />
     <Content Include="src\PlayFab\PlayFabGroupsApi.js" />
     <Content Include="src\PlayFab\PlayFabLocalizationApi.js" />
     <Content Include="src\PlayFab\PlayFabMultiplayerApi.js" />
@@ -51,6 +52,7 @@
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabDataApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabEventsApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabExperimentationApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabInsightsApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabGroupsApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabLocalizationApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabMultiplayerApi.d.ts" />
