@@ -78,6 +78,11 @@ declare module PlayFabMultiplayerModule {
          */
         DeleteBuildAlias(request: PlayFabMultiplayerModels.DeleteBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Removes a multiplayer server build's region.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deletebuildregion
+         */
+        DeleteBuildRegion(request: PlayFabMultiplayerModels.DeleteBuildRegionRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Deletes a multiplayer server game certificate.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deletecertificate
          */
@@ -266,6 +271,11 @@ declare module PlayFabMultiplayerModule {
          */
         UpdateBuildAlias(request: PlayFabMultiplayerModels.UpdateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Updates a multiplayer server build's region. If the region is not yet created, it will be created
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildregion
+         */
+        UpdateBuildRegion(request: PlayFabMultiplayerModels.UpdateBuildRegionRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Updates a multiplayer server build's regions.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildregions
          */
@@ -292,7 +302,7 @@ declare module PlayFabMultiplayerModels {
         /** The asset's file name. */
         FileName: string;
         /** The asset's mount path. */
-        MountPath: string;
+        MountPath?: string;
 
     }
 
@@ -385,7 +395,7 @@ declare module PlayFabMultiplayerModels {
         StandbyServers: number;
         /**
          * The status of multiplayer servers in the build region. Valid values are - Unknown, Initialized, Deploying, Deployed,
-         * Unhealthy.
+         * Unhealthy, Deleting, Deleted.
          */
         Status?: string;
 
@@ -504,7 +514,8 @@ declare module PlayFabMultiplayerModels {
 
     type ContainerFlavor = "ManagedWindowsServerCore"
         | "CustomLinux"
-        | "ManagedWindowsServerCorePreview";
+        | "ManagedWindowsServerCorePreview"
+        | "Invalid";
 
     export interface ContainerImageReference {
         /** The container image name. */
@@ -584,10 +595,14 @@ declare module PlayFabMultiplayerModels {
         Metadata?: { [key: string]: string | null };
         /** The number of multiplayer servers to host on a single VM of the build. */
         MultiplayerServerCountPerVm: number;
+        /** The OS platform used for running the game process. */
+        OsPlatform?: string;
         /** The ports the build is mapped on. */
         Ports?: Port[];
         /** The region configuration for the build. */
         RegionConfigurations?: BuildRegion[];
+        /** The type of game server being hosted. */
+        ServerType?: string;
         /** The VM size the build was created on. */
         VmSize?: string;
 
@@ -602,6 +617,11 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences: AssetReferenceParams[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReferenceParams[];
+        /**
+         * The directory containing the game executable. This would be the start path of the game assets that contain the main game
+         * server executable. If not provided, a best effort will be made to extract it from the start game command.
+         */
+        GameWorkingDirectory?: string;
         /** The instrumentation configuration for the build. */
         InstrumentationConfiguration?: InstrumentationConfiguration;
         /**
@@ -635,16 +655,25 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences?: AssetReference[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReference[];
+        /**
+         * The directory containing the game executable. This would be the start path of the game assets that contain the main game
+         * server executable. If not provided, a best effort will be made to extract it from the start game command.
+         */
+        GameWorkingDirectory?: string;
         /** The instrumentation configuration for this build. */
         InstrumentationConfiguration?: InstrumentationConfiguration;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
         /** The number of multiplayer servers to host on a single VM of the build. */
         MultiplayerServerCountPerVm: number;
+        /** The OS platform used for running the game process. */
+        OsPlatform?: string;
         /** The ports the build is mapped on. */
         Ports?: Port[];
         /** The region configuration for the build. */
         RegionConfigurations?: BuildRegion[];
+        /** The type of game server being hosted. */
+        ServerType?: string;
         /** The command to run when the multiplayer server has been allocated, including any arguments. */
         StartMultiplayerServerCommand?: string;
         /** The VM size the build was created on. */
@@ -743,6 +772,14 @@ declare module PlayFabMultiplayerModels {
     export interface DeleteBuildAliasRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string alias ID of the alias to perform the action on. */
         AliasId: string;
+
+    }
+
+    export interface DeleteBuildRegionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The guid string ID of the build we want to update regions for. */
+        BuildId: string;
+        /** The build region to delete. */
+        Region: string;
 
     }
 
@@ -900,10 +937,14 @@ declare module PlayFabMultiplayerModels {
         Metadata?: { [key: string]: string | null };
         /** The number of multiplayer servers to hosted on a single VM of the build. */
         MultiplayerServerCountPerVm: number;
+        /** The OS platform used for running the game process. */
+        OsPlatform?: string;
         /** The ports the build is mapped on. */
         Ports?: Port[];
         /** The region configuration for the build. */
         RegionConfigurations?: BuildRegion[];
+        /** The type of game server being hosted. */
+        ServerType?: string;
         /**
          * The command to run when the multiplayer server has been allocated, including any arguments. This only applies to managed
          * builds. If the build is a custom build, this field will be null.
@@ -1036,8 +1077,6 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMultiplayerServerLogsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The region of the multiplayer server to get logs for. */
-        Region?: string;
         /** The server ID of multiplayer server to get logs for. */
         ServerId: string;
 
@@ -1423,6 +1462,9 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    type OsPlatform = "Windows"
+        | "Linux";
+
     export interface Port {
         /** The name for the port. */
         Name: string;
@@ -1517,6 +1559,9 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    type ServerType = "Container"
+        | "Process";
+
     export interface ShutdownMultiplayerServerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server to delete. */
         BuildId: string;
@@ -1564,6 +1609,14 @@ declare module PlayFabMultiplayerModels {
         AliasName?: string;
         /** Array of build selection criteria. */
         BuildSelectionCriteria?: BuildSelectionCriterion[];
+
+    }
+
+    export interface UpdateBuildRegionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The guid string ID of the build we want to update regions for. */
+        BuildId: string;
+        /** The updated region configuration that should be applied to the specified build. */
+        BuildRegion: BuildRegionParams;
 
     }
 

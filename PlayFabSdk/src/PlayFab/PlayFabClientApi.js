@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.61.200303",
+        sdkVersion: "1.63.200402",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.61.200303"
+            sdk: "JavaScriptSDK-1.63.200402"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_2";
-PlayFab.sdkVersion = "1.61.200303";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.63.200402";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -1310,12 +1310,13 @@ PlayFab.ClientApi = {
     _MultiStepClientLogin: function (needsAttribution) {
         if (needsAttribution && !PlayFab.settings.disableAdvertising && PlayFab.settings.advertisingIdType !== null && PlayFab.settings.advertisingIdValue !== null) {
             var request = {};
-            if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_IDFA)
+            if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_IDFA) {
                 request.Idfa = PlayFab.settings.advertisingIdValue;
-            else if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_ANDROID_ID)
+            } else if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_ANDROID_ID) {
                 request.Adid = PlayFab.settings.advertisingIdValue;
-            else
+            } else {
                 return;
+            }
             PlayFab.ClientApi.AttributeInstall(request, null);
         }
     }

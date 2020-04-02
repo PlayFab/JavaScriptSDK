@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabEventsApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabInsightsApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -243,20 +243,36 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.EventsApi = {
+PlayFab.InsightsApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    WriteEvents: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/WriteEvents", request, "X-EntityToken", callback, customData, extraHeaders);
+    GetDetails: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Insights/GetDetails", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    WriteTelemetryEvents: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/WriteTelemetryEvents", request, "X-EntityToken", callback, customData, extraHeaders);
+    GetLimits: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Insights/GetLimits", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetOperationStatus: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Insights/GetOperationStatus", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetPendingOperations: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Insights/GetPendingOperations", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SetPerformance: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Insights/SetPerformance", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SetStorageRetention: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Insights/SetStorageRetention", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 };
 
-var PlayFabEventsSDK = PlayFab.EventsApi;
+var PlayFabInsightsSDK = PlayFab.InsightsApi;
 
