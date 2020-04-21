@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.63.200402",
+        sdkVersion: "1.64.200421",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.63.200402"
+            sdk: "JavaScriptSDK-1.64.200421"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
-PlayFab.sdkVersion = "1.63.200402";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_2";
+PlayFab.sdkVersion = "1.64.200421";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -326,6 +326,10 @@ PlayFab.ClientApi = {
 
     GetAccountInfo: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetAccountInfo", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    GetAdPlacements: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetAdPlacements", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     GetAllUsersCharacters: function (request, callback, customData, extraHeaders) {
@@ -574,6 +578,10 @@ PlayFab.ClientApi = {
 
     LinkKongregate: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkKongregate", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    LinkNintendoSwitchAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkNintendoSwitchAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     LinkNintendoSwitchDeviceId: function (request, callback, customData, extraHeaders) {
@@ -850,6 +858,31 @@ PlayFab.ClientApi = {
                 callback(result, error);
         };
         PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithKongregate", request, null, overloadCallback, customData, extraHeaders);
+        // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
+        return new Promise(function(resolve){resolve(authenticationContext);});
+    },
+
+    LoginWithNintendoSwitchAccount: function (request, callback, customData, extraHeaders) {
+        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
+        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
+        // Deep-copy the authenticationContext here to safely update it
+        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
+        var overloadCallback = function (result, error) {
+            if (result != null) {
+                if(result.data.SessionTicket != null) {
+                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                }
+                if (result.data.EntityToken != null) {
+                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                }
+                // Apply the updates for the AuthenticationContext returned to the client
+                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
+                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+            }
+            if (callback != null && typeof (callback) === "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithNintendoSwitchAccount", request, null, overloadCallback, customData, extraHeaders);
         // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
@@ -1139,6 +1172,10 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RemoveSharedGroupMembers", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    ReportAdActivity: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ReportAdActivity", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
     ReportDeviceInfo: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ReportDeviceInfo", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -1149,6 +1186,10 @@ PlayFab.ClientApi = {
 
     RestoreIOSPurchases: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RestoreIOSPurchases", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    RewardAdActivity: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RewardAdActivity", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     SendAccountRecoveryEmail: function (request, callback, customData, extraHeaders) {
@@ -1209,6 +1250,10 @@ PlayFab.ClientApi = {
 
     UnlinkKongregate: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkKongregate", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    UnlinkNintendoSwitchAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkNintendoSwitchAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     UnlinkNintendoSwitchDeviceId: function (request, callback, customData, extraHeaders) {
