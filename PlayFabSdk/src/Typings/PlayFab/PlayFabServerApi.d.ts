@@ -2226,6 +2226,7 @@ declare module PlayFabServerModels {
         | "PartyRequestsThrottledFromRateLimiter"
         | "XboxServiceTooManyRequests"
         | "NintendoSwitchNotEnabledForTitle"
+        | "RequestMultiplayerServersThrottledFromRateLimiter"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
