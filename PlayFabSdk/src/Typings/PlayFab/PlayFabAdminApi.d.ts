@@ -2208,6 +2208,8 @@ declare module PlayFabAdminModels {
         | "XboxServiceTooManyRequests"
         | "NintendoSwitchNotEnabledForTitle"
         | "RequestMultiplayerServersThrottledFromRateLimiter"
+        | "TitleDataInstanceNotFound"
+        | "DuplicateTitleDataOverrideInstanceName"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2288,6 +2290,7 @@ declare module PlayFabAdminModels {
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
         | "ExperimentationExperimentSchedulingInProgress"
+        | "ExperimentationExistingCodelessScheduled"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SnapshotNotFound";
@@ -2499,7 +2502,7 @@ declare module PlayFabAdminModels {
          * only the allowed client profile properties for the title may be requested. These allowed properties are configured in
          * the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
-        ProfileConstraints?: number;
+        ProfileConstraints?: PlayerProfileViewConstraints;
 
     }
 
@@ -4247,9 +4250,9 @@ declare module PlayFabAdminModels {
         /** User Kongregate account information, if a Kongregate account has been linked */
         KongregateInfo?: UserKongregateInfo;
         /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
-        NintendoSwitchAccountInfo?: number;
+        NintendoSwitchAccountInfo?: UserNintendoSwitchAccountIdInfo;
         /** Nintendo Switch device information, if a Nintendo Switch device has been linked */
-        NintendoSwitchDeviceIdInfo?: number;
+        NintendoSwitchDeviceIdInfo?: UserNintendoSwitchDeviceIdInfo;
         /** OpenID Connect information, if any OpenID Connect accounts have been linked */
         OpenIdInfo?: UserOpenIdInfo[];
         /** Unique identifier for the user account */
