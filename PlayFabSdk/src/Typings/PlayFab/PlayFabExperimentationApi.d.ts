@@ -297,6 +297,8 @@ declare module PlayFabExperimentationModels {
         IsControl: boolean;
         /** Name of the variant. */
         Name: string;
+        /** Id of the TitleDataOverrideGroup to use with this variant. */
+        TitleDataOverrideId?: string;
         /** Percentage of target audience traffic that will see this variant. */
         TrafficPercentage: number;
         /** Variables returned by this variant. */

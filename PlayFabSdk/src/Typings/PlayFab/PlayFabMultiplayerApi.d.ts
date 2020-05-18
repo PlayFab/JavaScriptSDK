@@ -128,6 +128,11 @@ declare module PlayFabMultiplayerModule {
          */
         GetMatch(request: PlayFabMultiplayerModels.GetMatchRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * SDK support is limited to C# and Java for this API. Get a matchmaking queue configuration.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking-admin/getmatchmakingqueue
+         */
+        GetMatchmakingQueue(request: PlayFabMultiplayerModels.GetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Get a matchmaking ticket by ticket Id.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/getmatchmakingticket
          */
@@ -215,6 +220,11 @@ declare module PlayFabMultiplayerModule {
          */
         ListContainerImageTags(request: PlayFabMultiplayerModels.ListContainerImageTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListContainerImageTagsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * SDK support is limited to C# and Java for this API. List all matchmaking queue configs.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking-admin/listmatchmakingqueues
+         */
+        ListMatchmakingQueues(request: PlayFabMultiplayerModels.ListMatchmakingQueuesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingQueuesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * List all matchmaking ticket Ids the user is a member of.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/listmatchmakingticketsforplayer
          */
@@ -250,6 +260,11 @@ declare module PlayFabMultiplayerModule {
          */
         ListVirtualMachineSummaries(request: PlayFabMultiplayerModels.ListVirtualMachineSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListVirtualMachineSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * SDK support is limited to C# and Java for this API. Remove a matchmaking queue config.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking-admin/removematchmakingqueue
+         */
+        RemoveMatchmakingQueue(request: PlayFabMultiplayerModels.RemoveMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RemoveMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Request a multiplayer server session. Accepts tokens for title and if game client access is enabled, allows game client
          * to request a server with player entity token.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/requestmultiplayerserver
@@ -260,6 +275,11 @@ declare module PlayFabMultiplayerModule {
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/rollovercontainerregistrycredentials
          */
         RolloverContainerRegistryCredentials(request: PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * SDK support is limited to C# and Java for this API. Create or update a matchmaking queue configuration.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking-admin/setmatchmakingqueue
+         */
+        SetMatchmakingQueue(request: PlayFabMultiplayerModels.SetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Shuts down a multiplayer server session.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/shutdownmultiplayerserver
@@ -319,6 +339,16 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    type AttributeMergeFunction = "Min"
+        | "Max"
+        | "Average";
+
+    type AttributeNotSpecifiedBehavior = "UseDefault"
+        | "MatchAny";
+
+    type AttributeSource = "User"
+        | "PlayerEntity";
+
     type AzureRegion = "AustraliaEast"
         | "AustraliaSoutheast"
         | "BrazilSouth"
@@ -344,15 +374,23 @@ declare module PlayFabMultiplayerModels {
         | "F"
         | "Fsv2";
 
-    type AzureVmSize = "Standard_D1_v2"
-        | "Standard_D2_v2"
-        | "Standard_D3_v2"
-        | "Standard_D4_v2"
-        | "Standard_D5_v2"
+    type AzureVmSize = "Standard_A1"
+        | "Standard_A2"
+        | "Standard_A3"
+        | "Standard_A4"
         | "Standard_A1_v2"
         | "Standard_A2_v2"
         | "Standard_A4_v2"
         | "Standard_A8_v2"
+        | "Standard_D1_v2"
+        | "Standard_D2_v2"
+        | "Standard_D3_v2"
+        | "Standard_D4_v2"
+        | "Standard_D5_v2"
+        | "Standard_D2_v3"
+        | "Standard_D4_v3"
+        | "Standard_D8_v3"
+        | "Standard_D16_v3"
         | "Standard_F1"
         | "Standard_F2"
         | "Standard_F4"
@@ -361,11 +399,7 @@ declare module PlayFabMultiplayerModels {
         | "Standard_F2s_v2"
         | "Standard_F4s_v2"
         | "Standard_F8s_v2"
-        | "Standard_F16s_v2"
-        | "Standard_A1"
-        | "Standard_A2"
-        | "Standard_A3"
-        | "Standard_A4";
+        | "Standard_F16s_v2";
 
     export interface BuildAliasDetailsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The guid string alias Id of the alias to be created or updated. */
@@ -768,6 +802,46 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface CustomDifferenceRuleExpansion {
+        /** Manually specify the values to use for each expansion interval (this overrides Difference, Delta, and MaxDifference). */
+        DifferenceOverrides: OverrideDouble[];
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface CustomRegionSelectionRuleExpansion {
+        /** Manually specify the maximum latency to use for each expansion interval. */
+        MaxLatencyOverrides: OverrideUnsignedInt[];
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface CustomSetIntersectionRuleExpansion {
+        /** Manually specify the values to use for each expansion interval. */
+        MinIntersectionSizeOverrides: OverrideUnsignedInt[];
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface CustomTeamDifferenceRuleExpansion {
+        /** Manually specify the team difference value to use for each expansion interval. */
+        DifferenceOverrides: OverrideDouble[];
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface CustomTeamSizeBalanceRuleExpansion {
+        /** Manually specify the team size difference to use for each expansion interval. */
+        DifferenceOverrides: OverrideUnsignedInt[];
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
     export interface DeleteAssetRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The filename of the asset to delete. */
         FileName: string;
@@ -815,6 +889,42 @@ declare module PlayFabMultiplayerModels {
         Username: string;
         /** The virtual machine ID the multiplayer server is located on. */
         VmId: string;
+
+    }
+
+    export interface DifferenceRule {
+        /** Description of the attribute used by this rule to match tickets. */
+        Attribute: QueueRuleAttribute;
+        /**
+         * Describes the behavior when an attribute is not specified in the ticket creation request or in the user's entity
+         * profile.
+         */
+        AttributeNotSpecifiedBehavior: string;
+        /**
+         * Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. When this
+         * is set, Difference is ignored.
+         */
+        CustomExpansion?: CustomDifferenceRuleExpansion;
+        /**
+         * The default value assigned to tickets that are missing the attribute specified by AttributePath (assuming that
+         * AttributeNotSpecifiedBehavior is false). Optional.
+         */
+        DefaultAttributeValue?: number;
+        /** The allowed difference between any two tickets at the start of matchmaking. */
+        Difference: number;
+        /** Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. */
+        LinearExpansion?: LinearDifferenceRuleExpansion;
+        /** How values are treated when there are multiple players in a single ticket. */
+        MergeFunction: string;
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
+        /** The relative weight of this rule compared to others. */
+        Weight: number;
 
     }
 
@@ -977,6 +1087,18 @@ declare module PlayFabMultiplayerModels {
         Password?: string;
         /** The username for accessing the container registry. */
         Username?: string;
+
+    }
+
+    export interface GetMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The Id of the matchmaking queue to retrieve. */
+        QueueName?: string;
+
+    }
+
+    export interface GetMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The matchmaking queue config. */
+        MatchmakingQueue?: MatchmakingQueueConfig;
 
     }
 
@@ -1216,6 +1338,54 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface LinearDifferenceRuleExpansion {
+        /** This value gets added to Difference at every expansion interval. */
+        Delta: number;
+        /** Once the total difference reaches this value, expansion stops. Optional. */
+        Limit?: number;
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface LinearRegionSelectionRuleExpansion {
+        /** This value gets added to MaxLatency at every expansion interval. */
+        Delta: number;
+        /** Once the max Latency reaches this value, expansion stops. */
+        Limit: number;
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface LinearSetIntersectionRuleExpansion {
+        /** This value gets added to MinIntersectionSize at every expansion interval. */
+        Delta: number;
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface LinearTeamDifferenceRuleExpansion {
+        /** This value gets added to Difference at every expansion interval. */
+        Delta: number;
+        /** Once the total difference reaches this value, expansion stops. Optional. */
+        Limit?: number;
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface LinearTeamSizeBalanceRuleExpansion {
+        /** This value gets added to Difference at every expansion interval. */
+        Delta: number;
+        /** Once the total difference reaches this value, expansion stops. Optional. */
+        Limit?: number;
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
     export interface ListAssetSummariesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The page size for the request. */
         PageSize?: number;
@@ -1303,6 +1473,16 @@ declare module PlayFabMultiplayerModels {
     export interface ListContainerImageTagsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The list of tags for a particular container image. */
         Tags?: string[];
+
+    }
+
+    export interface ListMatchmakingQueuesRequest extends PlayFabModule.IPlayFabRequestCommon {
+
+    }
+
+    export interface ListMatchmakingQueuesResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of matchmaking queue configs for this title. */
+        MatchMakingQueues?: MatchmakingQueueConfig[];
 
     }
 
@@ -1451,6 +1631,83 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface MatchmakingQueueConfig {
+        /** This is the buildId that will be used to allocate the multiplayer server for the match. */
+        BuildId?: string;
+        /** List of difference rules used to find an optimal match. */
+        DifferenceRules?: DifferenceRule[];
+        /** List of match total rules used to find an optimal match. */
+        MatchTotalRules?: MatchTotalRule[];
+        /** Maximum number of players in a match. */
+        MaxMatchSize: number;
+        /** Maximum number of players in a ticket. Optional. */
+        MaxTicketSize?: number;
+        /** Minimum number of players in a match. */
+        MinMatchSize: number;
+        /** Unique identifier for a Queue. Chosen by the developer. */
+        Name: string;
+        /** Region selection rule used to find an optimal match. */
+        RegionSelectionRule?: RegionSelectionRule;
+        /** Boolean flag to enable server allocation for the queue. */
+        ServerAllocationEnabled: boolean;
+        /** List of set intersection rules used to find an optimal match. */
+        SetIntersectionRules?: SetIntersectionRule[];
+        /** Controls which statistics are visible to players. */
+        StatisticsVisibilityToPlayers?: StatisticsVisibilityToPlayers;
+        /** List of string equality rules used to find an optimal match. */
+        StringEqualityRules?: StringEqualityRule[];
+        /** List of team difference rules used to find an optimal match. */
+        TeamDifferenceRules?: TeamDifferenceRule[];
+        /** The team configuration for a match. This may be null if there are no teams. */
+        Teams?: MatchmakingQueueTeam[];
+        /** Team size balance rule used to find an optimal match. */
+        TeamSizeBalanceRule?: TeamSizeBalanceRule;
+        /** Team ticket size similarity rule used to find an optimal match. */
+        TeamTicketSizeSimilarityRule?: TeamTicketSizeSimilarityRule;
+
+    }
+
+    export interface MatchmakingQueueTeam {
+        /** The maximum number of players required for the team. */
+        MaxTeamSize: number;
+        /** The minimum number of players required for the team. */
+        MinTeamSize: number;
+        /** A name to identify the team. This is case insensitive. */
+        Name: string;
+
+    }
+
+    export interface MatchTotalRule {
+        /** Description of the attribute used by this rule to match tickets. */
+        Attribute: QueueRuleAttribute;
+        /** Collection of fields relating to expanding this rule at set intervals. */
+        Expansion?: MatchTotalRuleExpansion;
+        /** The maximum total value for a group. Must be >= Min. */
+        Max: number;
+        /** The minimum total value for a group. Must be >=2. */
+        Min: number;
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
+        /** The relative weight of this rule compared to others. */
+        Weight: number;
+
+    }
+
+    export interface MatchTotalRuleExpansion {
+        /** Manually specify the values to use for each expansion interval. When this is set, Max is ignored. */
+        MaxOverrides?: OverrideDouble[];
+        /** Manually specify the values to use for each expansion interval. When this is set, Min is ignored. */
+        MinOverrides?: OverrideDouble[];
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
     export interface MultiplayerEmptyRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
@@ -1476,6 +1733,18 @@ declare module PlayFabMultiplayerModels {
     type OsPlatform = "Windows"
         | "Linux";
 
+    export interface OverrideDouble {
+        /** The custom expansion value. */
+        Value: number;
+
+    }
+
+    export interface OverrideUnsignedInt {
+        /** The custom expansion value. */
+        Value: number;
+
+    }
+
     export interface Port {
         /** The name for the port. */
         Name: string;
@@ -1494,6 +1763,48 @@ declare module PlayFabMultiplayerModels {
         Region?: string;
         /** The QoS server URL. */
         ServerUrl?: string;
+
+    }
+
+    export interface QueueRuleAttribute {
+        /** Specifies which attribute in a ticket to use. */
+        Path: string;
+        /** Specifies which source the attribute comes from. */
+        Source: string;
+
+    }
+
+    export interface RegionSelectionRule {
+        /**
+         * Controls how the Max Latency parameter expands over time. Only one expansion can be set per rule. When this is set,
+         * MaxLatency is ignored.
+         */
+        CustomExpansion?: CustomRegionSelectionRuleExpansion;
+        /** Controls how the Max Latency parameter expands over time. Only one expansion can be set per rule. */
+        LinearExpansion?: LinearRegionSelectionRuleExpansion;
+        /** Specifies the maximum latency that is allowed between the client and the selected server. The value is in milliseconds. */
+        MaxLatency: number;
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /** Specifies which attribute in a ticket to use. */
+        Path: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
+        /** The relative weight of this rule compared to others. */
+        Weight: number;
+
+    }
+
+    export interface RemoveMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The Id of the matchmaking queue to remove. */
+        QueueName?: string;
+
+    }
+
+    export interface RemoveMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -1573,6 +1884,50 @@ declare module PlayFabMultiplayerModels {
     type ServerType = "Container"
         | "Process";
 
+    export interface SetIntersectionRule {
+        /** Description of the attribute used by this rule to match tickets. */
+        Attribute: QueueRuleAttribute;
+        /**
+         * Describes the behavior when an attribute is not specified in the ticket creation request or in the user's entity
+         * profile.
+         */
+        AttributeNotSpecifiedBehavior: string;
+        /**
+         * Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. When this
+         * is set, MinIntersectionSize is ignored.
+         */
+        CustomExpansion?: CustomSetIntersectionRuleExpansion;
+        /**
+         * The default value assigned to tickets that are missing the attribute specified by AttributePath (assuming that
+         * AttributeNotSpecifiedBehavior is UseDefault). Values must be unique.
+         */
+        DefaultAttributeValue?: string[];
+        /** Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. */
+        LinearExpansion?: LinearSetIntersectionRuleExpansion;
+        /** The minimum number of values that must match between sets. */
+        MinIntersectionSize: number;
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
+        /** The relative weight of this rule compared to others. */
+        Weight: number;
+
+    }
+
+    export interface SetMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The matchmaking queue config. */
+        MatchmakingQueue?: MatchmakingQueueConfig;
+
+    }
+
+    export interface SetMatchmakingQueueResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface ShutdownMultiplayerServerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server to delete. */
         BuildId: string;
@@ -1592,6 +1947,110 @@ declare module PlayFabMultiplayerModels {
         Percentile90: number;
         /** The 99th percentile. */
         Percentile99: number;
+
+    }
+
+    export interface StatisticsVisibilityToPlayers {
+        /** Whether to allow players to view the current number of players in the matchmaking queue. */
+        ShowNumberOfPlayersMatching: boolean;
+        /** Whether to allow players to view statistics representing the time it takes for tickets to find a match. */
+        ShowTimeToMatch: boolean;
+
+    }
+
+    export interface StringEqualityRule {
+        /** Description of the attribute used by this rule to match tickets. */
+        Attribute: QueueRuleAttribute;
+        /**
+         * Describes the behavior when an attribute is not specified in the ticket creation request or in the user's entity
+         * profile.
+         */
+        AttributeNotSpecifiedBehavior: string;
+        /**
+         * The default value assigned to tickets that are missing the attribute specified by AttributePath (assuming that
+         * AttributeNotSpecifiedBehavior is false).
+         */
+        DefaultAttributeValue?: string;
+        /**
+         * Collection of fields relating to expanding this rule at set intervals. For StringEqualityRules, this is limited to
+         * turning the rule off or on during different intervals.
+         */
+        Expansion?: StringEqualityRuleExpansion;
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
+        /** The relative weight of this rule compared to others. */
+        Weight: number;
+
+    }
+
+    export interface StringEqualityRuleExpansion {
+        /** List of bools specifying whether the rule is applied during this expansion. */
+        EnabledOverrides: boolean[];
+        /** How many seconds before this rule is expanded. */
+        SecondsBetweenExpansions: number;
+
+    }
+
+    export interface TeamDifferenceRule {
+        /** Description of the attribute used by this rule to match teams. */
+        Attribute: QueueRuleAttribute;
+        /**
+         * Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. When this
+         * is set, Difference is ignored.
+         */
+        CustomExpansion?: CustomTeamDifferenceRuleExpansion;
+        /**
+         * The default value assigned to tickets that are missing the attribute specified by AttributePath (assuming that
+         * AttributeNotSpecifiedBehavior is false).
+         */
+        DefaultAttributeValue: number;
+        /** The allowed difference between any two teams at the start of matchmaking. */
+        Difference: number;
+        /** Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. */
+        LinearExpansion?: LinearTeamDifferenceRuleExpansion;
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
+
+    }
+
+    export interface TeamSizeBalanceRule {
+        /**
+         * Controls how the Difference parameter expands over time. Only one expansion can be set per rule. When this is set,
+         * Difference is ignored.
+         */
+        CustomExpansion?: CustomTeamSizeBalanceRuleExpansion;
+        /** The allowed difference in team size between any two teams. */
+        Difference: number;
+        /** Controls how the Difference parameter expands over time. Only one expansion can be set per rule. */
+        LinearExpansion?: LinearTeamSizeBalanceRuleExpansion;
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
+
+    }
+
+    export interface TeamTicketSizeSimilarityRule {
+        /** Friendly name chosen by developer. */
+        Name: string;
+        /**
+         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
+         * prioritized over those that don't). Leave blank if this rule is always enforced.
+         */
+        SecondsUntilOptional?: number;
 
     }
 
