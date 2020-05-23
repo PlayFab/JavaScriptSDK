@@ -1384,3 +1384,4 @@ PlayFab.RegisterWithPhaser = function() {
 };
 PlayFab.RegisterWithPhaser();
 
+export default PlayFab
