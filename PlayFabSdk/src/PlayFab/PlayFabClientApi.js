@@ -21,9 +21,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.65.200518",
+        sdkVersion: "1.66.200602",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.65.200518"
+            sdk: "JavaScriptSDK-1.66.200602"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-1_2";
-PlayFab.sdkVersion = "1.65.200518";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.66.200602";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -580,8 +580,8 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkKongregate", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    LinkNintendoSwitchAccount: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkNintendoSwitchAccount", request, "X-Authorization", callback, customData, extraHeaders);
+    LinkNintendoAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkNintendoAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     LinkNintendoSwitchDeviceId: function (request, callback, customData, extraHeaders) {
@@ -862,7 +862,7 @@ PlayFab.ClientApi = {
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
 
-    LoginWithNintendoSwitchAccount: function (request, callback, customData, extraHeaders) {
+    LoginWithNintendoAccount: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
         // Deep-copy the authenticationContext here to safely update it
@@ -882,7 +882,7 @@ PlayFab.ClientApi = {
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
         };
-        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithNintendoSwitchAccount", request, null, overloadCallback, customData, extraHeaders);
+        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithNintendoAccount", request, null, overloadCallback, customData, extraHeaders);
         // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
@@ -1252,8 +1252,8 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkKongregate", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    UnlinkNintendoSwitchAccount: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkNintendoSwitchAccount", request, "X-Authorization", callback, customData, extraHeaders);
+    UnlinkNintendoAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkNintendoAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     UnlinkNintendoSwitchDeviceId: function (request, callback, customData, extraHeaders) {
