@@ -2805,6 +2805,8 @@ declare module PlayFabClientModels {
     export interface GetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         Keys?: string[];
+        /** Name of the override. */
+        OverrideLabel?: string;
 
     }
 

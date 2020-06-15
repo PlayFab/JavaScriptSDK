@@ -591,6 +591,11 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface CreateBuildWithCustomContainerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        AreAssetsReadonly?: boolean;
         /** The build name. */
         BuildName: string;
         /** The flavor of container to create a build from. */
@@ -614,12 +619,22 @@ declare module PlayFabMultiplayerModels {
         Ports: Port[];
         /** The region configurations for the build. */
         RegionConfigurations: BuildRegionParams[];
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
         VmSize?: string;
 
     }
 
     export interface CreateBuildWithCustomContainerResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        AreAssetsReadonly?: boolean;
         /** The guid string build ID. Must be unique for every build. */
         BuildId?: string;
         /** The build name. */
@@ -648,12 +663,22 @@ declare module PlayFabMultiplayerModels {
         RegionConfigurations?: BuildRegion[];
         /** The type of game server being hosted. */
         ServerType?: string;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
 
     }
 
     export interface CreateBuildWithManagedContainerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        AreAssetsReadonly?: boolean;
         /** The build name. */
         BuildName: string;
         /** The flavor of container to create a build from. */
@@ -682,12 +707,22 @@ declare module PlayFabMultiplayerModels {
         RegionConfigurations: BuildRegionParams[];
         /** The command to run when the multiplayer server is started, including any arguments. */
         StartMultiplayerServerCommand: string;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
         VmSize?: string;
 
     }
 
     export interface CreateBuildWithManagedContainerResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        AreAssetsReadonly?: boolean;
         /** The guid string build ID. Must be unique for every build. */
         BuildId?: string;
         /** The build name. */
@@ -721,6 +756,11 @@ declare module PlayFabMultiplayerModels {
         ServerType?: string;
         /** The command to run when the multiplayer server has been allocated, including any arguments. */
         StartMultiplayerServerCommand?: string;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
 
@@ -1034,6 +1074,11 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetBuildResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        AreAssetsReadonly?: boolean;
         /** The guid string build ID of the build. */
         BuildId?: string;
         /** The build name. */
@@ -1077,6 +1122,11 @@ declare module PlayFabMultiplayerModels {
          * builds. If the build is a custom build, this field will be null.
          */
         StartMultiplayerServerCommand?: string;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
 
