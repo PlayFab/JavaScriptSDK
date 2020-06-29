@@ -450,10 +450,10 @@ declare module PlayFabClientModule {
          */
         LinkKongregate(request: PlayFabClientModels.LinkKongregateAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkKongregateAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Links the Nintendo account associated with the token to the user's PlayFab account. (Open ID)
-         * https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoaccount
+         * Links the Nintendo account associated with the token to the user's PlayFab account.
+         * https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoserviceaccount
          */
-        LinkNintendoAccount(request: PlayFabClientModels.LinkNintendoAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkNintendoServiceAccount(request: PlayFabClientModels.LinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Links the NintendoSwitchDeviceId to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoswitchdeviceid
@@ -550,10 +550,10 @@ declare module PlayFabClientModule {
          */
         LoginWithKongregate(request: PlayFabClientModels.LoginWithKongregateRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Signs in the user with a Nintendo account identity token. (Open ID)
-         * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoaccount
+         * Signs in the user with a Nintendo service account token.
+         * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoserviceaccount
          */
-        LoginWithNintendoAccount(request: PlayFabClientModels.LoginWithNintendoAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithNintendoServiceAccount(request: PlayFabClientModels.LoginWithNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Signs the user in using a Nintendo Switch Device ID, returning a session identifier that can subsequently be used for
          * API calls which require an authenticated user
@@ -790,10 +790,10 @@ declare module PlayFabClientModule {
          */
         UnlinkKongregate(request: PlayFabClientModels.UnlinkKongregateAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkKongregateAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Unlinks the related Nintendo account from the user's PlayFab account. (Open ID)
-         * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoaccount
+         * Unlinks the related Nintendo account from the user's PlayFab account.
+         * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoserviceaccount
          */
-        UnlinkNintendoAccount(request: PlayFabClientModels.UnlinkNintendoAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkNintendoServiceAccount(request: PlayFabClientModels.UnlinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Unlinks the related NintendoSwitchDeviceId from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoswitchdeviceid
@@ -3151,7 +3151,7 @@ declare module PlayFabClientModels {
 
     }
 
-    export interface LinkNintendoAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+    export interface LinkNintendoServiceAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** If another user is already linked to a specific Nintendo Switch account, unlink the other user and re-link. */
         ForceLink?: boolean;
         /**
@@ -3542,7 +3542,7 @@ declare module PlayFabClientModels {
 
     }
 
-    export interface LoginWithNintendoAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+    export interface LoginWithNintendoServiceAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean;
         /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
@@ -4724,7 +4724,7 @@ declare module PlayFabClientModels {
 
     }
 
-    export interface UnlinkNintendoAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+    export interface UnlinkNintendoServiceAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
 
@@ -4784,8 +4784,6 @@ declare module PlayFabClientModels {
     }
 
     export interface UnlinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
-        XboxToken?: string;
 
     }
 
