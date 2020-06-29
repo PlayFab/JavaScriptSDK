@@ -4452,8 +4452,6 @@ declare module PlayFabServerModels {
     export interface UnlinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
-        XboxToken?: string;
 
     }
 
