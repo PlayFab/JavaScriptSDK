@@ -29,6 +29,12 @@ declare module PlayFabEventsModels {
     }
 
     export interface EventContents {
+        /**
+         * The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). Before an
+         * event is written, this collection and the base request custom tags will be merged, but not overriden. This enables the
+         * caller to specify static tags and per event tags.
+         */
+        CustomTags?: { [key: string]: string | null };
         /** Entity associated with the event. If null, the event will apply to the calling entity. */
         Entity?: EntityKey;
         /** The namespace in which the event is defined. Allowed namespaces can vary by API. */
@@ -56,6 +62,8 @@ declare module PlayFabEventsModels {
     }
 
     export interface WriteEventsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** Collection of events to write to PlayStream. */
         Events: EventContents[];
 

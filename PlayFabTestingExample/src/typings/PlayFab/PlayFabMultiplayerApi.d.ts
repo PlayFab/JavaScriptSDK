@@ -40,6 +40,11 @@ declare module PlayFabMultiplayerModule {
          */
         CreateBuildWithManagedContainer(request: PlayFabMultiplayerModels.CreateBuildWithManagedContainerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithManagedContainerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Creates a multiplayer server build with the server running as a process.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/createbuildwithprocessbasedserver
+         */
+        CreateBuildWithProcessBasedServer(request: PlayFabMultiplayerModels.CreateBuildWithProcessBasedServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithProcessBasedServerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Create a matchmaking ticket as a client.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/creatematchmakingticket
          */
@@ -479,6 +484,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface CancelAllMatchmakingTicketsForPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity key of the player whose tickets should be canceled. */
         Entity?: EntityKey;
         /** The name of the queue from which a player's tickets should be canceled. */
@@ -491,6 +498,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface CancelAllServerBackfillTicketsForPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity key of the player whose backfill tickets should be canceled. */
         Entity: EntityKey;
         /** The name of the queue from which a player's backfill tickets should be canceled. */
@@ -507,6 +516,8 @@ declare module PlayFabMultiplayerModels {
         | "Timeout";
 
     export interface CancelMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The name of the queue the ticket is in. */
         QueueName: string;
         /** The Id of the ticket to find a match for. */
@@ -519,6 +530,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface CancelServerBackfillTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The name of the queue the ticket is in. */
         QueueName: string;
         /** The Id of the ticket to find a match for. */
@@ -587,6 +600,8 @@ declare module PlayFabMultiplayerModels {
         AliasName: string;
         /** Array of build selection criteria. */
         BuildSelectionCriteria?: BuildSelectionCriterion[];
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -604,6 +619,8 @@ declare module PlayFabMultiplayerModels {
         ContainerImageReference?: ContainerImageReference;
         /** The container command to run when the multiplayer server has been allocated, including any arguments. */
         ContainerRunCommand?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The list of game assets related to the build. */
         GameAssetReferences?: AssetReferenceParams[];
         /** The game certificates for the build. */
@@ -683,6 +700,8 @@ declare module PlayFabMultiplayerModels {
         BuildName: string;
         /** The flavor of container to create a build from. */
         ContainerFlavor?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The list of game assets related to the build. */
         GameAssetReferences: AssetReferenceParams[];
         /** The game certificates for the build. */
@@ -766,9 +785,108 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface CreateBuildWithProcessBasedServerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        AreAssetsReadonly?: boolean;
+        /** The build name. */
+        BuildName: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The list of game assets related to the build. */
+        GameAssetReferences: AssetReferenceParams[];
+        /** The game certificates for the build. */
+        GameCertificateReferences?: GameCertificateReferenceParams[];
+        /**
+         * The working directory for the game process. If this is not provided, the working directory will be set based on the
+         * mount path of the game server executable.
+         */
+        GameWorkingDirectory?: string;
+        /**
+         * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
+         * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
+         */
+        Metadata?: { [key: string]: string | null };
+        /** The number of multiplayer servers to host on a single VM. */
+        MultiplayerServerCountPerVm: number;
+        /** The OS platform used for running the game process. */
+        OsPlatform?: string;
+        /** The ports to map the build on. */
+        Ports: Port[];
+        /** The region configurations for the build. */
+        RegionConfigurations: BuildRegionParams[];
+        /**
+         * The command to run when the multiplayer server is started, including any arguments. The path to any executable should be
+         * relative to the root asset folder when unzipped.
+         */
+        StartMultiplayerServerCommand: string;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        UseStreamingForAssetDownloads?: boolean;
+        /** The VM size to create the build on. */
+        VmSize?: string;
+
+    }
+
+    export interface CreateBuildWithProcessBasedServerResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        AreAssetsReadonly?: boolean;
+        /** The guid string build ID. Must be unique for every build. */
+        BuildId?: string;
+        /** The build name. */
+        BuildName?: string;
+        /** The flavor of container of the build. */
+        ContainerFlavor?: string;
+        /** The time the build was created in UTC. */
+        CreationTime?: string;
+        /** The game assets for the build. */
+        GameAssetReferences?: AssetReference[];
+        /** The game certificates for the build. */
+        GameCertificateReferences?: GameCertificateReference[];
+        /**
+         * The working directory for the game process. If this is not provided, the working directory will be set based on the
+         * mount path of the game server executable.
+         */
+        GameWorkingDirectory?: string;
+        /** The metadata of the build. */
+        Metadata?: { [key: string]: string | null };
+        /** The number of multiplayer servers to host on a single VM of the build. */
+        MultiplayerServerCountPerVm: number;
+        /** The OS platform used for running the game process. */
+        OsPlatform?: string;
+        /** The ports the build is mapped on. */
+        Ports?: Port[];
+        /** The region configuration for the build. */
+        RegionConfigurations?: BuildRegion[];
+        /** The type of game server being hosted. */
+        ServerType?: string;
+        /**
+         * The command to run when the multiplayer server is started, including any arguments. The path to any executable is
+         * relative to the root asset folder when unzipped.
+         */
+        StartMultiplayerServerCommand?: string;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        UseStreamingForAssetDownloads?: boolean;
+        /** The VM size the build was created on. */
+        VmSize?: string;
+
+    }
+
     export interface CreateMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The User who created this ticket. */
         Creator: MatchmakingPlayer;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** How long to attempt matching this ticket in seconds. */
         GiveUpAfterSeconds: number;
         /** A list of Entity Keys of other users to match with. */
@@ -787,6 +905,8 @@ declare module PlayFabMultiplayerModels {
     export interface CreateRemoteUserRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of to create the remote user for. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The expiration time for the remote user created. Defaults to expiring in one day if not specified. */
         ExpirationTime?: string;
         /** The region of virtual machine to create the remote user for. */
@@ -809,6 +929,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface CreateServerBackfillTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** How long to attempt matching this ticket in seconds. */
         GiveUpAfterSeconds: number;
         /** The users who will be part of this ticket, along with their team assignments. */
@@ -827,6 +949,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface CreateServerMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** How long to attempt matching this ticket in seconds. */
         GiveUpAfterSeconds: number;
         /** The users who will be part of this ticket. */
@@ -889,6 +1013,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface DeleteAssetRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The filename of the asset to delete. */
         FileName: string;
 
@@ -897,12 +1023,16 @@ declare module PlayFabMultiplayerModels {
     export interface DeleteBuildAliasRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string alias ID of the alias to perform the action on. */
         AliasId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
     export interface DeleteBuildRegionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string ID of the build we want to update regions for. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The build region to delete. */
         Region: string;
 
@@ -911,16 +1041,22 @@ declare module PlayFabMultiplayerModels {
     export interface DeleteBuildRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the build to delete. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
     export interface DeleteCertificateRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The name of the certificate. */
         Name: string;
 
     }
 
     export interface DeleteContainerImageRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The container image repository we want to delete. */
         ImageName?: string;
 
@@ -929,6 +1065,8 @@ declare module PlayFabMultiplayerModels {
     export interface DeleteRemoteUserRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server where the remote user is to delete. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The region of the multiplayer server where the remote user is to delete. */
         Region: string;
         /** The username of the remote user to delete. */
@@ -1000,6 +1138,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface EnableMultiplayerServersForTitleRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1048,6 +1188,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetAssetUploadUrlRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The asset's file name to get the upload URL for. */
         FileName: string;
 
@@ -1064,12 +1206,16 @@ declare module PlayFabMultiplayerModels {
     export interface GetBuildAliasRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string alias ID of the alias to perform the action on. */
         AliasId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
     export interface GetBuildRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the build to get. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1133,6 +1279,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetContainerRegistryCredentialsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1147,6 +1295,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The Id of the matchmaking queue to retrieve. */
         QueueName?: string;
 
@@ -1159,6 +1309,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
          * object.
@@ -1199,6 +1351,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMatchRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
          * object.
@@ -1231,6 +1385,8 @@ declare module PlayFabMultiplayerModels {
     export interface GetMultiplayerServerDetailsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server to get details for. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The region the multiplayer server is located in to get details for. */
         Region: string;
         /**
@@ -1266,6 +1422,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMultiplayerServerLogsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The server ID of multiplayer server to get logs for. */
         ServerId: string;
 
@@ -1278,12 +1436,16 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMultiplayerSessionLogsBySessionIdRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The server ID of multiplayer server to get logs for. */
         SessionId: string;
 
     }
 
     export interface GetQueueStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The name of the queue. */
         QueueName: string;
 
@@ -1300,6 +1462,8 @@ declare module PlayFabMultiplayerModels {
     export interface GetRemoteLoginEndpointRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server to get remote login information for. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The region of the multiplayer server to get remote login information for. */
         Region: string;
         /** The virtual machine ID the multiplayer server is located on. */
@@ -1316,6 +1480,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetServerBackfillTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
          * object.
@@ -1351,6 +1517,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetTitleEnabledForMultiplayerServersStatusRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1361,6 +1529,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetTitleMultiplayerServersQuotasRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1381,6 +1551,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface JoinMatchmakingTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The User who wants to join the ticket. Their Id must be listed in PlayFabIdsToMatchWith. */
         Member: MatchmakingPlayer;
         /** The name of the queue to join. */
@@ -1443,6 +1615,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListAssetSummariesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The page size for the request. */
         PageSize?: number;
         /** The skip token for the paged request. */
@@ -1467,6 +1641,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListBuildSummariesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The page size for the request. */
         PageSize?: number;
         /** The skip token for the paged request. */
@@ -1485,6 +1661,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListCertificateSummariesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The page size for the request. */
         PageSize?: number;
         /** The skip token for the paged request. */
@@ -1503,6 +1681,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListContainerImagesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The page size for the request. */
         PageSize?: number;
         /** The skip token for the paged request. */
@@ -1521,6 +1701,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListContainerImageTagsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The container images we want to list tags for. */
         ImageName?: string;
 
@@ -1533,6 +1715,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListMatchmakingQueuesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1543,6 +1727,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListMatchmakingTicketsForPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity key for which to find the ticket Ids. */
         Entity?: EntityKey;
         /** The name of the queue to find a match for. */
@@ -1559,6 +1745,8 @@ declare module PlayFabMultiplayerModels {
     export interface ListMultiplayerServersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer servers to list. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The page size for the request. */
         PageSize?: number;
         /** The region the multiplayer servers to list. */
@@ -1579,6 +1767,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListPartyQosServersRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** Qos servers version */
         Version: string;
 
@@ -1595,6 +1785,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListQosServersForTitleRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1609,6 +1801,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListQosServersRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1623,6 +1817,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ListServerBackfillTicketsForPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity key for which to find the ticket Ids. */
         Entity: EntityKey;
         /** The name of the queue the tickets are in. */
@@ -1639,6 +1835,8 @@ declare module PlayFabMultiplayerModels {
     export interface ListVirtualMachineSummariesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the virtual machines to list. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The page size for the request. */
         PageSize?: number;
         /** The region of the virtual machines to list. */
@@ -1765,6 +1963,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface MultiplayerEmptyRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1855,6 +2055,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface RemoveMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The Id of the matchmaking queue to remove. */
         QueueName?: string;
 
@@ -1869,6 +2071,8 @@ declare module PlayFabMultiplayerModels {
         BuildAliasParams?: BuildAliasParams;
         /** The guid string build ID of the multiplayer server to request. */
         BuildId?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * Initial list of players (potentially matchmade) allowed to connect to the game. This list is passed to the game server
          * when requested (via GSDK) and can be used to validate players connecting to it.
@@ -1914,6 +2118,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface RolloverContainerRegistryCredentialsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -1975,6 +2181,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface SetMatchmakingQueueRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The matchmaking queue config. */
         MatchmakingQueue?: MatchmakingQueueConfig;
 
@@ -1987,6 +2195,8 @@ declare module PlayFabMultiplayerModels {
     export interface ShutdownMultiplayerServerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the multiplayer server to delete. */
         BuildId: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The region of the multiplayer server to shut down. */
         Region: string;
         /** A guid string session ID of the multiplayer server to shut down. */
@@ -2121,6 +2331,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface UntagContainerImageRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The container image which tag we want to remove. */
         ImageName?: string;
         /** The tag we want to remove. */
@@ -2135,6 +2347,8 @@ declare module PlayFabMultiplayerModels {
         AliasName?: string;
         /** Array of build selection criteria. */
         BuildSelectionCriteria?: BuildSelectionCriterion[];
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -2143,6 +2357,8 @@ declare module PlayFabMultiplayerModels {
         BuildId: string;
         /** The updated region configuration that should be applied to the specified build. */
         BuildRegion: BuildRegionParams;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -2151,10 +2367,14 @@ declare module PlayFabMultiplayerModels {
         BuildId: string;
         /** The updated region configuration that should be applied to the specified build. */
         BuildRegions: BuildRegionParams[];
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
     export interface UploadCertificateRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The game certificate to upload. */
         GameCertificate: Certificate;
 

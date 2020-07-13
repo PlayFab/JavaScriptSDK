@@ -58,6 +58,8 @@ declare module PlayFabExperimentationModels {
         | "Canceled";
 
     export interface CreateExperimentRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** Description of the experiment. */
         Description?: string;
         /** The duration of the experiment, in days. */
@@ -87,6 +89,8 @@ declare module PlayFabExperimentationModels {
     }
 
     export interface DeleteExperimentRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The ID of the experiment to delete. */
         ExperimentId: string;
 
@@ -140,6 +144,8 @@ declare module PlayFabExperimentationModels {
         | "Snapshot";
 
     export interface GetExperimentsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -150,6 +156,8 @@ declare module PlayFabExperimentationModels {
     }
 
     export interface GetLatestScorecardRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The ID of the experiment. */
         ExperimentId?: string;
 
@@ -162,6 +170,8 @@ declare module PlayFabExperimentationModels {
     }
 
     export interface GetTreatmentAssignmentRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
 
@@ -236,12 +246,16 @@ declare module PlayFabExperimentationModels {
     }
 
     export interface StartExperimentRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The ID of the experiment to start. */
         ExperimentId: string;
 
     }
 
     export interface StopExperimentRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The ID of the experiment to stop. */
         ExperimentId: string;
 
@@ -256,6 +270,8 @@ declare module PlayFabExperimentationModels {
     }
 
     export interface UpdateExperimentRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** Description of the experiment. */
         Description?: string;
         /** The duration of the experiment, in days. */
@@ -297,8 +313,8 @@ declare module PlayFabExperimentationModels {
         IsControl: boolean;
         /** Name of the variant. */
         Name: string;
-        /** Id of the TitleDataOverrideGroup to use with this variant. */
-        TitleDataOverrideId?: string;
+        /** Id of the TitleDataOverride to use with this variant. */
+        TitleDataOverrideLabel?: string;
         /** Percentage of target audience traffic that will see this variant. */
         TrafficPercentage: number;
         /** Variables returned by this variant. */
