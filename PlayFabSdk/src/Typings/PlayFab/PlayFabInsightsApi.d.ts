@@ -42,6 +42,8 @@ declare module PlayFabInsightsModule {
 
 declare module PlayFabInsightsModels {
     export interface InsightsEmptyRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -76,6 +78,8 @@ declare module PlayFabInsightsModels {
     }
 
     export interface InsightsGetOperationStatusRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** Id of the Insights operation. */
         OperationId?: string;
 
@@ -102,6 +106,8 @@ declare module PlayFabInsightsModels {
     }
 
     export interface InsightsGetPendingOperationsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The type of pending operations requested, or blank for all operation types. */
         OperationType?: string;
 
@@ -144,12 +150,16 @@ declare module PlayFabInsightsModels {
     }
 
     export interface InsightsSetPerformanceRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The Insights performance level to apply to the title. */
         PerformanceLevel: number;
 
     }
 
     export interface InsightsSetStorageRetentionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The Insights data storage retention value (in days) to apply to the title. */
         RetentionDays: number;
 

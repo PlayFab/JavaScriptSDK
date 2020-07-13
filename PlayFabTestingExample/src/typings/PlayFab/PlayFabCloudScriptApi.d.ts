@@ -408,6 +408,8 @@ declare module PlayFabCloudScriptModels {
     }
 
     export interface ExecuteEntityCloudScriptRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** The name of the CloudScript function to execute */
@@ -431,6 +433,8 @@ declare module PlayFabCloudScriptModels {
     }
 
     export interface ExecuteFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** The name of the CloudScript function to execute */
@@ -503,6 +507,8 @@ declare module PlayFabCloudScriptModels {
     }
 
     export interface ListFunctionsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
 
     }
 
@@ -658,6 +664,8 @@ declare module PlayFabCloudScriptModels {
     }
 
     export interface PostFunctionResultForEntityTriggeredActionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The result of the function execution. */
@@ -666,6 +674,8 @@ declare module PlayFabCloudScriptModels {
     }
 
     export interface PostFunctionResultForFunctionExecutionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The result of the function execution. */
@@ -674,6 +684,8 @@ declare module PlayFabCloudScriptModels {
     }
 
     export interface PostFunctionResultForPlayerTriggeredActionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** The result of the function execution. */
@@ -686,6 +698,8 @@ declare module PlayFabCloudScriptModels {
     }
 
     export interface PostFunctionResultForScheduledTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The result of the function execution */
@@ -717,6 +731,8 @@ declare module PlayFabCloudScriptModels {
     }
 
     export interface RegisterHttpFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The name of the function to register */
         FunctionName: string;
         /** Full URL for Azure Function that implements the function. */
@@ -727,6 +743,8 @@ declare module PlayFabCloudScriptModels {
     export interface RegisterQueuedFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** A connection string for the storage account that hosts the queue for the Azure Function. */
         ConnectionString: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The name of the function to register */
         FunctionName: string;
         /** The name of the queue for the Azure Function. */
@@ -794,6 +812,8 @@ declare module PlayFabCloudScriptModels {
         | "Queue";
 
     export interface UnregisterFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The name of the function to unregister */
         FunctionName: string;
 

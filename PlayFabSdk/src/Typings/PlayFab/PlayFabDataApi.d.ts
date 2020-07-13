@@ -45,6 +45,8 @@ declare module PlayFabDataModule {
 
 declare module PlayFabDataModels {
     export interface AbortFileUploadsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** Names of the files to have their pending uploads aborted. */
@@ -66,6 +68,8 @@ declare module PlayFabDataModels {
     }
 
     export interface DeleteFilesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** Names of the files to be deleted. */
@@ -95,6 +99,8 @@ declare module PlayFabDataModels {
     }
 
     export interface FinalizeFileUploadsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
@@ -127,6 +133,8 @@ declare module PlayFabDataModels {
     }
 
     export interface GetFilesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
 
@@ -143,6 +151,8 @@ declare module PlayFabDataModels {
     }
 
     export interface GetObjectsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /**
@@ -172,6 +182,8 @@ declare module PlayFabDataModels {
     }
 
     export interface InitiateFileUploadsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
@@ -238,6 +250,8 @@ declare module PlayFabDataModels {
     }
 
     export interface SetObjectsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /**

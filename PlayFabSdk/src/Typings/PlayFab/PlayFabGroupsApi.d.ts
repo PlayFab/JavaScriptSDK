@@ -135,6 +135,8 @@ declare module PlayFabGroupsModule {
 
 declare module PlayFabGroupsModels {
     export interface AcceptGroupApplicationRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * Optional. Type of the entity to accept as. If specified, must be the same entity as the claimant or an entity that is a
          * child of the claimant entity. Defaults to the claimant entity.
@@ -146,6 +148,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface AcceptGroupInvitationRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** The identifier of the group */
@@ -154,6 +158,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface AddMembersRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The identifier of the group */
         Group: EntityKey;
         /** List of entities to add to the group. Only entities of type title_player_account and character may be added to groups. */
@@ -169,6 +175,8 @@ declare module PlayFabGroupsModels {
     export interface ApplyToGroupRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Optional, default true. Automatically accept an outstanding invitation if one exists instead of creating an application */
         AutoAcceptOutstandingInvite?: boolean;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** The identifier of the group */
@@ -187,6 +195,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface BlockEntityRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The identifier of the group */
@@ -195,6 +205,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface ChangeMemberRoleRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * The ID of the role that the entities will become a member of. This must be an existing role. Role IDs must be between 1
          * and 64 characters long.
@@ -213,6 +225,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface CreateGroupRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** The name of the group. This is unique at the title level by default. */
@@ -239,6 +253,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface CreateGroupRoleRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The identifier of the group */
         Group: EntityKey;
         /**
@@ -265,12 +281,16 @@ declare module PlayFabGroupsModels {
     }
 
     export interface DeleteGroupRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** ID of the group or role to remove */
         Group: EntityKey;
 
     }
 
     export interface DeleteRoleRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The identifier of the group */
         Group: EntityKey;
         /** The ID of the role to delete. Role IDs must be between 1 and 64 characters long. */
@@ -309,6 +329,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface GetGroupRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The identifier of the group */
         Group?: EntityKey;
         /** The full name of the group */
@@ -389,6 +411,8 @@ declare module PlayFabGroupsModels {
     export interface InviteToGroupRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Optional, default true. Automatically accept an application if one exists instead of creating an invitation */
         AutoAcceptOutstandingApplication?: boolean;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The identifier of the group */
@@ -416,6 +440,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface IsMemberRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The identifier of the group */
@@ -435,6 +461,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface ListGroupApplicationsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The identifier of the group */
         Group: EntityKey;
 
@@ -447,6 +475,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface ListGroupBlocksRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The identifier of the group */
         Group: EntityKey;
 
@@ -459,6 +489,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface ListGroupInvitationsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The identifier of the group */
         Group: EntityKey;
 
@@ -471,6 +503,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface ListGroupMembersRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** ID of the group to list the members and roles for */
         Group: EntityKey;
 
@@ -483,6 +517,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface ListMembershipOpportunitiesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
 
@@ -497,6 +533,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface ListMembershipRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
 
@@ -514,6 +552,8 @@ declare module PlayFabGroupsModels {
         | "None";
 
     export interface RemoveGroupApplicationRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The identifier of the group */
@@ -522,6 +562,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface RemoveGroupInvitationRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The identifier of the group */
@@ -530,6 +572,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface RemoveMembersRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The identifier of the group */
         Group: EntityKey;
         /** List of entities to remove */
@@ -540,6 +584,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface UnblockEntityRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity: EntityKey;
         /** The identifier of the group */
@@ -550,6 +596,8 @@ declare module PlayFabGroupsModels {
     export interface UpdateGroupRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Optional: the ID of an existing role to set as the new administrator role for the group */
         AdminRoleId?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
          * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
@@ -576,6 +624,8 @@ declare module PlayFabGroupsModels {
     }
 
     export interface UpdateGroupRoleRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
          * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
