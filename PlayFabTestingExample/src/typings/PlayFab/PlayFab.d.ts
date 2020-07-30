@@ -23,6 +23,7 @@ declare module PlayFabModule {
         disableAdvertising: boolean;
         AD_TYPE_IDFA: string;
         AD_TYPE_ANDROID_ID: string;
+        productionServerUrl: string;
     }
     export interface IPlayFabRequestCommon { }
     export interface IPlayFabError {
