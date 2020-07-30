@@ -14,34 +14,34 @@ if(!PlayFab.settings) {
         // Disabling this may prevent your advertising-related PlayFab marketplace partners from working correctly
         disableAdvertising: false,
         AD_TYPE_IDFA: "Idfa",
-        AD_TYPE_ANDROID_ID: "Adid"
+        AD_TYPE_ANDROID_ID: "Adid",
+        productionServerUrl: ".playfabapi.com"
     }
 }
 
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.69.200713",
+        sdkVersion: "1.70.200730",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.69.200713"
+            sdk: "JavaScriptSDK-1.70.200730"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
-        productionServerUrl: ".playfabapi.com",
         errorTitleId: "Must be have PlayFab.settings.titleId set to call this method",
         errorLoggedIn: "Must be logged in to call this method",
         errorEntityToken: "You must successfully call GetEntityToken before calling this",
         errorSecretKey: "Must have PlayFab.settings.developerSecretKey set to call this method",
 
         GetServerUrl: function () {
-            if (!(PlayFab._internalSettings.productionServerUrl.substring(0, 4) === "http")) {
+            if (!(PlayFab.settings.productionServerUrl.substring(0, 4) === "http")) {
                 if (PlayFab._internalSettings.verticalName) {
-                    return "https://" + PlayFab._internalSettings.verticalName + PlayFab._internalSettings.productionServerUrl;
+                    return "https://" + PlayFab._internalSettings.verticalName + PlayFab.settings.productionServerUrl;
                 } else {
-                    return "https://" + PlayFab.settings.titleId + PlayFab._internalSettings.productionServerUrl;
+                    return "https://" + PlayFab.settings.titleId + PlayFab.settings.productionServerUrl;
                 }
             } else {
-                return PlayFab._internalSettings.productionServerUrl;
+                return PlayFab.settings.productionServerUrl;
             }
         },
 
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
-PlayFab.sdkVersion = "1.69.200713";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_2";
+PlayFab.sdkVersion = "1.70.200730";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
