@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.70.200730",
+        sdkVersion: "1.71.200805",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.70.200730"
+            sdk: "JavaScriptSDK-1.71.200805"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -232,7 +232,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_2";
-PlayFab.sdkVersion = "1.70.200730";
+PlayFab.sdkVersion = "1.71.200805";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -339,6 +339,10 @@ PlayFab.AdminApi = {
 
     DeleteTitle: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteTitle", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    DeleteTitleDataOverride: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteTitleDataOverride", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ExportMasterPlayerData: function (request, callback, customData, extraHeaders) {
@@ -611,6 +615,10 @@ PlayFab.AdminApi = {
 
     SetTitleData: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetTitleData", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    SetTitleDataAndOverrides: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetTitleDataAndOverrides", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     SetTitleInternalData: function (request, callback, customData, extraHeaders) {

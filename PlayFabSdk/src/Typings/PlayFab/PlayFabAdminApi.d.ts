@@ -125,6 +125,11 @@ declare module PlayFabAdminModule {
          */
         DeleteTitle(request: PlayFabAdminModels.DeleteTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteTitleResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Deletes a specified set of title data overrides.
+         * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletetitledataoverride
+         */
+        DeleteTitleDataOverride(request: PlayFabAdminModels.DeleteTitleDataOverrideRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteTitleDataOverrideResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Exports all associated data of a master player account
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/exportmasterplayerdata
          */
@@ -477,6 +482,11 @@ declare module PlayFabAdminModule {
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledata
          */
         SetTitleData(request: PlayFabAdminModels.SetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Set and delete key-value pairs in a title data override instance.
+         * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledataandoverrides
+         */
+        SetTitleDataAndOverrides(request: PlayFabAdminModels.SetTitleDataAndOverridesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataAndOverridesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Updates the key-value store of custom title settings which cannot be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitleinternaldata
@@ -1637,6 +1647,16 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface DeleteTitleDataOverrideRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Name of the override. */
+        OverrideLabel: string;
+
+    }
+
+    export interface DeleteTitleDataOverrideResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface DeleteTitleRequest extends PlayFabModule.IPlayFabRequestCommon {
 
     }
@@ -2315,7 +2335,6 @@ declare module PlayFabAdminModels {
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
         | "ExperimentationExperimentSchedulingInProgress"
-        | "ExperimentationExistingCodelessScheduled"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SnapshotNotFound";
@@ -3851,6 +3870,21 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface SetTitleDataAndOverridesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * List of titleData key-value pairs to set/delete. Use an empty value to delete an existing key; use a non-empty value to
+         * create/update a key.
+         */
+        KeyValues: TitleDataKeyValue[];
+        /** Name of the override. */
+        OverrideLabel?: string;
+
+    }
+
+    export interface SetTitleDataAndOverridesResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface SetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
@@ -4054,6 +4088,17 @@ declare module PlayFabAdminModels {
         | "PendingSteam"
         | "ActivatedSteam"
         | "RevokedSteam";
+
+    export interface TitleDataKeyValue {
+        /**
+         * Key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
+         * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
+         */
+        Key?: string;
+        /** New value to set. Set to null to remove a value */
+        Value?: string;
+
+    }
 
     export interface UpdateBanRequest {
         /** The updated active state for the ban. Null for no change. */

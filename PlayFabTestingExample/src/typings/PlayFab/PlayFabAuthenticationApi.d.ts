@@ -62,6 +62,10 @@ declare module PlayFabAuthenticationModels {
 
     }
 
+    type IdentifiedDeviceType = "Unknown"
+        | "XboxOne"
+        | "Scarlett";
+
     type LoginIdentityProvider = "Unknown"
         | "PlayFab"
         | "Custom"
@@ -95,6 +99,8 @@ declare module PlayFabAuthenticationModels {
     export interface ValidateEntityTokenResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The entity id and type. */
         Entity?: EntityKey;
+        /** The authenticated device for this entity, for the given login */
+        IdentifiedDeviceType?: string;
         /** The identity provider for this entity, for the given login */
         IdentityProvider?: string;
         /** The lineage of this profile. */
