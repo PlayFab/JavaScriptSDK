@@ -245,12 +245,8 @@ declare module PlayFabMultiplayerModule {
          */
         ListPartyQosServers(request: PlayFabMultiplayerModels.ListPartyQosServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListPartyQosServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Lists quality of service servers.
-         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listqosservers
-         */
-        ListQosServers(request: PlayFabMultiplayerModels.ListQosServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Lists quality of service servers.
+         * Lists quality of service servers for the title. By default, servers are only returned for regions where a Multiplayer
+         * Servers build has been deployed.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listqosserversfortitle
          */
         ListQosServersForTitle(request: PlayFabMultiplayerModels.ListQosServersForTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -372,7 +368,8 @@ declare module PlayFabMultiplayerModels {
         | "ChinaEast2"
         | "ChinaNorth2"
         | "SouthAfricaNorth"
-        | "CentralUsEuap";
+        | "CentralUsEuap"
+        | "WestCentralUs";
 
     type AzureVmFamily = "A"
         | "Av2"
@@ -1784,8 +1781,6 @@ declare module PlayFabMultiplayerModels {
     export interface ListPartyQosServersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Qos servers version */
-        Version?: string;
 
     }
 
@@ -1802,26 +1797,15 @@ declare module PlayFabMultiplayerModels {
     export interface ListQosServersForTitleRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
+        /**
+         * Indicates that the response should contain Qos servers for all regions, including those where there are no builds
+         * deployed for the title.
+         */
+        IncludeAllRegions: boolean;
 
     }
 
     export interface ListQosServersForTitleResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** The page size on the response. */
-        PageSize: number;
-        /** The list of QoS servers. */
-        QosServers?: QosServer[];
-        /** The skip token for the paged response. */
-        SkipToken?: string;
-
-    }
-
-    export interface ListQosServersRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-
-    }
-
-    export interface ListQosServersResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The page size on the response. */
         PageSize: number;
         /** The list of QoS servers. */

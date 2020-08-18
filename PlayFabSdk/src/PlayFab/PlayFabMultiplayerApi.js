@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.71.200805",
+        sdkVersion: "1.72.200817",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.71.200805"
+            sdk: "JavaScriptSDK-1.72.200817"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_2";
-PlayFab.sdkVersion = "1.71.200805";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.72.200817";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -435,13 +435,6 @@ PlayFab.MultiplayerApi = {
 
     ListPartyQosServers: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListPartyQosServers", request, null, callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Please use ListQosServersForTitle instead. 
-     */
-    ListQosServers: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListQosServers", request, null, callback, customData, extraHeaders);
     },
 
     ListQosServersForTitle: function (request, callback, customData, extraHeaders) {
