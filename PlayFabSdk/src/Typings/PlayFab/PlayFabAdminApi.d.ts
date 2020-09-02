@@ -2338,6 +2338,10 @@ declare module PlayFabAdminModels {
         | "ExperimentationExperimentSchedulingInProgress"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
+        | "SegmentManagementTitleNotInFlight"
+        | "SegmentManagementNoExpressionTree"
+        | "SegmentManagementTriggerActionCountOverLimit"
+        | "SegmentManagementSegmentCountOverLimit"
         | "SnapshotNotFound";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
