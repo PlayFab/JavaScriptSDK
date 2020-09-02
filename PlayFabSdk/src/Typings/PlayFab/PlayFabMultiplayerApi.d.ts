@@ -439,6 +439,8 @@ declare module PlayFabMultiplayerModels {
         MaxServers: number;
         /** The build region. */
         Region?: string;
+        /** Optional settings to set the standby target to specified values during the supplied schedules */
+        ScheduledStandbySettings?: ScheduledStandbySettings;
         /** The target number of standby multiplayer servers for the region. */
         StandbyServers: number;
         /**
@@ -456,6 +458,8 @@ declare module PlayFabMultiplayerModels {
         MaxServers: number;
         /** The build region. */
         Region: string;
+        /** Optional settings to set the standby target to specified values during the supplied schedules */
+        ScheduledStandbySettings?: ScheduledStandbySettings;
         /** The number of standby multiplayer servers for the region. */
         StandbyServers: number;
 
@@ -1801,7 +1805,7 @@ declare module PlayFabMultiplayerModels {
          * Indicates that the response should contain Qos servers for all regions, including those where there are no builds
          * deployed for the title.
          */
-        IncludeAllRegions: boolean;
+        IncludeAllRegions?: boolean;
 
     }
 
@@ -2129,6 +2133,33 @@ declare module PlayFabMultiplayerModels {
         Password?: string;
         /** The username for accessing the container registry. */
         Username?: string;
+
+    }
+
+    export interface Schedule {
+        /** A short description about this schedule. For example, "Game launch on July 15th". */
+        Description?: string;
+        /**
+         * The date and time in UTC at which the schedule ends. If IsRecurringWeekly is true, this schedule will keep renewing for
+         * future weeks until disabled or removed.
+         */
+        EndTime: string;
+        /** Disables the schedule. */
+        IsDisabled: boolean;
+        /** If true, the StartTime and EndTime will get renewed every week. */
+        IsRecurringWeekly: boolean;
+        /** The date and time in UTC at which the schedule starts. */
+        StartTime: string;
+        /** The standby target to maintain for the duration of the schedule. */
+        TargetStandby: number;
+
+    }
+
+    export interface ScheduledStandbySettings {
+        /** When true, scheduled standby will be enabled */
+        IsEnabled: boolean;
+        /** A list of non-overlapping schedules */
+        ScheduleList?: Schedule[];
 
     }
 

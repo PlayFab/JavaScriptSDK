@@ -2331,6 +2331,10 @@ declare module PlayFabServerModels {
         | "ExperimentationExperimentSchedulingInProgress"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
+        | "SegmentManagementTitleNotInFlight"
+        | "SegmentManagementNoExpressionTree"
+        | "SegmentManagementTriggerActionCountOverLimit"
+        | "SegmentManagementSegmentCountOverLimit"
         | "SnapshotNotFound";
 
     export interface GenericPlayFabIdPair {
