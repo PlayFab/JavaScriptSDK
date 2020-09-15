@@ -2335,6 +2335,7 @@ declare module PlayFabServerModels {
         | "SegmentManagementNoExpressionTree"
         | "SegmentManagementTriggerActionCountOverLimit"
         | "SegmentManagementSegmentCountOverLimit"
+        | "SegmentManagementInvalidSegmentId"
         | "SnapshotNotFound";
 
     export interface GenericPlayFabIdPair {
