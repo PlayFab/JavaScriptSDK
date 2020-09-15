@@ -2342,6 +2342,7 @@ declare module PlayFabAdminModels {
         | "SegmentManagementNoExpressionTree"
         | "SegmentManagementTriggerActionCountOverLimit"
         | "SegmentManagementSegmentCountOverLimit"
+        | "SegmentManagementInvalidSegmentId"
         | "SnapshotNotFound";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
