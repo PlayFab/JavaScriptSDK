@@ -826,6 +826,11 @@ declare module PlayFabServerModels {
     }
 
     export interface AdvancedPushPlatformMsg {
+        /**
+         * Stops GoogleCloudMessaging notifications from including both notification and data properties and instead only sends the
+         * data property.
+         */
+        GCMDataOnly?: boolean;
         /** The Json the platform should receive. */
         Json: string;
         /** The platform that should receive the Json. */
@@ -2329,6 +2334,13 @@ declare module PlayFabServerModels {
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
         | "ExperimentationExperimentSchedulingInProgress"
+        | "ExperimentationInvalidEndDate"
+        | "ExperimentationInvalidStartDate"
+        | "ExperimentationMaxDurationExceeded"
+        | "ExperimentationExclusionGroupNotFound"
+        | "ExperimentationExclusionGroupInsufficientCapacity"
+        | "ExperimentationExclusionGroupCannotDelete"
+        | "ExperimentationExclusionGroupInvalidTrafficAllocation"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -2336,6 +2348,8 @@ declare module PlayFabServerModels {
         | "SegmentManagementTriggerActionCountOverLimit"
         | "SegmentManagementSegmentCountOverLimit"
         | "SegmentManagementInvalidSegmentId"
+        | "SegmentManagementInvalidInput"
+        | "SegmentManagementInvalidSegmentName"
         | "SnapshotNotFound";
 
     export interface GenericPlayFabIdPair {
@@ -3053,8 +3067,8 @@ declare module PlayFabServerModels {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         Keys?: string[];
         /**
-         * Name of the override. This value is ignored when used by the game client; otherwise, the overrides are applied
-         * automatically to the title data.
+         * Optional field that specifies the name of an override. This value is ignored when used by the game client; otherwise,
+         * the overrides are applied automatically to the title data.
          */
         OverrideLabel?: string;
 

@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.74.200914",
+        sdkVersion: "1.76.201014",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.74.200914"
+            sdk: "JavaScriptSDK-1.76.201014"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_1";
-PlayFab.sdkVersion = "1.74.200914";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
+PlayFab.sdkVersion = "1.76.201014";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -249,12 +249,28 @@ PlayFab.ExperimentationApi = {
         PlayFab._internalSettings.entityToken = null;
     },
 
+    CreateExclusionGroup: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/CreateExclusionGroup", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     CreateExperiment: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/CreateExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    DeleteExclusionGroup: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/DeleteExclusionGroup", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     DeleteExperiment: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/DeleteExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetExclusionGroups: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/GetExclusionGroups", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetExclusionGroupTraffic: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/GetExclusionGroupTraffic", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetExperiments: function (request, callback, customData, extraHeaders) {
@@ -275,6 +291,10 @@ PlayFab.ExperimentationApi = {
 
     StopExperiment: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/StopExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UpdateExclusionGroup: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/UpdateExclusionGroup", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UpdateExperiment: function (request, callback, customData, extraHeaders) {

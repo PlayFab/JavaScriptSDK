@@ -2336,6 +2336,13 @@ declare module PlayFabAdminModels {
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
         | "ExperimentationExperimentSchedulingInProgress"
+        | "ExperimentationInvalidEndDate"
+        | "ExperimentationInvalidStartDate"
+        | "ExperimentationMaxDurationExceeded"
+        | "ExperimentationExclusionGroupNotFound"
+        | "ExperimentationExclusionGroupInsufficientCapacity"
+        | "ExperimentationExclusionGroupCannotDelete"
+        | "ExperimentationExclusionGroupInvalidTrafficAllocation"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -2343,6 +2350,8 @@ declare module PlayFabAdminModels {
         | "SegmentManagementTriggerActionCountOverLimit"
         | "SegmentManagementSegmentCountOverLimit"
         | "SegmentManagementInvalidSegmentId"
+        | "SegmentManagementInvalidInput"
+        | "SegmentManagementInvalidSegmentName"
         | "SnapshotNotFound";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
@@ -2446,7 +2455,10 @@ declare module PlayFabAdminModels {
     }
 
     export interface GetContentUploadUrlResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** URL for uploading content via HTTP PUT method. The URL will expire in approximately one hour. */
+        /**
+         * URL for uploading content via HTTP PUT method. The URL requires the 'x-ms-blob-type' header to have the value
+         * 'BlockBlob'. The URL will expire in approximately one hour.
+         */
         URL?: string;
 
     }
@@ -2823,8 +2835,8 @@ declare module PlayFabAdminModels {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         Keys?: string[];
         /**
-         * Name of the override. This value is ignored when used by the game client; otherwise, the overrides are applied
-         * automatically to the title data.
+         * Optional field that specifies the name of an override. This value is ignored when used by the game client; otherwise,
+         * the overrides are applied automatically to the title data.
          */
         OverrideLabel?: string;
 
