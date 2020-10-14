@@ -813,6 +813,11 @@ declare module PlayFabMultiplayerModels {
         /** The instrumentation configuration for the build. */
         InstrumentationConfiguration?: InstrumentationConfiguration;
         /**
+         * Indicates whether this build will be created using the OS Preview versionPreview OS is recommended for dev builds to
+         * detect any breaking changes before they are released to retail. Retail builds should set this value to false.
+         */
+        IsOSPreview?: boolean;
+        /**
          * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
          */
@@ -865,6 +870,11 @@ declare module PlayFabMultiplayerModels {
         GameWorkingDirectory?: string;
         /** The instrumentation configuration for this build. */
         InstrumentationConfiguration?: InstrumentationConfiguration;
+        /**
+         * Indicates whether this build will be created using the OS Preview versionPreview OS is recommended for dev builds to
+         * detect any breaking changes before they are released to retail. Retail builds should set this value to false.
+         */
+        IsOSPreview?: boolean;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
         /** The number of multiplayer servers to host on a single VM of the build. */
