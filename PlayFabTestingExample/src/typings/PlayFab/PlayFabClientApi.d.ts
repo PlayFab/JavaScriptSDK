@@ -78,6 +78,11 @@ declare module PlayFabClientModule {
          */
         ConsumeItem(request: PlayFabClientModels.ConsumeItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Grants the player's current entitlements from Microsoft Store's Collection API
+         * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumemicrosoftstoreentitlements
+         */
+        ConsumeMicrosoftStoreEntitlements(request: PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements
          */
@@ -1342,6 +1347,22 @@ declare module PlayFabClientModels {
         ItemInstanceId?: string;
         /** Number of uses remaining on the item. */
         RemainingUses: number;
+
+    }
+
+    export interface ConsumeMicrosoftStoreEntitlementsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Catalog version to use */
+        CatalogVersion?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Marketplace specific payload containing details to fetch in app purchase transactions */
+        MarketplaceSpecificData: MicrosoftStorePayload;
+
+    }
+
+    export interface ConsumeMicrosoftStoreEntitlementsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Details for the items purchased. */
+        Items?: ItemInstance[];
 
     }
 
@@ -3907,6 +3928,19 @@ declare module PlayFabClientModels {
         OverrideExpiration?: string;
         /** The list of subscriptions that this player has for this membership */
         Subscriptions?: SubscriptionModel[];
+
+    }
+
+    export interface MicrosoftStorePayload {
+        /** Microsoft store ID key. This is optional. Alternatively you can use XboxToken */
+        CollectionsMsIdKey?: string;
+        /** If collectionsMsIdKey is provided, this will verify the user id in the collectionsMsIdKey is the same. */
+        UserId?: string;
+        /**
+         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). This is
+         * optional. Alternatively can use CollectionsMsIdKey
+         */
+        XboxToken?: string;
 
     }
 

@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.76.201014",
+        sdkVersion: "1.77.201027",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.76.201014"
+            sdk: "JavaScriptSDK-1.77.201027"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -232,7 +232,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk__sdk-genericslave-3_0";
-PlayFab.sdkVersion = "1.76.201014";
+PlayFab.sdkVersion = "1.77.201027";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -306,6 +306,10 @@ PlayFab.ClientApi = {
 
     ConsumeItem: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ConsumeItem", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    ConsumeMicrosoftStoreEntitlements: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ConsumeMicrosoftStoreEntitlements", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     ConsumePSNEntitlements: function (request, callback, customData, extraHeaders) {
