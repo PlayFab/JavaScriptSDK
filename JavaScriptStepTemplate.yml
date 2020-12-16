@@ -1,0 +1,106 @@
+# STEPS LEVEL TEMPLATE:
+# Used to build JavaScript
+# Reusable
+# Used to "hide" the additional variables specific to this SDK which shouldn't be set from a higher level, or
+#   shared from a multi-build pipeline like a publish
+
+parameters:
+- name: ApiSpecSource
+  displayName: ApiSpecSource
+  type: string
+  default: -apiSpecGitUrl https://raw.githubusercontent.com/PlayFab/API_Specs/master/
+- name: CommitMessage
+  displayName: CommitMessage
+  type: string
+  default: Automated build from ADO Pipeline
+- name: GitDestBranch
+  displayName: GitDestBranch
+  type: string
+  default: doNotCommit
+- name: SdkName
+  displayName: SdkName
+  type: string
+  default: JavaScriptSDK
+- name: GitJSetupBranch
+  displayName: GitJSetupBranch
+  type: string
+  default: master
+- name: GitSdkGenBranch
+  displayName: GitSdkGenBranch
+  type: string
+  default: master
+- name: isVersioned
+  displayName: isVersioned
+  type: boolean
+  default: false
+- name: expectedNumApiGroups
+  displayName: expectedNumApiGroups
+  type: int
+  default: 14
+- name: SelfTemplateResource
+  displayName: SelfTemplateResource
+  type: string
+  default: self
+
+steps:
+- checkout: JenkinsSdkSetupScripts
+  clean: true
+  path: s
+- checkout: API_Specs
+  clean: true
+  path: s/API_Specs
+- checkout: SdkGenerator
+  clean: true
+  path: s/SdkGenerator
+- checkout: JavaScriptSdk
+  clean: true
+  submodules: true
+  path: s/sdks/JavaScriptSDK
+  persistCredentials: true
+- bash: |
+    set -e
+    
+    echo alias the ADO variables into local variables
+    ApiSpecSource="${{ parameters.ApiSpecSource }}"
+    CommitMessage="${{ parameters.CommitMessage }}"
+    GitDestBranch="${{ parameters.GitDestBranch }}"
+    SdkName="${{ parameters.SdkName }}"
+    WORKSPACE=$(pwd -W)
+    # Hack attempt to get WORKSPACE into a sub-environment
+    export WORKSPACE="$WORKSPACE"
+    
+    echo === load util.sh to find msbuild ===
+    if [ -f "util.sh" ]; then
+      . "./util.sh" 2> /dev/null
+    elif [ ! -z "$WORKSPACE" ]; then
+      . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/util.sh" 2> /dev/null
+    fi
+    
+    Find2019MsBuild || Find2017MsBuild
+    
+    cd "$WORKSPACE/sdks/$SdkName"
+    
+    . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/testInit.sh"
+    
+    cd "$WORKSPACE/SDKGenerator/SDKBuildScripts"
+    targetSrc="javascript"
+    export PF_TEST_TITLE_DATA_JSON="$WORKSPACE\JenkinsSdkSetupScripts\Creds\testTitleData.json"
+    . ./shared_build.sh
+
+    echo === Build the JavaScript Project ===
+    "$MSBUILD_EXE" "$WORKSPACE\\sdks\\$SdkName\\PlayFabTestingExample\\PlayFabApiTest.sln" //restore //t:Rebuild
+    
+    cd "$WORKSPACE/sdks/$SdkName/PlayFabSdk"
+    
+    echo === publish if necessary ===
+    if [[ -z $isVersioned ]]
+    then
+      npm publish
+    fi
+
+  displayName: 'Build/Test/Report'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '*.xml'
+    testRunTitle: JavaScriptTemplate
