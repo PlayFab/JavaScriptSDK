@@ -52,7 +52,7 @@ steps:
 - checkout: SdkGenerator
   clean: true
   path: s/SdkGenerator
-- checkout: JavaScriptSdk
+- checkout: ${{ parameters.SelfTemplateResource }}
   clean: true
   submodules: true
   path: s/sdks/JavaScriptSDK
@@ -70,24 +70,16 @@ steps:
     export WORKSPACE="$WORKSPACE"
     
     echo === load util.sh to find msbuild ===
-    if [ -f "util.sh" ]; then
-      . "./util.sh" 2> /dev/null
-    elif [ ! -z "$WORKSPACE" ]; then
-      . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/util.sh" 2> /dev/null
-    fi
-    
-    Find2019MsBuild || Find2017MsBuild
-    
-    cd "$WORKSPACE/sdks/$SdkName"
+    . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/util.sh"
     
     . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/testInit.sh"
     
     cd "$WORKSPACE/SDKGenerator/SDKBuildScripts"
-    targetSrc="javascript"
     export PF_TEST_TITLE_DATA_JSON="$WORKSPACE\JenkinsSdkSetupScripts\Creds\testTitleData.json"
     . ./shared_build.sh
 
     echo === Build the JavaScript Project ===
+    Find2019MsBuild || Find2017MsBuild
     "$MSBUILD_EXE" "$WORKSPACE\\sdks\\$SdkName\\PlayFabTestingExample\\PlayFabApiTest.sln" //restore //t:Rebuild
     
     if [ $isVersioned = true ] ;
@@ -96,7 +88,6 @@ steps:
       cd "$WORKSPACE/sdks/$SdkName/PlayFabSdk"
       npm publish
     fi
-
   displayName: 'Build/Test/Report'
 - task: PublishTestResults@2
   inputs:
