@@ -90,7 +90,7 @@ steps:
     echo === Build the JavaScript Project ===
     "$MSBUILD_EXE" "$WORKSPACE\\sdks\\$SdkName\\PlayFabTestingExample\\PlayFabApiTest.sln" //restore //t:Rebuild
     
-    if $isVersioned
+    if [ $isVersioned = true ] ;
     then
       echo === publish if necessary ===
       cd "$WORKSPACE/sdks/$SdkName/PlayFabSdk"
