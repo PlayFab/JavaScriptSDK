@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.77.201027",
+        sdkVersion: "1.79.201218",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.77.201027"
+            sdk: "JavaScriptSDK-1.79.201218"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-genericslave-3_2";
-PlayFab.sdkVersion = "1.77.201027";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.79.201218";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -309,6 +309,10 @@ PlayFab.AdminApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreatePlayerStatisticDefinition", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    CreateSegment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreateSegment", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     DeleteContent: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteContent", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -327,6 +331,10 @@ PlayFab.AdminApi = {
 
     DeletePlayerSharedSecret: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeletePlayerSharedSecret", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    DeleteSegment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteSegment", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteStore: function (request, callback, customData, extraHeaders) {
@@ -439,6 +447,10 @@ PlayFab.AdminApi = {
 
     GetRandomResultTables: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetRandomResultTables", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetSegments: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetSegments", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetServerBuildInfo: function (request, callback, customData, extraHeaders) {
@@ -663,6 +675,10 @@ PlayFab.AdminApi = {
 
     UpdateRandomResultTables: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateRandomResultTables", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UpdateSegment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateSegment", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateStoreItems: function (request, callback, customData, extraHeaders) {

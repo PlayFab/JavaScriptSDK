@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.77.201027",
+        sdkVersion: "1.79.201218",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.77.201027"
+            sdk: "JavaScriptSDK-1.79.201218"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-genericslave-3_2";
-PlayFab.sdkVersion = "1.77.201027";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-genericslave-3_1";
+PlayFab.sdkVersion = "1.79.201218";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -405,8 +405,15 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListBuildAliases", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Please use ListBuildSummariesV2 instead. 
+     */
     ListBuildSummaries: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListBuildSummaries", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListBuildSummariesV2: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListBuildSummariesV2", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListCertificateSummaries: function (request, callback, customData, extraHeaders) {
