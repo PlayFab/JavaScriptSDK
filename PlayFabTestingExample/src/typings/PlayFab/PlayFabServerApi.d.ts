@@ -2356,6 +2356,7 @@ declare module PlayFabServerModels {
         | "ExperimentationExclusionGroupInsufficientCapacity"
         | "ExperimentationExclusionGroupCannotDelete"
         | "ExperimentationExclusionGroupInvalidTrafficAllocation"
+        | "ExperimentationExclusionGroupInvalidName"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"

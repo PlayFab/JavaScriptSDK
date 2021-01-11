@@ -83,6 +83,12 @@ declare module PlayFabClientModule {
          */
         ConsumeMicrosoftStoreEntitlements(request: PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
+         * items
+         * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements
+         */
+        ConsumePS5Entitlements(request: PlayFabClientModels.ConsumePS5EntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePS5EntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements
          */
@@ -1361,6 +1367,22 @@ declare module PlayFabClientModels {
     }
 
     export interface ConsumeMicrosoftStoreEntitlementsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Details for the items purchased. */
+        Items?: ItemInstance[];
+
+    }
+
+    export interface ConsumePS5EntitlementsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Catalog version to use */
+        CatalogVersion?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Marketplace specific payload containing details to fetch in app purchase transactions */
+        MarketplaceSpecificData: PlayStation5Payload;
+
+    }
+
+    export interface ConsumePS5EntitlementsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Details for the items purchased. */
         Items?: ItemInstance[];
 
@@ -4156,6 +4178,14 @@ declare module PlayFabClientModels {
         StatisticName?: string;
         /** version of the statistic */
         Version: number;
+
+    }
+
+    export interface PlayStation5Payload {
+        /** An optional list of entitlement ids to query against PSN */
+        Ids?: string[];
+        /** Id of the PSN service label to consume entitlements from */
+        ServiceLabel?: string;
 
     }
 
