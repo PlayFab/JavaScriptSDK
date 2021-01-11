@@ -303,6 +303,11 @@ declare module PlayFabMultiplayerModule {
          */
         UpdateBuildAlias(request: PlayFabMultiplayerModels.UpdateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Updates a multiplayer server build's name.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildname
+         */
+        UpdateBuildName(request: PlayFabMultiplayerModels.UpdateBuildNameRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Updates a multiplayer server build's region. If the region is not yet created, it will be created
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildregion
          */
@@ -2402,6 +2407,16 @@ declare module PlayFabMultiplayerModels {
         AliasName?: string;
         /** Array of build selection criteria. */
         BuildSelectionCriteria?: BuildSelectionCriterion[];
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+
+    }
+
+    export interface UpdateBuildNameRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The guid string ID of the build we want to update the name of. */
+        BuildId: string;
+        /** The build name. */
+        BuildName: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
 
