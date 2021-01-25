@@ -2737,7 +2737,7 @@ declare module PlayFabClientModels {
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
         PSNAccountIDs: string[];
@@ -3306,7 +3306,7 @@ declare module PlayFabClientModels {
         CustomTags?: { [key: string]: string | null };
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Redirect URI supplied to PSN when requesting an auth code */
         RedirectUri: string;
@@ -3780,7 +3780,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -4270,7 +4270,7 @@ declare module PlayFabClientModels {
     export interface RefreshPSNAuthTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Auth code returned by PSN OAuth system. */
         AuthCode: string;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Redirect URI supplied to PSN when requesting an auth code */
         RedirectUri: string;
