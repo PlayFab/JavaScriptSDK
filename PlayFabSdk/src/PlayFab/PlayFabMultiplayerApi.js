@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.80.210111",
+        sdkVersion: "1.81.210125",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.80.210111"
+            sdk: "JavaScriptSDK-1.81.210125"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -232,7 +232,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-genericslave-1_2";
-PlayFab.sdkVersion = "1.80.210111";
+PlayFab.sdkVersion = "1.81.210125";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -295,6 +295,10 @@ PlayFab.MultiplayerApi = {
 
     CreateServerMatchmakingTicket: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/CreateServerMatchmakingTicket", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    CreateTitleMultiplayerServersQuotaChange: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/CreateTitleMultiplayerServersQuotaChange", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     DeleteAsset: function (request, callback, customData, extraHeaders) {
@@ -385,6 +389,10 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetTitleEnabledForMultiplayerServersStatus", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    GetTitleMultiplayerServersQuotaChange: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetTitleMultiplayerServersQuotaChange", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     GetTitleMultiplayerServersQuotas: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetTitleMultiplayerServersQuotas", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -403,13 +411,6 @@ PlayFab.MultiplayerApi = {
 
     ListBuildAliases: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListBuildAliases", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Please use ListBuildSummariesV2 instead. 
-     */
-    ListBuildSummaries: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListBuildSummaries", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListBuildSummariesV2: function (request, callback, customData, extraHeaders) {
@@ -450,6 +451,10 @@ PlayFab.MultiplayerApi = {
 
     ListServerBackfillTicketsForPlayer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/ListServerBackfillTicketsForPlayer", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListTitleMultiplayerServersQuotaChanges: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListTitleMultiplayerServersQuotaChanges", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListVirtualMachineSummaries: function (request, callback, customData, extraHeaders) {
