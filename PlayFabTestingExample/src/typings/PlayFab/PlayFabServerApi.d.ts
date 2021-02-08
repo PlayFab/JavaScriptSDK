@@ -409,6 +409,12 @@ declare module PlayFabServerModule {
          */
         LoginWithServerCustomId(request: PlayFabServerModels.LoginWithServerCustomIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ServerLoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Signs the user in using an Steam ID, returning a session identifier that can subsequently be used for API calls which
+         * require an authenticated user
+         * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithsteamid
+         */
+        LoginWithSteamId(request: PlayFabServerModels.LoginWithSteamIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ServerLoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
          * subsequently be used for API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxbox
@@ -2255,6 +2261,8 @@ declare module PlayFabServerModels {
         | "WasNotCreatedWithCloudRoot"
         | "LegacyMultiplayerServersDeprecated"
         | "VirtualCurrencyCurrentlyUnavailable"
+        | "SteamUserNotFound"
+        | "ElasticSearchOperationFailed"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2279,6 +2287,7 @@ declare module PlayFabServerModels {
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
+        | "CatalogApiNotImplemented"
         | "CatalogEntityInvalid"
         | "CatalogTitleIdMissing"
         | "CatalogPlayerIdMissing"
@@ -2370,7 +2379,8 @@ declare module PlayFabServerModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
-        | "SnapshotNotFound";
+        | "SnapshotNotFound"
+        | "InventoryApiNotImplemented";
 
     export interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
@@ -3497,6 +3507,18 @@ declare module PlayFabServerModels {
         PlayerSecret?: string;
         /** The backend server identifier for this player. */
         ServerCustomId?: string;
+
+    }
+
+    export interface LoginWithSteamIdRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Unique Steam identifier for a user */
+        SteamId: string;
 
     }
 

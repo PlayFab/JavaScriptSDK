@@ -2384,6 +2384,8 @@ declare module PlayFabAdminModels {
         | "WasNotCreatedWithCloudRoot"
         | "LegacyMultiplayerServersDeprecated"
         | "VirtualCurrencyCurrentlyUnavailable"
+        | "SteamUserNotFound"
+        | "ElasticSearchOperationFailed"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2408,6 +2410,7 @@ declare module PlayFabAdminModels {
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
+        | "CatalogApiNotImplemented"
         | "CatalogEntityInvalid"
         | "CatalogTitleIdMissing"
         | "CatalogPlayerIdMissing"
@@ -2499,7 +2502,8 @@ declare module PlayFabAdminModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
-        | "SnapshotNotFound";
+        | "SnapshotNotFound"
+        | "InventoryApiNotImplemented";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
