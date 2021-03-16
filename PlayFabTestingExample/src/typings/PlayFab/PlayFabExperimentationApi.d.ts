@@ -103,8 +103,6 @@ declare module PlayFabExperimentationModels {
         CustomTags?: { [key: string]: string | null };
         /** Description of the experiment. */
         Description?: string;
-        /** The duration of the experiment, in days. */
-        Duration?: number;
         /** When experiment should end. */
         EndDate?: string;
         /** Id of the exclusion group. */
@@ -174,8 +172,6 @@ declare module PlayFabExperimentationModels {
     export interface Experiment {
         /** Description of the experiment. */
         Description?: string;
-        /** The duration of the experiment, in days. */
-        Duration?: number;
         /** When experiment should end/was ended. */
         EndDate?: string;
         /** Id of the exclusion group for this experiment. */
@@ -391,8 +387,6 @@ declare module PlayFabExperimentationModels {
         CustomTags?: { [key: string]: string | null };
         /** Description of the experiment. */
         Description?: string;
-        /** The duration of the experiment, in days. */
-        Duration?: number;
         /** When experiment should end. */
         EndDate?: string;
         /** Id of the exclusion group. */
