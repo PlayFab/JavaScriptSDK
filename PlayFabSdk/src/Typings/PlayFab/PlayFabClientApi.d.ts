@@ -83,12 +83,6 @@ declare module PlayFabClientModule {
          */
         ConsumeMicrosoftStoreEntitlements(request: PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
-         * items
-         * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements
-         */
-        ConsumePS5Entitlements(request: PlayFabClientModels.ConsumePS5EntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePS5EntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements
          */
@@ -1367,22 +1361,6 @@ declare module PlayFabClientModels {
     }
 
     export interface ConsumeMicrosoftStoreEntitlementsResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** Details for the items purchased. */
-        Items?: ItemInstance[];
-
-    }
-
-    export interface ConsumePS5EntitlementsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Catalog version to use */
-        CatalogVersion?: string;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Marketplace specific payload containing details to fetch in app purchase transactions */
-        MarketplaceSpecificData: PlayStation5Payload;
-
-    }
-
-    export interface ConsumePS5EntitlementsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Details for the items purchased. */
         Items?: ItemInstance[];
 
@@ -2737,7 +2715,7 @@ declare module PlayFabClientModels {
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
         IssuerId?: number;
         /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
         PSNAccountIDs: string[];
@@ -3306,7 +3284,7 @@ declare module PlayFabClientModels {
         CustomTags?: { [key: string]: string | null };
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
         IssuerId?: number;
         /** Redirect URI supplied to PSN when requesting an auth code */
         RedirectUri: string;
@@ -3780,7 +3758,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
         IssuerId?: number;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -4181,14 +4159,6 @@ declare module PlayFabClientModels {
 
     }
 
-    export interface PlayStation5Payload {
-        /** An optional list of entitlement ids to query against PSN */
-        Ids?: string[];
-        /** Id of the PSN service label to consume entitlements from */
-        ServiceLabel?: string;
-
-    }
-
     export interface PSNAccountPlayFabIdPair {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier. */
         PlayFabId?: string;
@@ -4270,7 +4240,7 @@ declare module PlayFabClientModels {
     export interface RefreshPSNAuthTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Auth code returned by PSN OAuth system. */
         AuthCode: string;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
         IssuerId?: number;
         /** Redirect URI supplied to PSN when requesting an auth code */
         RedirectUri: string;

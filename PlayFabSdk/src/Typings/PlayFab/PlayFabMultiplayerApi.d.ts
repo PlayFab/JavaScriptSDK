@@ -68,11 +68,6 @@ declare module PlayFabMultiplayerModule {
          */
         CreateServerMatchmakingTicket(request: PlayFabMultiplayerModels.CreateServerMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Creates a request to change a title's multiplayer server quotas.
-         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/createtitlemultiplayerserversquotachange
-         */
-        CreateTitleMultiplayerServersQuotaChange(request: PlayFabMultiplayerModels.CreateTitleMultiplayerServersQuotaChangeRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateTitleMultiplayerServersQuotaChangeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Deletes a multiplayer server game asset for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deleteasset
          */
@@ -183,11 +178,6 @@ declare module PlayFabMultiplayerModule {
          */
         GetTitleEnabledForMultiplayerServersStatus(request: PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Gets a title's server quota change request.
-         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/gettitlemultiplayerserversquotachange
-         */
-        GetTitleMultiplayerServersQuotaChange(request: PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotaChangeRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotaChangeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Gets the quotas for a title in relation to multiplayer servers.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/gettitlemultiplayerserversquotas
          */
@@ -266,11 +256,6 @@ declare module PlayFabMultiplayerModule {
          */
         ListServerBackfillTicketsForPlayer(request: PlayFabMultiplayerModels.ListServerBackfillTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListServerBackfillTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * List all server quota change requests for a title.
-         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listtitlemultiplayerserversquotachanges
-         */
-        ListTitleMultiplayerServersQuotaChanges(request: PlayFabMultiplayerModels.ListTitleMultiplayerServersQuotaChangesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListTitleMultiplayerServersQuotaChangesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Lists virtual machines for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listvirtualmachinesummaries
          */
@@ -311,11 +296,6 @@ declare module PlayFabMultiplayerModule {
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildalias
          */
         UpdateBuildAlias(request: PlayFabMultiplayerModels.UpdateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Updates a multiplayer server build's name.
-         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildname
-         */
-        UpdateBuildName(request: PlayFabMultiplayerModels.UpdateBuildNameRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Updates a multiplayer server build's region. If the region is not yet created, it will be created
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildregion
@@ -389,12 +369,7 @@ declare module PlayFabMultiplayerModels {
         | "ChinaNorth2"
         | "SouthAfricaNorth"
         | "CentralUsEuap"
-        | "WestCentralUs"
-        | "KoreaCentral"
-        | "FranceCentral"
-        | "WestUs2"
-        | "CentralIndia"
-        | "UaeNorth";
+        | "WestCentralUs";
 
     type AzureVmFamily = "A"
         | "Av2"
@@ -407,9 +382,7 @@ declare module PlayFabMultiplayerModels {
         | "Eav4"
         | "Easv4"
         | "Ev4"
-        | "Esv4"
-        | "Dsv3"
-        | "Dsv2";
+        | "Esv4";
 
     type AzureVmSize = "Standard_A1"
         | "Standard_A2"
@@ -444,24 +417,7 @@ declare module PlayFabMultiplayerModels {
         | "Standard_D2a_v4"
         | "Standard_D4a_v4"
         | "Standard_D8a_v4"
-        | "Standard_D16a_v4"
-        | "Standard_E2a_v4"
-        | "Standard_E4a_v4"
-        | "Standard_E8a_v4"
-        | "Standard_E16a_v4"
-        | "Standard_E2as_v4"
-        | "Standard_E4as_v4"
-        | "Standard_E8as_v4"
-        | "Standard_E16as_v4"
-        | "Standard_D2s_v3"
-        | "Standard_D4s_v3"
-        | "Standard_D8s_v3"
-        | "Standard_D16s_v3"
-        | "Standard_DS1_v2"
-        | "Standard_DS2_v2"
-        | "Standard_DS3_v2"
-        | "Standard_DS4_v2"
-        | "Standard_DS5_v2";
+        | "Standard_D16a_v4";
 
     export interface BuildAliasDetailsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The guid string alias Id of the alias to be created or updated. */
@@ -647,16 +603,6 @@ declare module PlayFabMultiplayerModels {
         Total: number;
         /** The AzureVmFamily */
         VmFamily?: string;
-
-    }
-
-    export interface CoreCapacityChange {
-        /** New quota core limit for the given vm family/region. */
-        NewCoreLimit: number;
-        /** Region to change. */
-        Region: string;
-        /** Virtual machine family to change. */
-        VmFamily: string;
 
     }
 
@@ -1040,30 +986,6 @@ declare module PlayFabMultiplayerModels {
         Members: MatchmakingPlayer[];
         /** The Id of a match queue. */
         QueueName: string;
-
-    }
-
-    export interface CreateTitleMultiplayerServersQuotaChangeRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** A brief description of the requested changes. */
-        ChangeDescription?: string;
-        /** Changes to make to the titles cores quota. */
-        Changes: CoreCapacityChange[];
-        /** Email to be contacted by our team about this request. Only required when a request is not approved. */
-        ContactEmail?: string;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Additional information about this request that our team can use to better understand the requirements. */
-        Notes?: string;
-        /** When these changes would need to be in effect. Only required when a request is not approved. */
-        StartDate?: string;
-
-    }
-
-    export interface CreateTitleMultiplayerServersQuotaChangeResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** Id of the change request that was created. */
-        RequestId?: string;
-        /** Determines if the request was approved or not. When false, our team is reviewing and may respond within 2 business days. */
-        WasApproved: boolean;
 
     }
 
@@ -1635,20 +1557,6 @@ declare module PlayFabMultiplayerModels {
 
     }
 
-    export interface GetTitleMultiplayerServersQuotaChangeRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Id of the change request to get. */
-        RequestId: string;
-
-    }
-
-    export interface GetTitleMultiplayerServersQuotaChangeResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** The change request for this title. */
-        Change?: QuotaChange;
-
-    }
-
     export interface GetTitleMultiplayerServersQuotasRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -1946,18 +1854,6 @@ declare module PlayFabMultiplayerModels {
 
     }
 
-    export interface ListTitleMultiplayerServersQuotaChangesRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-
-    }
-
-    export interface ListTitleMultiplayerServersQuotaChangesResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** All change requests for this title. */
-        Changes?: QuotaChange[];
-
-    }
-
     export interface ListVirtualMachineSummariesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The guid string build ID of the virtual machines to list. */
         BuildId: string;
@@ -2153,24 +2049,6 @@ declare module PlayFabMultiplayerModels {
         Path: string;
         /** Specifies which source the attribute comes from. */
         Source: string;
-
-    }
-
-    export interface QuotaChange {
-        /** A brief description of the requested changes. */
-        ChangeDescription?: string;
-        /** Requested changes to make to the titles cores quota. */
-        Changes?: CoreCapacityChange[];
-        /** Whether or not this request is pending a review. */
-        IsPendingReview: boolean;
-        /** Additional information about this request that our team can use to better understand the requirements. */
-        Notes?: string;
-        /** Id of the change request. */
-        RequestId?: string;
-        /** Comments by our team when a request is reviewed. */
-        ReviewComments?: string;
-        /** Whether or not this request was approved. */
-        WasApproved: boolean;
 
     }
 
@@ -2518,16 +2396,6 @@ declare module PlayFabMultiplayerModels {
         AliasName?: string;
         /** Array of build selection criteria. */
         BuildSelectionCriteria?: BuildSelectionCriterion[];
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-
-    }
-
-    export interface UpdateBuildNameRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The guid string ID of the build we want to update the name of. */
-        BuildId: string;
-        /** The build name. */
-        BuildName: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
 

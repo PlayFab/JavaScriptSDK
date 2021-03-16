@@ -2384,8 +2384,6 @@ declare module PlayFabAdminModels {
         | "WasNotCreatedWithCloudRoot"
         | "LegacyMultiplayerServersDeprecated"
         | "VirtualCurrencyCurrentlyUnavailable"
-        | "SteamUserNotFound"
-        | "ElasticSearchOperationFailed"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2410,7 +2408,6 @@ declare module PlayFabAdminModels {
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
-        | "CatalogApiNotImplemented"
         | "CatalogEntityInvalid"
         | "CatalogTitleIdMissing"
         | "CatalogPlayerIdMissing"
@@ -2488,7 +2485,6 @@ declare module PlayFabAdminModels {
         | "ExperimentationExclusionGroupInsufficientCapacity"
         | "ExperimentationExclusionGroupCannotDelete"
         | "ExperimentationExclusionGroupInvalidTrafficAllocation"
-        | "ExperimentationExclusionGroupInvalidName"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -2502,8 +2498,7 @@ declare module PlayFabAdminModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
-        | "SnapshotNotFound"
-        | "InventoryApiNotImplemented";
+        | "SnapshotNotFound";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
@@ -3294,6 +3289,8 @@ declare module PlayFabAdminModels {
     }
 
     export interface LinkedUserAccountSegmentFilter {
+        /** Login provider comparison. */
+        Comparison?: string;
         /** Login provider. */
         LoginProvider?: string;
 
