@@ -2364,7 +2364,7 @@ declare module PlayFabAdminModels {
         | "EvaluationModePlayerCountExceeded"
         | "GetPlayersInSegmentRateLimitExceeded"
         | "CloudScriptFunctionNameSizeExceeded"
-        | "InsightsManagementTitleInEvaluationMode"
+        | "PaidInsightsFeaturesNotEnabled"
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
@@ -2384,6 +2384,9 @@ declare module PlayFabAdminModels {
         | "WasNotCreatedWithCloudRoot"
         | "LegacyMultiplayerServersDeprecated"
         | "VirtualCurrencyCurrentlyUnavailable"
+        | "SteamUserNotFound"
+        | "ElasticSearchOperationFailed"
+        | "NotImplemented"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2408,6 +2411,7 @@ declare module PlayFabAdminModels {
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
+        | "CatalogApiNotImplemented"
         | "CatalogEntityInvalid"
         | "CatalogTitleIdMissing"
         | "CatalogPlayerIdMissing"
@@ -2485,6 +2489,7 @@ declare module PlayFabAdminModels {
         | "ExperimentationExclusionGroupInsufficientCapacity"
         | "ExperimentationExclusionGroupCannotDelete"
         | "ExperimentationExclusionGroupInvalidTrafficAllocation"
+        | "ExperimentationExclusionGroupInvalidName"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -2498,7 +2503,9 @@ declare module PlayFabAdminModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
-        | "SnapshotNotFound";
+        | "AsyncExportNotInFlight"
+        | "SnapshotNotFound"
+        | "InventoryApiNotImplemented";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
@@ -2827,6 +2834,8 @@ declare module PlayFabAdminModels {
     export interface GetPolicyResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The name of the policy read. */
         PolicyName?: string;
+        /** Policy version. */
+        PolicyVersion: number;
         /** The statements in the requested policy. */
         Statements?: PermissionStatement[];
 
@@ -3289,8 +3298,6 @@ declare module PlayFabAdminModels {
     }
 
     export interface LinkedUserAccountSegmentFilter {
-        /** Login provider comparison. */
-        Comparison?: string;
         /** Login provider. */
         LoginProvider?: string;
 
@@ -5040,6 +5047,8 @@ declare module PlayFabAdminModels {
         OverwritePolicy: boolean;
         /** The name of the policy being updated. Only supported name is 'ApiPolicy' */
         PolicyName: string;
+        /** Version of the policy to update. Must be the latest (as returned by GetPolicy). */
+        PolicyVersion: number;
         /** The new statements to include in the policy. */
         Statements: PermissionStatement[];
 

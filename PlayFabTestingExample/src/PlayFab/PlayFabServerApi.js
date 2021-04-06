@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.79.201217",
+        sdkVersion: "1.84.210406",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.79.201217"
+            sdk: "JavaScriptSDK-1.84.210406"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-2_1";
-PlayFab.sdkVersion = "1.79.201217";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-3_1";
+PlayFab.sdkVersion = "1.84.210406";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -543,6 +543,10 @@ PlayFab.ServerApi = {
 
     LoginWithServerCustomId: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithServerCustomId", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    LoginWithSteamId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithSteamId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     LoginWithXbox: function (request, callback, customData, extraHeaders) {

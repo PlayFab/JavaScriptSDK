@@ -22,9 +22,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.79.201217",
+        sdkVersion: "1.84.210406",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.79.201217"
+            sdk: "JavaScriptSDK-1.84.210406"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +231,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-2_1";
-PlayFab.sdkVersion = "1.79.201217";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-3_1";
+PlayFab.sdkVersion = "1.84.210406";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -310,6 +310,10 @@ PlayFab.ClientApi = {
 
     ConsumeMicrosoftStoreEntitlements: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ConsumeMicrosoftStoreEntitlements", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    ConsumePS5Entitlements: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ConsumePS5Entitlements", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     ConsumePSNEntitlements: function (request, callback, customData, extraHeaders) {
@@ -540,6 +544,9 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetUserReadOnlyData", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     GetWindowsHelloChallenge: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetWindowsHelloChallenge", request, null, callback, customData, extraHeaders);
     },
@@ -608,6 +615,9 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkTwitch", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     LinkWindowsHello: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkWindowsHello", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -1041,6 +1051,9 @@ PlayFab.ClientApi = {
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
 
+    /**
+     * @deprecated Do not use
+     */
     LoginWithWindowsHello: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
@@ -1135,6 +1148,9 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RegisterPlayFabUser", request, null, overloadCallback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     RegisterWithWindowsHello: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
@@ -1280,6 +1296,9 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkTwitch", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     UnlinkWindowsHello: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkWindowsHello", request, "X-Authorization", callback, customData, extraHeaders);
     },
