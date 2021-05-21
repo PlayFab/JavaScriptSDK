@@ -2382,6 +2382,8 @@ declare module PlayFabServerModels {
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
         | "AsyncExportNotInFlight"
+        | "AsyncExportNotFound"
+        | "AsyncExportRateLimitExceeded"
         | "SnapshotNotFound"
         | "InventoryApiNotImplemented";
 

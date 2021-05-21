@@ -6,15 +6,7 @@ if(!PlayFab.settings) {
     PlayFab.settings = {
         titleId: null, // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
         developerSecretKey: null, // For security reasons you must never expose this value to the client or players - You must set this value for Server-APIs to work properly (Found in the Game Manager for your title, at the PlayFab Website)
-        advertisingIdType: null,
-        advertisingIdValue: null,
         GlobalHeaderInjection: null,
-
-        // disableAdvertising is provided for completeness, but changing it is not suggested
-        // Disabling this may prevent your advertising-related PlayFab marketplace partners from working correctly
-        disableAdvertising: false,
-        AD_TYPE_IDFA: "Idfa",
-        AD_TYPE_ANDROID_ID: "Adid",
         productionServerUrl: ".playfabapi.com"
     }
 }
@@ -22,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.86.210511",
+        sdkVersion: "1.87.210521",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.86.210511"
+            sdk: "JavaScriptSDK-1.87.210521"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-3_0";
-PlayFab.sdkVersion = "1.86.210511";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-3_1";
+PlayFab.sdkVersion = "1.87.210521";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -300,6 +292,7 @@ PlayFab.ExperimentationApi = {
     UpdateExperiment: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Experimentation/UpdateExperiment", request, "X-EntityToken", callback, customData, extraHeaders);
     },
+
 };
 
 var PlayFabExperimentationSDK = PlayFab.ExperimentationApi;

@@ -36,7 +36,6 @@ var PlayFabApiTests = {
         QUnit.test("InvalidLogin", PlayFabApiTests.InvalidLogin);
         QUnit.test("InvalidRegistration", PlayFabApiTests.InvalidRegistration);
         QUnit.test("LoginOrRegister", PlayFabApiTests.LoginOrRegister);
-        QUnit.test("LoginWithAdvertisingId", PlayFabApiTests.LoginWithAdvertisingId);
         setTimeout(function () { PlayFabApiTests.PostLoginTests(0); }, PlayFabApiTests.testRetryDelay);
         setTimeout(function () { PlayFabApiTests.PostEntityTokenTests(0); }, PlayFabApiTests.testRetryDelay);
     },
@@ -180,34 +179,6 @@ var PlayFabApiTests = {
         var loginPromise = Promise.resolve(PlayFabClientSDK.LoginWithCustomID(loginRequest, PlayFabApiTests.CallbackWrapper("loginCallback", loginCallback, assert)));
         // By definition, a promise object should have a .then function, and Promise.resolve(promise) should equal promise
         assert.ok(typeof loginPromise.then === "function" && Promise.resolve(loginPromise) === loginPromise, "Testing whether the login request returned a promise object");
-    },
-    /* CLIENT API
-     * Test that the login call sequence sends the AdvertisingId when set
-     */
-    LoginWithAdvertisingId: function (assert) {
-        PlayFab.settings.advertisingIdType = PlayFab.settings.AD_TYPE_ANDROID_ID;
-        PlayFab.settings.advertisingIdValue = "PlayFabTestId";
-        var loginDone = assert.async();
-        var count = -1;
-        var finishAdvertId = function () {
-            count += 1;
-            if (count <= 10 && PlayFab.settings.advertisingIdType !== PlayFab.settings.AD_TYPE_ANDROID_ID + "_Successful") {
-                setTimeout(PlayFabApiTests.SimpleCallbackWrapper("finishAdvertId", finishAdvertId, assert), 200);
-            }
-            else {
-                assert.ok(PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_ANDROID_ID + "_Successful", "Testing whether advertisingId submitted properly");
-                loginDone();
-            }
-        };
-        var advertLoginCallback = function (result, error) {
-            PlayFabApiTests.VerifyNullError(result, error, assert, "Testing Advert-Login result");
-            setTimeout(PlayFabApiTests.SimpleCallbackWrapper("finishAdvertId", finishAdvertId, assert), 200);
-        };
-        var loginRequest = {
-            CustomId: PlayFab.buildIdentifier,
-            CreateAccount: true
-        };
-        Promise.resolve(PlayFabClientSDK.LoginWithCustomID(loginRequest, PlayFabApiTests.CallbackWrapper("advertLoginCallback", advertLoginCallback, assert)));
     },
     /* CLIENT API
      * Test a sequence of calls that modifies saved data,

@@ -405,11 +405,6 @@ declare module PlayFabClientModule {
          */
         GetUserReadOnlyData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
-         * https://docs.microsoft.com/rest/api/playfab/client/authentication/getwindowshellochallenge
-         */
-        GetWindowsHelloChallenge(request: PlayFabClientModels.GetWindowsHelloChallengeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetWindowsHelloChallengeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
          * with the parent PlayFabId to guarantee uniqueness.
          * https://docs.microsoft.com/rest/api/playfab/client/characters/grantcharactertouser
@@ -494,11 +489,6 @@ declare module PlayFabClientModule {
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linktwitch
          */
         LinkTwitch(request: PlayFabClientModels.LinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkTwitchAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Link Windows Hello authentication to the current PlayFab Account
-         * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkwindowshello
-         */
-        LinkWindowsHello(request: PlayFabClientModels.LinkWindowsHelloAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkWindowsHelloAccountResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkxboxaccount
@@ -609,14 +599,6 @@ declare module PlayFabClientModule {
          */
         LoginWithTwitch(request: PlayFabClientModels.LoginWithTwitchRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
-         * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
-         * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
-         * server.
-         * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithwindowshello
-         */
-        LoginWithWindowsHello(request: PlayFabClientModels.LoginWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
          * which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithxbox
@@ -670,12 +652,6 @@ declare module PlayFabClientModule {
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/registerplayfabuser
          */
         RegisterPlayFabUser(request: PlayFabClientModels.RegisterPlayFabUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
-         * subsequently be used for API calls which require an authenticated user
-         * https://docs.microsoft.com/rest/api/playfab/client/authentication/registerwithwindowshello
-         */
-        RegisterWithWindowsHello(request: PlayFabClientModels.RegisterWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Removes a contact email from the player's profile.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/removecontactemail
@@ -837,11 +813,6 @@ declare module PlayFabClientModule {
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinktwitch
          */
         UnlinkTwitch(request: PlayFabClientModels.UnlinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkTwitchAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Unlink Windows Hello authentication from the current PlayFab Account
-         * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkwindowshello
-         */
-        UnlinkWindowsHello(request: PlayFabClientModels.UnlinkWindowsHelloAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkWindowsHelloAccountResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Unlinks the related Xbox Live account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkxboxaccount
@@ -2992,23 +2963,6 @@ declare module PlayFabClientModels {
 
     }
 
-    export interface GetWindowsHelloChallengeRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** SHA256 hash of the PublicKey generated by Windows Hello. */
-        PublicKeyHint: string;
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId: string;
-
-    }
-
-    export interface GetWindowsHelloChallengeResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** Server generated challenge to be signed by the user. */
-        Challenge?: string;
-
-    }
-
     export interface GooglePlayFabIdPair {
         /** Unique Google identifier for a user. */
         GoogleId?: string;
@@ -3351,24 +3305,6 @@ declare module PlayFabClientModels {
     }
 
     export interface LinkTwitchAccountResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
-    export interface LinkWindowsHelloAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Device name. */
-        DeviceName?: string;
-        /** If another user is already linked to the account, unlink the other user and re-link. */
-        ForceLink?: boolean;
-        /** PublicKey generated by Windows Hello. */
-        PublicKey: string;
-        /** Player's user named used by Windows Hello. */
-        UserName: string;
-
-    }
-
-    export interface LinkWindowsHelloAccountResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -3837,23 +3773,6 @@ declare module PlayFabClientModels {
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId?: string;
-
-    }
-
-    export interface LoginWithWindowsHelloRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The signed response from the user for the Challenge. */
-        ChallengeSignature: string;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Flags for which pieces of info to return for the user. */
-        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** SHA256 hash of the PublicKey generated by Windows Hello. */
-        PublicKeyHint: string;
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -4362,29 +4281,6 @@ declare module PlayFabClientModels {
         SettingsForUser?: UserSettings;
         /** PlayFab unique user name. */
         Username?: string;
-
-    }
-
-    export interface RegisterWithWindowsHelloRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Device name. */
-        DeviceName?: string;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
-        EncryptedRequest?: string;
-        /** Flags for which pieces of info to return for the user. */
-        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
-        PlayerSecret?: string;
-        /** PublicKey generated by Windows Hello. */
-        PublicKey?: string;
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId: string;
-        /** Player's user name used by Windows Hello. */
-        UserName?: string;
 
     }
 
@@ -5017,18 +4913,6 @@ declare module PlayFabClientModels {
     }
 
     export interface UnlinkTwitchAccountResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
-    export interface UnlinkWindowsHelloAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** SHA256 hash of the PublicKey generated by Windows Hello. */
-        PublicKeyHint: string;
-
-    }
-
-    export interface UnlinkWindowsHelloAccountResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
