@@ -6,15 +6,7 @@ if(!PlayFab.settings) {
     PlayFab.settings = {
         titleId: null, // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
         developerSecretKey: null, // For security reasons you must never expose this value to the client or players - You must set this value for Server-APIs to work properly (Found in the Game Manager for your title, at the PlayFab Website)
-        advertisingIdType: null,
-        advertisingIdValue: null,
         GlobalHeaderInjection: null,
-
-        // disableAdvertising is provided for completeness, but changing it is not suggested
-        // Disabling this may prevent your advertising-related PlayFab marketplace partners from working correctly
-        disableAdvertising: false,
-        AD_TYPE_IDFA: "Idfa",
-        AD_TYPE_ANDROID_ID: "Adid",
         productionServerUrl: ".playfabapi.com"
     }
 }
@@ -22,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.86.210511",
+        sdkVersion: "1.87.210521",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.86.210511"
+            sdk: "JavaScriptSDK-1.87.210521"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -231,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-3_0";
-PlayFab.sdkVersion = "1.86.210511";
+PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-3_1";
+PlayFab.sdkVersion = "1.87.210521";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -286,14 +278,7 @@ PlayFab.ClientApi = {
     },
 
     AttributeInstall: function (request, callback, customData, extraHeaders) {
-        var overloadCallback = function (result, error) {
-            // Modify advertisingIdType:  Prevents us from sending the id multiple times, and allows automated tests to determine id was sent successfully
-            PlayFab.settings.advertisingIdType += "_Successful";
-
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/AttributeInstall", request, "X-Authorization", overloadCallback, customData, extraHeaders);
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/AttributeInstall", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     CancelTrade: function (request, callback, customData, extraHeaders) {
@@ -544,13 +529,6 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetUserReadOnlyData", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    /**
-     * @deprecated Do not use
-     */
-    GetWindowsHelloChallenge: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetWindowsHelloChallenge", request, null, callback, customData, extraHeaders);
-    },
-
     GrantCharacterToUser: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GrantCharacterToUser", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -615,13 +593,6 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkTwitch", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    /**
-     * @deprecated Do not use
-     */
-    LinkWindowsHello: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkWindowsHello", request, "X-Authorization", callback, customData, extraHeaders);
-    },
-
     LinkXboxAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkXboxAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -641,7 +612,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -666,7 +636,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -691,7 +660,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -716,7 +684,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -741,7 +708,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -766,7 +732,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -791,7 +756,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -816,7 +780,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -841,7 +804,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -866,7 +828,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -891,7 +852,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -916,7 +876,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -941,7 +900,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -966,7 +924,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -991,7 +948,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -1016,7 +972,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -1041,40 +996,11 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
         };
         PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithTwitch", request, null, overloadCallback, customData, extraHeaders);
-        // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
-        return new Promise(function(resolve){resolve(authenticationContext);});
-    },
-
-    /**
-     * @deprecated Do not use
-     */
-    LoginWithWindowsHello: function (request, callback, customData, extraHeaders) {
-        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
-        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
-        // Deep-copy the authenticationContext here to safely update it
-        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
-        var overloadCallback = function (result, error) {
-            if (result != null) {
-                if(result.data.SessionTicket != null) {
-                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                }
-                if (result.data.EntityToken != null) {
-                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                }
-                // Apply the updates for the AuthenticationContext returned to the client
-                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
-            }
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithWindowsHello", request, null, overloadCallback, customData, extraHeaders);
         // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
@@ -1094,7 +1020,6 @@ PlayFab.ClientApi = {
                 }
                 // Apply the updates for the AuthenticationContext returned to the client
                 authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
@@ -1140,40 +1065,11 @@ PlayFab.ClientApi = {
         var overloadCallback = function (result, error) {
             if (result != null && result.data.SessionTicket != null) {
                 PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
             }
             if (callback != null && typeof (callback) === "function")
                 callback(result, error);
         };
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RegisterPlayFabUser", request, null, overloadCallback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Do not use
-     */
-    RegisterWithWindowsHello: function (request, callback, customData, extraHeaders) {
-        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
-        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
-        // Deep-copy the authenticationContext here to safely update it
-        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
-        var overloadCallback = function (result, error) {
-            if (result != null) {
-                if(result.data.SessionTicket != null) {
-                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                }
-                if (result.data.EntityToken != null) {
-                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                }
-                // Apply the updates for the AuthenticationContext returned to the client
-                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
-            }
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RegisterWithWindowsHello", request, null, overloadCallback, customData, extraHeaders);
-        // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
-        return new Promise(function(resolve){resolve(authenticationContext);});
     },
 
     RemoveContactEmail: function (request, callback, customData, extraHeaders) {
@@ -1296,13 +1192,6 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkTwitch", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    /**
-     * @deprecated Do not use
-     */
-    UnlinkWindowsHello: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkWindowsHello", request, "X-Authorization", callback, customData, extraHeaders);
-    },
-
     UnlinkXboxAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkXboxAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -1375,19 +1264,6 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/WriteTitleEvent", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    _MultiStepClientLogin: function (needsAttribution) {
-        if (needsAttribution && !PlayFab.settings.disableAdvertising && PlayFab.settings.advertisingIdType !== null && PlayFab.settings.advertisingIdValue !== null) {
-            var request = {};
-            if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_IDFA) {
-                request.Idfa = PlayFab.settings.advertisingIdValue;
-            } else if (PlayFab.settings.advertisingIdType === PlayFab.settings.AD_TYPE_ANDROID_ID) {
-                request.Adid = PlayFab.settings.advertisingIdValue;
-            } else {
-                return;
-            }
-            PlayFab.ClientApi.AttributeInstall(request, null);
-        }
-    }
 };
 
 var PlayFabClientSDK = PlayFab.ClientApi;

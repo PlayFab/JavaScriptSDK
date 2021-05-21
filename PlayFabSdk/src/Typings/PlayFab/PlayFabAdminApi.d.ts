@@ -2505,6 +2505,8 @@ declare module PlayFabAdminModels {
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
         | "AsyncExportNotInFlight"
+        | "AsyncExportNotFound"
+        | "AsyncExportRateLimitExceeded"
         | "SnapshotNotFound"
         | "InventoryApiNotImplemented";
 
