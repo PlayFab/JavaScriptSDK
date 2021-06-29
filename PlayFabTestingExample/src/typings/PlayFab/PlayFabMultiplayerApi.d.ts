@@ -113,7 +113,14 @@ declare module PlayFabMultiplayerModule {
          */
         EnableMultiplayerServersForTitle(request: PlayFabMultiplayerModels.EnableMultiplayerServersForTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EnableMultiplayerServersForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Gets the URL to upload assets to.
+         * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
+         * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&ss=b&srt=sco&sp=rw&st=<startDate>&se=<endDate>&spr=https&sig=<sampleSig>&api-version=2017-07-29
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getassetdownloadurl
+         */
+        GetAssetDownloadUrl(request: PlayFabMultiplayerModels.GetAssetDownloadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetAssetDownloadUrlResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Gets the URL to upload assets to. A sample pre-authenticated url -
+         * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&ss=b&srt=sco&sp=rw&st=<startDate>&se=<endDate>&spr=https&sig=<sampleSig>&api-version=2017-07-29
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getassetuploadurl
          */
         GetAssetUploadUrl(request: PlayFabMultiplayerModels.GetAssetUploadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetAssetUploadUrlResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -1287,6 +1294,22 @@ declare module PlayFabMultiplayerModels {
          * title.
          */
         Name: string;
+
+    }
+
+    export interface GetAssetDownloadUrlRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The asset's file name to get the download URL for. */
+        FileName: string;
+
+    }
+
+    export interface GetAssetDownloadUrlResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The asset's download URL. */
+        AssetDownloadUrl?: string;
+        /** The asset's file name to get the download URL for. */
+        FileName?: string;
 
     }
 
