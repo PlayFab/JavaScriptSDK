@@ -2464,6 +2464,7 @@ declare module PlayFabAdminModels {
         | "ExplorerBasicUpdateQueryError"
         | "ExplorerBasicSavedQueriesLimit"
         | "ExplorerBasicSavedQueryNotFound"
+        | "TenantShardMapperShardNotFound"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
@@ -4701,11 +4702,8 @@ declare module PlayFabAdminModels {
         Credential: string;
         /** for APNS, this is the PlatformPrincipal (SSL Certificate) */
         Key?: string;
-        /**
-         * name of the application sending the message (application names must be made up of only uppercase and lowercase ASCII
-         * letters, numbers, underscores, hyphens, and periods, and must be between 1 and 256 characters long)
-         */
-        Name: string;
+        /** This field is deprecated and any usage of this will cause the API to fail. */
+        Name?: string;
         /**
          * replace any existing ARN with the newly generated one. If this is set to false, an error will be returned if
          * notifications have already setup for this platform.

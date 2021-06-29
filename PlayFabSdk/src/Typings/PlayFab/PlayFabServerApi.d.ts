@@ -2341,6 +2341,7 @@ declare module PlayFabServerModels {
         | "ExplorerBasicUpdateQueryError"
         | "ExplorerBasicSavedQueriesLimit"
         | "ExplorerBasicSavedQueryNotFound"
+        | "TenantShardMapperShardNotFound"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
