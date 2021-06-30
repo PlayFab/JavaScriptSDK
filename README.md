@@ -47,7 +47,7 @@ You may install JavaScript SDK with npm by running :
 
 `npm install playfab-web-sdk`
 
-Notice that it will install web JavaScript package as opposed to `npm install playfab` which will install NodeJS SDK.
+Notice that it will install web JavaScript package as opposed to `npm install playfab-sdk` which will install NodeJS SDK.
 
 While npm is generally used for server side packages, you may use one of popular build tools to mix NPM installed packages into your clientside JS codebase. Consider Babel, Webpack, Gulp or Grunt for different approaches to building and automation.
 
