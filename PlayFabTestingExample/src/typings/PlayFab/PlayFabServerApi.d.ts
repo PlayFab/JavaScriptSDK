@@ -2386,7 +2386,22 @@ declare module PlayFabServerModels {
         | "AsyncExportNotFound"
         | "AsyncExportRateLimitExceeded"
         | "SnapshotNotFound"
-        | "InventoryApiNotImplemented";
+        | "InventoryApiNotImplemented"
+        | "LobbyDoesNotExist"
+        | "LobbyRateLimitExceeded"
+        | "LobbyPlayerAlreadyJoined"
+        | "LobbyNotJoinable"
+        | "LobbyMemberCannotRejoin"
+        | "LobbyCurrentPlayersMoreThanMaxPlayers"
+        | "LobbyPlayerNotPresent"
+        | "LobbyBadRequest"
+        | "LobbyPlayerMaxLobbyLimitExceeded"
+        | "LobbyNewOwnerMustBeConnected"
+        | "LobbyCurrentOwnerStillConnected"
+        | "LobbyMemberIsNotOwner"
+        | "EventSamplingInvalidRatio"
+        | "EventSamplingInvalidEventName"
+        | "EventSamplingRatioNotFound";
 
     export interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
@@ -2643,7 +2658,7 @@ declare module PlayFabServerModels {
 
     export interface GetLeaderboardForUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Maximum number of entries to retrieve. */
-        MaxResultsCount: number;
+        MaxResultsCount?: number;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
         /** Unique identifier for the title-specific statistic for the leaderboard. */
@@ -3795,7 +3810,11 @@ declare module PlayFabServerModels {
         Created?: string;
         /** Player display name */
         DisplayName?: string;
-        /** List of experiment variants for the player. */
+        /**
+         * List of experiment variants for the player. Note that these variants are not guaranteed to be up-to-date when returned
+         * during login because the player profile is updated only after login. Instead, use the LoginResult.TreatmentAssignment
+         * property during login to get the correct variants and variables.
+         */
         ExperimentVariants?: string[];
         /** UTC time when the player most recently logged in to the title */
         LastLogin?: string;
@@ -4917,8 +4936,6 @@ declare module PlayFabServerModels {
         TwitchInfo?: UserTwitchInfo;
         /** User account name in the PlayFab service */
         Username?: string;
-        /** Windows Hello account information, if a Windows Hello account has been linked */
-        WindowsHelloInfo?: UserWindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         XboxInfo?: UserXboxInfo;
 
@@ -5045,7 +5062,6 @@ declare module PlayFabServerModels {
         | "XboxLive"
         | "Parse"
         | "Twitch"
-        | "WindowsHello"
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
         | "FacebookInstantGamesId"
@@ -5122,14 +5138,6 @@ declare module PlayFabServerModels {
         TwitchId?: string;
         /** Twitch Username */
         TwitchUserName?: string;
-
-    }
-
-    export interface UserWindowsHelloInfo {
-        /** Windows Hello Device Name */
-        WindowsHelloDeviceName?: string;
-        /** Windows Hello Public Key Hash */
-        WindowsHelloPublicKeyHash?: string;
 
     }
 
