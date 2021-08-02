@@ -2372,7 +2372,7 @@ declare module PlayFabClientModels {
 
     export interface GetLeaderboardForUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Maximum number of entries to retrieve. */
-        MaxResultsCount: number;
+        MaxResultsCount?: number;
         /** Unique identifier for the title-specific statistic for the leaderboard. */
         StatisticName: string;
 
@@ -4018,7 +4018,11 @@ declare module PlayFabClientModels {
         Created?: string;
         /** Player display name */
         DisplayName?: string;
-        /** List of experiment variants for the player. */
+        /**
+         * List of experiment variants for the player. Note that these variants are not guaranteed to be up-to-date when returned
+         * during login because the player profile is updated only after login. Instead, use the LoginResult.TreatmentAssignment
+         * property during login to get the correct variants and variables.
+         */
         ExperimentVariants?: string[];
         /** UTC time when the player most recently logged in to the title */
         LastLogin?: string;
@@ -5143,8 +5147,6 @@ declare module PlayFabClientModels {
         TwitchInfo?: UserTwitchInfo;
         /** User account name in the PlayFab service */
         Username?: string;
-        /** Windows Hello account information, if a Windows Hello account has been linked */
-        WindowsHelloInfo?: UserWindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         XboxInfo?: UserXboxInfo;
 
@@ -5271,7 +5273,6 @@ declare module PlayFabClientModels {
         | "XboxLive"
         | "Parse"
         | "Twitch"
-        | "WindowsHello"
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
         | "FacebookInstantGamesId"
@@ -5348,14 +5349,6 @@ declare module PlayFabClientModels {
         TwitchId?: string;
         /** Twitch Username */
         TwitchUserName?: string;
-
-    }
-
-    export interface UserWindowsHelloInfo {
-        /** Windows Hello Device Name */
-        WindowsHelloDeviceName?: string;
-        /** Windows Hello Public Key Hash */
-        WindowsHelloPublicKeyHash?: string;
 
     }
 
