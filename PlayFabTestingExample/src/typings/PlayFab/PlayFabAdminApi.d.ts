@@ -2389,6 +2389,8 @@ declare module PlayFabAdminModels {
         | "NotImplemented"
         | "PublisherNotFound"
         | "PublisherDeleted"
+        | "ApiDisabledForMigration"
+        | "ResourceNameUpdateNotAllowed"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2527,6 +2529,7 @@ declare module PlayFabAdminModels {
         | "LobbyCurrentOwnerStillConnected"
         | "LobbyMemberIsNotOwner"
         | "EventSamplingInvalidRatio"
+        | "EventSamplingInvalidEventNamespace"
         | "EventSamplingInvalidEventName"
         | "EventSamplingRatioNotFound";
 
