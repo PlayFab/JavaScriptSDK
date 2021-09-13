@@ -509,6 +509,8 @@ declare module PlayFabMultiplayerModels {
         DynamicStandbySettings?: DynamicStandbySettings;
         /** The maximum number of multiplayer servers for the region. */
         MaxServers: number;
+        /** Regional override for the number of multiplayer servers to host on a single VM of the build. */
+        MultiplayerServerCountPerVm?: number;
         /** The build region. */
         Region?: string;
         /** Optional settings to set the standby target to specified values during the supplied schedules */
@@ -520,6 +522,8 @@ declare module PlayFabMultiplayerModels {
          * Unhealthy, Deleting, Deleted.
          */
         Status?: string;
+        /** Regional override for the VM size the build was created on. */
+        VmSize?: string;
 
     }
 
@@ -528,12 +532,16 @@ declare module PlayFabMultiplayerModels {
         DynamicStandbySettings?: DynamicStandbySettings;
         /** The maximum number of multiplayer servers for the region. */
         MaxServers: number;
+        /** Regional override for the number of multiplayer servers to host on a single VM of the build. */
+        MultiplayerServerCountPerVm?: number;
         /** The build region. */
         Region: string;
         /** Optional settings to set the standby target to specified values during the supplied schedules */
         ScheduledStandbySettings?: ScheduledStandbySettings;
         /** The number of standby multiplayer servers for the region. */
         StandbyServers: number;
+        /** Regional override for the VM size the build was created on. */
+        VmSize?: string;
 
     }
 
