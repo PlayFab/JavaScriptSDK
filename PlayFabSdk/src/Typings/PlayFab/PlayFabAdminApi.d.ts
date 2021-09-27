@@ -2395,6 +2395,7 @@ declare module PlayFabAdminModels {
         | "DuplicateTitleNameForPublisher"
         | "AzureTitleCreationInProgress"
         | "DuplicateAzureResourceId"
+        | "TitleContraintsPublisherDeletion"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"

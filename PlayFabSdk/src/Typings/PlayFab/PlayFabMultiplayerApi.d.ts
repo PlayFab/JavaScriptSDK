@@ -2423,12 +2423,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface ShutdownMultiplayerServerRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The guid string build ID of the multiplayer server to delete. */
-        BuildId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The region of the multiplayer server to shut down. */
-        Region?: string;
         /** A guid string session ID of the multiplayer server to shut down. */
         SessionId: string;
 
