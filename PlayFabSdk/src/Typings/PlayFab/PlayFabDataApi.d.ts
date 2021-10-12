@@ -121,7 +121,7 @@ declare module PlayFabDataModels {
     }
 
     export interface GetFileMetadata {
-        /** Checksum value for the file, can be used to check if the file on the server has changed. */
+        /** Checksum value for the file */
         Checksum?: string;
         /** Download URL where the file can be retrieved */
         DownloadUrl?: string;

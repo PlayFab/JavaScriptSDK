@@ -2364,7 +2364,7 @@ declare module PlayFabAdminModels {
         | "EvaluationModePlayerCountExceeded"
         | "GetPlayersInSegmentRateLimitExceeded"
         | "CloudScriptFunctionNameSizeExceeded"
-        | "PaidInsightsFeaturesNotEnabled"
+        | "InsightsManagementTitleInEvaluationMode"
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
@@ -2384,18 +2384,6 @@ declare module PlayFabAdminModels {
         | "WasNotCreatedWithCloudRoot"
         | "LegacyMultiplayerServersDeprecated"
         | "VirtualCurrencyCurrentlyUnavailable"
-        | "SteamUserNotFound"
-        | "ElasticSearchOperationFailed"
-        | "NotImplemented"
-        | "PublisherNotFound"
-        | "PublisherDeleted"
-        | "ApiDisabledForMigration"
-        | "ResourceNameUpdateNotAllowed"
-        | "ApiNotEnabledForTitle"
-        | "DuplicateTitleNameForPublisher"
-        | "AzureTitleCreationInProgress"
-        | "DuplicateAzureResourceId"
-        | "TitleContraintsPublisherDeletion"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2417,12 +2405,9 @@ declare module PlayFabAdminModels {
         | "MatchmakingQueueLimitExceeded"
         | "MatchmakingRequestTypeMismatch"
         | "MatchmakingBadRequest"
-        | "PubSubFeatureNotEnabledForTitle"
-        | "PubSubTooManyRequests"
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
-        | "CatalogApiNotImplemented"
         | "CatalogEntityInvalid"
         | "CatalogTitleIdMissing"
         | "CatalogPlayerIdMissing"
@@ -2475,11 +2460,9 @@ declare module PlayFabAdminModels {
         | "ExplorerBasicUpdateQueryError"
         | "ExplorerBasicSavedQueriesLimit"
         | "ExplorerBasicSavedQueryNotFound"
-        | "TenantShardMapperShardNotFound"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
-        | "MultiplayerServerBuildReferencedByBuildAlias"
         | "ExperimentationExperimentStopped"
         | "ExperimentationExperimentRunning"
         | "ExperimentationExperimentNotFound"
@@ -2502,7 +2485,6 @@ declare module PlayFabAdminModels {
         | "ExperimentationExclusionGroupInsufficientCapacity"
         | "ExperimentationExclusionGroupCannotDelete"
         | "ExperimentationExclusionGroupInvalidTrafficAllocation"
-        | "ExperimentationExclusionGroupInvalidName"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -2516,27 +2498,7 @@ declare module PlayFabAdminModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
-        | "AsyncExportNotInFlight"
-        | "AsyncExportNotFound"
-        | "AsyncExportRateLimitExceeded"
-        | "SnapshotNotFound"
-        | "InventoryApiNotImplemented"
-        | "LobbyDoesNotExist"
-        | "LobbyRateLimitExceeded"
-        | "LobbyPlayerAlreadyJoined"
-        | "LobbyNotJoinable"
-        | "LobbyMemberCannotRejoin"
-        | "LobbyCurrentPlayersMoreThanMaxPlayers"
-        | "LobbyPlayerNotPresent"
-        | "LobbyBadRequest"
-        | "LobbyPlayerMaxLobbyLimitExceeded"
-        | "LobbyNewOwnerMustBeConnected"
-        | "LobbyCurrentOwnerStillConnected"
-        | "LobbyMemberIsNotOwner"
-        | "EventSamplingInvalidRatio"
-        | "EventSamplingInvalidEventNamespace"
-        | "EventSamplingInvalidEventName"
-        | "EventSamplingRatioNotFound";
+        | "SnapshotNotFound";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
@@ -2865,8 +2827,6 @@ declare module PlayFabAdminModels {
     export interface GetPolicyResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The name of the policy read. */
         PolicyName?: string;
-        /** Policy version. */
-        PolicyVersion: number;
         /** The statements in the requested policy. */
         Statements?: PermissionStatement[];
 
@@ -3329,6 +3289,8 @@ declare module PlayFabAdminModels {
     }
 
     export interface LinkedUserAccountSegmentFilter {
+        /** Login provider comparison. */
+        Comparison?: string;
         /** Login provider. */
         LoginProvider?: string;
 
@@ -3670,11 +3632,7 @@ declare module PlayFabAdminModels {
         Created?: string;
         /** Player display name */
         DisplayName?: string;
-        /**
-         * List of experiment variants for the player. Note that these variants are not guaranteed to be up-to-date when returned
-         * during login because the player profile is updated only after login. Instead, use the LoginResult.TreatmentAssignment
-         * property during login to get the correct variants and variables.
-         */
+        /** List of experiment variants for the player. */
         ExperimentVariants?: string[];
         /** UTC time when the player most recently logged in to the title */
         LastLogin?: string;
@@ -4733,8 +4691,11 @@ declare module PlayFabAdminModels {
         Credential: string;
         /** for APNS, this is the PlatformPrincipal (SSL Certificate) */
         Key?: string;
-        /** This field is deprecated and any usage of this will cause the API to fail. */
-        Name?: string;
+        /**
+         * name of the application sending the message (application names must be made up of only uppercase and lowercase ASCII
+         * letters, numbers, underscores, hyphens, and periods, and must be between 1 and 256 characters long)
+         */
+        Name: string;
         /**
          * replace any existing ARN with the newly generated one. If this is set to false, an error will be returned if
          * notifications have already setup for this platform.
@@ -5079,8 +5040,6 @@ declare module PlayFabAdminModels {
         OverwritePolicy: boolean;
         /** The name of the policy being updated. Only supported name is 'ApiPolicy' */
         PolicyName: string;
-        /** Version of the policy to update. Must be the latest (as returned by GetPolicy). */
-        PolicyVersion: number;
         /** The new statements to include in the policy. */
         Statements: PermissionStatement[];
 
@@ -5267,6 +5226,8 @@ declare module PlayFabAdminModels {
         TwitchInfo?: UserTwitchInfo;
         /** User account name in the PlayFab service */
         Username?: string;
+        /** Windows Hello account information, if a Windows Hello account has been linked */
+        WindowsHelloInfo?: UserWindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         XboxInfo?: UserXboxInfo;
 
@@ -5393,6 +5354,7 @@ declare module PlayFabAdminModels {
         | "XboxLive"
         | "Parse"
         | "Twitch"
+        | "WindowsHello"
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
         | "FacebookInstantGamesId"
@@ -5465,6 +5427,14 @@ declare module PlayFabAdminModels {
         TwitchId?: string;
         /** Twitch Username */
         TwitchUserName?: string;
+
+    }
+
+    export interface UserWindowsHelloInfo {
+        /** Windows Hello Device Name */
+        WindowsHelloDeviceName?: string;
+        /** Windows Hello Public Key Hash */
+        WindowsHelloPublicKeyHash?: string;
 
     }
 

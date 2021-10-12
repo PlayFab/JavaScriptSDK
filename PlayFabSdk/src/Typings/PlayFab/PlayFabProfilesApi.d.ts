@@ -140,7 +140,7 @@ declare module PlayFabProfilesModels {
     }
 
     export interface EntityProfileFileMetadata {
-        /** Checksum value for the file, can be used to check if the file on the server has changed. */
+        /** Checksum value for the file */
         Checksum?: string;
         /** Name of the file */
         FileName?: string;
