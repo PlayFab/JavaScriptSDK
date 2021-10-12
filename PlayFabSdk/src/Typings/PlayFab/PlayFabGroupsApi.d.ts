@@ -138,8 +138,8 @@ declare module PlayFabGroupsModels {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /**
-         * Type of the entity to accept as. Must be the same entity as the claimant or an entity that is a child of the claimant
-         * entity.
+         * Optional. Type of the entity to accept as. If specified, must be the same entity as the claimant or an entity that is a
+         * child of the claimant entity. Defaults to the claimant entity.
          */
         Entity: EntityKey;
         /** The identifier of the group */
