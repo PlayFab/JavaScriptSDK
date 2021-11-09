@@ -17,6 +17,11 @@ declare module PlayFabCloudScriptModule {
          */
         ExecuteFunction(request: PlayFabCloudScriptModels.ExecuteFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteFunctionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Gets registered Azure Functions for a given title id and function name.
+         * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/getfunction
+         */
+        GetFunction(request: PlayFabCloudScriptModels.GetFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.GetFunctionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Lists all currently registered Azure Functions for a given title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listfunctions
          */
@@ -78,6 +83,22 @@ declare module PlayFabCloudScriptModels {
         CampaignId?: string;
         /** Attribution network name */
         Platform?: string;
+
+    }
+
+    export interface AzureResourceSystemData {
+        /** The timestamp of resource creation (UTC) */
+        CreatedAt?: string;
+        /** The identity that created the resource */
+        CreatedBy?: string;
+        /** The type of identity that created the resource */
+        CreatedByType?: string;
+        /** The type of identity that last modified the resource */
+        LastModifiedAt?: string;
+        /** The identity that last modified the resource */
+        LastModifiedBy?: string;
+        /** The type of identity that last modified the resource */
+        LastModifiedByType?: string;
 
     }
 
@@ -486,11 +507,37 @@ declare module PlayFabCloudScriptModels {
 
     }
 
+    export interface GetFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The name of the function to register */
+        FunctionName: string;
+        /** The Id of the parent Title */
+        TitleId?: string;
+
+    }
+
+    export interface GetFunctionResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The connection string for the storage account containing the queue for a queue trigger Azure Function. */
+        ConnectionString?: string;
+        /** The URL to be invoked to execute an HTTP triggered function. */
+        FunctionUrl?: string;
+        /** The name of the queue for a queue trigger Azure Function. */
+        QueueName?: string;
+        /** System Data of the Azure Resource */
+        SystemData?: AzureResourceSystemData;
+        /** The trigger type for the function. */
+        TriggerType?: string;
+
+    }
+
     export interface HttpFunctionModel {
         /** The name the function was registered under. */
         FunctionName?: string;
         /** The URL of the function. */
         FunctionUrl?: string;
+        /** The System data of the Azure Resource */
+        SystemData?: AzureResourceSystemData;
 
     }
 
@@ -509,6 +556,8 @@ declare module PlayFabCloudScriptModels {
     export interface ListFunctionsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
+        /** The Id of the parent Title */
+        TitleId?: string;
 
     }
 
@@ -613,7 +662,11 @@ declare module PlayFabCloudScriptModels {
         Created?: string;
         /** Player display name */
         DisplayName?: string;
-        /** List of experiment variants for the player. */
+        /**
+         * List of experiment variants for the player. Note that these variants are not guaranteed to be up-to-date when returned
+         * during login because the player profile is updated only after login. Instead, use the LoginResult.TreatmentAssignment
+         * property during login to get the correct variants and variables.
+         */
         ExperimentVariants?: string[];
         /** UTC time when the player most recently logged in to the title */
         LastLogin?: string;
@@ -727,20 +780,30 @@ declare module PlayFabCloudScriptModels {
         FunctionName?: string;
         /** The name of the queue that triggers the Azure Function. */
         QueueName?: string;
+        /** The System data of the Azure Resource */
+        SystemData?: AzureResourceSystemData;
 
     }
 
     export interface RegisterHttpFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The Id of the Azure Resource */
+        AzureResourceId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /** The name of the function to register */
         FunctionName: string;
         /** Full URL for Azure Function that implements the function. */
         FunctionUrl: string;
+        /** System Data of the Azure Resource */
+        SystemData?: AzureResourceSystemData;
+        /** The Id of the parent Title */
+        TitleId?: string;
 
     }
 
     export interface RegisterQueuedFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The Id of the Azure Resource */
+        AzureResourceId?: string;
         /** A connection string for the storage account that hosts the queue for the Azure Function. */
         ConnectionString: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -749,6 +812,10 @@ declare module PlayFabCloudScriptModels {
         FunctionName: string;
         /** The name of the queue for the Azure Function. */
         QueueName: string;
+        /** System Data of the Azure Resource */
+        SystemData?: AzureResourceSystemData;
+        /** The Id of the parent Title */
+        TitleId?: string;
 
     }
 
@@ -814,8 +881,10 @@ declare module PlayFabCloudScriptModels {
     export interface UnregisterFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The name of the function to unregister */
+        /** The name of the function to register */
         FunctionName: string;
+        /** The Id of the parent Title */
+        TitleId?: string;
 
     }
 

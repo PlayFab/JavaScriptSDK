@@ -31,6 +31,7 @@
     <Content Include="src\PlayFab\PlayFabAuthenticationApi.js" />
     <Content Include="src\PlayFab\PlayFabCloudScriptApi.js" />
     <Content Include="src\PlayFab\PlayFabDataApi.js" />
+    <Content Include="src\PlayFab\PlayFabEconomyApi.js" />
     <Content Include="src\PlayFab\PlayFabEventsApi.js" />
     <Content Include="src\PlayFab\PlayFabExperimentationApi.js" />
     <Content Include="src\PlayFab\PlayFabInsightsApi.js" />
@@ -50,6 +51,7 @@
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabAuthenticationApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabCloudScriptApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabDataApi.d.ts" />
+    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabEconomyApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabEventsApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabExperimentationApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabInsightsApi.d.ts" />

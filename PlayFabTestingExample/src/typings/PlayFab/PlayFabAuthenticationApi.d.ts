@@ -103,6 +103,8 @@ declare module PlayFabAuthenticationModels {
         IdentifiedDeviceType?: string;
         /** The identity provider for this entity, for the given login */
         IdentityProvider?: string;
+        /** The ID issued by the identity provider, e.g. a XUID on Xbox Live */
+        IdentityProviderIssuedId?: string;
         /** The lineage of this profile. */
         Lineage?: EntityLineage;
 

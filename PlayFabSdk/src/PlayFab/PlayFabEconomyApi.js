@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabAuthenticationApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabEconomyApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -235,30 +235,109 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.AuthenticationApi = {
+PlayFab.EconomyApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    GetEntityToken: function (request, callback, customData, extraHeaders) {
-        var authKey = null; var authValue = null;
-        if (!authKey && PlayFab._internalSettings.sessionTicket) { var authInfo = PlayFab._internalSettings.GetAuthInfo(request, authKey="X-Authorization"); authKey = authInfo.authKey, authValue = authInfo.authValue; }
-        if (!authKey && PlayFab.settings.developerSecretKey) { var authInfo = PlayFab._internalSettings.GetAuthInfo(request, authKey="X-SecretKey"); authKey = authInfo.authKey, authValue = authInfo.authValue; }
-        var overloadCallback = function (result, error) {
-            if (result != null && result.data.EntityToken != null)
-                PlayFab._internalSettings.entityToken = result.data.EntityToken;
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Authentication/GetEntityToken", request, authKey, overloadCallback, customData, extraHeaders);
+    CreateDraftItem: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/CreateDraftItem", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    ValidateEntityToken: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Authentication/ValidateEntityToken", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateUploadUrls: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/CreateUploadUrls", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteEntityItemReviews: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/DeleteEntityItemReviews", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteItem: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/DeleteItem", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetCatalogConfig: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetCatalogConfig", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetDraftItem: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetDraftItem", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetDraftItems: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetDraftItems", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetEntityDraftItems: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetEntityDraftItems", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetEntityItemReview: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetEntityItemReview", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetItem: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItem", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetItemModerationState: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItemModerationState", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetItemPublishStatus: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItemPublishStatus", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetItemReviews: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItemReviews", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetItemReviewSummary: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItemReviewSummary", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    PublishDraftItem: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/PublishDraftItem", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ReportItem: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/ReportItem", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ReportItemReview: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/ReportItemReview", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ReviewItem: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/ReviewItem", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SearchItems: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/SearchItems", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SetItemModerationState: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/SetItemModerationState", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SubmitItemReviewVote: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/SubmitItemReviewVote", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    TakedownItemReviews: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/TakedownItemReviews", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UpdateCatalogConfig: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/UpdateCatalogConfig", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UpdateDraftItem: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/UpdateDraftItem", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
 };
 
-var PlayFabAuthenticationSDK = PlayFab.AuthenticationApi;
+var PlayFabEconomySDK = PlayFab.EconomyApi;
 

@@ -5,6 +5,7 @@
 /// <reference path="PlayFabAuthenticationApi.d.ts" />
 /// <reference path="PlayFabCloudScriptApi.d.ts" />
 /// <reference path="PlayFabDataApi.d.ts" />
+/// <reference path="PlayFabEconomyApi.d.ts" />
 /// <reference path="PlayFabEventsApi.d.ts" />
 /// <reference path="PlayFabExperimentationApi.d.ts" />
 /// <reference path="PlayFabInsightsApi.d.ts" />
@@ -52,6 +53,7 @@ declare var PlayFab: {
     AuthenticationApi: PlayFabAuthenticationModule.IPlayFabAuthentication;
     CloudScriptApi: PlayFabCloudScriptModule.IPlayFabCloudScript;
     DataApi: PlayFabDataModule.IPlayFabData;
+    EconomyApi: PlayFabEconomyModule.IPlayFabEconomy;
     EventsApi: PlayFabEventsModule.IPlayFabEvents;
     ExperimentationApi: PlayFabExperimentationModule.IPlayFabExperimentation;
     InsightsApi: PlayFabInsightsModule.IPlayFabInsights;
@@ -69,6 +71,7 @@ declare var PlayFabServerSDK: PlayFabServerModule.IPlayFabServer;
 declare var PlayFabAuthenticationSDK: PlayFabAuthenticationModule.IPlayFabAuthentication;
 declare var PlayFabCloudScriptSDK: PlayFabCloudScriptModule.IPlayFabCloudScript;
 declare var PlayFabDataSDK: PlayFabDataModule.IPlayFabData;
+declare var PlayFabEconomySDK: PlayFabEconomyModule.IPlayFabEconomy;
 declare var PlayFabEventsSDK: PlayFabEventsModule.IPlayFabEvents;
 declare var PlayFabExperimentationSDK: PlayFabExperimentationModule.IPlayFabExperimentation;
 declare var PlayFabInsightsSDK: PlayFabInsightsModule.IPlayFabInsights;

@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.79.201217",
+        sdkVersion: "1.96.211108",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.79.201217"
+            sdk: "JavaScriptSDK-1.96.211108"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "jbuild_javascriptsdk_sdk-generic-2_0";
-PlayFab.sdkVersion = "1.79.201217";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
+PlayFab.sdkVersion = "1.96.211108";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -295,6 +295,10 @@ PlayFab.ClientApi = {
 
     ConsumeMicrosoftStoreEntitlements: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ConsumeMicrosoftStoreEntitlements", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    ConsumePS5Entitlements: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ConsumePS5Entitlements", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     ConsumePSNEntitlements: function (request, callback, customData, extraHeaders) {
@@ -525,10 +529,6 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetUserReadOnlyData", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    GetWindowsHelloChallenge: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetWindowsHelloChallenge", request, null, callback, customData, extraHeaders);
-    },
-
     GrantCharacterToUser: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GrantCharacterToUser", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -591,10 +591,6 @@ PlayFab.ClientApi = {
 
     LinkTwitch: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkTwitch", request, "X-Authorization", callback, customData, extraHeaders);
-    },
-
-    LinkWindowsHello: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkWindowsHello", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     LinkXboxAccount: function (request, callback, customData, extraHeaders) {
@@ -1009,30 +1005,6 @@ PlayFab.ClientApi = {
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
 
-    LoginWithWindowsHello: function (request, callback, customData, extraHeaders) {
-        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
-        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
-        // Deep-copy the authenticationContext here to safely update it
-        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
-        var overloadCallback = function (result, error) {
-            if (result != null) {
-                if(result.data.SessionTicket != null) {
-                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                }
-                if (result.data.EntityToken != null) {
-                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                }
-                // Apply the updates for the AuthenticationContext returned to the client
-                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-            }
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithWindowsHello", request, null, overloadCallback, customData, extraHeaders);
-        // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
-        return new Promise(function(resolve){resolve(authenticationContext);});
-    },
-
     LoginWithXbox: function (request, callback, customData, extraHeaders) {
         request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
         // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
@@ -1100,30 +1072,6 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RegisterPlayFabUser", request, null, overloadCallback, customData, extraHeaders);
     },
 
-    RegisterWithWindowsHello: function (request, callback, customData, extraHeaders) {
-        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
-        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
-        // Deep-copy the authenticationContext here to safely update it
-        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
-        var overloadCallback = function (result, error) {
-            if (result != null) {
-                if(result.data.SessionTicket != null) {
-                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                }
-                if (result.data.EntityToken != null) {
-                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                }
-                // Apply the updates for the AuthenticationContext returned to the client
-                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-            }
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RegisterWithWindowsHello", request, null, overloadCallback, customData, extraHeaders);
-        // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
-        return new Promise(function(resolve){resolve(authenticationContext);});
-    },
-
     RemoveContactEmail: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/RemoveContactEmail", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -1172,6 +1120,9 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/SetPlayerSecret", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     StartGame: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/StartGame", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -1242,10 +1193,6 @@ PlayFab.ClientApi = {
 
     UnlinkTwitch: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkTwitch", request, "X-Authorization", callback, customData, extraHeaders);
-    },
-
-    UnlinkWindowsHello: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkWindowsHello", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     UnlinkXboxAccount: function (request, callback, customData, extraHeaders) {

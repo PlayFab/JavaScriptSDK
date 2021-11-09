@@ -100,6 +100,11 @@ declare module PlayFabAdminModule {
          */
         DeleteMasterPlayerAccount(request: PlayFabAdminModels.DeleteMasterPlayerAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMasterPlayerAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Deletes a player's subscription
+         * https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemembershipsubscription
+         */
+        DeleteMembershipSubscription(request: PlayFabAdminModels.DeleteMembershipSubscriptionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMembershipSubscriptionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Removes a relationship between a title and an OpenID Connect provider.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/deleteopenidconnection
          */
@@ -473,6 +478,11 @@ declare module PlayFabAdminModule {
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setcatalogitems
          */
         SetCatalogItems(request: PlayFabAdminModels.UpdateCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Sets the override expiration for a membership subscription
+         * https://docs.microsoft.com/rest/api/playfab/admin/account-management/setmembershipoverride
+         */
+        SetMembershipOverride(request: PlayFabAdminModels.SetMembershipOverrideRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetMembershipOverrideResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Sets or resets the player's secret. Player secrets are used to sign API requests.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/setplayersecret
@@ -1660,6 +1670,22 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface DeleteMembershipSubscriptionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Id of the membership to apply the override expiration date to. */
+        MembershipId: string;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+        /** Id of the subscription that should be deleted from the membership. */
+        SubscriptionId: string;
+
+    }
+
+    export interface DeleteMembershipSubscriptionResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface DeleteOpenIdConnectionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** unique name of the connection */
         ConnectionId: string;
@@ -2364,7 +2390,7 @@ declare module PlayFabAdminModels {
         | "EvaluationModePlayerCountExceeded"
         | "GetPlayersInSegmentRateLimitExceeded"
         | "CloudScriptFunctionNameSizeExceeded"
-        | "InsightsManagementTitleInEvaluationMode"
+        | "PaidInsightsFeaturesNotEnabled"
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
@@ -2384,6 +2410,23 @@ declare module PlayFabAdminModels {
         | "WasNotCreatedWithCloudRoot"
         | "LegacyMultiplayerServersDeprecated"
         | "VirtualCurrencyCurrentlyUnavailable"
+        | "SteamUserNotFound"
+        | "ElasticSearchOperationFailed"
+        | "NotImplemented"
+        | "PublisherNotFound"
+        | "PublisherDeleted"
+        | "ApiDisabledForMigration"
+        | "ResourceNameUpdateNotAllowed"
+        | "ApiNotEnabledForTitle"
+        | "DuplicateTitleNameForPublisher"
+        | "AzureTitleCreationInProgress"
+        | "DuplicateAzureResourceId"
+        | "TitleConstraintsPublisherDeletion"
+        | "InvalidPlayerAccountPoolId"
+        | "PlayerAccountPoolNotFound"
+        | "PlayerAccountPoolDeleted"
+        | "TitleCleanupInProgress"
+        | "AzureResourceManagerNotSupportedInStamp"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2405,9 +2448,15 @@ declare module PlayFabAdminModels {
         | "MatchmakingQueueLimitExceeded"
         | "MatchmakingRequestTypeMismatch"
         | "MatchmakingBadRequest"
+        | "PubSubFeatureNotEnabledForTitle"
+        | "PubSubTooManyRequests"
+        | "PubSubConnectionHandleAccessDenied"
+        | "PubSubConnectionHandleInvalid"
+        | "PubSubSubscriptionLimitExceeded"
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
+        | "CatalogApiNotImplemented"
         | "CatalogEntityInvalid"
         | "CatalogTitleIdMissing"
         | "CatalogPlayerIdMissing"
@@ -2460,9 +2509,11 @@ declare module PlayFabAdminModels {
         | "ExplorerBasicUpdateQueryError"
         | "ExplorerBasicSavedQueriesLimit"
         | "ExplorerBasicSavedQueryNotFound"
+        | "TenantShardMapperShardNotFound"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
+        | "MultiplayerServerBuildReferencedByBuildAlias"
         | "ExperimentationExperimentStopped"
         | "ExperimentationExperimentRunning"
         | "ExperimentationExperimentNotFound"
@@ -2485,6 +2536,7 @@ declare module PlayFabAdminModels {
         | "ExperimentationExclusionGroupInsufficientCapacity"
         | "ExperimentationExclusionGroupCannotDelete"
         | "ExperimentationExclusionGroupInvalidTrafficAllocation"
+        | "ExperimentationExclusionGroupInvalidName"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -2498,7 +2550,31 @@ declare module PlayFabAdminModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
-        | "SnapshotNotFound";
+        | "AsyncExportNotInFlight"
+        | "AsyncExportNotFound"
+        | "AsyncExportRateLimitExceeded"
+        | "SnapshotNotFound"
+        | "InventoryApiNotImplemented"
+        | "LobbyDoesNotExist"
+        | "LobbyRateLimitExceeded"
+        | "LobbyPlayerAlreadyJoined"
+        | "LobbyNotJoinable"
+        | "LobbyMemberCannotRejoin"
+        | "LobbyCurrentPlayersMoreThanMaxPlayers"
+        | "LobbyPlayerNotPresent"
+        | "LobbyBadRequest"
+        | "LobbyPlayerMaxLobbyLimitExceeded"
+        | "LobbyNewOwnerMustBeConnected"
+        | "LobbyCurrentOwnerStillConnected"
+        | "LobbyMemberIsNotOwner"
+        | "EventSamplingInvalidRatio"
+        | "EventSamplingInvalidEventNamespace"
+        | "EventSamplingInvalidEventName"
+        | "EventSamplingRatioNotFound"
+        | "EventSinkConnectionInvalid"
+        | "EventSinkConnectionUnauthorized"
+        | "EventSinkRegionInvalid"
+        | "OperationCanceled";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
@@ -2827,6 +2903,8 @@ declare module PlayFabAdminModels {
     export interface GetPolicyResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The name of the policy read. */
         PolicyName?: string;
+        /** Policy version. */
+        PolicyVersion: number;
         /** The statements in the requested policy. */
         Statements?: PermissionStatement[];
 
@@ -3289,8 +3367,6 @@ declare module PlayFabAdminModels {
     }
 
     export interface LinkedUserAccountSegmentFilter {
-        /** Login provider comparison. */
-        Comparison?: string;
         /** Login provider. */
         LoginProvider?: string;
 
@@ -3632,7 +3708,11 @@ declare module PlayFabAdminModels {
         Created?: string;
         /** Player display name */
         DisplayName?: string;
-        /** List of experiment variants for the player. */
+        /**
+         * List of experiment variants for the player. Note that these variants are not guaranteed to be up-to-date when returned
+         * during login because the player profile is updated only after login. Instead, use the LoginResult.TreatmentAssignment
+         * property during login to get the correct variants and variables.
+         */
         ExperimentVariants?: string[];
         /** UTC time when the player most recently logged in to the title */
         LastLogin?: string;
@@ -4551,6 +4631,8 @@ declare module PlayFabAdminModels {
         | "NintendoSwitchAccount";
 
     export interface SegmentModel {
+        /** ResourceId of Segment resource */
+        AzureResourceId?: string;
         /** Segment description. */
         Description?: string;
         /** Segment actions for current entered segment players. */
@@ -4615,6 +4697,22 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface SetMembershipOverrideRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Expiration time for the membership in DateTime format, will override any subscription expirations. */
+        ExpirationTime: string;
+        /** Id of the membership to apply the override expiration date to. */
+        MembershipId: string;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface SetMembershipOverrideResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -4672,17 +4770,28 @@ declare module PlayFabAdminModels {
     }
 
     export interface SetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Id of azure resource */
+        AzureResourceId?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         Key: string;
+        /**
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        TitleId?: string;
         /** new value to set. Set to null to remove a value */
         Value?: string;
 
     }
 
     export interface SetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Id of azure resource */
+        AzureResourceId?: string;
 
     }
 
@@ -4691,11 +4800,8 @@ declare module PlayFabAdminModels {
         Credential: string;
         /** for APNS, this is the PlatformPrincipal (SSL Certificate) */
         Key?: string;
-        /**
-         * name of the application sending the message (application names must be made up of only uppercase and lowercase ASCII
-         * letters, numbers, underscores, hyphens, and periods, and must be between 1 and 256 characters long)
-         */
-        Name: string;
+        /** This field is deprecated and any usage of this will cause the API to fail. */
+        Name?: string;
         /**
          * replace any existing ARN with the newly generated one. If this is set to false, an error will be returned if
          * notifications have already setup for this platform.
@@ -5040,6 +5146,8 @@ declare module PlayFabAdminModels {
         OverwritePolicy: boolean;
         /** The name of the policy being updated. Only supported name is 'ApiPolicy' */
         PolicyName: string;
+        /** Version of the policy to update. Must be the latest (as returned by GetPolicy). */
+        PolicyVersion: number;
         /** The new statements to include in the policy. */
         Statements: PermissionStatement[];
 
@@ -5226,8 +5334,6 @@ declare module PlayFabAdminModels {
         TwitchInfo?: UserTwitchInfo;
         /** User account name in the PlayFab service */
         Username?: string;
-        /** Windows Hello account information, if a Windows Hello account has been linked */
-        WindowsHelloInfo?: UserWindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         XboxInfo?: UserXboxInfo;
 
@@ -5354,7 +5460,6 @@ declare module PlayFabAdminModels {
         | "XboxLive"
         | "Parse"
         | "Twitch"
-        | "WindowsHello"
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
         | "FacebookInstantGamesId"
@@ -5427,14 +5532,6 @@ declare module PlayFabAdminModels {
         TwitchId?: string;
         /** Twitch Username */
         TwitchUserName?: string;
-
-    }
-
-    export interface UserWindowsHelloInfo {
-        /** Windows Hello Device Name */
-        WindowsHelloDeviceName?: string;
-        /** Windows Hello Public Key Hash */
-        WindowsHelloPublicKeyHash?: string;
 
     }
 
