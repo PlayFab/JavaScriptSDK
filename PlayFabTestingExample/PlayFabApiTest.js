@@ -13,7 +13,7 @@ var PlayFabApiTests = {
         entityId: null,
         entityType: null,
         playFabId: null,
-        testNumber: null,
+        testNumber: null, // Arbitrary counter, used by several tests
     },
     testConstants: {
         TEST_DATA_KEY: "testCounter",

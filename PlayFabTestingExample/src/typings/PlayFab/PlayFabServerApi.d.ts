@@ -409,6 +409,12 @@ declare module PlayFabServerModule {
          */
         LoginWithServerCustomId(request: PlayFabServerModels.LoginWithServerCustomIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ServerLoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Signs the user in using an Steam ID, returning a session identifier that can subsequently be used for API calls which
+         * require an authenticated user
+         * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithsteamid
+         */
+        LoginWithSteamId(request: PlayFabServerModels.LoginWithSteamIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ServerLoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
          * subsequently be used for API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxbox
@@ -2235,7 +2241,7 @@ declare module PlayFabServerModels {
         | "EvaluationModePlayerCountExceeded"
         | "GetPlayersInSegmentRateLimitExceeded"
         | "CloudScriptFunctionNameSizeExceeded"
-        | "InsightsManagementTitleInEvaluationMode"
+        | "PaidInsightsFeaturesNotEnabled"
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
@@ -2255,6 +2261,23 @@ declare module PlayFabServerModels {
         | "WasNotCreatedWithCloudRoot"
         | "LegacyMultiplayerServersDeprecated"
         | "VirtualCurrencyCurrentlyUnavailable"
+        | "SteamUserNotFound"
+        | "ElasticSearchOperationFailed"
+        | "NotImplemented"
+        | "PublisherNotFound"
+        | "PublisherDeleted"
+        | "ApiDisabledForMigration"
+        | "ResourceNameUpdateNotAllowed"
+        | "ApiNotEnabledForTitle"
+        | "DuplicateTitleNameForPublisher"
+        | "AzureTitleCreationInProgress"
+        | "DuplicateAzureResourceId"
+        | "TitleConstraintsPublisherDeletion"
+        | "InvalidPlayerAccountPoolId"
+        | "PlayerAccountPoolNotFound"
+        | "PlayerAccountPoolDeleted"
+        | "TitleCleanupInProgress"
+        | "AzureResourceManagerNotSupportedInStamp"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2276,9 +2299,15 @@ declare module PlayFabServerModels {
         | "MatchmakingQueueLimitExceeded"
         | "MatchmakingRequestTypeMismatch"
         | "MatchmakingBadRequest"
+        | "PubSubFeatureNotEnabledForTitle"
+        | "PubSubTooManyRequests"
+        | "PubSubConnectionHandleAccessDenied"
+        | "PubSubConnectionHandleInvalid"
+        | "PubSubSubscriptionLimitExceeded"
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
+        | "CatalogApiNotImplemented"
         | "CatalogEntityInvalid"
         | "CatalogTitleIdMissing"
         | "CatalogPlayerIdMissing"
@@ -2331,9 +2360,11 @@ declare module PlayFabServerModels {
         | "ExplorerBasicUpdateQueryError"
         | "ExplorerBasicSavedQueriesLimit"
         | "ExplorerBasicSavedQueryNotFound"
+        | "TenantShardMapperShardNotFound"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
+        | "MultiplayerServerBuildReferencedByBuildAlias"
         | "ExperimentationExperimentStopped"
         | "ExperimentationExperimentRunning"
         | "ExperimentationExperimentNotFound"
@@ -2356,6 +2387,7 @@ declare module PlayFabServerModels {
         | "ExperimentationExclusionGroupInsufficientCapacity"
         | "ExperimentationExclusionGroupCannotDelete"
         | "ExperimentationExclusionGroupInvalidTrafficAllocation"
+        | "ExperimentationExclusionGroupInvalidName"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -2369,7 +2401,31 @@ declare module PlayFabServerModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
-        | "SnapshotNotFound";
+        | "AsyncExportNotInFlight"
+        | "AsyncExportNotFound"
+        | "AsyncExportRateLimitExceeded"
+        | "SnapshotNotFound"
+        | "InventoryApiNotImplemented"
+        | "LobbyDoesNotExist"
+        | "LobbyRateLimitExceeded"
+        | "LobbyPlayerAlreadyJoined"
+        | "LobbyNotJoinable"
+        | "LobbyMemberCannotRejoin"
+        | "LobbyCurrentPlayersMoreThanMaxPlayers"
+        | "LobbyPlayerNotPresent"
+        | "LobbyBadRequest"
+        | "LobbyPlayerMaxLobbyLimitExceeded"
+        | "LobbyNewOwnerMustBeConnected"
+        | "LobbyCurrentOwnerStillConnected"
+        | "LobbyMemberIsNotOwner"
+        | "EventSamplingInvalidRatio"
+        | "EventSamplingInvalidEventNamespace"
+        | "EventSamplingInvalidEventName"
+        | "EventSamplingRatioNotFound"
+        | "EventSinkConnectionInvalid"
+        | "EventSinkConnectionUnauthorized"
+        | "EventSinkRegionInvalid"
+        | "OperationCanceled";
 
     export interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
@@ -2625,8 +2681,6 @@ declare module PlayFabServerModels {
     }
 
     export interface GetLeaderboardForUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Maximum number of entries to retrieve. */
-        MaxResultsCount: number;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
         /** Unique identifier for the title-specific statistic for the leaderboard. */
@@ -2929,7 +2983,7 @@ declare module PlayFabServerModels {
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
         PSNAccountIDs: string[];
@@ -3384,7 +3438,7 @@ declare module PlayFabServerModels {
         CustomTags?: { [key: string]: string | null };
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
@@ -3496,6 +3550,18 @@ declare module PlayFabServerModels {
         PlayerSecret?: string;
         /** The backend server identifier for this player. */
         ServerCustomId?: string;
+
+    }
+
+    export interface LoginWithSteamIdRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Unique Steam identifier for a user */
+        SteamId: string;
 
     }
 
@@ -3766,7 +3832,11 @@ declare module PlayFabServerModels {
         Created?: string;
         /** Player display name */
         DisplayName?: string;
-        /** List of experiment variants for the player. */
+        /**
+         * List of experiment variants for the player. Note that these variants are not guaranteed to be up-to-date when returned
+         * during login because the player profile is updated only after login. Instead, use the LoginResult.TreatmentAssignment
+         * property during login to get the correct variants and variables.
+         */
         ExperimentVariants?: string[];
         /** UTC time when the player most recently logged in to the title */
         LastLogin?: string;
@@ -4366,17 +4436,28 @@ declare module PlayFabServerModels {
     }
 
     export interface SetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Id of azure resource */
+        AzureResourceId?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         Key: string;
+        /**
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        TitleId?: string;
         /** new value to set. Set to null to remove a value */
         Value?: string;
 
     }
 
     export interface SetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Id of azure resource */
+        AzureResourceId?: string;
 
     }
 
@@ -4888,8 +4969,6 @@ declare module PlayFabServerModels {
         TwitchInfo?: UserTwitchInfo;
         /** User account name in the PlayFab service */
         Username?: string;
-        /** Windows Hello account information, if a Windows Hello account has been linked */
-        WindowsHelloInfo?: UserWindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         XboxInfo?: UserXboxInfo;
 
@@ -5016,7 +5095,6 @@ declare module PlayFabServerModels {
         | "XboxLive"
         | "Parse"
         | "Twitch"
-        | "WindowsHello"
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
         | "FacebookInstantGamesId"
@@ -5093,14 +5171,6 @@ declare module PlayFabServerModels {
         TwitchId?: string;
         /** Twitch Username */
         TwitchUserName?: string;
-
-    }
-
-    export interface UserWindowsHelloInfo {
-        /** Windows Hello Device Name */
-        WindowsHelloDeviceName?: string;
-        /** Windows Hello Public Key Hash */
-        WindowsHelloPublicKeyHash?: string;
 
     }
 

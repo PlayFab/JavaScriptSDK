@@ -83,6 +83,12 @@ declare module PlayFabClientModule {
          */
         ConsumeMicrosoftStoreEntitlements(request: PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
+         * items
+         * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements
+         */
+        ConsumePS5Entitlements(request: PlayFabClientModels.ConsumePS5EntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePS5EntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements
          */
@@ -399,11 +405,6 @@ declare module PlayFabClientModule {
          */
         GetUserReadOnlyData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
-         * https://docs.microsoft.com/rest/api/playfab/client/authentication/getwindowshellochallenge
-         */
-        GetWindowsHelloChallenge(request: PlayFabClientModels.GetWindowsHelloChallengeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetWindowsHelloChallengeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
          * with the parent PlayFabId to guarantee uniqueness.
          * https://docs.microsoft.com/rest/api/playfab/client/characters/grantcharactertouser
@@ -435,7 +436,10 @@ declare module PlayFabClientModule {
          */
         LinkFacebookInstantGamesId(request: PlayFabClientModels.LinkFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkFacebookInstantGamesIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account
+         * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account. Logging in with
+         * a Game Center ID is insecure if you do not include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters
+         * in this request. It is recommended you require these parameters on all Game Center calls by going to the Apple Add-ons
+         * page in the PlayFab Game Manager and enabling the 'Require secure authentication only for this app' option.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkgamecenteraccount
          */
         LinkGameCenterAccount(request: PlayFabClientModels.LinkGameCenterAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGameCenterAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -486,11 +490,6 @@ declare module PlayFabClientModule {
          */
         LinkTwitch(request: PlayFabClientModels.LinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkTwitchAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Link Windows Hello authentication to the current PlayFab Account
-         * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkwindowshello
-         */
-        LinkWindowsHello(request: PlayFabClientModels.LinkWindowsHelloAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkWindowsHelloAccountResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkxboxaccount
          */
@@ -534,7 +533,10 @@ declare module PlayFabClientModule {
         LoginWithFacebookInstantGamesId(request: PlayFabClientModels.LoginWithFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
-         * used for API calls which require an authenticated user
+         * used for API calls which require an authenticated user. Logging in with a Game Center ID is insecure if you do not
+         * include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters in this request. It is recommended you
+         * require these parameters on all Game Center calls by going to the Apple Add-ons page in the PlayFab Game Manager and
+         * enabling the 'Require secure authentication only for this app' option.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithgamecenter
          */
         LoginWithGameCenter(request: PlayFabClientModels.LoginWithGameCenterRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -597,14 +599,6 @@ declare module PlayFabClientModule {
          */
         LoginWithTwitch(request: PlayFabClientModels.LoginWithTwitchRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
-         * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
-         * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
-         * server.
-         * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithwindowshello
-         */
-        LoginWithWindowsHello(request: PlayFabClientModels.LoginWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
          * which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithxbox
@@ -658,12 +652,6 @@ declare module PlayFabClientModule {
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/registerplayfabuser
          */
         RegisterPlayFabUser(request: PlayFabClientModels.RegisterPlayFabUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
-         * subsequently be used for API calls which require an authenticated user
-         * https://docs.microsoft.com/rest/api/playfab/client/authentication/registerwithwindowshello
-         */
-        RegisterWithWindowsHello(request: PlayFabClientModels.RegisterWithWindowsHelloRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Removes a contact email from the player's profile.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/removecontactemail
@@ -825,11 +813,6 @@ declare module PlayFabClientModule {
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinktwitch
          */
         UnlinkTwitch(request: PlayFabClientModels.UnlinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkTwitchAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
-         * Unlink Windows Hello authentication from the current PlayFab Account
-         * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkwindowshello
-         */
-        UnlinkWindowsHello(request: PlayFabClientModels.UnlinkWindowsHelloAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkWindowsHelloAccountResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Unlinks the related Xbox Live account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkxboxaccount
@@ -1361,6 +1344,22 @@ declare module PlayFabClientModels {
     }
 
     export interface ConsumeMicrosoftStoreEntitlementsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Details for the items purchased. */
+        Items?: ItemInstance[];
+
+    }
+
+    export interface ConsumePS5EntitlementsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Catalog version to use */
+        CatalogVersion?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Marketplace specific payload containing details to fetch in app purchase transactions */
+        MarketplaceSpecificData: PlayStation5Payload;
+
+    }
+
+    export interface ConsumePS5EntitlementsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Details for the items purchased. */
         Items?: ItemInstance[];
 
@@ -2372,8 +2371,6 @@ declare module PlayFabClientModels {
     }
 
     export interface GetLeaderboardForUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Maximum number of entries to retrieve. */
-        MaxResultsCount: number;
         /** Unique identifier for the title-specific statistic for the leaderboard. */
         StatisticName: string;
 
@@ -2715,7 +2712,7 @@ declare module PlayFabClientModels {
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
         PSNAccountIDs: string[];
@@ -2964,23 +2961,6 @@ declare module PlayFabClientModels {
 
     }
 
-    export interface GetWindowsHelloChallengeRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** SHA256 hash of the PublicKey generated by Windows Hello. */
-        PublicKeyHint: string;
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId: string;
-
-    }
-
-    export interface GetWindowsHelloChallengeResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** Server generated challenge to be signed by the user. */
-        Challenge?: string;
-
-    }
-
     export interface GooglePlayFabIdPair {
         /** Unique Google identifier for a user. */
         GoogleId?: string;
@@ -3162,7 +3142,10 @@ declare module PlayFabClientModels {
     export interface LinkGameCenterAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** If another user is already linked to the account, unlink the other user and re-link. */
+        /**
+         * If another user is already linked to the account, unlink the other user and re-link. If the current user is already
+         * linked, link both accounts
+         */
         ForceLink?: boolean;
         /** Game Center identifier for the player account to be linked. */
         GameCenterId: string;
@@ -3187,7 +3170,10 @@ declare module PlayFabClientModels {
     export interface LinkGoogleAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** If another user is already linked to the account, unlink the other user and re-link. */
+        /**
+         * If another user is already linked to the account, unlink the other user and re-link. If the current user is already
+         * linked, link both accounts
+         */
         ForceLink?: boolean;
         /**
          * Server authentication code obtained on the client by calling getServerAuthCode()
@@ -3284,7 +3270,7 @@ declare module PlayFabClientModels {
         CustomTags?: { [key: string]: string | null };
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Redirect URI supplied to PSN when requesting an auth code */
         RedirectUri: string;
@@ -3323,24 +3309,6 @@ declare module PlayFabClientModels {
     }
 
     export interface LinkTwitchAccountResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
-    export interface LinkWindowsHelloAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Device name. */
-        DeviceName?: string;
-        /** If another user is already linked to the account, unlink the other user and re-link. */
-        ForceLink?: boolean;
-        /** PublicKey generated by Windows Hello. */
-        PublicKey: string;
-        /** Player's user named used by Windows Hello. */
-        UserName: string;
-
-    }
-
-    export interface LinkWindowsHelloAccountResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -3758,7 +3726,7 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
@@ -3809,23 +3777,6 @@ declare module PlayFabClientModels {
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId?: string;
-
-    }
-
-    export interface LoginWithWindowsHelloRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The signed response from the user for the Challenge. */
-        ChallengeSignature: string;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Flags for which pieces of info to return for the user. */
-        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** SHA256 hash of the PublicKey generated by Windows Hello. */
-        PublicKeyHint: string;
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -4071,7 +4022,11 @@ declare module PlayFabClientModels {
         Created?: string;
         /** Player display name */
         DisplayName?: string;
-        /** List of experiment variants for the player. */
+        /**
+         * List of experiment variants for the player. Note that these variants are not guaranteed to be up-to-date when returned
+         * during login because the player profile is updated only after login. Instead, use the LoginResult.TreatmentAssignment
+         * property during login to get the correct variants and variables.
+         */
         ExperimentVariants?: string[];
         /** UTC time when the player most recently logged in to the title */
         LastLogin?: string;
@@ -4159,6 +4114,14 @@ declare module PlayFabClientModels {
 
     }
 
+    export interface PlayStation5Payload {
+        /** An optional list of entitlement ids to query against PSN */
+        Ids?: string[];
+        /** Id of the PSN service label to consume entitlements from */
+        ServiceLabel?: string;
+
+    }
+
     export interface PSNAccountPlayFabIdPair {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier. */
         PlayFabId?: string;
@@ -4240,7 +4203,7 @@ declare module PlayFabClientModels {
     export interface RefreshPSNAuthTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Auth code returned by PSN OAuth system. */
         AuthCode: string;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Redirect URI supplied to PSN when requesting an auth code */
         RedirectUri: string;
@@ -4326,29 +4289,6 @@ declare module PlayFabClientModels {
         SettingsForUser?: UserSettings;
         /** PlayFab unique user name. */
         Username?: string;
-
-    }
-
-    export interface RegisterWithWindowsHelloRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Device name. */
-        DeviceName?: string;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
-        EncryptedRequest?: string;
-        /** Flags for which pieces of info to return for the user. */
-        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
-        PlayerSecret?: string;
-        /** PublicKey generated by Windows Hello. */
-        PublicKey?: string;
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId: string;
-        /** Player's user name used by Windows Hello. */
-        UserName?: string;
 
     }
 
@@ -4984,18 +4924,6 @@ declare module PlayFabClientModels {
 
     }
 
-    export interface UnlinkWindowsHelloAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** SHA256 hash of the PublicKey generated by Windows Hello. */
-        PublicKeyHint: string;
-
-    }
-
-    export interface UnlinkWindowsHelloAccountResponse extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
     export interface UnlinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -5223,8 +5151,6 @@ declare module PlayFabClientModels {
         TwitchInfo?: UserTwitchInfo;
         /** User account name in the PlayFab service */
         Username?: string;
-        /** Windows Hello account information, if a Windows Hello account has been linked */
-        WindowsHelloInfo?: UserWindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         XboxInfo?: UserXboxInfo;
 
@@ -5351,7 +5277,6 @@ declare module PlayFabClientModels {
         | "XboxLive"
         | "Parse"
         | "Twitch"
-        | "WindowsHello"
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
         | "FacebookInstantGamesId"
@@ -5428,14 +5353,6 @@ declare module PlayFabClientModels {
         TwitchId?: string;
         /** Twitch Username */
         TwitchUserName?: string;
-
-    }
-
-    export interface UserWindowsHelloInfo {
-        /** Windows Hello Device Name */
-        WindowsHelloDeviceName?: string;
-        /** Windows Hello Public Key Hash */
-        WindowsHelloPublicKeyHash?: string;
 
     }
 
