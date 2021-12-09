@@ -840,6 +840,22 @@ declare module PlayFabAdminModels {
 
     type AuthTokenType = "Email"
 
+    export interface AzureResourceSystemData {
+        /** The timestamp of resource creation (UTC) */
+        CreatedAt?: string;
+        /** The identity that created the resource */
+        CreatedBy?: string;
+        /** The type of identity that created the resource */
+        CreatedByType?: string;
+        /** The type of identity that last modified the resource */
+        LastModifiedAt?: string;
+        /** The identity that last modified the resource */
+        LastModifiedBy?: string;
+        /** The type of identity that last modified the resource */
+        LastModifiedByType?: string;
+
+    }
+
     export interface BanInfo {
         /** The active state of this ban. Expired bans may still have this value set to true but they will have no effect. */
         Active: boolean;
@@ -2426,7 +2442,13 @@ declare module PlayFabAdminModels {
         | "PlayerAccountPoolNotFound"
         | "PlayerAccountPoolDeleted"
         | "TitleCleanupInProgress"
+        | "AzureResourceConcurrentOperationInProgress"
+        | "TitlePublisherUpdateNotAllowed"
         | "AzureResourceManagerNotSupportedInStamp"
+        | "ApiNotIncludedInAzurePlayFabFeatureSet"
+        | "GoogleServiceAccountFailedAuth"
+        | "GoogleAPIServiceUnavailable"
+        | "GoogleAPIServiceUnknownError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -4779,6 +4801,8 @@ declare module PlayFabAdminModels {
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         Key: string;
+        /** System Data of the Azure Resource */
+        SystemData?: AzureResourceSystemData;
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
          * title has been selected.
