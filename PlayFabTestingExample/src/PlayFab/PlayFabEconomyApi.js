@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.96.211108",
+        sdkVersion: "1.98.211209",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.96.211108"
+            sdk: "JavaScriptSDK-1.98.211209"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -224,7 +224,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
-PlayFab.sdkVersion = "1.96.211108";
+PlayFab.sdkVersion = "1.98.211209";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -295,6 +295,10 @@ PlayFab.EconomyApi = {
 
     GetItemReviewSummary: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItemReviewSummary", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetItems: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItems", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     PublishDraftItem: function (request, callback, customData, extraHeaders) {

@@ -75,6 +75,11 @@ declare module PlayFabEconomyModule {
          */
         GetItemReviewSummary(request: PlayFabEconomyModels.GetItemReviewSummaryRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemReviewSummaryResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Retrieves items from the public catalog.
+         * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getitems
+         */
+        GetItems(request: PlayFabEconomyModels.GetItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Initiates a publish of an item from the working catalog to the public catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/publishdraftitem
          */
@@ -497,6 +502,24 @@ declare module PlayFabEconomyModels {
         Rating?: Rating;
         /** The total number of reviews associated with this item. */
         ReviewsCount: number;
+
+    }
+
+    export interface GetItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** List of item alternate IDs. */
+        AlternateIds?: CatalogAlternateId[];
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The entity to perform this action on. */
+        Entity?: EntityKey;
+        /** List of Item Ids. */
+        Ids?: string[];
+
+    }
+
+    export interface GetItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Metadata of set of items. */
+        Items?: CatalogItem[];
 
     }
 
