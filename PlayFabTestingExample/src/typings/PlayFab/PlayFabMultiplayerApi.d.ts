@@ -835,6 +835,8 @@ declare module PlayFabMultiplayerModels {
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
         VmSize?: string;
+        /** The crash dump configuration for the build. */
+        WindowsCrashDumpConfiguration?: WindowsCrashDumpConfiguration;
 
     }
 
@@ -2659,6 +2661,16 @@ declare module PlayFabMultiplayerModels {
         State?: string;
         /** The virtual machine ID. */
         VmId?: string;
+
+    }
+
+    export interface WindowsCrashDumpConfiguration {
+        /** See https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps for valid values. */
+        CustomDumpFlags?: number;
+        /** See https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps for valid values. */
+        DumpType?: number;
+        /** Designates whether automatic crash dump capturing will be enabled for this Build. */
+        IsEnabled: boolean;
 
     }
 
