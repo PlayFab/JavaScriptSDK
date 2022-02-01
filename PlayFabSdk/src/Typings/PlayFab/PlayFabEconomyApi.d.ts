@@ -331,6 +331,8 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
+        /** Whether to fetch metadata of the scan status. */
+        ExpandScanningStatus?: boolean;
         /** The unique ID of the item. */
         Id?: string;
 
