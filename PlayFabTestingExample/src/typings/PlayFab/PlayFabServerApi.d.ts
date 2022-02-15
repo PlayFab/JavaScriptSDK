@@ -4459,8 +4459,6 @@ declare module PlayFabServerModels {
     }
 
     export interface SetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of azure resource */
-        AzureResourceId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /**
@@ -4468,8 +4466,6 @@ declare module PlayFabServerModels {
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         Key: string;
-        /** System Data of the Azure Resource */
-        SystemData?: AzureResourceSystemData;
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -4481,8 +4477,6 @@ declare module PlayFabServerModels {
     }
 
     export interface SetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Id of azure resource */
-        AzureResourceId?: string;
 
     }
 

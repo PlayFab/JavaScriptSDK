@@ -507,6 +507,8 @@ declare module PlayFabMultiplayerModels {
         CurrentServerStats?: CurrentServerStats;
         /** Optional settings to control dynamic adjustment of standby target */
         DynamicStandbySettings?: DynamicStandbySettings;
+        /** Whether the game assets provided for the build have been replicated to this region. */
+        IsAssetReplicationComplete: boolean;
         /** The maximum number of multiplayer servers for the region. */
         MaxServers: number;
         /** Regional override for the number of multiplayer servers to host on a single VM of the build. */

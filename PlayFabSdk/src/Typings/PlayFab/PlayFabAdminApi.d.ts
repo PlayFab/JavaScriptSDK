@@ -1034,6 +1034,11 @@ declare module PlayFabAdminModels {
 
     }
 
+    type ChurnRiskLevel = "NoData"
+        | "LowRisk"
+        | "MediumRisk"
+        | "HighRisk";
+
     export interface CloudScriptFile {
         /** Contents of the Cloud Script javascript. Must be string-escaped javascript. */
         FileContents: string;
@@ -3646,6 +3651,30 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface PlayerChurnPredictionSegmentFilter {
+        /** Comparison */
+        Comparison?: string;
+        /** RiskLevel */
+        RiskLevel?: string;
+
+    }
+
+    export interface PlayerChurnPredictionTimeSegmentFilter {
+        /** Comparison */
+        Comparison?: string;
+        /** DurationInDays */
+        DurationInDays: number;
+
+    }
+
+    export interface PlayerChurnPreviousPredictionSegmentFilter {
+        /** Comparison */
+        Comparison?: string;
+        /** RiskLevel */
+        RiskLevel?: string;
+
+    }
+
     export interface PlayerLinkedAccount {
         /** Linked account's email */
         Email?: string;
@@ -4191,6 +4220,12 @@ declare module PlayFabAdminModels {
         LinkedUserAccountHasEmailFilter?: LinkedUserAccountHasEmailSegmentFilter;
         /** Filter property for location. */
         LocationFilter?: LocationSegmentFilter;
+        /** Filter property for current player churn value. */
+        PlayerChurnPredictionFilter?: PlayerChurnPredictionSegmentFilter;
+        /** Filter property for player churn timespan. */
+        PlayerChurnPredictionTimeFilter?: PlayerChurnPredictionTimeSegmentFilter;
+        /** Filter property for previous player churn value. */
+        PlayerChurnPreviousPredictionFilter?: PlayerChurnPreviousPredictionSegmentFilter;
         /** Filter property for push notification. */
         PushNotificationFilter?: PushNotificationSegmentFilter;
         /** Filter property for statistics. */
@@ -4654,8 +4689,6 @@ declare module PlayFabAdminModels {
         | "NintendoSwitchAccount";
 
     export interface SegmentModel {
-        /** ResourceId of Segment resource */
-        AzureResourceId?: string;
         /** Segment description. */
         Description?: string;
         /** Segment actions for current entered segment players. */
@@ -4793,8 +4826,6 @@ declare module PlayFabAdminModels {
     }
 
     export interface SetTitleDataRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of azure resource */
-        AzureResourceId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /**
@@ -4802,8 +4833,6 @@ declare module PlayFabAdminModels {
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         Key: string;
-        /** System Data of the Azure Resource */
-        SystemData?: AzureResourceSystemData;
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -4815,8 +4844,6 @@ declare module PlayFabAdminModels {
     }
 
     export interface SetTitleDataResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Id of azure resource */
-        AzureResourceId?: string;
 
     }
 
