@@ -148,6 +148,10 @@ declare module PlayFabEconomyModels {
         AdminEntities?: EntityKey[];
         /** A list of display properties to index. */
         DisplayPropertyIndexInfos?: DisplayPropertyIndexInfo[];
+        /** The set of configuration that only applies to Files. */
+        File?: FileConfig;
+        /** The set of configuration that only applies to Images. */
+        Image?: ImageConfig;
         /** Flag defining whether catalog is enabled. */
         IsCatalogEnabled: boolean;
         /** A set of player entity keys that are allowed to review content. */
@@ -227,6 +231,10 @@ declare module PlayFabEconomyModels {
         MaxClientVersion?: string;
         /** The minimum client version that this content is compatible with. */
         MinClientVersion?: string;
+        /** The list of tags that are associated with this content. */
+        Tags?: string[];
+        /** The client-defined type of the content. */
+        Type?: string;
         /** The Azure CDN URL for retrieval of the catalog item binary content. */
         Url?: string;
 
@@ -309,6 +317,14 @@ declare module PlayFabEconomyModels {
         Id: string;
         /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string;
+
+    }
+
+    export interface FileConfig {
+        /** The set of content types that will be used for validation. */
+        ContentTypes?: string[];
+        /** The set of tags that will be used for validation. */
+        Tags?: string[];
 
     }
 
@@ -532,10 +548,18 @@ declare module PlayFabEconomyModels {
     export interface Image {
         /** The image unique ID. */
         Id?: string;
+        /** The client-defined tag associated with this image. */
+        Tag?: string;
         /** The client-defined type of this image. */
         Type?: string;
         /** The URL for retrieval of the image. */
         Url?: string;
+
+    }
+
+    export interface ImageConfig {
+        /** The set of tags that will be used for validation. */
+        Tags?: string[];
 
     }
 
@@ -838,9 +862,9 @@ declare module PlayFabEconomyModels {
     }
 
     export interface UserGeneratedContentSpecificConfig {
-        /** The set of content types that will be used for validation and if no values are provided then anything is allowed. */
+        /** The set of content types that will be used for validation. */
         ContentTypes?: string[];
-        /** The set of tags that will be used for validation and if no values are provided then anything is allowed. */
+        /** The set of tags that will be used for validation. */
         Tags?: string[];
 
     }

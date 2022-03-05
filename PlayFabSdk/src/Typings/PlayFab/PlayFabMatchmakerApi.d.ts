@@ -20,11 +20,6 @@ declare module PlayFabMatchmakerModule {
          */
         PlayerLeft(request: PlayFabMatchmakerModels.PlayerLeftRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.PlayerLeftResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
-         * https://docs.microsoft.com/rest/api/playfab/matchmaker/matchmaking/startgame
-         */
-        StartGame(request: PlayFabMatchmakerModels.StartGameRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.StartGameResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
-        /**
          * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
          * effective matches
          * https://docs.microsoft.com/rest/api/playfab/matchmaker/matchmaking/userinfo
@@ -120,48 +115,6 @@ declare module PlayFabMatchmakerModels {
     }
 
     export interface PlayerLeftResponse extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
-    type Region = "USCentral"
-        | "USEast"
-        | "EUWest"
-        | "Singapore"
-        | "Japan"
-        | "Brazil"
-        | "Australia";
-
-    export interface StartGameRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Unique identifier of the previously uploaded build executable which is to be started. */
-        Build: string;
-        /** Custom command line argument when starting game server process. */
-        CustomCommandLineData?: string;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /**
-         * HTTP endpoint URL for receiving game status events, if using an external matchmaker. When the game ends, PlayFab will
-         * make a POST request to this URL with the X-SecretKey header set to the value of the game's secret and an
-         * application/json body of { "EventName": "game_ended", "GameID": "<gameid>" }.
-         */
-        ExternalMatchmakerEventEndpoint: string;
-        /** Game mode for this Game Server Instance. */
-        GameMode: string;
-        /** Region with which to associate the server, for filtering. */
-        Region: string;
-
-    }
-
-    export interface StartGameResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** Unique identifier for the game/lobby in the new Game Server Instance. */
-        GameID?: string;
-        /** IPV4 address of the server */
-        ServerIPV4Address?: string;
-        /** IPV6 address of the new Game Server Instance. */
-        ServerIPV6Address?: string;
-        /** Port number for communication with the Game Server Instance. */
-        ServerPort: number;
-        /** Public DNS name (if any) of the server */
-        ServerPublicDNSName?: string;
 
     }
 

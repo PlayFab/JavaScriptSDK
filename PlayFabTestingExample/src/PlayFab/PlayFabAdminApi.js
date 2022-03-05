@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.101.220214",
+        sdkVersion: "1.103.220305",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.101.220214"
+            sdk: "JavaScriptSDK-1.103.220305"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -224,7 +224,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.101.220214";
+PlayFab.sdkVersion = "1.103.220305";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -255,13 +255,6 @@ PlayFab.AdminApi = {
 
     AddPlayerTag: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AddPlayerTag", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Do not use
-     */
-    AddServerBuild: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/AddServerBuild", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     AddUserVirtualCurrency: function (request, callback, customData, extraHeaders) {
@@ -456,13 +449,6 @@ PlayFab.AdminApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetServerBuildInfo", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
-    /**
-     * @deprecated Do not use
-     */
-    GetServerBuildUploadUrl: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetServerBuildUploadUrl", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
     GetStoreItems: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetStoreItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -541,13 +527,6 @@ PlayFab.AdminApi = {
 
     ListVirtualCurrencyTypes: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ListVirtualCurrencyTypes", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Do not use
-     */
-    ModifyMatchmakerGameModes: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ModifyMatchmakerGameModes", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     ModifyServerBuild: function (request, callback, customData, extraHeaders) {
