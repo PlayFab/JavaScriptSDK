@@ -86,22 +86,6 @@ declare module PlayFabCloudScriptModels {
 
     }
 
-    export interface AzureResourceSystemData {
-        /** The timestamp of resource creation (UTC) */
-        CreatedAt?: string;
-        /** The identity that created the resource */
-        CreatedBy?: string;
-        /** The type of identity that created the resource */
-        CreatedByType?: string;
-        /** The type of identity that last modified the resource */
-        LastModifiedAt?: string;
-        /** The identity that last modified the resource */
-        LastModifiedBy?: string;
-        /** The type of identity that last modified the resource */
-        LastModifiedByType?: string;
-
-    }
-
     type CloudScriptRevisionOption = "Live"
         | "Latest"
         | "Specific";
