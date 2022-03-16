@@ -154,6 +154,8 @@ declare module PlayFabEconomyModels {
         Image?: ImageConfig;
         /** Flag defining whether catalog is enabled. */
         IsCatalogEnabled: boolean;
+        /** A list of Platforms that can be applied to catalog items. */
+        Platforms?: string[];
         /** A set of player entity keys that are allowed to review content. */
         ReviewerEntities?: EntityKey[];
         /** The set of configuration that only applies to user generated contents. */
@@ -213,6 +215,48 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface CatalogItemReference {
+        /** The amount of the catalog item. */
+        Amount?: number;
+        /** The unique ID of the catalog item. */
+        Id?: string;
+        /** The price of the catalog item. */
+        Price?: CatalogPrice;
+
+    }
+
+    export interface CatalogPrice {
+        /** Prices of the catalog item. */
+        Prices?: CatalogPriceInstance[];
+        /** Real prices of the catalog item. */
+        RealPrices?: CatalogPriceInstance[];
+        /** A standardized sorting key to allow proper sorting between items with prices in different currencies. */
+        Sort?: number;
+
+    }
+
+    export interface CatalogPriceAmount {
+        /** The amount of the catalog price. */
+        Amount: number;
+        /** The Item ID of the price. */
+        Id?: string;
+
+    }
+
+    export interface CatalogPriceInstance {
+        /** The amounts of the catalog item price. */
+        Amounts?: CatalogPriceAmount[];
+
+    }
+
+    export interface CatalogSpecificConfig {
+        /** The set of content types that will be used for validation. */
+        ContentTypes?: string[];
+        /** The set of tags that will be used for validation. */
+        Tags?: string[];
+
+    }
+
     type ConcernCategory = "None"
         | "OffensiveContent"
         | "ChildExploitation"
@@ -267,6 +311,14 @@ declare module PlayFabEconomyModels {
     export interface CreateUploadUrlsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** List of URLs metadata for the files to be uploaded by the client. */
         UploadUrls?: UploadUrlMetadata[];
+
+    }
+
+    export interface DeepLinkFormat {
+        /** The format of the deep link to return. The format should contain '{id}' to represent where the item ID should be placed. */
+        Format?: string;
+        /** The target platform for the deep link. */
+        Platform?: string;
 
     }
 
@@ -347,8 +399,6 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
-        /** Whether to fetch metadata of the scan status. */
-        ExpandScanningStatus?: boolean;
         /** The unique ID of the item. */
         Id?: string;
 
@@ -450,8 +500,6 @@ declare module PlayFabEconomyModels {
     }
 
     export interface GetItemPublishStatusResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** Scan results for any items that failed content scans. */
-        FailedScanResults?: ScanResult[];
         /** High level status of the published item. */
         Result?: string;
         /** Descriptive message about the current status of the publish. */
@@ -584,6 +632,16 @@ declare module PlayFabEconomyModels {
         | "Approved"
         | "Rejected";
 
+    export interface PayoutDetails {
+        /** The Dev Center account ID of the payee. */
+        AccountSellerId?: string;
+        /** The tax code for payout calculations. */
+        TaxCode?: string;
+        /** The Universal account ID of the payee. */
+        Uaid?: string;
+
+    }
+
     export interface PublishDraftItemRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** An alternate ID associated with this item. */
         AlternateId?: CatalogAlternateId;
@@ -675,8 +733,6 @@ declare module PlayFabEconomyModels {
     export interface Review {
         /** The number of negative helpfulness votes for this review. */
         HelpfulNegative: number;
-        /** Total number of helpfulness votes for this review. */
-        HelpfulnessVotes: number;
         /** The number of positive helpfulness votes for this review. */
         HelpfulPositive: number;
         /** Indicates whether the review author has the item installed. */
@@ -785,6 +841,14 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface StoreInfo {
+        /** An alternate ID of the store. */
+        AlternateId?: CatalogAlternateId;
+        /** The unique ID of the store. */
+        Id?: string;
+
+    }
+
     export interface SubmitItemReviewVoteRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** An alternate ID of the item associated with the review. */
         AlternateId?: CatalogAlternateId;
@@ -802,6 +866,12 @@ declare module PlayFabEconomyModels {
     }
 
     export interface SubmitItemReviewVoteResponse extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface SubscriptionDetails {
+        /** The length of time that the subscription will last in seconds. */
+        DurationInSeconds: number;
 
     }
 
