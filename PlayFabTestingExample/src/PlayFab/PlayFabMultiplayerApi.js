@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.103.220305",
+        sdkVersion: "1.104.220316",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.103.220305"
+            sdk: "JavaScriptSDK-1.104.220316"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.103.220305";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_118";
+PlayFab.sdkVersion = "1.104.220316";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -273,6 +273,10 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/CreateBuildWithProcessBasedServer", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    CreateLobby: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/CreateLobby", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     CreateMatchmakingTicket: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/CreateMatchmakingTicket", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -317,12 +321,24 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/DeleteContainerImageRepository", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    DeleteLobby: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/DeleteLobby", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     DeleteRemoteUser: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/DeleteRemoteUser", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     EnableMultiplayerServersForTitle: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/EnableMultiplayerServersForTitle", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    FindFriendLobbies: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/FindFriendLobbies", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    FindLobbies: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/FindLobbies", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetAssetDownloadUrl: function (request, callback, customData, extraHeaders) {
@@ -343,6 +359,10 @@ PlayFab.MultiplayerApi = {
 
     GetContainerRegistryCredentials: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetContainerRegistryCredentials", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetLobby: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/GetLobby", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetMatch: function (request, callback, customData, extraHeaders) {
@@ -393,8 +413,24 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/GetTitleMultiplayerServersQuotas", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    InviteToLobby: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/InviteToLobby", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    JoinArrangedLobby: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/JoinArrangedLobby", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    JoinLobby: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/JoinLobby", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     JoinMatchmakingTicket: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/JoinMatchmakingTicket", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    LeaveLobby: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/LeaveLobby", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ListArchivedMultiplayerServers: function (request, callback, customData, extraHeaders) {
@@ -461,6 +497,10 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/RemoveMatchmakingQueue", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    RemoveMember: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/RemoveMember", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     RequestMultiplayerServer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/RequestMultiplayerServer", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -475,6 +515,14 @@ PlayFab.MultiplayerApi = {
 
     ShutdownMultiplayerServer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ShutdownMultiplayerServer", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SubscribeToLobbyResource: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/SubscribeToLobbyResource", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UnsubscribeFromLobbyResource: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/UnsubscribeFromLobbyResource", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UntagContainerImage: function (request, callback, customData, extraHeaders) {
@@ -495,6 +543,10 @@ PlayFab.MultiplayerApi = {
 
     UpdateBuildRegions: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/UpdateBuildRegions", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UpdateLobby: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Lobby/UpdateLobby", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UploadCertificate: function (request, callback, customData, extraHeaders) {
