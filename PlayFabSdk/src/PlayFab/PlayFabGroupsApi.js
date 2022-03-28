@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.105.220317",
+        sdkVersion: "1.107.220328",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.105.220317"
+            sdk: "JavaScriptSDK-1.107.220328"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_117";
-PlayFab.sdkVersion = "1.105.220317";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
+PlayFab.sdkVersion = "1.107.220328";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
