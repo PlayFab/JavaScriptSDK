@@ -364,10 +364,20 @@ declare module PlayFabMultiplayerModule {
          */
         SubscribeToLobbyResource(request: PlayFabMultiplayerModels.SubscribeToLobbyResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SubscribeToLobbyResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Subscribe to match resource notifications.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/subscribetomatchmakingresource
+         */
+        SubscribeToMatchmakingResource(request: PlayFabMultiplayerModels.SubscribeToMatchResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SubscribeToMatchResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Unsubscribe from lobby notifications.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/unsubscribefromlobbyresource
          */
         UnsubscribeFromLobbyResource(request: PlayFabMultiplayerModels.UnsubscribeFromLobbyResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Unsubscribe from match resource notifications.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/unsubscribefrommatchmakingresource
+         */
+        UnsubscribeFromMatchmakingResource(request: PlayFabMultiplayerModels.UnsubscribeFromMatchResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.UnsubscribeFromMatchResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Untags a container image.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/untagcontainerimage
@@ -1648,11 +1658,6 @@ declare module PlayFabMultiplayerModels {
          * builds. If the build is a custom build, this field will be null.
          */
         StartMultiplayerServerCommand?: string;
-        /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
-         */
-        UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
 
@@ -1720,6 +1725,8 @@ declare module PlayFabMultiplayerModels {
     export interface GetMatchmakingTicketResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
         CancellationReasonString?: string;
+        /** Change number used for differentiating older matchmaking status updates from newer ones. */
+        ChangeNumber?: number;
         /** The server date and time at which ticket was created. */
         Created: string;
         /** The Creator's entity key. */
@@ -1762,6 +1769,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMatchResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** A string that is used by players that are matched together to join an arranged lobby. */
+        ArrangementString?: string;
         /** The Id of a match. */
         MatchId: string;
         /** A list of Users that are matched together, along with their team assignments. */
@@ -2974,6 +2983,34 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface SubscribeToMatchResourceRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The entity performing the subscription. The entity must be authorized to use this connectionHandle. */
+        EntityKey: EntityKey;
+        /**
+         * Opaque string, given to a client upon creating a connection with PubSub. Notifications will be sent to the connection
+         * associated with this handle.
+         */
+        PubSubConnectionHandle: string;
+        /** The name of the resource to subscribe to. */
+        ResourceId: string;
+        /** Version number for the subscription of this resource. Current supported version must be 1. */
+        SubscriptionVersion: number;
+        /**
+         * Subscription type. MatchInvite subscriptions are per-player. MatchTicketStatusChange subscriptions are per-ticket.
+         * Subscribe calls are idempotent. Subscribing on the same resource for the same connection results in success.
+         */
+        Type: string;
+
+    }
+
+    export interface SubscribeToMatchResourceResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Matchmaking resource */
+        Topic: string;
+
+    }
+
     type SubscriptionType = "LobbyChange"
         | "LobbyInvite";
 
@@ -3058,6 +3095,26 @@ declare module PlayFabMultiplayerModels {
         SubscriptionVersion: number;
         /** Subscription type. */
         Type: string;
+
+    }
+
+    export interface UnsubscribeFromMatchResourceRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The entity performing the unsubscription. The entity must be authorized to use this connectionHandle. */
+        EntityKey: EntityKey;
+        /** Opaque string, given to a client upon creating a connection with PubSub. */
+        PubSubConnectionHandle: string;
+        /** The resource to unsubscribe from. */
+        ResourceId: string;
+        /** Version number for the unsubscription from this resource. */
+        SubscriptionVersion: number;
+        /** Type of the subscription to be canceled. */
+        Type: string;
+
+    }
+
+    export interface UnsubscribeFromMatchResourceResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 

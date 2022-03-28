@@ -380,6 +380,10 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface FilterOptions {
+
+    }
+
     export interface GetCatalogConfigRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -642,6 +646,14 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface PriceOverride {
+
+    }
+
+    export interface PricesOverride {
+
+    }
+
     export interface PublishDraftItemRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** An alternate ID associated with this item. */
         AlternateId?: CatalogAlternateId;
@@ -669,6 +681,10 @@ declare module PlayFabEconomyModels {
         | "Succeeded"
         | "Failed"
         | "Canceled";
+
+    export interface PurchaseOverride {
+
+    }
 
     export interface Rating {
         /** The average rating for this item. */
@@ -838,6 +854,10 @@ declare module PlayFabEconomyModels {
     }
 
     export interface SetItemModerationStateResponse extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface StoreDetails {
 
     }
 
