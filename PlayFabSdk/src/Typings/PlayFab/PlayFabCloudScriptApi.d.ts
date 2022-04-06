@@ -415,7 +415,7 @@ declare module PlayFabCloudScriptModels {
     export interface ExecuteEntityCloudScriptRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey;
         /** The name of the CloudScript function to execute */
         FunctionName: string;
@@ -440,7 +440,7 @@ declare module PlayFabCloudScriptModels {
     export interface ExecuteFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey;
         /** The name of the CloudScript function to execute */
         FunctionName: string;
@@ -719,7 +719,7 @@ declare module PlayFabCloudScriptModels {
     export interface PostFunctionResultForPlayerTriggeredActionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey;
         /** The result of the function execution. */
         FunctionResult: ExecuteFunctionResult;
