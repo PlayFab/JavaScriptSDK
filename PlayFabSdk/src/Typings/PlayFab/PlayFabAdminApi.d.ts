@@ -2353,6 +2353,7 @@ declare module PlayFabAdminModels {
         | "PlayerIdentityLinkNotFound"
         | "PhotonApplicationIdAlreadyInUse"
         | "CloudScriptUnableToDeleteProductionRevision"
+        | "CustomIdNotFound"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"

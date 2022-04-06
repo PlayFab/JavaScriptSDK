@@ -273,7 +273,7 @@ declare module PlayFabExperimentationModels {
     export interface GetTreatmentAssignmentRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey;
 
     }

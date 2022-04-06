@@ -2285,6 +2285,7 @@ declare module PlayFabServerModels {
         | "PlayerIdentityLinkNotFound"
         | "PhotonApplicationIdAlreadyInUse"
         | "CloudScriptUnableToDeleteProductionRevision"
+        | "CustomIdNotFound"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
