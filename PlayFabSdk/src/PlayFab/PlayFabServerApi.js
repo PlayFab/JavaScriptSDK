@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.108.220406",
+        sdkVersion: "1.111.220502",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.108.220406"
+            sdk: "JavaScriptSDK-1.111.220502"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
-PlayFab.sdkVersion = "1.108.220406";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_118";
+PlayFab.sdkVersion = "1.111.220502";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -415,6 +415,10 @@ PlayFab.ServerApi = {
 
     GetPlayFabIDsFromGenericIDs: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromGenericIDs", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetPlayFabIDsFromNintendoServiceAccountIds: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromNintendoServiceAccountIds", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayFabIDsFromNintendoSwitchDeviceIds: function (request, callback, customData, extraHeaders) {
