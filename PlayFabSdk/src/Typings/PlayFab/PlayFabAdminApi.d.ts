@@ -145,6 +145,13 @@ declare module PlayFabAdminModule {
          */
         ExportMasterPlayerData(request: PlayFabAdminModels.ExportMasterPlayerDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ExportMasterPlayerDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Starts an export for the player profiles in a segment. This API creates a snapshot of all the player profiles which
+         * match the segment definition at the time of the API call. Profiles which change while an export is in progress will not
+         * be reflected in the results.
+         * https://docs.microsoft.com/rest/api/playfab/admin/playstream/exportplayersinsegment
+         */
+        ExportPlayersInSegment(request: PlayFabAdminModels.ExportPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ExportPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Get information about a ActionsOnPlayersInSegment task instance.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/getactionsonplayersinsegmenttaskinstance
          */
@@ -268,6 +275,14 @@ declare module PlayFabAdminModule {
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getrandomresulttables
          */
         GetRandomResultTables(request: PlayFabAdminModels.GetRandomResultTablesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetRandomResultTablesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Retrieves the result of an export started by ExportPlayersInSegment API. If the ExportPlayersInSegment is successful and
+         * complete, this API returns the IndexUrl from which the index file can be downloaded. The index file has a list of urls
+         * from which the files containing the player profile data can be downloaded. Otherwise, it returns the current 'State' of
+         * the export
+         * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getsegmentexport
+         */
+        GetSegmentExport(request: PlayFabAdminModels.GetPlayersInSegmentExportRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentExportResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
          * Get detail information of a segment and its associated definition(s) and action(s) for a title.
          * https://docs.microsoft.com/rest/api/playfab/admin/segments/getsegments
@@ -1791,6 +1806,20 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface ExportPlayersInSegmentRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique identifier of the requested segment. */
+        SegmentId: string;
+
+    }
+
+    export interface ExportPlayersInSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Unique identifier of the export for the requested Segment. */
+        ExportId?: string;
+        /** Unique identifier of the requested Segment. */
+        SegmentId?: string;
+
+    }
+
     export interface FirstLoginDateSegmentFilter {
         /** First player login date comparison. */
         Comparison?: string;
@@ -2505,6 +2534,8 @@ declare module PlayFabAdminModels {
         | "EventSinkSasTokenInvalid"
         | "EventSinkNotFound"
         | "EventSinkNameInvalid"
+        | "EventSinkSasTokenPermissionInvalid"
+        | "EventSinkSecretInvalid"
         | "OperationCanceled"
         | "InvalidDisplayNameRandomSuffixLength"
         | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed";
@@ -2747,6 +2778,20 @@ declare module PlayFabAdminModels {
     export interface GetPlayerSharedSecretsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** The player shared secret to use when calling Client/GetTitlePublicKey */
         SharedSecrets?: SharedSecret[];
+
+    }
+
+    export interface GetPlayersInSegmentExportRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique identifier of the export for the requested Segment. */
+        ExportId: string;
+
+    }
+
+    export interface GetPlayersInSegmentExportResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Url from which the index file can be downloaded. */
+        IndexUrl?: string;
+        /** Shows the current status of the export */
+        State?: string;
 
     }
 
@@ -5417,6 +5462,8 @@ declare module PlayFabAdminModels {
     export interface UserXboxInfo {
         /** XBox user ID */
         XboxUserId?: string;
+        /** XBox user sandbox */
+        XboxUserSandbox?: string;
 
     }
 
