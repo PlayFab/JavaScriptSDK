@@ -501,6 +501,11 @@ declare module PlayFabAdminModule {
          */
         SetTitleInternalData(request: PlayFabAdminModels.SetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Set and delete key-value pairs in a title internal data override instance.
+         * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitleinternaldataandoverrides
+         */
+        SetTitleInternalDataAndOverrides(request: PlayFabAdminModels.SetTitleDataAndOverridesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataAndOverridesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can
          * be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device
          * Messaging is not supported.
@@ -2536,6 +2541,9 @@ declare module PlayFabAdminModels {
         | "EventSinkNameInvalid"
         | "EventSinkSasTokenPermissionInvalid"
         | "EventSinkSecretInvalid"
+        | "EventSinkTenantNotFound"
+        | "EventSinkAadNotFound"
+        | "EventSinkDatabaseNotFound"
         | "OperationCanceled"
         | "InvalidDisplayNameRandomSuffixLength"
         | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed";
@@ -4683,6 +4691,8 @@ declare module PlayFabAdminModels {
     }
 
     export interface SetTitleDataAndOverridesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
         /**
          * List of titleData key-value pairs to set/delete. Use an empty value to delete an existing key; use a non-empty value to
          * create/update a key.
@@ -4690,6 +4700,8 @@ declare module PlayFabAdminModels {
         KeyValues: TitleDataKeyValue[];
         /** Name of the override. */
         OverrideLabel?: string;
+        /** Title Id */
+        TitleId?: string;
 
     }
 
