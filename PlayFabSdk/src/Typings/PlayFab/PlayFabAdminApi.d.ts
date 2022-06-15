@@ -2455,6 +2455,7 @@ declare module PlayFabAdminModels {
         | "ExportCannotParseQuery"
         | "ExportControlCommandsNotAllowed"
         | "ExportQueryMissingTableReference"
+        | "ExportInsightsV1Deprecated"
         | "ExplorerBasicInvalidQueryName"
         | "ExplorerBasicInvalidQueryDescription"
         | "ExplorerBasicInvalidQueryConditions"
