@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.115.220607",
+        sdkVersion: "1.116.220621",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.115.220607"
+            sdk: "JavaScriptSDK-1.116.220621"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.115.220607";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
+PlayFab.sdkVersion = "1.116.220621";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -619,10 +619,6 @@ PlayFab.AdminApi = {
 
     SetTitleInternalData: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetTitleInternalData", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
-    SetTitleInternalDataAndOverrides: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/SetTitleInternalDataAndOverrides", request, null, callback, customData, extraHeaders);
     },
 
     SetupPushNotification: function (request, callback, customData, extraHeaders) {
