@@ -2386,6 +2386,7 @@ declare module PlayFabAdminModels {
         | "AutomationInvalidInput"
         | "AutomationInvalidRuleName"
         | "AutomationRuleAlreadyExists"
+        | "AutomationRuleLimitExceeded"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -4699,8 +4700,6 @@ declare module PlayFabAdminModels {
         KeyValues: TitleDataKeyValue[];
         /** Name of the override. */
         OverrideLabel?: string;
-        /** Title Id */
-        TitleId?: string;
 
     }
 
@@ -4716,11 +4715,6 @@ declare module PlayFabAdminModels {
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         Key: string;
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId?: string;
         /** new value to set. Set to null to remove a value */
         Value?: string;
 

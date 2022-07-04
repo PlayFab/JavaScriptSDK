@@ -496,8 +496,6 @@ declare module PlayFabCloudScriptModels {
         CustomTags?: { [key: string]: string | null };
         /** The name of the function to register */
         FunctionName: string;
-        /** The Id of the parent Title */
-        TitleId?: string;
 
     }
 
@@ -536,8 +534,6 @@ declare module PlayFabCloudScriptModels {
     export interface ListFunctionsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The Id of the parent Title */
-        TitleId?: string;
 
     }
 
@@ -770,8 +766,6 @@ declare module PlayFabCloudScriptModels {
         FunctionName: string;
         /** Full URL for Azure Function that implements the function. */
         FunctionUrl: string;
-        /** The Id of the parent Title */
-        TitleId?: string;
 
     }
 
@@ -784,8 +778,6 @@ declare module PlayFabCloudScriptModels {
         FunctionName: string;
         /** The name of the queue for the Azure Function. */
         QueueName: string;
-        /** The Id of the parent Title */
-        TitleId?: string;
 
     }
 
@@ -853,8 +845,6 @@ declare module PlayFabCloudScriptModels {
         CustomTags?: { [key: string]: string | null };
         /** The name of the function to register */
         FunctionName: string;
-        /** The Id of the parent Title */
-        TitleId?: string;
 
     }
 
