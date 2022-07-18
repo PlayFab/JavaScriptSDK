@@ -83,8 +83,8 @@ declare module PlayFabClientModule {
          */
         ConsumeMicrosoftStoreEntitlements(request: PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
-         * items
+         * Checks for any new consumable entitlements. If any are found, they are consumed (if they're consumables) and added as
+         * PlayFab items
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements
          */
         ConsumePS5Entitlements(request: PlayFabClientModels.ConsumePS5EntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePS5EntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -314,7 +314,7 @@ declare module PlayFabClientModule {
          */
         GetPlayFabIDsFromNintendoSwitchDeviceIds(request: PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+         * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnaccountids
          */
         GetPlayFabIDsFromPSNAccountIDs(request: PlayFabClientModels.GetPlayFabIDsFromPSNAccountIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromPSNAccountIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -481,7 +481,7 @@ declare module PlayFabClientModule {
          */
         LinkOpenIdConnect(request: PlayFabClientModels.LinkOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+         * Links the PlayStation :tm: Network account associated with the provided access code to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkpsnaccount
          */
         LinkPSNAccount(request: PlayFabClientModels.LinkPSNAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkPSNAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -588,8 +588,8 @@ declare module PlayFabClientModule {
          */
         LoginWithPlayFab(request: PlayFabClientModels.LoginWithPlayFabRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Signs the user in using a PlayStation Network authentication code, returning a session identifier that can subsequently
-         * be used for API calls which require an authenticated user
+         * Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
+         * subsequently be used for API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithpsn
          */
         LoginWithPSN(request: PlayFabClientModels.LoginWithPSNRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -643,7 +643,7 @@ declare module PlayFabClientModule {
          */
         RedeemCoupon(request: PlayFabClientModels.RedeemCouponRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RedeemCouponResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Uses the supplied OAuth code to refresh the internally cached player PSN auth token
+         * Uses the supplied OAuth code to refresh the internally cached player PSN :tm: auth token
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/refreshpsnauthtoken
          */
         RefreshPSNAuthToken(request: PlayFabClientModels.RefreshPSNAuthTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -800,7 +800,7 @@ declare module PlayFabClientModule {
          */
         UnlinkOpenIdConnect(request: PlayFabClientModels.UnlinkOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Unlinks the related PSN account from the user's PlayFab account
+         * Unlinks the related PSN :tm: account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkpsnaccount
          */
         UnlinkPSNAccount(request: PlayFabClientModels.UnlinkPSNAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkPSNAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
