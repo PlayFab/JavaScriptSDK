@@ -552,6 +552,11 @@ declare module PlayFabClientModule {
          */
         LoginWithGoogleAccount(request: PlayFabClientModels.LoginWithGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Signs the user in using their Google Play Games account credentials
+         * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithgoogleplaygamesservices
+         */
+        LoginWithGooglePlayGamesServices(request: PlayFabClientModels.LoginWithGooglePlayGamesServicesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently
          * be used for API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithiosdeviceid
@@ -3385,7 +3390,8 @@ declare module PlayFabClientModels {
         | "FacebookInstantGames"
         | "OpenIdConnect"
         | "Apple"
-        | "NintendoSwitchAccount";
+        | "NintendoSwitchAccount"
+        | "GooglePlayGames";
 
     export interface LoginResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
@@ -3585,6 +3591,30 @@ declare module PlayFabClientModels {
         /**
          * OAuth 2.0 server authentication code obtained on the client by calling the getServerAuthCode()
          * (https://developers.google.com/identity/sign-in/android/offline-access) Google client API.
+         */
+        ServerAuthCode?: string;
+        /**
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        TitleId?: string;
+
+    }
+
+    export interface LoginWithGooglePlayGamesServicesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        EncryptedRequest?: string;
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        PlayerSecret?: string;
+        /**
+         * OAuth 2.0 server authentication code obtained on the client by calling the requestServerSideAccess()
+         * (https://developers.google.com/games/services/android/signin) Google Play Games client API.
          */
         ServerAuthCode?: string;
         /**
@@ -5113,6 +5143,8 @@ declare module PlayFabClientModels {
         GameCenterInfo?: UserGameCenterInfo;
         /** User Google account information, if a Google account has been linked */
         GoogleInfo?: UserGoogleInfo;
+        /** User Google Play Games account information, if a Google Play Games account has been linked */
+        GooglePlayGamesInfo?: UserGooglePlayGamesInfo;
         /** User iOS device information, if an iOS device has been linked */
         IosDeviceInfo?: UserIosDeviceInfo;
         /** User Kongregate account information, if a Kongregate account has been linked */
@@ -5210,6 +5242,16 @@ declare module PlayFabClientModels {
 
     }
 
+    export interface UserGooglePlayGamesInfo {
+        /** Avatar image url of the Google Play Games player */
+        GooglePlayGamesPlayerAvatarImageUrl?: string;
+        /** Display name of the Google Play Games player */
+        GooglePlayGamesPlayerDisplayName?: string;
+        /** Google Play Games player ID */
+        GooglePlayGamesPlayerId?: string;
+
+    }
+
     export interface UserIosDeviceInfo {
         /** iOS device ID */
         IosDeviceId?: string;
@@ -5268,7 +5310,8 @@ declare module PlayFabClientModels {
         | "FacebookInstantGamesId"
         | "OpenIdConnect"
         | "Apple"
-        | "NintendoSwitchAccount";
+        | "NintendoSwitchAccount"
+        | "GooglePlayGames";
 
     export interface UserPrivateAccountInfo {
         /** user email address */

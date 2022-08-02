@@ -2494,6 +2494,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface MatchmakingQueueConfig {
+        /** This is the buildAlias that will be used to allocate the multiplayer server for the match. */
+        BuildAliasParams?: BuildAliasParams;
         /** This is the buildId that will be used to allocate the multiplayer server for the match. */
         BuildId?: string;
         /** List of difference rules used to find an optimal match. */

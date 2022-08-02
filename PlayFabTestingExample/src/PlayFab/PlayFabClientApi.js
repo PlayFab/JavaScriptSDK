@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.118.220718",
+        sdkVersion: "1.119.220801",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.118.220718"
+            sdk: "JavaScriptSDK-1.119.220801"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
-PlayFab.sdkVersion = "1.118.220718";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.sdkVersion = "1.119.220801";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -789,6 +789,30 @@ PlayFab.ClientApi = {
                 callback(result, error);
         };
         PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithGoogleAccount", request, null, overloadCallback, customData, extraHeaders);
+        // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
+        return new Promise(function(resolve){resolve(authenticationContext);});
+    },
+
+    LoginWithGooglePlayGamesServices: function (request, callback, customData, extraHeaders) {
+        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
+        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
+        // Deep-copy the authenticationContext here to safely update it
+        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
+        var overloadCallback = function (result, error) {
+            if (result != null) {
+                if(result.data.SessionTicket != null) {
+                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                }
+                if (result.data.EntityToken != null) {
+                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                }
+                // Apply the updates for the AuthenticationContext returned to the client
+                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
+            }
+            if (callback != null && typeof (callback) === "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithGooglePlayGamesServices", request, null, overloadCallback, customData, extraHeaders);
         // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
