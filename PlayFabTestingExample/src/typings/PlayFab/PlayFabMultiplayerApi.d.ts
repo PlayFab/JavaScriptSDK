@@ -813,6 +813,8 @@ declare module PlayFabMultiplayerModels {
         Ports: Port[];
         /** The region configurations for the build. */
         RegionConfigurations: BuildRegionParams[];
+        /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
+        ServerResourceConstraints?: ServerResourceConstraintParams;
         /**
          * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
          * disc.
@@ -859,6 +861,8 @@ declare module PlayFabMultiplayerModels {
         Ports?: Port[];
         /** The region configuration for the build. */
         RegionConfigurations?: BuildRegion[];
+        /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
+        ServerResourceConstraints?: ServerResourceConstraintParams;
         /** The type of game server being hosted. */
         ServerType?: string;
         /**
@@ -907,6 +911,8 @@ declare module PlayFabMultiplayerModels {
         Ports: Port[];
         /** The region configurations for the build. */
         RegionConfigurations: BuildRegionParams[];
+        /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
+        ServerResourceConstraints?: ServerResourceConstraintParams;
         /** The command to run when the multiplayer server is started, including any arguments. */
         StartMultiplayerServerCommand: string;
         /**
@@ -958,6 +964,8 @@ declare module PlayFabMultiplayerModels {
         Ports?: Port[];
         /** The region configuration for the build. */
         RegionConfigurations?: BuildRegion[];
+        /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
+        ServerResourceConstraints?: ServerResourceConstraintParams;
         /** The type of game server being hosted. */
         ServerType?: string;
         /** The command to run when the multiplayer server has been allocated, including any arguments. */
@@ -1671,6 +1679,8 @@ declare module PlayFabMultiplayerModels {
         Ports?: Port[];
         /** The region configuration for the build. */
         RegionConfigurations?: BuildRegion[];
+        /** The resource constraints to apply to each server on the VM. */
+        ServerResourceConstraints?: ServerResourceConstraintParams;
         /** The type of game server being hosted. */
         ServerType?: string;
         /**
@@ -2867,6 +2877,17 @@ declare module PlayFabMultiplayerModels {
         Ports?: Port[];
         /** The server's region. */
         Region?: string;
+
+    }
+
+    export interface ServerResourceConstraintParams {
+        /** The maximum number of cores that each server is allowed to use. */
+        CpuLimit: number;
+        /**
+         * The maximum number of GiB of memory that each server is allowed to use. WARNING: After exceeding this limit, the server
+         * will be killed
+         */
+        MemoryLimitGB: number;
 
     }
 

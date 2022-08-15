@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.122.220804",
+        sdkVersion: "1.123.220815",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.122.220804"
+            sdk: "JavaScriptSDK-1.123.220815"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
-PlayFab.sdkVersion = "1.122.220804";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
+PlayFab.sdkVersion = "1.123.220815";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -449,6 +449,10 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetPlayFabIDsFromGoogleIDs", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    GetPlayFabIDsFromGooglePlayGamesPlayerIDs: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetPlayFabIDsFromGooglePlayGamesPlayerIDs", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
     GetPlayFabIDsFromKongregateIDs: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetPlayFabIDsFromKongregateIDs", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -563,6 +567,10 @@ PlayFab.ClientApi = {
 
     LinkGoogleAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkGoogleAccount", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    LinkGooglePlayGamesServicesAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkGooglePlayGamesServicesAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     LinkIOSDeviceID: function (request, callback, customData, extraHeaders) {
@@ -1182,6 +1190,10 @@ PlayFab.ClientApi = {
 
     UnlinkGoogleAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkGoogleAccount", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    UnlinkGooglePlayGamesServicesAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkGooglePlayGamesServicesAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     UnlinkIOSDeviceID: function (request, callback, customData, extraHeaders) {
