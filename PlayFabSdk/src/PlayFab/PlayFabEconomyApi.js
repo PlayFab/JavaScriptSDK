@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.126.220907",
+        sdkVersion: "1.125.220829",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.126.220907"
+            sdk: "JavaScriptSDK-1.125.220829"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
-PlayFab.sdkVersion = "1.126.220907";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.sdkVersion = "1.125.220829";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -241,10 +241,6 @@ PlayFab.EconomyApi = {
         PlayFab._internalSettings.entityToken = null;
     },
 
-    AddInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/AddInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
     CreateDraftItem: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/CreateDraftItem", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -257,20 +253,8 @@ PlayFab.EconomyApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/DeleteEntityItemReviews", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    DeleteInventoryCollection: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/DeleteInventoryCollection", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    DeleteInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/DeleteInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
     DeleteItem: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/DeleteItem", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    ExecuteInventoryOperations: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/ExecuteInventoryOperations", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetCatalogConfig: function (request, callback, customData, extraHeaders) {
@@ -293,20 +277,8 @@ PlayFab.EconomyApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetEntityItemReview", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    GetInventoryCollectionIds: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/GetInventoryCollectionIds", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    GetInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/GetInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
     GetItem: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItem", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    GetItemContainers: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItemContainers", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetItemModerationState: function (request, callback, customData, extraHeaders) {
@@ -329,40 +301,8 @@ PlayFab.EconomyApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/GetItems", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    GetMicrosoftStoreAccessTokens: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/GetMicrosoftStoreAccessTokens", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
     PublishDraftItem: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/PublishDraftItem", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    PurchaseInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/PurchaseInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    RedeemAppleAppStoreInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/RedeemAppleAppStoreInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    RedeemGooglePlayInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/RedeemGooglePlayInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    RedeemMicrosoftStoreInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/RedeemMicrosoftStoreInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    RedeemNintendoEShopInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/RedeemNintendoEShopInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    RedeemPlayStationStoreInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/RedeemPlayStationStoreInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    RedeemSteamInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/RedeemSteamInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     ReportItem: function (request, callback, customData, extraHeaders) {
@@ -389,16 +329,8 @@ PlayFab.EconomyApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/SubmitItemReviewVote", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    SubtractInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/SubtractInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
     TakedownItemReviews: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/TakedownItemReviews", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    TransferInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/TransferInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     UpdateCatalogConfig: function (request, callback, customData, extraHeaders) {
@@ -407,10 +339,6 @@ PlayFab.EconomyApi = {
 
     UpdateDraftItem: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Catalog/UpdateDraftItem", request, "X-EntityToken", callback, customData, extraHeaders);
-    },
-
-    UpdateInventoryItems: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/UpdateInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
 };
