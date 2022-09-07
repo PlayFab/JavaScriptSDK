@@ -661,7 +661,7 @@ declare module PlayFabClientModule {
          */
         RedeemCoupon(request: PlayFabClientModels.RedeemCouponRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RedeemCouponResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Uses the supplied OAuth code to refresh the internally cached player PSN :tm: auth token
+         * Uses the supplied OAuth code to refresh the internally cached player PlayStation :tm: Network auth token
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/refreshpsnauthtoken
          */
         RefreshPSNAuthToken(request: PlayFabClientModels.RefreshPSNAuthTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -823,7 +823,7 @@ declare module PlayFabClientModule {
          */
         UnlinkOpenIdConnect(request: PlayFabClientModels.UnlinkOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Unlinks the related PSN :tm: account from the user's PlayFab account
+         * Unlinks the related PlayStation :tm: Network account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkpsnaccount
          */
         UnlinkPSNAccount(request: PlayFabClientModels.UnlinkPSNAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkPSNAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -965,6 +965,7 @@ declare module PlayFabClientModels {
     }
 
     type AdActivity = "Opened"
+
         | "Closed"
         | "Start"
         | "End";
@@ -1305,6 +1306,7 @@ declare module PlayFabClientModels {
     }
 
     type CloudScriptRevisionOption = "Live"
+
         | "Latest"
         | "Specific";
 
@@ -1394,7 +1396,7 @@ declare module PlayFabClientModels {
         CatalogVersion?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Id of the PSN service label to consume entitlements from */
+        /** Id of the PlayStation :tm: Network service label to consume entitlements from */
         ServiceLabel: number;
 
     }
@@ -1438,6 +1440,7 @@ declare module PlayFabClientModels {
     }
 
     type ContinentCode = "AF"
+
         | "AN"
         | "AS"
         | "EU"
@@ -1446,6 +1449,7 @@ declare module PlayFabClientModels {
         | "SA";
 
     type CountryCode = "AF"
+
         | "AX"
         | "AL"
         | "DZ"
@@ -1708,6 +1712,7 @@ declare module PlayFabClientModels {
     }
 
     type Currency = "AED"
+
         | "AFN"
         | "ALL"
         | "AMD"
@@ -1901,6 +1906,7 @@ declare module PlayFabClientModels {
     }
 
     type EmailVerificationStatus = "Unverified"
+
         | "Pending"
         | "Confirmed";
 
@@ -2016,7 +2022,10 @@ declare module PlayFabClientModels {
         GameCenterInfo?: UserGameCenterInfo;
         /** The profile of the user, if requested. */
         Profile?: PlayerProfileModel;
-        /** Available PSN information, if the user and PlayFab friend are both connected to PSN. */
+        /**
+         * Available PlayStation :tm: Network information, if the user and PlayFab friend are both connected to PlayStation :tm:
+         * Network.
+         */
         PSNInfo?: UserPsnInfo;
         /** Available Steam information (if the user and PlayFab friend are also connected in Steam). */
         SteamInfo?: UserSteamInfo;
@@ -2076,6 +2085,7 @@ declare module PlayFabClientModels {
     }
 
     type GameInstanceState = "Open"
+
         | "Closed";
 
     export interface GameServerRegionsRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -2760,15 +2770,15 @@ declare module PlayFabClientModels {
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
-        /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
+        /** Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. */
         PSNAccountIDs: string[];
 
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        /** Mapping of PlayStation :tm: Network identifiers to PlayFab identifiers. */
         Data?: PSNAccountPlayFabIdPair[];
 
     }
@@ -2806,7 +2816,7 @@ declare module PlayFabClientModels {
     }
 
     export interface GetPlayFabIDsFromXboxLiveIDsResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        /** Mapping of Xbox Live identifiers to PlayFab identifiers. */
         Data?: XboxLiveAccountPlayFabIdPair[];
 
     }
@@ -3340,15 +3350,15 @@ declare module PlayFabClientModels {
     }
 
     export interface LinkPSNAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Authentication code provided by the PlayStation Network. */
+        /** Authentication code provided by the PlayStation :tm: Network. */
         AuthCode: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
-        /** Redirect URI supplied to PSN when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
         RedirectUri: string;
 
     }
@@ -3429,6 +3439,7 @@ declare module PlayFabClientModels {
     }
 
     type LoginIdentityProvider = "Unknown"
+
         | "PlayFab"
         | "Custom"
         | "GameCenter"
@@ -3508,7 +3519,8 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /**
          * The JSON Web token (JWT) returned by Apple after login. Represented as the identityToken field in the authorization
-         * credential payload.
+         * credential payload. If you choose to ignore the expiration date for identity tokens, you will receive an NotAuthorized
+         * error if Apple rotates the signing key. In this case, users have to login to provide a fresh identity token.
          */
         IdentityToken: string;
         /** Flags for which pieces of info to return for the user. */
@@ -3817,7 +3829,7 @@ declare module PlayFabClientModels {
     }
 
     export interface LoginWithPSNRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Auth code provided by the PSN OAuth provider. */
+        /** Auth code provided by the PlayStation :tm: Network OAuth provider. */
         AuthCode?: string;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean;
@@ -3827,11 +3839,11 @@ declare module PlayFabClientModels {
         EncryptedRequest?: string;
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         PlayerSecret?: string;
-        /** Redirect URI supplied to PSN when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
         RedirectUri?: string;
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
@@ -3961,6 +3973,7 @@ declare module PlayFabClientModels {
     }
 
     type MatchmakeStatus = "Complete"
+
         | "Waiting"
         | "GameNotFound"
         | "NoAvailableSlots"
@@ -4227,17 +4240,20 @@ declare module PlayFabClientModels {
     }
 
     export interface PlayStation5Payload {
-        /** An optional list of entitlement ids to query against PSN */
+        /** An optional list of entitlement ids to query against PlayStation :tm: Network */
         Ids?: string[];
-        /** Id of the PSN service label to consume entitlements from */
+        /** Id of the PlayStation :tm: Network service label to consume entitlements from */
         ServiceLabel?: string;
 
     }
 
     export interface PSNAccountPlayFabIdPair {
-        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier. */
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation :tm: Network
+         * identifier.
+         */
         PlayFabId?: string;
-        /** Unique PlayStation Network identifier for a user. */
+        /** Unique PlayStation :tm: Network identifier for a user. */
         PSNAccountId?: string;
 
     }
@@ -4284,6 +4300,7 @@ declare module PlayFabClientModels {
     }
 
     type PushNotificationPlatform = "ApplePushNotificationService"
+
         | "GoogleCloudMessaging";
 
     export interface PushNotificationRegistrationModel {
@@ -4313,16 +4330,17 @@ declare module PlayFabClientModels {
     }
 
     export interface RefreshPSNAuthTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Auth code returned by PSN OAuth system. */
+        /** Auth code returned by PlayStation :tm: Network OAuth system. */
         AuthCode: string;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
-        /** Redirect URI supplied to PSN when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
         RedirectUri: string;
 
     }
 
     type Region = "USCentral"
+
         | "USEast"
         | "EUWest"
         | "Singapore"
@@ -4591,6 +4609,7 @@ declare module PlayFabClientModels {
     }
 
     type SourceType = "Admin"
+
         | "BackEnd"
         | "GameClient"
         | "GameServer"
@@ -4717,6 +4736,7 @@ declare module PlayFabClientModels {
     }
 
     type SubscriptionProviderStatus = "NoError"
+
         | "Cancelled"
         | "UnknownError"
         | "BillingError"
@@ -4742,6 +4762,7 @@ declare module PlayFabClientModels {
     }
 
     type TitleActivationStatus = "None"
+
         | "ActivatedTitleKey"
         | "PendingSteam"
         | "ActivatedSteam"
@@ -4790,6 +4811,7 @@ declare module PlayFabClientModels {
     }
 
     type TradeStatus = "Invalid"
+
         | "Opening"
         | "Open"
         | "Accepting"
@@ -4798,6 +4820,7 @@ declare module PlayFabClientModels {
         | "Cancelled";
 
     type TransactionStatus = "CreateCart"
+
         | "Init"
         | "Approved"
         | "Succeeded"
@@ -5227,7 +5250,7 @@ declare module PlayFabClientModels {
         PlayFabId?: string;
         /** Personal information for the user which is considered more sensitive */
         PrivateInfo?: UserPrivateAccountInfo;
-        /** User PSN account information, if a PSN account has been linked */
+        /** User PlayStation :tm: Network account information, if a PlayStation :tm: Network account has been linked */
         PsnInfo?: UserPsnInfo;
         /** User Steam information, if a Steam account has been linked */
         SteamInfo?: UserSteamInfo;
@@ -5261,6 +5284,7 @@ declare module PlayFabClientModels {
     }
 
     type UserDataPermission = "Private"
+
         | "Public";
 
     export interface UserDataRecord {
@@ -5357,6 +5381,7 @@ declare module PlayFabClientModels {
     }
 
     type UserOrigination = "Organic"
+
         | "Steam"
         | "Google"
         | "Amazon"
@@ -5388,9 +5413,9 @@ declare module PlayFabClientModels {
     }
 
     export interface UserPsnInfo {
-        /** PSN account ID */
+        /** PlayStation :tm: Network account ID */
         PsnAccountId?: string;
-        /** PSN online ID */
+        /** PlayStation :tm: Network online ID */
         PsnOnlineId?: string;
 
     }

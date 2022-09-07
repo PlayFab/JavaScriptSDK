@@ -401,6 +401,16 @@ declare module PlayFabServerModule {
          */
         GrantItemsToUsers(request: PlayFabServerModels.GrantItemsToUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GrantItemsToUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
+         * Links the Nintendo account associated with the token to the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoserviceaccount
+         */
+        LinkNintendoServiceAccount(request: PlayFabServerModels.LinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Links the NintendoSwitchDeviceId to the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoswitchdeviceid
+         */
+        LinkNintendoSwitchDeviceId(request: PlayFabServerModels.LinkNintendoSwitchDeviceIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.LinkNintendoSwitchDeviceIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
          * Links the PlayStation :tm: Network account associated with the provided access code to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnaccount
          */
@@ -616,7 +626,17 @@ declare module PlayFabServerModule {
          */
         SubtractUserVirtualCurrency(request: PlayFabServerModels.SubtractUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
         /**
-         * Unlinks the related PSN account from the user's PlayFab account
+         * Unlinks the related Nintendo account from the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoserviceaccount
+         */
+        UnlinkNintendoServiceAccount(request: PlayFabServerModels.UnlinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Unlinks the related NintendoSwitchDeviceId from the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoswitchdeviceid
+         */
+        UnlinkNintendoSwitchDeviceId(request: PlayFabServerModels.UnlinkNintendoSwitchDeviceIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkNintendoSwitchDeviceIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        /**
+         * Unlinks the related PlayStation :tm: Network account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkpsnaccount
          */
         UnlinkPSNAccount(request: PlayFabServerModels.UnlinkPSNAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkPSNAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
@@ -916,8 +936,6 @@ declare module PlayFabServerModels {
         DurationInHours?: number;
         /** IP address to be banned. May affect multiple players. */
         IPAddress?: string;
-        /** MAC address to be banned. May affect multiple players. */
-        MACAddress?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
         /** The reason for this ban. Maximum 140 characters. */
@@ -1082,6 +1100,7 @@ declare module PlayFabServerModels {
     }
 
     type CloudScriptRevisionOption = "Live"
+
         | "Latest"
         | "Specific";
 
@@ -1128,6 +1147,7 @@ declare module PlayFabServerModels {
     }
 
     type ContinentCode = "AF"
+
         | "AN"
         | "AS"
         | "EU"
@@ -1136,6 +1156,7 @@ declare module PlayFabServerModels {
         | "SA";
 
     type CountryCode = "AF"
+
         | "AX"
         | "AL"
         | "DZ"
@@ -1398,6 +1419,7 @@ declare module PlayFabServerModels {
     }
 
     type Currency = "AED"
+
         | "AFN"
         | "ALL"
         | "AMD"
@@ -1618,6 +1640,7 @@ declare module PlayFabServerModels {
     }
 
     type EmailVerificationStatus = "Unverified"
+
         | "Pending"
         | "Confirmed";
 
@@ -1752,7 +1775,10 @@ declare module PlayFabServerModels {
         GameCenterInfo?: UserGameCenterInfo;
         /** The profile of the user, if requested. */
         Profile?: PlayerProfileModel;
-        /** Available PSN information, if the user and PlayFab friend are both connected to PSN. */
+        /**
+         * Available PlayStation :tm: Network information, if the user and PlayFab friend are both connected to PlayStation :tm:
+         * Network.
+         */
         PSNInfo?: UserPsnInfo;
         /** Available Steam information (if the user and PlayFab friend are also connected in Steam). */
         SteamInfo?: UserSteamInfo;
@@ -1768,9 +1794,11 @@ declare module PlayFabServerModels {
     }
 
     type GameInstanceState = "Open"
+
         | "Closed";
 
     type GenericErrorCodes = "Success"
+
         | "UnkownError"
         | "InvalidParams"
         | "AccountNotFound"
@@ -2393,6 +2421,7 @@ declare module PlayFabServerModels {
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
         | "MultiplayerServerBuildReferencedByBuildAlias"
+        | "MultiplayerServerBuildAliasReferencedByMatchmakingQueue"
         | "ExperimentationExperimentStopped"
         | "ExperimentationExperimentRunning"
         | "ExperimentationExperimentNotFound"
@@ -3034,15 +3063,15 @@ declare module PlayFabServerModels {
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
-        /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
+        /** Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. */
         PSNAccountIDs: string[];
 
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        /** Mapping of PlayStation :tm: Network identifiers to PlayFab identifiers. */
         Data?: PSNAccountPlayFabIdPair[];
 
     }
@@ -3080,7 +3109,7 @@ declare module PlayFabServerModels {
     }
 
     export interface GetPlayFabIDsFromXboxLiveIDsResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        /** Mapping of Xbox Live identifiers to PlayFab identifiers. */
         Data?: XboxLiveAccountPlayFabIdPair[];
 
     }
@@ -3494,18 +3523,49 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface LinkNintendoServiceAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** If another user is already linked to a specific Nintendo Switch account, unlink the other user and re-link. */
+        ForceLink?: boolean;
+        /**
+         * The JSON Web token (JWT) returned by Nintendo after login. Used to validate the request and find the user ID (Nintendo
+         * Switch subject) to link with.
+         */
+        IdentityToken: string;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface LinkNintendoSwitchDeviceIdRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** If another user is already linked to the Nintendo Switch Device ID, unlink the other user and re-link. */
+        ForceLink?: boolean;
+        /** Nintendo Switch unique identifier for the user's device. */
+        NintendoSwitchDeviceId: string;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface LinkNintendoSwitchDeviceIdResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface LinkPSNAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Authentication code provided by the PlayStation Network. */
+        /** Authentication code provided by the PlayStation :tm: Network. */
         AuthCode: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
-        /** Redirect URI supplied to PSN when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
         RedirectUri: string;
 
     }
@@ -3581,6 +3641,7 @@ declare module PlayFabServerModels {
     }
 
     type LoginIdentityProvider = "Unknown"
+
         | "PlayFab"
         | "Custom"
         | "GameCenter"
@@ -3804,6 +3865,7 @@ declare module PlayFabServerModels {
     }
 
     type PlayerConnectionState = "Unassigned"
+
         | "Connecting"
         | "Participating"
         | "Participated";
@@ -4012,9 +4074,12 @@ declare module PlayFabServerModels {
     }
 
     export interface PSNAccountPlayFabIdPair {
-        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier. */
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation :tm: Network
+         * identifier.
+         */
         PlayFabId?: string;
-        /** Unique PlayStation Network identifier for a user. */
+        /** Unique PlayStation :tm: Network identifier for a user. */
         PSNAccountId?: string;
 
     }
@@ -4036,6 +4101,7 @@ declare module PlayFabServerModels {
     }
 
     type PushNotificationPlatform = "ApplePushNotificationService"
+
         | "GoogleCloudMessaging";
 
     export interface PushNotificationRegistration {
@@ -4115,6 +4181,7 @@ declare module PlayFabServerModels {
     }
 
     type Region = "USCentral"
+
         | "USEast"
         | "EUWest"
         | "Singapore"
@@ -4232,6 +4299,7 @@ declare module PlayFabServerModels {
     }
 
     type ResultTableNodeType = "ItemId"
+
         | "TableId";
 
     export interface RevokeAllBansForUserRequest extends PlayFabModule.IPlayFabRequestCommon {
@@ -4540,6 +4608,7 @@ declare module PlayFabServerModels {
     }
 
     type SourceType = "Admin"
+
         | "BackEnd"
         | "GameClient"
         | "GameServer"
@@ -4642,6 +4711,7 @@ declare module PlayFabServerModels {
     }
 
     type SubscriptionProviderStatus = "NoError"
+
         | "Cancelled"
         | "UnknownError"
         | "BillingError"
@@ -4683,6 +4753,7 @@ declare module PlayFabServerModels {
     }
 
     type TitleActivationStatus = "None"
+
         | "ActivatedTitleKey"
         | "PendingSteam"
         | "ActivatedSteam"
@@ -4713,6 +4784,28 @@ declare module PlayFabServerModels {
         PlayFabId?: string;
         /** Unique Twitch identifier for a user. */
         TwitchId?: string;
+
+    }
+
+    export interface UnlinkNintendoServiceAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface UnlinkNintendoSwitchDeviceIdRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Nintendo Switch Device identifier for the user. If not specified, the most recently signed in device ID will be used. */
+        NintendoSwitchDeviceId?: string;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface UnlinkNintendoSwitchDeviceIdResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -4822,8 +4915,6 @@ declare module PlayFabServerModels {
         Expires?: string;
         /** The updated IP address for the ban. Null for no change. */
         IPAddress?: string;
-        /** The updated MAC address for the ban. Null for no change. */
-        MACAddress?: string;
         /** Whether to make this ban permanent. Set to true to make this ban permanent. This will not modify Active state. */
         Permanent?: boolean;
         /** The updated reason for the ban to be updated. Maximum 140 characters. Null for no change. */
@@ -5035,7 +5126,7 @@ declare module PlayFabServerModels {
         PlayFabId?: string;
         /** Personal information for the user which is considered more sensitive */
         PrivateInfo?: UserPrivateAccountInfo;
-        /** User PSN account information, if a PSN account has been linked */
+        /** User PlayStation :tm: Network account information, if a PlayStation :tm: Network account has been linked */
         PsnInfo?: UserPsnInfo;
         /** User Steam information, if a Steam account has been linked */
         SteamInfo?: UserSteamInfo;
@@ -5069,6 +5160,7 @@ declare module PlayFabServerModels {
     }
 
     type UserDataPermission = "Private"
+
         | "Public";
 
     export interface UserDataRecord {
@@ -5165,6 +5257,7 @@ declare module PlayFabServerModels {
     }
 
     type UserOrigination = "Organic"
+
         | "Steam"
         | "Google"
         | "Amazon"
@@ -5196,9 +5289,9 @@ declare module PlayFabServerModels {
     }
 
     export interface UserPsnInfo {
-        /** PSN account ID */
+        /** PlayStation :tm: Network account ID */
         PsnAccountId?: string;
-        /** PSN online ID */
+        /** PlayStation :tm: Network online ID */
         PsnOnlineId?: string;
 
     }

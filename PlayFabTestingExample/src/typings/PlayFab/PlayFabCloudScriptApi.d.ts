@@ -87,6 +87,7 @@ declare module PlayFabCloudScriptModels {
     }
 
     type CloudScriptRevisionOption = "Live"
+
         | "Latest"
         | "Specific";
 
@@ -101,6 +102,7 @@ declare module PlayFabCloudScriptModels {
     }
 
     type ContinentCode = "AF"
+
         | "AN"
         | "AS"
         | "EU"
@@ -109,6 +111,7 @@ declare module PlayFabCloudScriptModels {
         | "SA";
 
     type CountryCode = "AF"
+
         | "AX"
         | "AL"
         | "DZ"
@@ -359,6 +362,7 @@ declare module PlayFabCloudScriptModels {
         | "ZW";
 
     type EmailVerificationStatus = "Unverified"
+
         | "Pending"
         | "Confirmed";
 
@@ -570,6 +574,7 @@ declare module PlayFabCloudScriptModels {
     }
 
     type LoginIdentityProvider = "Unknown"
+
         | "PlayFab"
         | "Custom"
         | "GameCenter"
@@ -740,6 +745,7 @@ declare module PlayFabCloudScriptModels {
     }
 
     type PushNotificationPlatform = "ApplePushNotificationService"
+
         | "GoogleCloudMessaging";
 
     export interface PushNotificationRegistrationModel {
@@ -824,6 +830,7 @@ declare module PlayFabCloudScriptModels {
     }
 
     type SubscriptionProviderStatus = "NoError"
+
         | "Cancelled"
         | "UnknownError"
         | "BillingError"
@@ -839,6 +846,7 @@ declare module PlayFabCloudScriptModels {
     }
 
     type TriggerType = "HTTP"
+
         | "Queue";
 
     export interface UnregisterFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
