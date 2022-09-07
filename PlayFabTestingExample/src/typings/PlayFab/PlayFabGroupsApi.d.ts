@@ -547,6 +547,7 @@ declare module PlayFabGroupsModels {
     }
 
     type OperationTypes = "Created"
+
         | "Updated"
         | "Deleted"
         | "None";

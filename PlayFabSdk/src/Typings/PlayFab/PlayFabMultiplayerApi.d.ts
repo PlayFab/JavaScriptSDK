@@ -419,6 +419,7 @@ declare module PlayFabMultiplayerModule {
 
 declare module PlayFabMultiplayerModels {
     type AccessPolicy = "Public"
+
         | "Friends"
         | "Private";
 
@@ -447,16 +448,20 @@ declare module PlayFabMultiplayerModels {
     }
 
     type AttributeMergeFunction = "Min"
+
         | "Max"
         | "Average";
 
     type AttributeNotSpecifiedBehavior = "UseDefault"
+
         | "MatchAny";
 
     type AttributeSource = "User"
+
         | "PlayerEntity";
 
     type AzureRegion = "AustraliaEast"
+
         | "AustraliaSoutheast"
         | "BrazilSouth"
         | "CentralUs"
@@ -481,6 +486,7 @@ declare module PlayFabMultiplayerModels {
         | "UkSouth";
 
     type AzureVmFamily = "A"
+
         | "Av2"
         | "Dv2"
         | "Dv3"
@@ -500,6 +506,7 @@ declare module PlayFabMultiplayerModels {
         | "HBv3";
 
     type AzureVmSize = "Standard_A1"
+
         | "Standard_A2"
         | "Standard_A3"
         | "Standard_A4"
@@ -675,6 +682,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type CancellationReason = "Requested"
+
         | "Internal"
         | "Timeout";
 
@@ -734,6 +742,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type ContainerFlavor = "ManagedWindowsServerCore"
+
         | "CustomLinux"
         | "ManagedWindowsServerCorePreview"
         | "Invalid";
@@ -1816,12 +1825,8 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMultiplayerServerDetailsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The guid string build ID of the multiplayer server to get details for. */
-        BuildId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The region the multiplayer server is located in to get details for. */
-        Region?: string;
         /**
          * The title generated guid string session ID of the multiplayer server to get details for. This is to keep track of
          * multiplayer server sessions.
@@ -2597,6 +2602,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type MembershipLock = "Unlocked"
+
         | "Locked";
 
     export interface MonitoringApplicationConfiguration {
@@ -2642,6 +2648,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type OsPlatform = "Windows"
+
         | "Linux";
 
     export interface OverrideDouble {
@@ -2657,6 +2664,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type OwnerMigrationPolicy = "None"
+
         | "Automatic"
         | "Manual"
         | "Server";
@@ -2688,6 +2696,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type ProtocolType = "TCP"
+
         | "UDP";
 
     export interface QosServer {
@@ -2892,6 +2901,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type ServerType = "Container"
+
         | "Process";
 
     export interface SetIntersectionRule {
@@ -3057,6 +3067,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type SubscriptionType = "LobbyChange"
+
         | "LobbyInvite";
 
     export interface TeamDifferenceRule {
@@ -3118,6 +3129,7 @@ declare module PlayFabMultiplayerModels {
     }
 
     type TitleMultiplayerServerEnabledStatus = "Initializing"
+
         | "Enabled"
         | "Disabled";
 

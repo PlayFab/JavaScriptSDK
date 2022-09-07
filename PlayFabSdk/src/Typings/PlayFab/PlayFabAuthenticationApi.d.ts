@@ -80,10 +80,12 @@ declare module PlayFabAuthenticationModels {
     }
 
     type IdentifiedDeviceType = "Unknown"
+
         | "XboxOne"
         | "Scarlett";
 
     type LoginIdentityProvider = "Unknown"
+
         | "PlayFab"
         | "Custom"
         | "GameCenter"
