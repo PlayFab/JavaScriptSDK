@@ -3048,7 +3048,10 @@ declare module PlayFabMultiplayerModels {
          * associated with this handle.
          */
         PubSubConnectionHandle: string;
-        /** The name of the resource to subscribe to. */
+        /**
+         * The name of the resource to subscribe to. It follows the format {queueName}|{ticketId} for MatchTicketStatusChange. For
+         * MatchInvite, ResourceId is @me.
+         */
         ResourceId: string;
         /** Version number for the subscription of this resource. Current supported version must be 1. */
         SubscriptionVersion: number;
@@ -3162,7 +3165,10 @@ declare module PlayFabMultiplayerModels {
         EntityKey: EntityKey;
         /** Opaque string, given to a client upon creating a connection with PubSub. */
         PubSubConnectionHandle: string;
-        /** The resource to unsubscribe from. */
+        /**
+         * The name of the resource to unsubscribe from. It follows the format {queueName}|{ticketId} for MatchTicketStatusChange.
+         * For MatchInvite, ResourceId is @me.
+         */
         ResourceId: string;
         /** Version number for the unsubscription from this resource. */
         SubscriptionVersion: number;

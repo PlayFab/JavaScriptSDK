@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.126.220908",
+        sdkVersion: "1.129.220926",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.126.220908"
+            sdk: "JavaScriptSDK-1.129.220926"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
-PlayFab.sdkVersion = "1.126.220908";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
+PlayFab.sdkVersion = "1.129.220926";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -239,6 +239,10 @@ PlayFab.AuthenticationApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
+    },
+
+    AuthenticateGameServerWithCustomId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/GameServerIdentity/AuthenticateGameServerWithCustomId", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     Delete: function (request, callback, customData, extraHeaders) {
