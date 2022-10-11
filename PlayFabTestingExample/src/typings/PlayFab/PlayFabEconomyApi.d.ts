@@ -1664,7 +1664,7 @@ declare module PlayFabEconomyModels {
     export interface SearchItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** An opaque token used to retrieve the next page of items, if any are available. */
         ContinuationToken?: string;
-        /** Number of items to retrieve. Maximum page size is 225. Default value is 10. */
+        /** Number of items to retrieve. Maximum page size is 50. Default value is 10. */
         Count: number;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };

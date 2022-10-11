@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.129.220926",
+        sdkVersion: "1.130.221010",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.129.220926"
+            sdk: "JavaScriptSDK-1.130.221010"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
-PlayFab.sdkVersion = "1.129.220926";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.sdkVersion = "1.130.221010";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -242,7 +242,13 @@ PlayFab.AuthenticationApi = {
     },
 
     AuthenticateGameServerWithCustomId: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/GameServerIdentity/AuthenticateGameServerWithCustomId", request, "X-EntityToken", callback, customData, extraHeaders);
+        var overloadCallback = function (result, error) {
+            if (result != null && result.data.EntityToken != null && result.data.EntityToken.EntityToken != null)
+                PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+            if (callback != null && typeof (callback) === "function")
+                callback(result, error);
+        };
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/GameServerIdentity/AuthenticateGameServerWithCustomId", request, "X-EntityToken", overloadCallback, customData, extraHeaders);
     },
 
     Delete: function (request, callback, customData, extraHeaders) {
