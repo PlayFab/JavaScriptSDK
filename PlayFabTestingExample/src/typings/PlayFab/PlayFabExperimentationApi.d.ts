@@ -8,67 +8,67 @@ declare module PlayFabExperimentationModule {
          * Creates a new experiment exclusion group for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/createexclusiongroup
          */
-        CreateExclusionGroup(request: PlayFabExperimentationModels.CreateExclusionGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.CreateExclusionGroupResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateExclusionGroup(request: PlayFabExperimentationModels.CreateExclusionGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.CreateExclusionGroupResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.CreateExclusionGroupResult>>;
         /**
          * Creates a new experiment for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/createexperiment
          */
-        CreateExperiment(request: PlayFabExperimentationModels.CreateExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.CreateExperimentResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateExperiment(request: PlayFabExperimentationModels.CreateExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.CreateExperimentResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.CreateExperimentResult>>;
         /**
          * Deletes an existing exclusion group for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/deleteexclusiongroup
          */
-        DeleteExclusionGroup(request: PlayFabExperimentationModels.DeleteExclusionGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteExclusionGroup(request: PlayFabExperimentationModels.DeleteExclusionGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>>;
         /**
          * Deletes an existing experiment for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/deleteexperiment
          */
-        DeleteExperiment(request: PlayFabExperimentationModels.DeleteExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteExperiment(request: PlayFabExperimentationModels.DeleteExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>>;
         /**
          * Gets the details of all exclusion groups for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexclusiongroups
          */
-        GetExclusionGroups(request: PlayFabExperimentationModels.GetExclusionGroupsRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExclusionGroupsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetExclusionGroups(request: PlayFabExperimentationModels.GetExclusionGroupsRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExclusionGroupsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExclusionGroupsResult>>;
         /**
          * Gets the details of all exclusion groups for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexclusiongrouptraffic
          */
-        GetExclusionGroupTraffic(request: PlayFabExperimentationModels.GetExclusionGroupTrafficRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExclusionGroupTrafficResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetExclusionGroupTraffic(request: PlayFabExperimentationModels.GetExclusionGroupTrafficRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExclusionGroupTrafficResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExclusionGroupTrafficResult>>;
         /**
          * Gets the details of all experiments for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexperiments
          */
-        GetExperiments(request: PlayFabExperimentationModels.GetExperimentsRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExperimentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetExperiments(request: PlayFabExperimentationModels.GetExperimentsRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExperimentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetExperimentsResult>>;
         /**
          * Gets the latest scorecard of the experiment for the title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getlatestscorecard
          */
-        GetLatestScorecard(request: PlayFabExperimentationModels.GetLatestScorecardRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetLatestScorecardResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetLatestScorecard(request: PlayFabExperimentationModels.GetLatestScorecardRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetLatestScorecardResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetLatestScorecardResult>>;
         /**
          * Gets the treatment assignments for a player for every running experiment in the title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/gettreatmentassignment
          */
-        GetTreatmentAssignment(request: PlayFabExperimentationModels.GetTreatmentAssignmentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetTreatmentAssignmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTreatmentAssignment(request: PlayFabExperimentationModels.GetTreatmentAssignmentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetTreatmentAssignmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.GetTreatmentAssignmentResult>>;
         /**
          * Starts an existing experiment for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/startexperiment
          */
-        StartExperiment(request: PlayFabExperimentationModels.StartExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        StartExperiment(request: PlayFabExperimentationModels.StartExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>>;
         /**
          * Stops an existing experiment for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/stopexperiment
          */
-        StopExperiment(request: PlayFabExperimentationModels.StopExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        StopExperiment(request: PlayFabExperimentationModels.StopExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>>;
         /**
          * Updates an existing exclusion group for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/updateexclusiongroup
          */
-        UpdateExclusionGroup(request: PlayFabExperimentationModels.UpdateExclusionGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateExclusionGroup(request: PlayFabExperimentationModels.UpdateExclusionGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>>;
         /**
          * Updates an existing experiment for a title.
          * https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/updateexperiment
          */
-        UpdateExperiment(request: PlayFabExperimentationModels.UpdateExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateExperiment(request: PlayFabExperimentationModels.UpdateExperimentRequest, callback: PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabExperimentationModels.EmptyResponse>>;
 
     }
 }

@@ -9,33 +9,33 @@ declare module PlayFabInsightsModule {
          * performance and data storage retention limits.
          * https://docs.microsoft.com/rest/api/playfab/insights/analytics/getdetails
          */
-        GetDetails(request: PlayFabInsightsModels.InsightsEmptyRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetDetails(request: PlayFabInsightsModels.InsightsEmptyRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetDetailsResponse>>;
         /**
          * Retrieves the range of allowed values for performance and data storage retention values as well as the submeter details
          * for each performance level.
          * https://docs.microsoft.com/rest/api/playfab/insights/analytics/getlimits
          */
-        GetLimits(request: PlayFabInsightsModels.InsightsEmptyRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetLimitsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetLimits(request: PlayFabInsightsModels.InsightsEmptyRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetLimitsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetLimitsResponse>>;
         /**
          * Gets the status of a SetPerformance or SetStorageRetention operation.
          * https://docs.microsoft.com/rest/api/playfab/insights/analytics/getoperationstatus
          */
-        GetOperationStatus(request: PlayFabInsightsModels.InsightsGetOperationStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetOperationStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetOperationStatus(request: PlayFabInsightsModels.InsightsGetOperationStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetOperationStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetOperationStatusResponse>>;
         /**
          * Gets a list of pending SetPerformance and/or SetStorageRetention operations for the title.
          * https://docs.microsoft.com/rest/api/playfab/insights/analytics/getpendingoperations
          */
-        GetPendingOperations(request: PlayFabInsightsModels.InsightsGetPendingOperationsRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetPendingOperationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPendingOperations(request: PlayFabInsightsModels.InsightsGetPendingOperationsRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetPendingOperationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsGetPendingOperationsResponse>>;
         /**
          * Sets the Insights performance level value for the title.
          * https://docs.microsoft.com/rest/api/playfab/insights/analytics/setperformance
          */
-        SetPerformance(request: PlayFabInsightsModels.InsightsSetPerformanceRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsOperationResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetPerformance(request: PlayFabInsightsModels.InsightsSetPerformanceRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsOperationResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsOperationResponse>>;
         /**
          * Sets the Insights data storage retention days value for the title.
          * https://docs.microsoft.com/rest/api/playfab/insights/analytics/setstorageretention
          */
-        SetStorageRetention(request: PlayFabInsightsModels.InsightsSetStorageRetentionRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsOperationResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetStorageRetention(request: PlayFabInsightsModels.InsightsSetStorageRetentionRequest, callback: PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsOperationResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabInsightsModels.InsightsOperationResponse>>;
 
     }
 }

@@ -12,93 +12,93 @@ declare module PlayFabClientModule {
          * items will be swapped between the two players' inventories.
          * https://docs.microsoft.com/rest/api/playfab/client/trading/accepttrade
          */
-        AcceptTrade(request: PlayFabClientModels.AcceptTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AcceptTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AcceptTrade(request: PlayFabClientModels.AcceptTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AcceptTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AcceptTradeResponse>>;
         /**
          * Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At
          * least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
          * https://docs.microsoft.com/rest/api/playfab/client/friend-list-management/addfriend
          */
-        AddFriend(request: PlayFabClientModels.AddFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddFriendResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddFriend(request: PlayFabClientModels.AddFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddFriendResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AddFriendResult>>;
         /**
          * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
          * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
          * authentication credentials, as the intent is that it is easily accessible by other players.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/addgenericid
          */
-        AddGenericID(request: PlayFabClientModels.AddGenericIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddGenericIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddGenericID(request: PlayFabClientModels.AddGenericIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddGenericIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AddGenericIDResult>>;
         /**
          * Adds or updates a contact email to the player's profile.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/addorupdatecontactemail
          */
-        AddOrUpdateContactEmail(request: PlayFabClientModels.AddOrUpdateContactEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddOrUpdateContactEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddOrUpdateContactEmail(request: PlayFabClientModels.AddOrUpdateContactEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddOrUpdateContactEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AddOrUpdateContactEmailResult>>;
         /**
          * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
          * in the group can add new members. Shared Groups are designed for sharing data between a very small number of players,
          * please see our guide: https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
          * https://docs.microsoft.com/rest/api/playfab/client/shared-group-data/addsharedgroupmembers
          */
-        AddSharedGroupMembers(request: PlayFabClientModels.AddSharedGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddSharedGroupMembersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddSharedGroupMembers(request: PlayFabClientModels.AddSharedGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddSharedGroupMembersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AddSharedGroupMembersResult>>;
         /**
          * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device
          * ID login.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/addusernamepassword
          */
-        AddUsernamePassword(request: PlayFabClientModels.AddUsernamePasswordRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddUsernamePasswordResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddUsernamePassword(request: PlayFabClientModels.AddUsernamePasswordRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddUsernamePasswordResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AddUsernamePasswordResult>>;
         /**
          * Increments the user's balance of the specified virtual currency by the stated amount
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/adduservirtualcurrency
          */
-        AddUserVirtualCurrency(request: PlayFabClientModels.AddUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddUserVirtualCurrency(request: PlayFabClientModels.AddUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>>;
         /**
          * Registers the Android device to receive push notifications
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/androiddevicepushnotificationregistration
          */
-        AndroidDevicePushNotificationRegistration(request: PlayFabClientModels.AndroidDevicePushNotificationRegistrationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AndroidDevicePushNotificationRegistrationResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AndroidDevicePushNotificationRegistration(request: PlayFabClientModels.AndroidDevicePushNotificationRegistrationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AndroidDevicePushNotificationRegistrationResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AndroidDevicePushNotificationRegistrationResult>>;
         /**
          * Attributes an install for advertisment.
          * https://docs.microsoft.com/rest/api/playfab/client/advertising/attributeinstall
          */
-        AttributeInstall(request: PlayFabClientModels.AttributeInstallRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AttributeInstallResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AttributeInstall(request: PlayFabClientModels.AttributeInstallRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AttributeInstallResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AttributeInstallResult>>;
         /**
          * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
          * can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
          * players from accepting them, for trades that can be claimed by more than one player).
          * https://docs.microsoft.com/rest/api/playfab/client/trading/canceltrade
          */
-        CancelTrade(request: PlayFabClientModels.CancelTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CancelTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CancelTrade(request: PlayFabClientModels.CancelTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CancelTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.CancelTradeResponse>>;
         /**
          * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and virtual
          * currency balances as appropriate
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/confirmpurchase
          */
-        ConfirmPurchase(request: PlayFabClientModels.ConfirmPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConfirmPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ConfirmPurchase(request: PlayFabClientModels.ConfirmPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConfirmPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ConfirmPurchaseResult>>;
         /**
          * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/consumeitem
          */
-        ConsumeItem(request: PlayFabClientModels.ConsumeItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ConsumeItem(request: PlayFabClientModels.ConsumeItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeItemResult>>;
         /**
          * Grants the player's current entitlements from Microsoft Store's Collection API
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumemicrosoftstoreentitlements
          */
-        ConsumeMicrosoftStoreEntitlements(request: PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ConsumeMicrosoftStoreEntitlements(request: PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeMicrosoftStoreEntitlementsResponse>>;
         /**
          * Checks for any new consumable entitlements. If any are found, they are consumed (if they're consumables) and added as
          * PlayFab items
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements
          */
-        ConsumePS5Entitlements(request: PlayFabClientModels.ConsumePS5EntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePS5EntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ConsumePS5Entitlements(request: PlayFabClientModels.ConsumePS5EntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePS5EntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePS5EntitlementsResult>>;
         /**
          * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements
          */
-        ConsumePSNEntitlements(request: PlayFabClientModels.ConsumePSNEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePSNEntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ConsumePSNEntitlements(request: PlayFabClientModels.ConsumePSNEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePSNEntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ConsumePSNEntitlementsResult>>;
         /**
          * Grants the player's current entitlements from Xbox Live, consuming all availble items in Xbox and granting them to the
          * player's PlayFab inventory. This call is idempotent and will not grant previously granted items to the player.
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumexboxentitlements
          */
-        ConsumeXboxEntitlements(request: PlayFabClientModels.ConsumeXboxEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeXboxEntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ConsumeXboxEntitlements(request: PlayFabClientModels.ConsumeXboxEntitlementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeXboxEntitlementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeXboxEntitlementsResult>>;
         /**
          * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
          * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
@@ -106,59 +106,59 @@ declare module PlayFabClientModule {
          * https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
          * https://docs.microsoft.com/rest/api/playfab/client/shared-group-data/createsharedgroup
          */
-        CreateSharedGroup(request: PlayFabClientModels.CreateSharedGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CreateSharedGroupResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateSharedGroup(request: PlayFabClientModels.CreateSharedGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CreateSharedGroupResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.CreateSharedGroupResult>>;
         /**
          * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
          * PlayFab ID is the entity ID of the player's master_player_account entity.
          * https://docs.microsoft.com/rest/api/playfab/client/server-side-cloud-script/executecloudscript
          */
-        ExecuteCloudScript(request: PlayFabClientModels.ExecuteCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ExecuteCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ExecuteCloudScript(request: PlayFabClientModels.ExecuteCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ExecuteCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ExecuteCloudScriptResult>>;
         /**
          * Retrieves the user's PlayFab account details
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getaccountinfo
          */
-        GetAccountInfo(request: PlayFabClientModels.GetAccountInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetAccountInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetAccountInfo(request: PlayFabClientModels.GetAccountInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetAccountInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetAccountInfoResult>>;
         /**
          * Returns a list of ad placements and a reward for each
          * https://docs.microsoft.com/rest/api/playfab/client/advertising/getadplacements
          */
-        GetAdPlacements(request: PlayFabClientModels.GetAdPlacementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetAdPlacementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetAdPlacements(request: PlayFabClientModels.GetAdPlacementsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetAdPlacementsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetAdPlacementsResult>>;
         /**
          * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
          * evaluated with the parent PlayFabId to guarantee uniqueness.
          * https://docs.microsoft.com/rest/api/playfab/client/characters/getalluserscharacters
          */
-        GetAllUsersCharacters(request: PlayFabClientModels.ListUsersCharactersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ListUsersCharactersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetAllUsersCharacters(request: PlayFabClientModels.ListUsersCharactersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ListUsersCharactersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ListUsersCharactersResult>>;
         /**
          * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
          * https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getcatalogitems
          */
-        GetCatalogItems(request: PlayFabClientModels.GetCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCatalogItems(request: PlayFabClientModels.GetCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCatalogItemsResult>>;
         /**
          * Retrieves the title-specific custom data for the character which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/client/character-data/getcharacterdata
          */
-        GetCharacterData(request: PlayFabClientModels.GetCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCharacterData(request: PlayFabClientModels.GetCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterDataResult>>;
         /**
          * Retrieves the specified character's current inventory of virtual goods
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getcharacterinventory
          */
-        GetCharacterInventory(request: PlayFabClientModels.GetCharacterInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCharacterInventory(request: PlayFabClientModels.GetCharacterInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterInventoryResult>>;
         /**
          * Retrieves a list of ranked characters for the given statistic, starting from the indicated point in the leaderboard
          * https://docs.microsoft.com/rest/api/playfab/client/characters/getcharacterleaderboard
          */
-        GetCharacterLeaderboard(request: PlayFabClientModels.GetCharacterLeaderboardRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterLeaderboardResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCharacterLeaderboard(request: PlayFabClientModels.GetCharacterLeaderboardRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterLeaderboardResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterLeaderboardResult>>;
         /**
          * Retrieves the title-specific custom data for the character which can only be read by the client
          * https://docs.microsoft.com/rest/api/playfab/client/character-data/getcharacterreadonlydata
          */
-        GetCharacterReadOnlyData(request: PlayFabClientModels.GetCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCharacterReadOnlyData(request: PlayFabClientModels.GetCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterDataResult>>;
         /**
          * Retrieves the details of all title-specific statistics for the user
          * https://docs.microsoft.com/rest/api/playfab/client/characters/getcharacterstatistics
          */
-        GetCharacterStatistics(request: PlayFabClientModels.GetCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCharacterStatistics(request: PlayFabClientModels.GetCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterStatisticsResult>>;
         /**
          * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent HTTP GET to the returned
          * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
@@ -168,192 +168,192 @@ declare module PlayFabClientModule {
          * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
          * https://docs.microsoft.com/rest/api/playfab/client/content/getcontentdownloadurl
          */
-        GetContentDownloadUrl(request: PlayFabClientModels.GetContentDownloadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetContentDownloadUrlResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetContentDownloadUrl(request: PlayFabClientModels.GetContentDownloadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetContentDownloadUrlResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetContentDownloadUrlResult>>;
         /**
          * Get details about all current running game servers matching the given parameters.
          * https://docs.microsoft.com/rest/api/playfab/client/matchmaking/getcurrentgames
          */
-        GetCurrentGames(request: PlayFabClientModels.CurrentGamesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CurrentGamesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCurrentGames(request: PlayFabClientModels.CurrentGamesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CurrentGamesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.CurrentGamesResult>>;
         /**
          * Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in
          * the leaderboard
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getfriendleaderboard
          */
-        GetFriendLeaderboard(request: PlayFabClientModels.GetFriendLeaderboardRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetFriendLeaderboard(request: PlayFabClientModels.GetFriendLeaderboardRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardResult>>;
         /**
          * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab
          * user. If PlayFabId is empty or null will return currently logged in user.
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getfriendleaderboardaroundplayer
          */
-        GetFriendLeaderboardAroundPlayer(request: PlayFabClientModels.GetFriendLeaderboardAroundPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetFriendLeaderboardAroundPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetFriendLeaderboardAroundPlayer(request: PlayFabClientModels.GetFriendLeaderboardAroundPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetFriendLeaderboardAroundPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetFriendLeaderboardAroundPlayerResult>>;
         /**
          * Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from
          * linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
          * https://docs.microsoft.com/rest/api/playfab/client/friend-list-management/getfriendslist
          */
-        GetFriendsList(request: PlayFabClientModels.GetFriendsListRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetFriendsListResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetFriendsList(request: PlayFabClientModels.GetFriendsListRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetFriendsListResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetFriendsListResult>>;
         /**
          * Get details about the regions hosting game servers matching the given parameters.
          * https://docs.microsoft.com/rest/api/playfab/client/matchmaking/getgameserverregions
          */
-        GetGameServerRegions(request: PlayFabClientModels.GameServerRegionsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GameServerRegionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetGameServerRegions(request: PlayFabClientModels.GameServerRegionsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GameServerRegionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GameServerRegionsResult>>;
         /**
          * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getleaderboard
          */
-        GetLeaderboard(request: PlayFabClientModels.GetLeaderboardRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetLeaderboard(request: PlayFabClientModels.GetLeaderboardRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardResult>>;
         /**
          * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
          * https://docs.microsoft.com/rest/api/playfab/client/characters/getleaderboardaroundcharacter
          */
-        GetLeaderboardAroundCharacter(request: PlayFabClientModels.GetLeaderboardAroundCharacterRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardAroundCharacterResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetLeaderboardAroundCharacter(request: PlayFabClientModels.GetLeaderboardAroundCharacterRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardAroundCharacterResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardAroundCharacterResult>>;
         /**
          * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or
          * null will return currently logged in user.
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getleaderboardaroundplayer
          */
-        GetLeaderboardAroundPlayer(request: PlayFabClientModels.GetLeaderboardAroundPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardAroundPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetLeaderboardAroundPlayer(request: PlayFabClientModels.GetLeaderboardAroundPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardAroundPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardAroundPlayerResult>>;
         /**
          * Retrieves a list of all of the user's characters for the given statistic.
          * https://docs.microsoft.com/rest/api/playfab/client/characters/getleaderboardforusercharacters
          */
-        GetLeaderboardForUserCharacters(request: PlayFabClientModels.GetLeaderboardForUsersCharactersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardForUsersCharactersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetLeaderboardForUserCharacters(request: PlayFabClientModels.GetLeaderboardForUsersCharactersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardForUsersCharactersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardForUsersCharactersResult>>;
         /**
          * For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the client
          * completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the client to
          * create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpaymenttoken
          */
-        GetPaymentToken(request: PlayFabClientModels.GetPaymentTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPaymentTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPaymentToken(request: PlayFabClientModels.GetPaymentTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPaymentTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPaymentTokenResult>>;
         /**
          * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
          * https://docs.microsoft.com/gaming/playfab/features/multiplayer/photon/quickstart for more details.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/getphotonauthenticationtoken
          */
-        GetPhotonAuthenticationToken(request: PlayFabClientModels.GetPhotonAuthenticationTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPhotonAuthenticationTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPhotonAuthenticationToken(request: PlayFabClientModels.GetPhotonAuthenticationTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPhotonAuthenticationTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPhotonAuthenticationTokenResult>>;
         /**
          * Retrieves all of the user's different kinds of info.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayercombinedinfo
          */
-        GetPlayerCombinedInfo(request: PlayFabClientModels.GetPlayerCombinedInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerCombinedInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerCombinedInfo(request: PlayFabClientModels.GetPlayerCombinedInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerCombinedInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerCombinedInfoResult>>;
         /**
          * Retrieves the player's profile
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayerprofile
          */
-        GetPlayerProfile(request: PlayFabClientModels.GetPlayerProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerProfileResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerProfile(request: PlayFabClientModels.GetPlayerProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerProfileResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerProfileResult>>;
         /**
          * List all segments that a player currently belongs to at this moment in time.
          * https://docs.microsoft.com/rest/api/playfab/client/playstream/getplayersegments
          */
-        GetPlayerSegments(request: PlayFabClientModels.GetPlayerSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerSegments(request: PlayFabClientModels.GetPlayerSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerSegmentsResult>>;
         /**
          * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local
          * player.
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getplayerstatistics
          */
-        GetPlayerStatistics(request: PlayFabClientModels.GetPlayerStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerStatistics(request: PlayFabClientModels.GetPlayerStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerStatisticsResult>>;
         /**
          * Retrieves the information on the available versions of the specified statistic.
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getplayerstatisticversions
          */
-        GetPlayerStatisticVersions(request: PlayFabClientModels.GetPlayerStatisticVersionsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerStatisticVersionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerStatisticVersions(request: PlayFabClientModels.GetPlayerStatisticVersionsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerStatisticVersionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerStatisticVersionsResult>>;
         /**
          * Get all tags with a given Namespace (optional) from a player profile.
          * https://docs.microsoft.com/rest/api/playfab/client/playstream/getplayertags
          */
-        GetPlayerTags(request: PlayFabClientModels.GetPlayerTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerTagsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerTags(request: PlayFabClientModels.GetPlayerTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerTagsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerTagsResult>>;
         /**
          * Gets all trades the player has either opened or accepted, optionally filtered by trade status.
          * https://docs.microsoft.com/rest/api/playfab/client/trading/getplayertrades
          */
-        GetPlayerTrades(request: PlayFabClientModels.GetPlayerTradesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerTradesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerTrades(request: PlayFabClientModels.GetPlayerTradesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerTradesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayerTradesResponse>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromfacebookids
          */
-        GetPlayFabIDsFromFacebookIDs(request: PlayFabClientModels.GetPlayFabIDsFromFacebookIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromFacebookIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromFacebookIDs(request: PlayFabClientModels.GetPlayFabIDsFromFacebookIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromFacebookIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromFacebookIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Game identifiers.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromfacebookinstantgamesids
          */
-        GetPlayFabIDsFromFacebookInstantGamesIds(request: PlayFabClientModels.GetPlayFabIDsFromFacebookInstantGamesIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromFacebookInstantGamesIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromFacebookInstantGamesIds(request: PlayFabClientModels.GetPlayFabIDsFromFacebookInstantGamesIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromFacebookInstantGamesIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromFacebookInstantGamesIdsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center
          * Programming Guide as the Player Identifier).
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromgamecenterids
          */
-        GetPlayFabIDsFromGameCenterIDs(request: PlayFabClientModels.GetPlayFabIDsFromGameCenterIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGameCenterIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromGameCenterIDs(request: PlayFabClientModels.GetPlayFabIDsFromGameCenterIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGameCenterIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGameCenterIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
          * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
          * added to the player account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromgenericids
          */
-        GetPlayFabIDsFromGenericIDs(request: PlayFabClientModels.GetPlayFabIDsFromGenericIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGenericIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromGenericIDs(request: PlayFabClientModels.GetPlayFabIDsFromGenericIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGenericIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGenericIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for
          * the user accounts, available as "id" in the Google+ People API calls.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromgoogleids
          */
-        GetPlayFabIDsFromGoogleIDs(request: PlayFabClientModels.GetPlayFabIDsFromGoogleIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGoogleIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromGoogleIDs(request: PlayFabClientModels.GetPlayFabIDsFromGoogleIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGoogleIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGoogleIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Google Play Games identifiers. The Google Play Games
          * identifiers are the IDs for the user accounts, available as "playerId" in the Google Play Games Services - Players API
          * calls.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromgoogleplaygamesplayerids
          */
-        GetPlayFabIDsFromGooglePlayGamesPlayerIDs(request: PlayFabClientModels.GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromGooglePlayGamesPlayerIDs(request: PlayFabClientModels.GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the
          * IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex:
          * http://developers.kongregate.com/docs/client/getUserId).
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromkongregateids
          */
-        GetPlayFabIDsFromKongregateIDs(request: PlayFabClientModels.GetPlayFabIDsFromKongregateIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromKongregateIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromKongregateIDs(request: PlayFabClientModels.GetPlayFabIDsFromKongregateIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromKongregateIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromKongregateIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromnintendoserviceaccountids
          */
-        GetPlayFabIDsFromNintendoServiceAccountIds(request: PlayFabClientModels.GetPlayFabIDsFromNintendoServiceAccountIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoServiceAccountIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromNintendoServiceAccountIds(request: PlayFabClientModels.GetPlayFabIDsFromNintendoServiceAccountIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoServiceAccountIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoServiceAccountIdsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromnintendoswitchdeviceids
          */
-        GetPlayFabIDsFromNintendoSwitchDeviceIds(request: PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromNintendoSwitchDeviceIds(request: PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnaccountids
          */
-        GetPlayFabIDsFromPSNAccountIDs(request: PlayFabClientModels.GetPlayFabIDsFromPSNAccountIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromPSNAccountIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromPSNAccountIDs(request: PlayFabClientModels.GetPlayFabIDsFromPSNAccountIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromPSNAccountIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromPSNAccountIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
          * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromsteamids
          */
-        GetPlayFabIDsFromSteamIDs(request: PlayFabClientModels.GetPlayFabIDsFromSteamIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromSteamIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromSteamIDs(request: PlayFabClientModels.GetPlayFabIDsFromSteamIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromSteamIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromSteamIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
          * the user accounts, available as "_id" from the Twitch API methods (ex:
          * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromtwitchids
          */
-        GetPlayFabIDsFromTwitchIDs(request: PlayFabClientModels.GetPlayFabIDsFromTwitchIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromTwitchIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromTwitchIDs(request: PlayFabClientModels.GetPlayFabIDsFromTwitchIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromTwitchIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromTwitchIDsResult>>;
         /**
          * Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromxboxliveids
          */
-        GetPlayFabIDsFromXboxLiveIDs(request: PlayFabClientModels.GetPlayFabIDsFromXboxLiveIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromXboxLiveIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayFabIDsFromXboxLiveIDs(request: PlayFabClientModels.GetPlayFabIDsFromXboxLiveIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromXboxLiveIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromXboxLiveIDsResult>>;
         /**
          * Retrieves the key-value store of custom publisher settings
          * https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getpublisherdata
          */
-        GetPublisherData(request: PlayFabClientModels.GetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPublisherData(request: PlayFabClientModels.GetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPublisherDataResult>>;
         /**
          * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still
          * active.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpurchase
          */
-        GetPurchase(request: PlayFabClientModels.GetPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPurchase(request: PlayFabClientModels.GetPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPurchaseResult>>;
         /**
          * Retrieves data stored in a shared group object, as well as the list of members in the group. Non-members of the group
          * may use this to retrieve group data, including membership, but they will not receive data for keys marked as private.
@@ -361,93 +361,93 @@ declare module PlayFabClientModule {
          * https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
          * https://docs.microsoft.com/rest/api/playfab/client/shared-group-data/getsharedgroupdata
          */
-        GetSharedGroupData(request: PlayFabClientModels.GetSharedGroupDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetSharedGroupDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetSharedGroupData(request: PlayFabClientModels.GetSharedGroupDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetSharedGroupDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetSharedGroupDataResult>>;
         /**
          * Retrieves the set of items defined for the specified store, including all prices defined
          * https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getstoreitems
          */
-        GetStoreItems(request: PlayFabClientModels.GetStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetStoreItems(request: PlayFabClientModels.GetStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetStoreItemsResult>>;
         /**
          * Retrieves the current server time
          * https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/gettime
          */
-        GetTime(request: PlayFabClientModels.GetTimeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTimeResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTime(request: PlayFabClientModels.GetTimeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTimeResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetTimeResult>>;
         /**
          * Retrieves the key-value store of custom title settings
          * https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/gettitledata
          */
-        GetTitleData(request: PlayFabClientModels.GetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitleData(request: PlayFabClientModels.GetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetTitleDataResult>>;
         /**
          * Retrieves the title news feed, as configured in the developer portal
          * https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/gettitlenews
          */
-        GetTitleNews(request: PlayFabClientModels.GetTitleNewsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTitleNewsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitleNews(request: PlayFabClientModels.GetTitleNewsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTitleNewsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetTitleNewsResult>>;
         /**
          * Returns the title's base 64 encoded RSA CSP blob.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/gettitlepublickey
          */
-        GetTitlePublicKey(request: PlayFabClientModels.GetTitlePublicKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTitlePublicKeyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitlePublicKey(request: PlayFabClientModels.GetTitlePublicKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTitlePublicKeyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetTitlePublicKeyResult>>;
         /**
          * Gets the current status of an existing trade.
          * https://docs.microsoft.com/rest/api/playfab/client/trading/gettradestatus
          */
-        GetTradeStatus(request: PlayFabClientModels.GetTradeStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTradeStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTradeStatus(request: PlayFabClientModels.GetTradeStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetTradeStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetTradeStatusResponse>>;
         /**
          * Retrieves the title-specific custom data for the user which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getuserdata
          */
-        GetUserData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>>;
         /**
          * Retrieves the user's current inventory of virtual goods
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getuserinventory
          */
-        GetUserInventory(request: PlayFabClientModels.GetUserInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserInventory(request: PlayFabClientModels.GetUserInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetUserInventoryResult>>;
         /**
          * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getuserpublisherdata
          */
-        GetUserPublisherData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserPublisherData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>>;
         /**
          * Retrieves the publisher-specific custom data for the user which can only be read by the client
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getuserpublisherreadonlydata
          */
-        GetUserPublisherReadOnlyData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserPublisherReadOnlyData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>>;
         /**
          * Retrieves the title-specific custom data for the user which can only be read by the client
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getuserreadonlydata
          */
-        GetUserReadOnlyData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserReadOnlyData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>>;
         /**
          * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
          * with the parent PlayFabId to guarantee uniqueness.
          * https://docs.microsoft.com/rest/api/playfab/client/characters/grantcharactertouser
          */
-        GrantCharacterToUser(request: PlayFabClientModels.GrantCharacterToUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GrantCharacterToUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GrantCharacterToUser(request: PlayFabClientModels.GrantCharacterToUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GrantCharacterToUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GrantCharacterToUserResult>>;
         /**
          * Links the Android device identifier to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkandroiddeviceid
          */
-        LinkAndroidDeviceID(request: PlayFabClientModels.LinkAndroidDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkAndroidDeviceIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkAndroidDeviceID(request: PlayFabClientModels.LinkAndroidDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkAndroidDeviceIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkAndroidDeviceIDResult>>;
         /**
          * Links the Apple account associated with the token to the user's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkapple
          */
-        LinkApple(request: PlayFabClientModels.LinkAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkApple(request: PlayFabClientModels.LinkAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>>;
         /**
          * Links the custom identifier, generated by the title, to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkcustomid
          */
-        LinkCustomID(request: PlayFabClientModels.LinkCustomIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkCustomIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkCustomID(request: PlayFabClientModels.LinkCustomIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkCustomIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkCustomIDResult>>;
         /**
          * Links the Facebook account associated with the provided Facebook access token to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkfacebookaccount
          */
-        LinkFacebookAccount(request: PlayFabClientModels.LinkFacebookAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkFacebookAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkFacebookAccount(request: PlayFabClientModels.LinkFacebookAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkFacebookAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkFacebookAccountResult>>;
         /**
          * Links the Facebook Instant Games Id to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkfacebookinstantgamesid
          */
-        LinkFacebookInstantGamesId(request: PlayFabClientModels.LinkFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkFacebookInstantGamesIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkFacebookInstantGamesId(request: PlayFabClientModels.LinkFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkFacebookInstantGamesIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkFacebookInstantGamesIdResult>>;
         /**
          * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account. Logging in with
          * a Game Center ID is insecure if you do not include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters
@@ -455,81 +455,81 @@ declare module PlayFabClientModule {
          * page in the PlayFab Game Manager and enabling the 'Require secure authentication only for this app' option.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkgamecenteraccount
          */
-        LinkGameCenterAccount(request: PlayFabClientModels.LinkGameCenterAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGameCenterAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkGameCenterAccount(request: PlayFabClientModels.LinkGameCenterAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGameCenterAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkGameCenterAccountResult>>;
         /**
          * Links the currently signed-in user account to their Google account, using their Google account credentials
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkgoogleaccount
          */
-        LinkGoogleAccount(request: PlayFabClientModels.LinkGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGoogleAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkGoogleAccount(request: PlayFabClientModels.LinkGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGoogleAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkGoogleAccountResult>>;
         /**
          * Links the currently signed-in user account to their Google Play Games account, using their Google Play Games account
          * credentials
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkgoogleplaygamesservicesaccount
          */
-        LinkGooglePlayGamesServicesAccount(request: PlayFabClientModels.LinkGooglePlayGamesServicesAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGooglePlayGamesServicesAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkGooglePlayGamesServicesAccount(request: PlayFabClientModels.LinkGooglePlayGamesServicesAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkGooglePlayGamesServicesAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkGooglePlayGamesServicesAccountResult>>;
         /**
          * Links the vendor-specific iOS device identifier to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkiosdeviceid
          */
-        LinkIOSDeviceID(request: PlayFabClientModels.LinkIOSDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkIOSDeviceIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkIOSDeviceID(request: PlayFabClientModels.LinkIOSDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkIOSDeviceIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkIOSDeviceIDResult>>;
         /**
          * Links the Kongregate identifier to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkkongregate
          */
-        LinkKongregate(request: PlayFabClientModels.LinkKongregateAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkKongregateAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkKongregate(request: PlayFabClientModels.LinkKongregateAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkKongregateAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkKongregateAccountResult>>;
         /**
          * Links the Nintendo account associated with the token to the user's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoserviceaccount
          */
-        LinkNintendoServiceAccount(request: PlayFabClientModels.LinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkNintendoServiceAccount(request: PlayFabClientModels.LinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>>;
         /**
          * Links the NintendoSwitchDeviceId to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoswitchdeviceid
          */
-        LinkNintendoSwitchDeviceId(request: PlayFabClientModels.LinkNintendoSwitchDeviceIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkNintendoSwitchDeviceIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkNintendoSwitchDeviceId(request: PlayFabClientModels.LinkNintendoSwitchDeviceIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkNintendoSwitchDeviceIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkNintendoSwitchDeviceIdResult>>;
         /**
          * Links an OpenID Connect account to a user's PlayFab account, based on an existing relationship between a title and an
          * Open ID Connect provider and the OpenId Connect JWT from that provider.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkopenidconnect
          */
-        LinkOpenIdConnect(request: PlayFabClientModels.LinkOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkOpenIdConnect(request: PlayFabClientModels.LinkOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResult>>;
         /**
          * Links the PlayStation :tm: Network account associated with the provided access code to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkpsnaccount
          */
-        LinkPSNAccount(request: PlayFabClientModels.LinkPSNAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkPSNAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkPSNAccount(request: PlayFabClientModels.LinkPSNAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkPSNAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkPSNAccountResult>>;
         /**
          * Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linksteamaccount
          */
-        LinkSteamAccount(request: PlayFabClientModels.LinkSteamAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkSteamAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkSteamAccount(request: PlayFabClientModels.LinkSteamAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkSteamAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkSteamAccountResult>>;
         /**
          * Links the Twitch account associated with the token to the user's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linktwitch
          */
-        LinkTwitch(request: PlayFabClientModels.LinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkTwitchAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkTwitch(request: PlayFabClientModels.LinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkTwitchAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkTwitchAccountResult>>;
         /**
          * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/linkxboxaccount
          */
-        LinkXboxAccount(request: PlayFabClientModels.LinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LinkXboxAccount(request: PlayFabClientModels.LinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LinkXboxAccountResult>>;
         /**
          * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
          * API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithandroiddeviceid
          */
-        LoginWithAndroidDeviceID(request: PlayFabClientModels.LoginWithAndroidDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithAndroidDeviceID(request: PlayFabClientModels.LoginWithAndroidDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs in the user with a Sign in with Apple identity token.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithapple
          */
-        LoginWithApple(request: PlayFabClientModels.LoginWithAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithApple(request: PlayFabClientModels.LoginWithAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can
          * subsequently be used for API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithcustomid
          */
-        LoginWithCustomID(request: PlayFabClientModels.LoginWithCustomIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithCustomID(request: PlayFabClientModels.LoginWithCustomIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
          * which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the
@@ -537,19 +537,19 @@ declare module PlayFabClientModule {
          * RegisterPlayFabUser.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithemailaddress
          */
-        LoginWithEmailAddress(request: PlayFabClientModels.LoginWithEmailAddressRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithEmailAddress(request: PlayFabClientModels.LoginWithEmailAddressRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API
          * calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithfacebook
          */
-        LoginWithFacebook(request: PlayFabClientModels.LoginWithFacebookRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithFacebook(request: PlayFabClientModels.LoginWithFacebookRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a Facebook Instant Games ID, returning a session identifier that can subsequently be used for
          * API calls which require an authenticated user. Requires Facebook Instant Games to be configured.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithfacebookinstantgamesid
          */
-        LoginWithFacebookInstantGamesId(request: PlayFabClientModels.LoginWithFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithFacebookInstantGamesId(request: PlayFabClientModels.LoginWithFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
          * used for API calls which require an authenticated user. Logging in with a Game Center ID is insecure if you do not
@@ -558,45 +558,45 @@ declare module PlayFabClientModule {
          * enabling the 'Require secure authentication only for this app' option.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithgamecenter
          */
-        LoginWithGameCenter(request: PlayFabClientModels.LoginWithGameCenterRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithGameCenter(request: PlayFabClientModels.LoginWithGameCenterRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using their Google account credentials
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithgoogleaccount
          */
-        LoginWithGoogleAccount(request: PlayFabClientModels.LoginWithGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithGoogleAccount(request: PlayFabClientModels.LoginWithGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using their Google Play Games account credentials
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithgoogleplaygamesservices
          */
-        LoginWithGooglePlayGamesServices(request: PlayFabClientModels.LoginWithGooglePlayGamesServicesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithGooglePlayGamesServices(request: PlayFabClientModels.LoginWithGooglePlayGamesServicesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently
          * be used for API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithiosdeviceid
          */
-        LoginWithIOSDeviceID(request: PlayFabClientModels.LoginWithIOSDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithIOSDeviceID(request: PlayFabClientModels.LoginWithIOSDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a Kongregate player account.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithkongregate
          */
-        LoginWithKongregate(request: PlayFabClientModels.LoginWithKongregateRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithKongregate(request: PlayFabClientModels.LoginWithKongregateRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs in the user with a Nintendo service account token.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoserviceaccount
          */
-        LoginWithNintendoServiceAccount(request: PlayFabClientModels.LoginWithNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithNintendoServiceAccount(request: PlayFabClientModels.LoginWithNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a Nintendo Switch Device ID, returning a session identifier that can subsequently be used for
          * API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoswitchdeviceid
          */
-        LoginWithNintendoSwitchDeviceId(request: PlayFabClientModels.LoginWithNintendoSwitchDeviceIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithNintendoSwitchDeviceId(request: PlayFabClientModels.LoginWithNintendoSwitchDeviceIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Logs in a user with an Open ID Connect JWT created by an existing relationship between a title and an Open ID Connect
          * provider.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithopenidconnect
          */
-        LoginWithOpenIdConnect(request: PlayFabClientModels.LoginWithOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithOpenIdConnect(request: PlayFabClientModels.LoginWithOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
          * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the creation of
@@ -604,30 +604,30 @@ declare module PlayFabClientModule {
          * RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithplayfab
          */
-        LoginWithPlayFab(request: PlayFabClientModels.LoginWithPlayFabRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithPlayFab(request: PlayFabClientModels.LoginWithPlayFabRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
          * subsequently be used for API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithpsn
          */
-        LoginWithPSN(request: PlayFabClientModels.LoginWithPSNRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithPSN(request: PlayFabClientModels.LoginWithPSNRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for
          * API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithsteam
          */
-        LoginWithSteam(request: PlayFabClientModels.LoginWithSteamRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithSteam(request: PlayFabClientModels.LoginWithSteamRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a Twitch access token.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithtwitch
          */
-        LoginWithTwitch(request: PlayFabClientModels.LoginWithTwitchRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithTwitch(request: PlayFabClientModels.LoginWithTwitchRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
          * which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithxbox
          */
-        LoginWithXbox(request: PlayFabClientModels.LoginWithXboxRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LoginWithXbox(request: PlayFabClientModels.LoginWithXboxRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.LoginResult>>;
         /**
          * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific
          * active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required
@@ -637,60 +637,60 @@ declare module PlayFabClientModule {
          * GameNotFound.
          * https://docs.microsoft.com/rest/api/playfab/client/matchmaking/matchmake
          */
-        Matchmake(request: PlayFabClientModels.MatchmakeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.MatchmakeResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        Matchmake(request: PlayFabClientModels.MatchmakeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.MatchmakeResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.MatchmakeResult>>;
         /**
          * Opens a new outstanding trade. Note that a given item instance may only be in one open trade at a time.
          * https://docs.microsoft.com/rest/api/playfab/client/trading/opentrade
          */
-        OpenTrade(request: PlayFabClientModels.OpenTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.OpenTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        OpenTrade(request: PlayFabClientModels.OpenTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.OpenTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.OpenTradeResponse>>;
         /**
          * Selects a payment option for purchase order created via StartPurchase
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/payforpurchase
          */
-        PayForPurchase(request: PlayFabClientModels.PayForPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.PayForPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PayForPurchase(request: PlayFabClientModels.PayForPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.PayForPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.PayForPurchaseResult>>;
         /**
          * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as well as what
          * the client believes the price to be. This lets the server fail the purchase if the price has changed.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/purchaseitem
          */
-        PurchaseItem(request: PlayFabClientModels.PurchaseItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.PurchaseItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PurchaseItem(request: PlayFabClientModels.PurchaseItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.PurchaseItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.PurchaseItemResult>>;
         /**
          * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
          * Economy->Catalogs tab in the PlayFab Game Manager.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/redeemcoupon
          */
-        RedeemCoupon(request: PlayFabClientModels.RedeemCouponRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RedeemCouponResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RedeemCoupon(request: PlayFabClientModels.RedeemCouponRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RedeemCouponResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RedeemCouponResult>>;
         /**
          * Uses the supplied OAuth code to refresh the internally cached player PlayStation :tm: Network auth token
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/refreshpsnauthtoken
          */
-        RefreshPSNAuthToken(request: PlayFabClientModels.RefreshPSNAuthTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RefreshPSNAuthToken(request: PlayFabClientModels.RefreshPSNAuthTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>>;
         /**
          * Registers the iOS device to receive push notifications
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/registerforiospushnotification
          */
-        RegisterForIOSPushNotification(request: PlayFabClientModels.RegisterForIOSPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterForIOSPushNotificationResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RegisterForIOSPushNotification(request: PlayFabClientModels.RegisterForIOSPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterForIOSPushNotificationResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RegisterForIOSPushNotificationResult>>;
         /**
          * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
          * require an authenticated user. You must supply either a username or an email address.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/registerplayfabuser
          */
-        RegisterPlayFabUser(request: PlayFabClientModels.RegisterPlayFabUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RegisterPlayFabUser(request: PlayFabClientModels.RegisterPlayFabUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>>;
         /**
          * Removes a contact email from the player's profile.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/removecontactemail
          */
-        RemoveContactEmail(request: PlayFabClientModels.RemoveContactEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveContactEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveContactEmail(request: PlayFabClientModels.RemoveContactEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveContactEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RemoveContactEmailResult>>;
         /**
          * Removes a specified user from the friend list of the local user
          * https://docs.microsoft.com/rest/api/playfab/client/friend-list-management/removefriend
          */
-        RemoveFriend(request: PlayFabClientModels.RemoveFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveFriendResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveFriend(request: PlayFabClientModels.RemoveFriendRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveFriendResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RemoveFriendResult>>;
         /**
          * Removes the specified generic service identifier from the player's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/removegenericid
          */
-        RemoveGenericID(request: PlayFabClientModels.RemoveGenericIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveGenericIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveGenericID(request: PlayFabClientModels.RemoveGenericIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveGenericIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RemoveGenericIDResult>>;
         /**
          * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
          * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
@@ -698,186 +698,186 @@ declare module PlayFabClientModule {
          * guide: https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
          * https://docs.microsoft.com/rest/api/playfab/client/shared-group-data/removesharedgroupmembers
          */
-        RemoveSharedGroupMembers(request: PlayFabClientModels.RemoveSharedGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveSharedGroupMembersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveSharedGroupMembers(request: PlayFabClientModels.RemoveSharedGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RemoveSharedGroupMembersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RemoveSharedGroupMembersResult>>;
         /**
          * Report player's ad activity
          * https://docs.microsoft.com/rest/api/playfab/client/advertising/reportadactivity
          */
-        ReportAdActivity(request: PlayFabClientModels.ReportAdActivityRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ReportAdActivityResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ReportAdActivity(request: PlayFabClientModels.ReportAdActivityRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ReportAdActivityResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ReportAdActivityResult>>;
         /**
          * Write a PlayStream event to describe the provided player device information. This API method is not designed to be
          * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
          * https://docs.microsoft.com/rest/api/playfab/client/analytics/reportdeviceinfo
          */
-        ReportDeviceInfo(request: PlayFabClientModels.DeviceInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ReportDeviceInfo(request: PlayFabClientModels.DeviceInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>>;
         /**
          * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title
          * can take action concerning potentially toxic players.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/reportplayer
          */
-        ReportPlayer(request: PlayFabClientModels.ReportPlayerClientRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ReportPlayerClientResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ReportPlayer(request: PlayFabClientModels.ReportPlayerClientRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ReportPlayerClientResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ReportPlayerClientResult>>;
         /**
          * Restores all in-app purchases based on the given restore receipt
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/restoreiospurchases
          */
-        RestoreIOSPurchases(request: PlayFabClientModels.RestoreIOSPurchasesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RestoreIOSPurchasesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RestoreIOSPurchases(request: PlayFabClientModels.RestoreIOSPurchasesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RestoreIOSPurchasesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RestoreIOSPurchasesResult>>;
         /**
          * Reward player's ad activity
          * https://docs.microsoft.com/rest/api/playfab/client/advertising/rewardadactivity
          */
-        RewardAdActivity(request: PlayFabClientModels.RewardAdActivityRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RewardAdActivityResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RewardAdActivity(request: PlayFabClientModels.RewardAdActivityRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RewardAdActivityResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RewardAdActivityResult>>;
         /**
          * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
          * change the password.If an account recovery email template ID is provided, an email using the custom email template will
          * be used.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/sendaccountrecoveryemail
          */
-        SendAccountRecoveryEmail(request: PlayFabClientModels.SendAccountRecoveryEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SendAccountRecoveryEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SendAccountRecoveryEmail(request: PlayFabClientModels.SendAccountRecoveryEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SendAccountRecoveryEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.SendAccountRecoveryEmailResult>>;
         /**
          * Updates the tag list for a specified user in the friend list of the local user
          * https://docs.microsoft.com/rest/api/playfab/client/friend-list-management/setfriendtags
          */
-        SetFriendTags(request: PlayFabClientModels.SetFriendTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SetFriendTagsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetFriendTags(request: PlayFabClientModels.SetFriendTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SetFriendTagsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.SetFriendTagsResult>>;
         /**
          * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
          * secret use the Admin or Server API method SetPlayerSecret.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/setplayersecret
          */
-        SetPlayerSecret(request: PlayFabClientModels.SetPlayerSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SetPlayerSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetPlayerSecret(request: PlayFabClientModels.SetPlayerSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SetPlayerSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.SetPlayerSecretResult>>;
         /**
          * Creates an order for a list of items from the title catalog
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/startpurchase
          */
-        StartPurchase(request: PlayFabClientModels.StartPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.StartPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        StartPurchase(request: PlayFabClientModels.StartPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.StartPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.StartPurchaseResult>>;
         /**
          * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
          * balance negative with this API.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/subtractuservirtualcurrency
          */
-        SubtractUserVirtualCurrency(request: PlayFabClientModels.SubtractUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SubtractUserVirtualCurrency(request: PlayFabClientModels.SubtractUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>>;
         /**
          * Unlinks the related Android device identifier from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkandroiddeviceid
          */
-        UnlinkAndroidDeviceID(request: PlayFabClientModels.UnlinkAndroidDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkAndroidDeviceIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkAndroidDeviceID(request: PlayFabClientModels.UnlinkAndroidDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkAndroidDeviceIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkAndroidDeviceIDResult>>;
         /**
          * Unlinks the related Apple account from the user's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkapple
          */
-        UnlinkApple(request: PlayFabClientModels.UnlinkAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkApple(request: PlayFabClientModels.UnlinkAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>>;
         /**
          * Unlinks the related custom identifier from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkcustomid
          */
-        UnlinkCustomID(request: PlayFabClientModels.UnlinkCustomIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkCustomIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkCustomID(request: PlayFabClientModels.UnlinkCustomIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkCustomIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkCustomIDResult>>;
         /**
          * Unlinks the related Facebook account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkfacebookaccount
          */
-        UnlinkFacebookAccount(request: PlayFabClientModels.UnlinkFacebookAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkFacebookAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkFacebookAccount(request: PlayFabClientModels.UnlinkFacebookAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkFacebookAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkFacebookAccountResult>>;
         /**
          * Unlinks the related Facebook Instant Game Ids from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkfacebookinstantgamesid
          */
-        UnlinkFacebookInstantGamesId(request: PlayFabClientModels.UnlinkFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkFacebookInstantGamesIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkFacebookInstantGamesId(request: PlayFabClientModels.UnlinkFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkFacebookInstantGamesIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkFacebookInstantGamesIdResult>>;
         /**
          * Unlinks the related Game Center account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkgamecenteraccount
          */
-        UnlinkGameCenterAccount(request: PlayFabClientModels.UnlinkGameCenterAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGameCenterAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkGameCenterAccount(request: PlayFabClientModels.UnlinkGameCenterAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGameCenterAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGameCenterAccountResult>>;
         /**
          * Unlinks the related Google account from the user's PlayFab account
          * (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkgoogleaccount
          */
-        UnlinkGoogleAccount(request: PlayFabClientModels.UnlinkGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGoogleAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkGoogleAccount(request: PlayFabClientModels.UnlinkGoogleAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGoogleAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGoogleAccountResult>>;
         /**
          * Unlinks the related Google Play Games account from the user's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkgoogleplaygamesservicesaccount
          */
-        UnlinkGooglePlayGamesServicesAccount(request: PlayFabClientModels.UnlinkGooglePlayGamesServicesAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGooglePlayGamesServicesAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkGooglePlayGamesServicesAccount(request: PlayFabClientModels.UnlinkGooglePlayGamesServicesAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGooglePlayGamesServicesAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkGooglePlayGamesServicesAccountResult>>;
         /**
          * Unlinks the related iOS device identifier from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkiosdeviceid
          */
-        UnlinkIOSDeviceID(request: PlayFabClientModels.UnlinkIOSDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkIOSDeviceIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkIOSDeviceID(request: PlayFabClientModels.UnlinkIOSDeviceIDRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkIOSDeviceIDResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkIOSDeviceIDResult>>;
         /**
          * Unlinks the related Kongregate identifier from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkkongregate
          */
-        UnlinkKongregate(request: PlayFabClientModels.UnlinkKongregateAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkKongregateAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkKongregate(request: PlayFabClientModels.UnlinkKongregateAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkKongregateAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkKongregateAccountResult>>;
         /**
          * Unlinks the related Nintendo account from the user's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoserviceaccount
          */
-        UnlinkNintendoServiceAccount(request: PlayFabClientModels.UnlinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkNintendoServiceAccount(request: PlayFabClientModels.UnlinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>>;
         /**
          * Unlinks the related NintendoSwitchDeviceId from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoswitchdeviceid
          */
-        UnlinkNintendoSwitchDeviceId(request: PlayFabClientModels.UnlinkNintendoSwitchDeviceIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkNintendoSwitchDeviceIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkNintendoSwitchDeviceId(request: PlayFabClientModels.UnlinkNintendoSwitchDeviceIdRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkNintendoSwitchDeviceIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkNintendoSwitchDeviceIdResult>>;
         /**
          * Unlinks an OpenID Connect account from a user's PlayFab account, based on the connection ID of an existing relationship
          * between a title and an Open ID Connect provider.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkopenidconnect
          */
-        UnlinkOpenIdConnect(request: PlayFabClientModels.UnlinkOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkOpenIdConnect(request: PlayFabClientModels.UnlinkOpenIdConnectRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>>;
         /**
          * Unlinks the related PlayStation :tm: Network account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkpsnaccount
          */
-        UnlinkPSNAccount(request: PlayFabClientModels.UnlinkPSNAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkPSNAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkPSNAccount(request: PlayFabClientModels.UnlinkPSNAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkPSNAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkPSNAccountResult>>;
         /**
          * Unlinks the related Steam account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinksteamaccount
          */
-        UnlinkSteamAccount(request: PlayFabClientModels.UnlinkSteamAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkSteamAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkSteamAccount(request: PlayFabClientModels.UnlinkSteamAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkSteamAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkSteamAccountResult>>;
         /**
          * Unlinks the related Twitch account from the user's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinktwitch
          */
-        UnlinkTwitch(request: PlayFabClientModels.UnlinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkTwitchAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkTwitch(request: PlayFabClientModels.UnlinkTwitchAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkTwitchAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkTwitchAccountResult>>;
         /**
          * Unlinks the related Xbox Live account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkxboxaccount
          */
-        UnlinkXboxAccount(request: PlayFabClientModels.UnlinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlinkXboxAccount(request: PlayFabClientModels.UnlinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkXboxAccountResult>>;
         /**
          * Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
          * If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented,
          * consistent with the operation of ConsumeItem.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontainerinstance
          */
-        UnlockContainerInstance(request: PlayFabClientModels.UnlockContainerInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlockContainerItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlockContainerInstance(request: PlayFabClientModels.UnlockContainerInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlockContainerItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlockContainerItemResult>>;
         /**
          * Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an
          * appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
          * consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontaineritem
          */
-        UnlockContainerItem(request: PlayFabClientModels.UnlockContainerItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlockContainerItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnlockContainerItem(request: PlayFabClientModels.UnlockContainerItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlockContainerItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlockContainerItemResult>>;
         /**
          * Update the avatar URL of the player
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/updateavatarurl
          */
-        UpdateAvatarUrl(request: PlayFabClientModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateAvatarUrl(request: PlayFabClientModels.UpdateAvatarUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.EmptyResponse>>;
         /**
          * Creates and updates the title-specific custom data for the user's character which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/client/character-data/updatecharacterdata
          */
-        UpdateCharacterData(request: PlayFabClientModels.UpdateCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateCharacterDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateCharacterData(request: PlayFabClientModels.UpdateCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateCharacterDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UpdateCharacterDataResult>>;
         /**
          * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not
          * permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
          * https://docs.microsoft.com/rest/api/playfab/client/characters/updatecharacterstatistics
          */
-        UpdateCharacterStatistics(request: PlayFabClientModels.UpdateCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateCharacterStatistics(request: PlayFabClientModels.UpdateCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UpdateCharacterStatisticsResult>>;
         /**
          * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to
          * update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/updateplayerstatistics
          */
-        UpdatePlayerStatistics(request: PlayFabClientModels.UpdatePlayerStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdatePlayerStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdatePlayerStatistics(request: PlayFabClientModels.UpdatePlayerStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdatePlayerStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UpdatePlayerStatisticsResult>>;
         /**
          * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
          * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
@@ -886,60 +886,60 @@ declare module PlayFabClientModule {
          * https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
          * https://docs.microsoft.com/rest/api/playfab/client/shared-group-data/updatesharedgroupdata
          */
-        UpdateSharedGroupData(request: PlayFabClientModels.UpdateSharedGroupDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateSharedGroupDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateSharedGroupData(request: PlayFabClientModels.UpdateSharedGroupDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateSharedGroupDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UpdateSharedGroupDataResult>>;
         /**
          * Creates and updates the title-specific custom data for the user which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/updateuserdata
          */
-        UpdateUserData(request: PlayFabClientModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserData(request: PlayFabClientModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserDataResult>>;
         /**
          * Creates and updates the publisher-specific custom data for the user which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/client/player-data-management/updateuserpublisherdata
          */
-        UpdateUserPublisherData(request: PlayFabClientModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserPublisherData(request: PlayFabClientModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserDataResult>>;
         /**
          * Updates the title specific display name for the user
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/updateusertitledisplayname
          */
-        UpdateUserTitleDisplayName(request: PlayFabClientModels.UpdateUserTitleDisplayNameRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserTitleDisplayNameResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserTitleDisplayName(request: PlayFabClientModels.UpdateUserTitleDisplayNameRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserTitleDisplayNameResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserTitleDisplayNameResult>>;
         /**
          * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the
          * purchased catalog item
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateamazoniapreceipt
          */
-        ValidateAmazonIAPReceipt(request: PlayFabClientModels.ValidateAmazonReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateAmazonReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ValidateAmazonIAPReceipt(request: PlayFabClientModels.ValidateAmazonReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateAmazonReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ValidateAmazonReceiptResult>>;
         /**
          * Validates a Google Play purchase and gives the corresponding item to the player.
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validategoogleplaypurchase
          */
-        ValidateGooglePlayPurchase(request: PlayFabClientModels.ValidateGooglePlayPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateGooglePlayPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ValidateGooglePlayPurchase(request: PlayFabClientModels.ValidateGooglePlayPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateGooglePlayPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ValidateGooglePlayPurchaseResult>>;
         /**
          * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased
          * catalog item
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateiosreceipt
          */
-        ValidateIOSReceipt(request: PlayFabClientModels.ValidateIOSReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateIOSReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ValidateIOSReceipt(request: PlayFabClientModels.ValidateIOSReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateIOSReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ValidateIOSReceiptResult>>;
         /**
          * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the
          * purchased catalog item
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validatewindowsstorereceipt
          */
-        ValidateWindowsStoreReceipt(request: PlayFabClientModels.ValidateWindowsReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateWindowsReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ValidateWindowsStoreReceipt(request: PlayFabClientModels.ValidateWindowsReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateWindowsReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ValidateWindowsReceiptResult>>;
         /**
          * Writes a character-based event into PlayStream.
          * https://docs.microsoft.com/rest/api/playfab/client/analytics/writecharacterevent
          */
-        WriteCharacterEvent(request: PlayFabClientModels.WriteClientCharacterEventRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        WriteCharacterEvent(request: PlayFabClientModels.WriteClientCharacterEventRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>>;
         /**
          * Writes a player-based event into PlayStream.
          * https://docs.microsoft.com/rest/api/playfab/client/analytics/writeplayerevent
          */
-        WritePlayerEvent(request: PlayFabClientModels.WriteClientPlayerEventRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        WritePlayerEvent(request: PlayFabClientModels.WriteClientPlayerEventRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>>;
         /**
          * Writes a title-based event into PlayStream.
          * https://docs.microsoft.com/rest/api/playfab/client/analytics/writetitleevent
          */
-        WriteTitleEvent(request: PlayFabClientModels.WriteTitleEventRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        WriteTitleEvent(request: PlayFabClientModels.WriteTitleEventRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.WriteEventResponse>>;
 
     }
 }

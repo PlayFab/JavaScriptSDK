@@ -8,23 +8,23 @@ declare module PlayFabAuthenticationModule {
          * Create a game_server entity token and return a new or existing game_server entity.
          * https://docs.microsoft.com/rest/api/playfab/authentication/authentication/authenticategameserverwithcustomid
          */
-        AuthenticateGameServerWithCustomId(request: PlayFabAuthenticationModels.AuthenticateCustomIdRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.AuthenticateCustomIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AuthenticateGameServerWithCustomId(request: PlayFabAuthenticationModels.AuthenticateCustomIdRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.AuthenticateCustomIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAuthenticationModels.AuthenticateCustomIdResult>>;
         /**
          * Delete a game_server entity.
          * https://docs.microsoft.com/rest/api/playfab/authentication/authentication/delete
          */
-        Delete(request: PlayFabAuthenticationModels.DeleteRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        Delete(request: PlayFabAuthenticationModels.DeleteRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAuthenticationModels.EmptyResponse>>;
         /**
          * Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
          * Entity Token.
          * https://docs.microsoft.com/rest/api/playfab/authentication/authentication/getentitytoken
          */
-        GetEntityToken(request: PlayFabAuthenticationModels.GetEntityTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.GetEntityTokenResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetEntityToken(request: PlayFabAuthenticationModels.GetEntityTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.GetEntityTokenResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAuthenticationModels.GetEntityTokenResponse>>;
         /**
          * Method for a server to validate a client provided EntityToken. Only callable by the title entity.
          * https://docs.microsoft.com/rest/api/playfab/authentication/authentication/validateentitytoken
          */
-        ValidateEntityToken(request: PlayFabAuthenticationModels.ValidateEntityTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.ValidateEntityTokenResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ValidateEntityToken(request: PlayFabAuthenticationModels.ValidateEntityTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAuthenticationModels.ValidateEntityTokenResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAuthenticationModels.ValidateEntityTokenResponse>>;
 
     }
 }

@@ -8,218 +8,218 @@ declare module PlayFabEconomyModule {
          * Add inventory items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/addinventoryitems
          */
-        AddInventoryItems(request: PlayFabEconomyModels.AddInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.AddInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddInventoryItems(request: PlayFabEconomyModels.AddInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.AddInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.AddInventoryItemsResponse>>;
         /**
          * Creates a new item in the working catalog using provided metadata.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/createdraftitem
          */
-        CreateDraftItem(request: PlayFabEconomyModels.CreateDraftItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.CreateDraftItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateDraftItem(request: PlayFabEconomyModels.CreateDraftItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.CreateDraftItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.CreateDraftItemResponse>>;
         /**
          * Creates one or more upload URLs which can be used by the client to upload raw file data.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/createuploadurls
          */
-        CreateUploadUrls(request: PlayFabEconomyModels.CreateUploadUrlsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.CreateUploadUrlsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateUploadUrls(request: PlayFabEconomyModels.CreateUploadUrlsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.CreateUploadUrlsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.CreateUploadUrlsResponse>>;
         /**
          * Deletes all reviews, helpfulness votes, and ratings submitted by the entity specified.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/deleteentityitemreviews
          */
-        DeleteEntityItemReviews(request: PlayFabEconomyModels.DeleteEntityItemReviewsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteEntityItemReviewsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteEntityItemReviews(request: PlayFabEconomyModels.DeleteEntityItemReviewsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteEntityItemReviewsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteEntityItemReviewsResponse>>;
         /**
          * Delete an Inventory Collection
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/deleteinventorycollection
          */
-        DeleteInventoryCollection(request: PlayFabEconomyModels.DeleteInventoryCollectionRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteInventoryCollectionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteInventoryCollection(request: PlayFabEconomyModels.DeleteInventoryCollectionRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteInventoryCollectionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteInventoryCollectionResponse>>;
         /**
          * Delete inventory items
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/deleteinventoryitems
          */
-        DeleteInventoryItems(request: PlayFabEconomyModels.DeleteInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteInventoryItems(request: PlayFabEconomyModels.DeleteInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteInventoryItemsResponse>>;
         /**
          * Removes an item from working catalog and all published versions from the public catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/deleteitem
          */
-        DeleteItem(request: PlayFabEconomyModels.DeleteItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteItem(request: PlayFabEconomyModels.DeleteItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.DeleteItemResponse>>;
         /**
          * Execute a list of Inventory Operations
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/executeinventoryoperations
          */
-        ExecuteInventoryOperations(request: PlayFabEconomyModels.ExecuteInventoryOperationsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ExecuteInventoryOperationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ExecuteInventoryOperations(request: PlayFabEconomyModels.ExecuteInventoryOperationsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ExecuteInventoryOperationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.ExecuteInventoryOperationsResponse>>;
         /**
          * Gets the configuration for the catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getcatalogconfig
          */
-        GetCatalogConfig(request: PlayFabEconomyModels.GetCatalogConfigRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetCatalogConfigResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCatalogConfig(request: PlayFabEconomyModels.GetCatalogConfigRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetCatalogConfigResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetCatalogConfigResponse>>;
         /**
          * Retrieves an item from the working catalog. This item represents the current working state of the item.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getdraftitem
          */
-        GetDraftItem(request: PlayFabEconomyModels.GetDraftItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetDraftItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetDraftItem(request: PlayFabEconomyModels.GetDraftItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetDraftItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetDraftItemResponse>>;
         /**
          * Retrieves a paginated list of the items from the draft catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getdraftitems
          */
-        GetDraftItems(request: PlayFabEconomyModels.GetDraftItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetDraftItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetDraftItems(request: PlayFabEconomyModels.GetDraftItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetDraftItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetDraftItemsResponse>>;
         /**
          * Retrieves a paginated list of the items from the draft catalog created by the Entity.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getentitydraftitems
          */
-        GetEntityDraftItems(request: PlayFabEconomyModels.GetEntityDraftItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetEntityDraftItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetEntityDraftItems(request: PlayFabEconomyModels.GetEntityDraftItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetEntityDraftItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetEntityDraftItemsResponse>>;
         /**
          * Gets the submitted review for the specified item by the authenticated entity.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getentityitemreview
          */
-        GetEntityItemReview(request: PlayFabEconomyModels.GetEntityItemReviewRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetEntityItemReviewResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetEntityItemReview(request: PlayFabEconomyModels.GetEntityItemReviewRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetEntityItemReviewResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetEntityItemReviewResponse>>;
         /**
          * Get Inventory Collection Ids
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/getinventorycollectionids
          */
-        GetInventoryCollectionIds(request: PlayFabEconomyModels.GetInventoryCollectionIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryCollectionIdsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetInventoryCollectionIds(request: PlayFabEconomyModels.GetInventoryCollectionIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryCollectionIdsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryCollectionIdsResponse>>;
         /**
          * Get current inventory items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/getinventoryitems
          */
-        GetInventoryItems(request: PlayFabEconomyModels.GetInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetInventoryItems(request: PlayFabEconomyModels.GetInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryItemsResponse>>;
         /**
          * Retrieves an item from the public catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getitem
          */
-        GetItem(request: PlayFabEconomyModels.GetItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetItem(request: PlayFabEconomyModels.GetItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemResponse>>;
         /**
          * Search for a given item and return a set of bundles and stores containing the item
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getitemcontainers
          */
-        GetItemContainers(request: PlayFabEconomyModels.GetItemContainersRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemContainersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetItemContainers(request: PlayFabEconomyModels.GetItemContainersRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemContainersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemContainersResponse>>;
         /**
          * Gets the moderation state for an item, including the concern category and string reason.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getitemmoderationstate
          */
-        GetItemModerationState(request: PlayFabEconomyModels.GetItemModerationStateRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemModerationStateResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetItemModerationState(request: PlayFabEconomyModels.GetItemModerationStateRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemModerationStateResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemModerationStateResponse>>;
         /**
          * Gets the status of a publish of an item.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getitempublishstatus
          */
-        GetItemPublishStatus(request: PlayFabEconomyModels.GetItemPublishStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemPublishStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetItemPublishStatus(request: PlayFabEconomyModels.GetItemPublishStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemPublishStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemPublishStatusResponse>>;
         /**
          * Get a paginated set of reviews associated with the specified item.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getitemreviews
          */
-        GetItemReviews(request: PlayFabEconomyModels.GetItemReviewsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemReviewsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetItemReviews(request: PlayFabEconomyModels.GetItemReviewsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemReviewsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemReviewsResponse>>;
         /**
          * Get a summary of all reviews associated with the specified item.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getitemreviewsummary
          */
-        GetItemReviewSummary(request: PlayFabEconomyModels.GetItemReviewSummaryRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemReviewSummaryResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetItemReviewSummary(request: PlayFabEconomyModels.GetItemReviewSummaryRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemReviewSummaryResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemReviewSummaryResponse>>;
         /**
          * Retrieves items from the public catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/getitems
          */
-        GetItems(request: PlayFabEconomyModels.GetItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetItems(request: PlayFabEconomyModels.GetItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemsResponse>>;
         /**
          * Gets the access tokens.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/getmicrosoftstoreaccesstokens
          */
-        GetMicrosoftStoreAccessTokens(request: PlayFabEconomyModels.GetMicrosoftStoreAccessTokensRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetMicrosoftStoreAccessTokensResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMicrosoftStoreAccessTokens(request: PlayFabEconomyModels.GetMicrosoftStoreAccessTokensRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetMicrosoftStoreAccessTokensResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetMicrosoftStoreAccessTokensResponse>>;
         /**
          * Initiates a publish of an item from the working catalog to the public catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/publishdraftitem
          */
-        PublishDraftItem(request: PlayFabEconomyModels.PublishDraftItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.PublishDraftItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PublishDraftItem(request: PlayFabEconomyModels.PublishDraftItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.PublishDraftItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.PublishDraftItemResponse>>;
         /**
          * Purchase an item or bundle
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/purchaseinventoryitems
          */
-        PurchaseInventoryItems(request: PlayFabEconomyModels.PurchaseInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.PurchaseInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PurchaseInventoryItems(request: PlayFabEconomyModels.PurchaseInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.PurchaseInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.PurchaseInventoryItemsResponse>>;
         /**
          * Redeem items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemappleappstoreinventoryitems
          */
-        RedeemAppleAppStoreInventoryItems(request: PlayFabEconomyModels.RedeemAppleAppStoreInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemAppleAppStoreInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RedeemAppleAppStoreInventoryItems(request: PlayFabEconomyModels.RedeemAppleAppStoreInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemAppleAppStoreInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemAppleAppStoreInventoryItemsResponse>>;
         /**
          * Redeem items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemgoogleplayinventoryitems
          */
-        RedeemGooglePlayInventoryItems(request: PlayFabEconomyModels.RedeemGooglePlayInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemGooglePlayInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RedeemGooglePlayInventoryItems(request: PlayFabEconomyModels.RedeemGooglePlayInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemGooglePlayInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemGooglePlayInventoryItemsResponse>>;
         /**
          * Redeem items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemmicrosoftstoreinventoryitems
          */
-        RedeemMicrosoftStoreInventoryItems(request: PlayFabEconomyModels.RedeemMicrosoftStoreInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemMicrosoftStoreInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RedeemMicrosoftStoreInventoryItems(request: PlayFabEconomyModels.RedeemMicrosoftStoreInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemMicrosoftStoreInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemMicrosoftStoreInventoryItemsResponse>>;
         /**
          * Redeem items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemnintendoeshopinventoryitems
          */
-        RedeemNintendoEShopInventoryItems(request: PlayFabEconomyModels.RedeemNintendoEShopInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemNintendoEShopInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RedeemNintendoEShopInventoryItems(request: PlayFabEconomyModels.RedeemNintendoEShopInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemNintendoEShopInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemNintendoEShopInventoryItemsResponse>>;
         /**
          * Redeem items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemplaystationstoreinventoryitems
          */
-        RedeemPlayStationStoreInventoryItems(request: PlayFabEconomyModels.RedeemPlayStationStoreInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemPlayStationStoreInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RedeemPlayStationStoreInventoryItems(request: PlayFabEconomyModels.RedeemPlayStationStoreInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemPlayStationStoreInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemPlayStationStoreInventoryItemsResponse>>;
         /**
          * Redeem items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemsteaminventoryitems
          */
-        RedeemSteamInventoryItems(request: PlayFabEconomyModels.RedeemSteamInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemSteamInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RedeemSteamInventoryItems(request: PlayFabEconomyModels.RedeemSteamInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemSteamInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemSteamInventoryItemsResponse>>;
         /**
          * Submit a report for an item, indicating in what way the item is inappropriate.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/reportitem
          */
-        ReportItem(request: PlayFabEconomyModels.ReportItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ReportItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ReportItem(request: PlayFabEconomyModels.ReportItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ReportItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.ReportItemResponse>>;
         /**
          * Submit a report for a review
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/reportitemreview
          */
-        ReportItemReview(request: PlayFabEconomyModels.ReportItemReviewRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ReportItemReviewResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ReportItemReview(request: PlayFabEconomyModels.ReportItemReviewRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ReportItemReviewResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.ReportItemReviewResponse>>;
         /**
          * Creates or updates a review for the specified item.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/reviewitem
          */
-        ReviewItem(request: PlayFabEconomyModels.ReviewItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ReviewItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ReviewItem(request: PlayFabEconomyModels.ReviewItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ReviewItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.ReviewItemResponse>>;
         /**
          * Executes a search against the public catalog using the provided search parameters and returns a set of paginated
          * results.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/searchitems
          */
-        SearchItems(request: PlayFabEconomyModels.SearchItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.SearchItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SearchItems(request: PlayFabEconomyModels.SearchItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.SearchItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.SearchItemsResponse>>;
         /**
          * Sets the moderation state for an item, including the concern category and string reason.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/setitemmoderationstate
          */
-        SetItemModerationState(request: PlayFabEconomyModels.SetItemModerationStateRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.SetItemModerationStateResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetItemModerationState(request: PlayFabEconomyModels.SetItemModerationStateRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.SetItemModerationStateResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.SetItemModerationStateResponse>>;
         /**
          * Submit a vote for a review, indicating whether the review was helpful or unhelpful.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/submititemreviewvote
          */
-        SubmitItemReviewVote(request: PlayFabEconomyModels.SubmitItemReviewVoteRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.SubmitItemReviewVoteResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SubmitItemReviewVote(request: PlayFabEconomyModels.SubmitItemReviewVoteRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.SubmitItemReviewVoteResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.SubmitItemReviewVoteResponse>>;
         /**
          * Subtract inventory items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/subtractinventoryitems
          */
-        SubtractInventoryItems(request: PlayFabEconomyModels.SubtractInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.SubtractInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SubtractInventoryItems(request: PlayFabEconomyModels.SubtractInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.SubtractInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.SubtractInventoryItemsResponse>>;
         /**
          * Submit a request to takedown one or more reviews.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/takedownitemreviews
          */
-        TakedownItemReviews(request: PlayFabEconomyModels.TakedownItemReviewsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.TakedownItemReviewsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        TakedownItemReviews(request: PlayFabEconomyModels.TakedownItemReviewsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.TakedownItemReviewsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.TakedownItemReviewsResponse>>;
         /**
          * Transfer inventory items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/transferinventoryitems
          */
-        TransferInventoryItems(request: PlayFabEconomyModels.TransferInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.TransferInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        TransferInventoryItems(request: PlayFabEconomyModels.TransferInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.TransferInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.TransferInventoryItemsResponse>>;
         /**
          * Updates the configuration for the catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/updatecatalogconfig
          */
-        UpdateCatalogConfig(request: PlayFabEconomyModels.UpdateCatalogConfigRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateCatalogConfigResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateCatalogConfig(request: PlayFabEconomyModels.UpdateCatalogConfigRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateCatalogConfigResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateCatalogConfigResponse>>;
         /**
          * Update the metadata for an item in the working catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/updatedraftitem
          */
-        UpdateDraftItem(request: PlayFabEconomyModels.UpdateDraftItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateDraftItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateDraftItem(request: PlayFabEconomyModels.UpdateDraftItemRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateDraftItemResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateDraftItemResponse>>;
         /**
          * Update inventory items
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/updateinventoryitems
          */
-        UpdateInventoryItems(request: PlayFabEconomyModels.UpdateInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateInventoryItems(request: PlayFabEconomyModels.UpdateInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.UpdateInventoryItemsResponse>>;
 
     }
 }

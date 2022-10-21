@@ -9,68 +9,68 @@ declare module PlayFabCloudScriptModule {
          * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/executeentitycloudscript
          */
-        ExecuteEntityCloudScript(request: PlayFabCloudScriptModels.ExecuteEntityCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ExecuteEntityCloudScript(request: PlayFabCloudScriptModels.ExecuteEntityCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteCloudScriptResult>>;
         /**
          * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
          * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/executefunction
          */
-        ExecuteFunction(request: PlayFabCloudScriptModels.ExecuteFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteFunctionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ExecuteFunction(request: PlayFabCloudScriptModels.ExecuteFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteFunctionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ExecuteFunctionResult>>;
         /**
          * Gets registered Azure Functions for a given title id and function name.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/getfunction
          */
-        GetFunction(request: PlayFabCloudScriptModels.GetFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.GetFunctionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetFunction(request: PlayFabCloudScriptModels.GetFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.GetFunctionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.GetFunctionResult>>;
         /**
          * Lists all currently registered Azure Functions for a given title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listfunctions
          */
-        ListFunctions(request: PlayFabCloudScriptModels.ListFunctionsRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListFunctionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListFunctions(request: PlayFabCloudScriptModels.ListFunctionsRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListFunctionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListFunctionsResult>>;
         /**
          * Lists all currently registered HTTP triggered Azure Functions for a given title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listhttpfunctions
          */
-        ListHttpFunctions(request: PlayFabCloudScriptModels.ListFunctionsRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListHttpFunctionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListHttpFunctions(request: PlayFabCloudScriptModels.ListFunctionsRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListHttpFunctionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListHttpFunctionsResult>>;
         /**
          * Lists all currently registered Queue triggered Azure Functions for a given title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listqueuedfunctions
          */
-        ListQueuedFunctions(request: PlayFabCloudScriptModels.ListFunctionsRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListQueuedFunctionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListQueuedFunctions(request: PlayFabCloudScriptModels.ListFunctionsRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListQueuedFunctionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListQueuedFunctionsResult>>;
         /**
          * Generate an entity PlayStream event for the provided function result.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/postfunctionresultforentitytriggeredaction
          */
-        PostFunctionResultForEntityTriggeredAction(request: PlayFabCloudScriptModels.PostFunctionResultForEntityTriggeredActionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PostFunctionResultForEntityTriggeredAction(request: PlayFabCloudScriptModels.PostFunctionResultForEntityTriggeredActionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
         /**
          * Generate an entity PlayStream event for the provided function result.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/postfunctionresultforfunctionexecution
          */
-        PostFunctionResultForFunctionExecution(request: PlayFabCloudScriptModels.PostFunctionResultForFunctionExecutionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PostFunctionResultForFunctionExecution(request: PlayFabCloudScriptModels.PostFunctionResultForFunctionExecutionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
         /**
          * Generate a player PlayStream event for the provided function result.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/postfunctionresultforplayertriggeredaction
          */
-        PostFunctionResultForPlayerTriggeredAction(request: PlayFabCloudScriptModels.PostFunctionResultForPlayerTriggeredActionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PostFunctionResultForPlayerTriggeredAction(request: PlayFabCloudScriptModels.PostFunctionResultForPlayerTriggeredActionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
         /**
          * Generate a PlayStream event for the provided function result.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/postfunctionresultforscheduledtask
          */
-        PostFunctionResultForScheduledTask(request: PlayFabCloudScriptModels.PostFunctionResultForScheduledTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PostFunctionResultForScheduledTask(request: PlayFabCloudScriptModels.PostFunctionResultForScheduledTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
         /**
          * Registers an HTTP triggered Azure function with a title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/registerhttpfunction
          */
-        RegisterHttpFunction(request: PlayFabCloudScriptModels.RegisterHttpFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RegisterHttpFunction(request: PlayFabCloudScriptModels.RegisterHttpFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
         /**
          * Registers a queue triggered Azure Function with a title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/registerqueuedfunction
          */
-        RegisterQueuedFunction(request: PlayFabCloudScriptModels.RegisterQueuedFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RegisterQueuedFunction(request: PlayFabCloudScriptModels.RegisterQueuedFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
         /**
          * Unregisters an Azure Function with a title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/unregisterfunction
          */
-        UnregisterFunction(request: PlayFabCloudScriptModels.UnregisterFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnregisterFunction(request: PlayFabCloudScriptModels.UnregisterFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
 
     }
 }

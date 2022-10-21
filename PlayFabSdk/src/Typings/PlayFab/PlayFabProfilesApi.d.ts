@@ -8,38 +8,38 @@ declare module PlayFabProfilesModule {
          * Gets the global title access policy
          * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/getglobalpolicy
          */
-        GetGlobalPolicy(request: PlayFabProfilesModels.GetGlobalPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetGlobalPolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetGlobalPolicy(request: PlayFabProfilesModels.GetGlobalPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetGlobalPolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProfilesModels.GetGlobalPolicyResponse>>;
         /**
          * Retrieves the entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/getprofile
          */
-        GetProfile(request: PlayFabProfilesModels.GetEntityProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetEntityProfileResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetProfile(request: PlayFabProfilesModels.GetEntityProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetEntityProfileResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProfilesModels.GetEntityProfileResponse>>;
         /**
          * Retrieves the entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/getprofiles
          */
-        GetProfiles(request: PlayFabProfilesModels.GetEntityProfilesRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetEntityProfilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetProfiles(request: PlayFabProfilesModels.GetEntityProfilesRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetEntityProfilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProfilesModels.GetEntityProfilesResponse>>;
         /**
          * Retrieves the title player accounts associated with the given master player account.
          * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/gettitleplayersfrommasterplayeraccountids
          */
-        GetTitlePlayersFromMasterPlayerAccountIds(request: PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitlePlayersFromMasterPlayerAccountIds(request: PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsResponse>>;
         /**
          * Sets the global title access policy
          * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/setglobalpolicy
          */
-        SetGlobalPolicy(request: PlayFabProfilesModels.SetGlobalPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.SetGlobalPolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetGlobalPolicy(request: PlayFabProfilesModels.SetGlobalPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.SetGlobalPolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProfilesModels.SetGlobalPolicyResponse>>;
         /**
          * Updates the entity's language. The precedence hierarchy for communication to the player is Title Player Account
          * language, Master Player Account language, and then title default language if the first two aren't set or supported.
          * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/setprofilelanguage
          */
-        SetProfileLanguage(request: PlayFabProfilesModels.SetProfileLanguageRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.SetProfileLanguageResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetProfileLanguage(request: PlayFabProfilesModels.SetProfileLanguageRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.SetProfileLanguageResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProfilesModels.SetProfileLanguageResponse>>;
         /**
          * Sets the profiles access policy
          * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/setprofilepolicy
          */
-        SetProfilePolicy(request: PlayFabProfilesModels.SetEntityProfilePolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.SetEntityProfilePolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetProfilePolicy(request: PlayFabProfilesModels.SetEntityProfilePolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabProfilesModels.SetEntityProfilePolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProfilesModels.SetEntityProfilePolicyResponse>>;
 
     }
 }

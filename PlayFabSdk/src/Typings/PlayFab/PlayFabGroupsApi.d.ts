@@ -8,127 +8,127 @@ declare module PlayFabGroupsModule {
          * Accepts an outstanding invitation to to join a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/acceptgroupapplication
          */
-        AcceptGroupApplication(request: PlayFabGroupsModels.AcceptGroupApplicationRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AcceptGroupApplication(request: PlayFabGroupsModels.AcceptGroupApplicationRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Accepts an invitation to join a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/acceptgroupinvitation
          */
-        AcceptGroupInvitation(request: PlayFabGroupsModels.AcceptGroupInvitationRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AcceptGroupInvitation(request: PlayFabGroupsModels.AcceptGroupInvitationRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Adds members to a group or role.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/addmembers
          */
-        AddMembers(request: PlayFabGroupsModels.AddMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddMembers(request: PlayFabGroupsModels.AddMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Applies to join a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/applytogroup
          */
-        ApplyToGroup(request: PlayFabGroupsModels.ApplyToGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ApplyToGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ApplyToGroup(request: PlayFabGroupsModels.ApplyToGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ApplyToGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.ApplyToGroupResponse>>;
         /**
          * Blocks a list of entities from joining a group.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/blockentity
          */
-        BlockEntity(request: PlayFabGroupsModels.BlockEntityRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        BlockEntity(request: PlayFabGroupsModels.BlockEntityRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Changes the role membership of a list of entities from one role to another.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/changememberrole
          */
-        ChangeMemberRole(request: PlayFabGroupsModels.ChangeMemberRoleRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ChangeMemberRole(request: PlayFabGroupsModels.ChangeMemberRoleRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Creates a new group.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/creategroup
          */
-        CreateGroup(request: PlayFabGroupsModels.CreateGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.CreateGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateGroup(request: PlayFabGroupsModels.CreateGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.CreateGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.CreateGroupResponse>>;
         /**
          * Creates a new group role.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/createrole
          */
-        CreateRole(request: PlayFabGroupsModels.CreateGroupRoleRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.CreateGroupRoleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateRole(request: PlayFabGroupsModels.CreateGroupRoleRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.CreateGroupRoleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.CreateGroupRoleResponse>>;
         /**
          * Deletes a group and all roles, invitations, join requests, and blocks associated with it.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/deletegroup
          */
-        DeleteGroup(request: PlayFabGroupsModels.DeleteGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteGroup(request: PlayFabGroupsModels.DeleteGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Deletes an existing role in a group.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/deleterole
          */
-        DeleteRole(request: PlayFabGroupsModels.DeleteRoleRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteRole(request: PlayFabGroupsModels.DeleteRoleRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Gets information about a group and its roles
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/getgroup
          */
-        GetGroup(request: PlayFabGroupsModels.GetGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.GetGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetGroup(request: PlayFabGroupsModels.GetGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.GetGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.GetGroupResponse>>;
         /**
          * Invites a player to join a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/invitetogroup
          */
-        InviteToGroup(request: PlayFabGroupsModels.InviteToGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.InviteToGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        InviteToGroup(request: PlayFabGroupsModels.InviteToGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.InviteToGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.InviteToGroupResponse>>;
         /**
          * Checks to see if an entity is a member of a group or role within the group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/ismember
          */
-        IsMember(request: PlayFabGroupsModels.IsMemberRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.IsMemberResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        IsMember(request: PlayFabGroupsModels.IsMemberRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.IsMemberResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.IsMemberResponse>>;
         /**
          * Lists all outstanding requests to join a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/listgroupapplications
          */
-        ListGroupApplications(request: PlayFabGroupsModels.ListGroupApplicationsRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupApplicationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListGroupApplications(request: PlayFabGroupsModels.ListGroupApplicationsRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupApplicationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupApplicationsResponse>>;
         /**
          * Lists all entities blocked from joining a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/listgroupblocks
          */
-        ListGroupBlocks(request: PlayFabGroupsModels.ListGroupBlocksRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupBlocksResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListGroupBlocks(request: PlayFabGroupsModels.ListGroupBlocksRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupBlocksResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupBlocksResponse>>;
         /**
          * Lists all outstanding invitations for a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/listgroupinvitations
          */
-        ListGroupInvitations(request: PlayFabGroupsModels.ListGroupInvitationsRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupInvitationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListGroupInvitations(request: PlayFabGroupsModels.ListGroupInvitationsRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupInvitationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupInvitationsResponse>>;
         /**
          * Lists all members for a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/listgroupmembers
          */
-        ListGroupMembers(request: PlayFabGroupsModels.ListGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupMembersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListGroupMembers(request: PlayFabGroupsModels.ListGroupMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupMembersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.ListGroupMembersResponse>>;
         /**
          * Lists all groups and roles for an entity
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/listmembership
          */
-        ListMembership(request: PlayFabGroupsModels.ListMembershipRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListMembershipResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListMembership(request: PlayFabGroupsModels.ListMembershipRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListMembershipResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.ListMembershipResponse>>;
         /**
          * Lists all outstanding invitations and group applications for an entity
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/listmembershipopportunities
          */
-        ListMembershipOpportunities(request: PlayFabGroupsModels.ListMembershipOpportunitiesRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListMembershipOpportunitiesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListMembershipOpportunities(request: PlayFabGroupsModels.ListMembershipOpportunitiesRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.ListMembershipOpportunitiesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.ListMembershipOpportunitiesResponse>>;
         /**
          * Removes an application to join a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/removegroupapplication
          */
-        RemoveGroupApplication(request: PlayFabGroupsModels.RemoveGroupApplicationRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveGroupApplication(request: PlayFabGroupsModels.RemoveGroupApplicationRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Removes an invitation join a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/removegroupinvitation
          */
-        RemoveGroupInvitation(request: PlayFabGroupsModels.RemoveGroupInvitationRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveGroupInvitation(request: PlayFabGroupsModels.RemoveGroupInvitationRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Removes members from a group.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/removemembers
          */
-        RemoveMembers(request: PlayFabGroupsModels.RemoveMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveMembers(request: PlayFabGroupsModels.RemoveMembersRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Unblocks a list of entities from joining a group
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/unblockentity
          */
-        UnblockEntity(request: PlayFabGroupsModels.UnblockEntityRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnblockEntity(request: PlayFabGroupsModels.UnblockEntityRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.EmptyResponse>>;
         /**
          * Updates non-membership data about a group.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/updategroup
          */
-        UpdateGroup(request: PlayFabGroupsModels.UpdateGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.UpdateGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateGroup(request: PlayFabGroupsModels.UpdateGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.UpdateGroupResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.UpdateGroupResponse>>;
         /**
          * Updates metadata about a role.
          * https://docs.microsoft.com/rest/api/playfab/groups/groups/updaterole
          */
-        UpdateRole(request: PlayFabGroupsModels.UpdateGroupRoleRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.UpdateGroupRoleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateRole(request: PlayFabGroupsModels.UpdateGroupRoleRequest, callback: PlayFabModule.ApiCallback<PlayFabGroupsModels.UpdateGroupRoleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabGroupsModels.UpdateGroupRoleResponse>>;
 
     }
 }
