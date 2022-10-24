@@ -8,233 +8,233 @@ declare module PlayFabAdminModule {
          * Abort an ongoing task instance.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/aborttaskinstance
          */
-        AbortTaskInstance(request: PlayFabAdminModels.AbortTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AbortTaskInstance(request: PlayFabAdminModels.AbortTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>>;
         /**
          * Update news item to include localized version
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/addlocalizednews
          */
-        AddLocalizedNews(request: PlayFabAdminModels.AddLocalizedNewsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.AddLocalizedNewsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddLocalizedNews(request: PlayFabAdminModels.AddLocalizedNewsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.AddLocalizedNewsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.AddLocalizedNewsResult>>;
         /**
          * Adds a new news item to the title's news feed
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/addnews
          */
-        AddNews(request: PlayFabAdminModels.AddNewsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.AddNewsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddNews(request: PlayFabAdminModels.AddNewsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.AddNewsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.AddNewsResult>>;
         /**
          * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/addplayertag
          */
-        AddPlayerTag(request: PlayFabAdminModels.AddPlayerTagRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.AddPlayerTagResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddPlayerTag(request: PlayFabAdminModels.AddPlayerTagRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.AddPlayerTagResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.AddPlayerTagResult>>;
         /**
          * Increments the specified virtual currency by the stated amount
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/adduservirtualcurrency
          */
-        AddUserVirtualCurrency(request: PlayFabAdminModels.AddUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddUserVirtualCurrency(request: PlayFabAdminModels.AddUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>>;
         /**
          * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of
          * 2,147,483,647 when granted to a player. Any value over that will be discarded.
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/addvirtualcurrencytypes
          */
-        AddVirtualCurrencyTypes(request: PlayFabAdminModels.AddVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AddVirtualCurrencyTypes(request: PlayFabAdminModels.AddVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>>;
         /**
          * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/banusers
          */
-        BanUsers(request: PlayFabAdminModels.BanUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        BanUsers(request: PlayFabAdminModels.BanUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>>;
         /**
          * Checks the global count for the limited edition item.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/checklimitededitionitemavailability
          */
-        CheckLimitedEditionItemAvailability(request: PlayFabAdminModels.CheckLimitedEditionItemAvailabilityRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CheckLimitedEditionItemAvailabilityResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CheckLimitedEditionItemAvailability(request: PlayFabAdminModels.CheckLimitedEditionItemAvailabilityRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CheckLimitedEditionItemAvailabilityResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.CheckLimitedEditionItemAvailabilityResult>>;
         /**
          * Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/createactionsonplayersinsegmenttask
          */
-        CreateActionsOnPlayersInSegmentTask(request: PlayFabAdminModels.CreateActionsOnPlayerSegmentTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateActionsOnPlayersInSegmentTask(request: PlayFabAdminModels.CreateActionsOnPlayerSegmentTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>>;
         /**
          * Create a CloudScript task, which can run a CloudScript on a schedule.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/createcloudscripttask
          */
-        CreateCloudScriptTask(request: PlayFabAdminModels.CreateCloudScriptTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateCloudScriptTask(request: PlayFabAdminModels.CreateCloudScriptTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>>;
         /**
          * Create a Insights Scheduled Scaling task, which can scale Insights Performance Units on a schedule
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/createinsightsscheduledscalingtask
          */
-        CreateInsightsScheduledScalingTask(request: PlayFabAdminModels.CreateInsightsScheduledScalingTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateInsightsScheduledScalingTask(request: PlayFabAdminModels.CreateInsightsScheduledScalingTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.CreateTaskResult>>;
         /**
          * Registers a relationship between a title and an Open ID Connect provider.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/createopenidconnection
          */
-        CreateOpenIdConnection(request: PlayFabAdminModels.CreateOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateOpenIdConnection(request: PlayFabAdminModels.CreateOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>>;
         /**
          * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after
          * this API returns.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/createplayersharedsecret
          */
-        CreatePlayerSharedSecret(request: PlayFabAdminModels.CreatePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreatePlayerSharedSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreatePlayerSharedSecret(request: PlayFabAdminModels.CreatePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreatePlayerSharedSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.CreatePlayerSharedSecretResult>>;
         /**
          * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval
          * and an aggregation method.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/createplayerstatisticdefinition
          */
-        CreatePlayerStatisticDefinition(request: PlayFabAdminModels.CreatePlayerStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreatePlayerStatisticDefinitionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreatePlayerStatisticDefinition(request: PlayFabAdminModels.CreatePlayerStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreatePlayerStatisticDefinitionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.CreatePlayerStatisticDefinitionResult>>;
         /**
          * Creates a new player segment by defining the conditions on player properties. Also, create actions to target the player
          * segments for a title.
          * https://docs.microsoft.com/rest/api/playfab/admin/segments/createsegment
          */
-        CreateSegment(request: PlayFabAdminModels.CreateSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateSegmentResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateSegment(request: PlayFabAdminModels.CreateSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CreateSegmentResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.CreateSegmentResponse>>;
         /**
          * Delete a content file from the title. When deleting a file that does not exist, it returns success.
          * https://docs.microsoft.com/rest/api/playfab/admin/content/deletecontent
          */
-        DeleteContent(request: PlayFabAdminModels.DeleteContentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteContent(request: PlayFabAdminModels.DeleteContentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>>;
         /**
          * Removes a master player account entirely from all titles and deletes all associated data
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemasterplayeraccount
          */
-        DeleteMasterPlayerAccount(request: PlayFabAdminModels.DeleteMasterPlayerAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMasterPlayerAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteMasterPlayerAccount(request: PlayFabAdminModels.DeleteMasterPlayerAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMasterPlayerAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMasterPlayerAccountResult>>;
         /**
          * Deletes a player's subscription
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemembershipsubscription
          */
-        DeleteMembershipSubscription(request: PlayFabAdminModels.DeleteMembershipSubscriptionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMembershipSubscriptionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteMembershipSubscription(request: PlayFabAdminModels.DeleteMembershipSubscriptionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMembershipSubscriptionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMembershipSubscriptionResult>>;
         /**
          * Removes a relationship between a title and an OpenID Connect provider.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/deleteopenidconnection
          */
-        DeleteOpenIdConnection(request: PlayFabAdminModels.DeleteOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteOpenIdConnection(request: PlayFabAdminModels.DeleteOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>>;
         /**
          * Removes a user's player account from a title and deletes all associated data
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/deleteplayer
          */
-        DeletePlayer(request: PlayFabAdminModels.DeletePlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeletePlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeletePlayer(request: PlayFabAdminModels.DeletePlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeletePlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeletePlayerResult>>;
         /**
          * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API
          * returns.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/deleteplayersharedsecret
          */
-        DeletePlayerSharedSecret(request: PlayFabAdminModels.DeletePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeletePlayerSharedSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeletePlayerSharedSecret(request: PlayFabAdminModels.DeletePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeletePlayerSharedSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeletePlayerSharedSecretResult>>;
         /**
          * Deletes an existing player segment and its associated action(s) for a title.
          * https://docs.microsoft.com/rest/api/playfab/admin/segments/deletesegment
          */
-        DeleteSegment(request: PlayFabAdminModels.DeleteSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteSegmentsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteSegment(request: PlayFabAdminModels.DeleteSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteSegmentsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteSegmentsResponse>>;
         /**
          * Deletes an existing virtual item store
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletestore
          */
-        DeleteStore(request: PlayFabAdminModels.DeleteStoreRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteStoreResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteStore(request: PlayFabAdminModels.DeleteStoreRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteStoreResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteStoreResult>>;
         /**
          * Delete a task.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/deletetask
          */
-        DeleteTask(request: PlayFabAdminModels.DeleteTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteTask(request: PlayFabAdminModels.DeleteTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>>;
         /**
          * Permanently deletes a title and all associated configuration
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletetitle
          */
-        DeleteTitle(request: PlayFabAdminModels.DeleteTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteTitleResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteTitle(request: PlayFabAdminModels.DeleteTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteTitleResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteTitleResult>>;
         /**
          * Deletes a specified set of title data overrides.
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletetitledataoverride
          */
-        DeleteTitleDataOverride(request: PlayFabAdminModels.DeleteTitleDataOverrideRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteTitleDataOverrideResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteTitleDataOverride(request: PlayFabAdminModels.DeleteTitleDataOverrideRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteTitleDataOverrideResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteTitleDataOverrideResult>>;
         /**
          * Exports all associated data of a master player account
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/exportmasterplayerdata
          */
-        ExportMasterPlayerData(request: PlayFabAdminModels.ExportMasterPlayerDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ExportMasterPlayerDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ExportMasterPlayerData(request: PlayFabAdminModels.ExportMasterPlayerDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ExportMasterPlayerDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ExportMasterPlayerDataResult>>;
         /**
          * Starts an export for the player profiles in a segment. This API creates a snapshot of all the player profiles which
          * match the segment definition at the time of the API call. Profiles which change while an export is in progress will not
          * be reflected in the results.
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/exportplayersinsegment
          */
-        ExportPlayersInSegment(request: PlayFabAdminModels.ExportPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ExportPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ExportPlayersInSegment(request: PlayFabAdminModels.ExportPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ExportPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ExportPlayersInSegmentResult>>;
         /**
          * Get information about a ActionsOnPlayersInSegment task instance.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/getactionsonplayersinsegmenttaskinstance
          */
-        GetActionsOnPlayersInSegmentTaskInstance(request: PlayFabAdminModels.GetTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetActionsOnPlayersInSegmentTaskInstanceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetActionsOnPlayersInSegmentTaskInstance(request: PlayFabAdminModels.GetTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetActionsOnPlayersInSegmentTaskInstanceResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetActionsOnPlayersInSegmentTaskInstanceResult>>;
         /**
          * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
          * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getallsegments
          */
-        GetAllSegments(request: PlayFabAdminModels.GetAllSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetAllSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetAllSegments(request: PlayFabAdminModels.GetAllSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetAllSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetAllSegmentsResult>>;
         /**
          * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getcatalogitems
          */
-        GetCatalogItems(request: PlayFabAdminModels.GetCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCatalogItems(request: PlayFabAdminModels.GetCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetCatalogItemsResult>>;
         /**
          * Gets the contents and information of a specific Cloud Script revision.
          * https://docs.microsoft.com/rest/api/playfab/admin/server-side-cloud-script/getcloudscriptrevision
          */
-        GetCloudScriptRevision(request: PlayFabAdminModels.GetCloudScriptRevisionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptRevisionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCloudScriptRevision(request: PlayFabAdminModels.GetCloudScriptRevisionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptRevisionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptRevisionResult>>;
         /**
          * Get detail information about a CloudScript task instance.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/getcloudscripttaskinstance
          */
-        GetCloudScriptTaskInstance(request: PlayFabAdminModels.GetTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptTaskInstanceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCloudScriptTaskInstance(request: PlayFabAdminModels.GetTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptTaskInstanceResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptTaskInstanceResult>>;
         /**
          * Lists all the current cloud script versions. For each version, information about the current published and latest
          * revisions is also listed.
          * https://docs.microsoft.com/rest/api/playfab/admin/server-side-cloud-script/getcloudscriptversions
          */
-        GetCloudScriptVersions(request: PlayFabAdminModels.GetCloudScriptVersionsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptVersionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetCloudScriptVersions(request: PlayFabAdminModels.GetCloudScriptVersionsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptVersionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetCloudScriptVersionsResult>>;
         /**
          * List all contents of the title and get statistics such as size
          * https://docs.microsoft.com/rest/api/playfab/admin/content/getcontentlist
          */
-        GetContentList(request: PlayFabAdminModels.GetContentListRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetContentListResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetContentList(request: PlayFabAdminModels.GetContentListRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetContentListResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetContentListResult>>;
         /**
          * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the
          * content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN
          * rates apply.
          * https://docs.microsoft.com/rest/api/playfab/admin/content/getcontentuploadurl
          */
-        GetContentUploadUrl(request: PlayFabAdminModels.GetContentUploadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetContentUploadUrlResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetContentUploadUrl(request: PlayFabAdminModels.GetContentUploadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetContentUploadUrlResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetContentUploadUrlResult>>;
         /**
          * Retrieves a download URL for the requested report
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getdatareport
          */
-        GetDataReport(request: PlayFabAdminModels.GetDataReportRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetDataReportResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetDataReport(request: PlayFabAdminModels.GetDataReportRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetDataReportResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetDataReportResult>>;
         /**
          * Retrieves the details for a specific completed session, including links to standard out and standard error logs
          * https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/getmatchmakergameinfo
          */
-        GetMatchmakerGameInfo(request: PlayFabAdminModels.GetMatchmakerGameInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakerGameInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMatchmakerGameInfo(request: PlayFabAdminModels.GetMatchmakerGameInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakerGameInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakerGameInfoResult>>;
         /**
          * Retrieves the details of defined game modes for the specified game server executable
          * https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/getmatchmakergamemodes
          */
-        GetMatchmakerGameModes(request: PlayFabAdminModels.GetMatchmakerGameModesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakerGameModesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMatchmakerGameModes(request: PlayFabAdminModels.GetMatchmakerGameModesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakerGameModesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetMatchmakerGameModesResult>>;
         /**
          * Get the list of titles that the player has played
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/getplayedtitlelist
          */
-        GetPlayedTitleList(request: PlayFabAdminModels.GetPlayedTitleListRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayedTitleListResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayedTitleList(request: PlayFabAdminModels.GetPlayedTitleListRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayedTitleListResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayedTitleListResult>>;
         /**
          * Gets a player's ID from an auth token.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/getplayeridfromauthtoken
          */
-        GetPlayerIdFromAuthToken(request: PlayFabAdminModels.GetPlayerIdFromAuthTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerIdFromAuthTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerIdFromAuthToken(request: PlayFabAdminModels.GetPlayerIdFromAuthTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerIdFromAuthTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerIdFromAuthTokenResult>>;
         /**
          * Retrieves the player's profile
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/getplayerprofile
          */
-        GetPlayerProfile(request: PlayFabAdminModels.GetPlayerProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerProfileResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerProfile(request: PlayFabAdminModels.GetPlayerProfileRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerProfileResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerProfileResult>>;
         /**
          * List all segments that a player currently belongs to at this moment in time.
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getplayersegments
          */
-        GetPlayerSegments(request: PlayFabAdminModels.GetPlayersSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerSegments(request: PlayFabAdminModels.GetPlayersSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSegmentsResult>>;
         /**
          * Returns all Player Shared Secret Keys including disabled and expired.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/getplayersharedsecrets
          */
-        GetPlayerSharedSecrets(request: PlayFabAdminModels.GetPlayerSharedSecretsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSharedSecretsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerSharedSecrets(request: PlayFabAdminModels.GetPlayerSharedSecretsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSharedSecretsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSharedSecretsResult>>;
         /**
          * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
          * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
@@ -243,38 +243,38 @@ declare module PlayFabAdminModule {
          * called 30 times in one minute. You will be returned an error if you exceed this threshold.
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getplayersinsegment
          */
-        GetPlayersInSegment(request: PlayFabAdminModels.GetPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayersInSegment(request: PlayFabAdminModels.GetPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentResult>>;
         /**
          * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have
          * a reset interval.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getplayerstatisticdefinitions
          */
-        GetPlayerStatisticDefinitions(request: PlayFabAdminModels.GetPlayerStatisticDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerStatisticDefinitionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerStatisticDefinitions(request: PlayFabAdminModels.GetPlayerStatisticDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerStatisticDefinitionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerStatisticDefinitionsResult>>;
         /**
          * Retrieves the information on the available versions of the specified statistic.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getplayerstatisticversions
          */
-        GetPlayerStatisticVersions(request: PlayFabAdminModels.GetPlayerStatisticVersionsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerStatisticVersionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerStatisticVersions(request: PlayFabAdminModels.GetPlayerStatisticVersionsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerStatisticVersionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerStatisticVersionsResult>>;
         /**
          * Get all tags with a given Namespace (optional) from a player profile.
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getplayertags
          */
-        GetPlayerTags(request: PlayFabAdminModels.GetPlayerTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerTagsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPlayerTags(request: PlayFabAdminModels.GetPlayerTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerTagsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerTagsResult>>;
         /**
          * Gets the requested policy.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/getpolicy
          */
-        GetPolicy(request: PlayFabAdminModels.GetPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPolicy(request: PlayFabAdminModels.GetPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPolicyResponse>>;
         /**
          * Retrieves the key-value store of custom publisher settings
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getpublisherdata
          */
-        GetPublisherData(request: PlayFabAdminModels.GetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetPublisherData(request: PlayFabAdminModels.GetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPublisherDataResult>>;
         /**
          * Retrieves the random drop table configuration for the title
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getrandomresulttables
          */
-        GetRandomResultTables(request: PlayFabAdminModels.GetRandomResultTablesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetRandomResultTablesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetRandomResultTables(request: PlayFabAdminModels.GetRandomResultTablesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetRandomResultTablesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetRandomResultTablesResult>>;
         /**
          * Retrieves the result of an export started by ExportPlayersInSegment API. If the ExportPlayersInSegment is successful and
          * complete, this API returns the IndexUrl from which the index file can be downloaded. The index file has a list of urls
@@ -282,328 +282,328 @@ declare module PlayFabAdminModule {
          * the export
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getsegmentexport
          */
-        GetSegmentExport(request: PlayFabAdminModels.GetPlayersInSegmentExportRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentExportResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetSegmentExport(request: PlayFabAdminModels.GetPlayersInSegmentExportRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentExportResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentExportResponse>>;
         /**
          * Get detail information of a segment and its associated definition(s) and action(s) for a title.
          * https://docs.microsoft.com/rest/api/playfab/admin/segments/getsegments
          */
-        GetSegments(request: PlayFabAdminModels.GetSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetSegmentsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetSegments(request: PlayFabAdminModels.GetSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetSegmentsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetSegmentsResponse>>;
         /**
          * Retrieves the set of items defined for the specified store, including all prices defined
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems
          */
-        GetStoreItems(request: PlayFabAdminModels.GetStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetStoreItems(request: PlayFabAdminModels.GetStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetStoreItemsResult>>;
         /**
          * Query for task instances by task, status, or time range.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/gettaskinstances
          */
-        GetTaskInstances(request: PlayFabAdminModels.GetTaskInstancesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetTaskInstancesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTaskInstances(request: PlayFabAdminModels.GetTaskInstancesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetTaskInstancesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetTaskInstancesResult>>;
         /**
          * Get definition information on a specified task or all tasks within a title.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/gettasks
          */
-        GetTasks(request: PlayFabAdminModels.GetTasksRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetTasksResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTasks(request: PlayFabAdminModels.GetTasksRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetTasksResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetTasksResult>>;
         /**
          * Retrieves the key-value store of custom title settings which can be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/gettitledata
          */
-        GetTitleData(request: PlayFabAdminModels.GetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitleData(request: PlayFabAdminModels.GetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetTitleDataResult>>;
         /**
          * Retrieves the key-value store of custom title settings which cannot be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/gettitleinternaldata
          */
-        GetTitleInternalData(request: PlayFabAdminModels.GetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitleInternalData(request: PlayFabAdminModels.GetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetTitleDataResult>>;
         /**
          * Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/getuseraccountinfo
          */
-        GetUserAccountInfo(request: PlayFabAdminModels.LookupUserAccountInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.LookupUserAccountInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserAccountInfo(request: PlayFabAdminModels.LookupUserAccountInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.LookupUserAccountInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.LookupUserAccountInfoResult>>;
         /**
          * Gets all bans for a user.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/getuserbans
          */
-        GetUserBans(request: PlayFabAdminModels.GetUserBansRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserBansResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserBans(request: PlayFabAdminModels.GetUserBansRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserBansResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserBansResult>>;
         /**
          * Retrieves the title-specific custom data for the user which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getuserdata
          */
-        GetUserData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>>;
         /**
          * Retrieves the title-specific custom data for the user which cannot be accessed by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getuserinternaldata
          */
-        GetUserInternalData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserInternalData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>>;
         /**
          * Retrieves the specified user's current inventory of virtual goods
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/getuserinventory
          */
-        GetUserInventory(request: PlayFabAdminModels.GetUserInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserInventory(request: PlayFabAdminModels.GetUserInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserInventoryResult>>;
         /**
          * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getuserpublisherdata
          */
-        GetUserPublisherData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserPublisherData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>>;
         /**
          * Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getuserpublisherinternaldata
          */
-        GetUserPublisherInternalData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserPublisherInternalData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>>;
         /**
          * Retrieves the publisher-specific custom data for the user which can only be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getuserpublisherreadonlydata
          */
-        GetUserPublisherReadOnlyData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserPublisherReadOnlyData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>>;
         /**
          * Retrieves the title-specific custom data for the user which can only be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getuserreadonlydata
          */
-        GetUserReadOnlyData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetUserReadOnlyData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>>;
         /**
          * Adds the specified items to the specified user inventories
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/grantitemstousers
          */
-        GrantItemsToUsers(request: PlayFabAdminModels.GrantItemsToUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GrantItemsToUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GrantItemsToUsers(request: PlayFabAdminModels.GrantItemsToUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GrantItemsToUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GrantItemsToUsersResult>>;
         /**
          * Increases the global count for the given scarce resource.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/incrementlimitededitionitemavailability
          */
-        IncrementLimitedEditionItemAvailability(request: PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        IncrementLimitedEditionItemAvailability(request: PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityResult>>;
         /**
          * Resets the indicated statistic, removing all player entries for it and backing up the old values.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/incrementplayerstatisticversion
          */
-        IncrementPlayerStatisticVersion(request: PlayFabAdminModels.IncrementPlayerStatisticVersionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementPlayerStatisticVersionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        IncrementPlayerStatisticVersion(request: PlayFabAdminModels.IncrementPlayerStatisticVersionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementPlayerStatisticVersionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementPlayerStatisticVersionResult>>;
         /**
          * Retrieves a list of all Open ID Connect providers registered to a title.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/listopenidconnection
          */
-        ListOpenIdConnection(request: PlayFabAdminModels.ListOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ListOpenIdConnectionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListOpenIdConnection(request: PlayFabAdminModels.ListOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ListOpenIdConnectionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ListOpenIdConnectionResponse>>;
         /**
          * Retuns the list of all defined virtual currencies for the title
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/listvirtualcurrencytypes
          */
-        ListVirtualCurrencyTypes(request: PlayFabAdminModels.ListVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ListVirtualCurrencyTypesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListVirtualCurrencyTypes(request: PlayFabAdminModels.ListVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ListVirtualCurrencyTypesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ListVirtualCurrencyTypesResult>>;
         /**
          * Updates the build details for the specified game server executable
          * https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/modifyserverbuild
          */
-        ModifyServerBuild(request: PlayFabAdminModels.ModifyServerBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyServerBuildResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ModifyServerBuild(request: PlayFabAdminModels.ModifyServerBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyServerBuildResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyServerBuildResult>>;
         /**
          * Attempts to process an order refund through the original real money payment provider.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/refundpurchase
          */
-        RefundPurchase(request: PlayFabAdminModels.RefundPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RefundPurchaseResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RefundPurchase(request: PlayFabAdminModels.RefundPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RefundPurchaseResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RefundPurchaseResponse>>;
         /**
          * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/removeplayertag
          */
-        RemovePlayerTag(request: PlayFabAdminModels.RemovePlayerTagRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RemovePlayerTagResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemovePlayerTag(request: PlayFabAdminModels.RemovePlayerTagRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RemovePlayerTagResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RemovePlayerTagResult>>;
         /**
          * Removes one or more virtual currencies from the set defined for the title.
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/removevirtualcurrencytypes
          */
-        RemoveVirtualCurrencyTypes(request: PlayFabAdminModels.RemoveVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveVirtualCurrencyTypes(request: PlayFabAdminModels.RemoveVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>>;
         /**
          * Completely removes all statistics for the specified character, for the current game
          * https://docs.microsoft.com/rest/api/playfab/admin/characters/resetcharacterstatistics
          */
-        ResetCharacterStatistics(request: PlayFabAdminModels.ResetCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ResetCharacterStatistics(request: PlayFabAdminModels.ResetCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ResetCharacterStatisticsResult>>;
         /**
          * Reset a player's password for a given title.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/resetpassword
          */
-        ResetPassword(request: PlayFabAdminModels.ResetPasswordRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetPasswordResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ResetPassword(request: PlayFabAdminModels.ResetPasswordRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetPasswordResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ResetPasswordResult>>;
         /**
          * Completely removes all statistics for the specified user, for the current game
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/resetuserstatistics
          */
-        ResetUserStatistics(request: PlayFabAdminModels.ResetUserStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetUserStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ResetUserStatistics(request: PlayFabAdminModels.ResetUserStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetUserStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ResetUserStatisticsResult>>;
         /**
          * Attempts to resolve a dispute with the original order's payment provider.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/resolvepurchasedispute
          */
-        ResolvePurchaseDispute(request: PlayFabAdminModels.ResolvePurchaseDisputeRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResolvePurchaseDisputeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ResolvePurchaseDispute(request: PlayFabAdminModels.ResolvePurchaseDisputeRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResolvePurchaseDisputeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ResolvePurchaseDisputeResponse>>;
         /**
          * Revoke all active bans for a user.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/revokeallbansforuser
          */
-        RevokeAllBansForUser(request: PlayFabAdminModels.RevokeAllBansForUserRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeAllBansForUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RevokeAllBansForUser(request: PlayFabAdminModels.RevokeAllBansForUserRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeAllBansForUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeAllBansForUserResult>>;
         /**
          * Revoke all active bans specified with BanId.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/revokebans
          */
-        RevokeBans(request: PlayFabAdminModels.RevokeBansRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeBansResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RevokeBans(request: PlayFabAdminModels.RevokeBansRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeBansResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeBansResult>>;
         /**
          * Revokes access to an item in a user's inventory
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitem
          */
-        RevokeInventoryItem(request: PlayFabAdminModels.RevokeInventoryItemRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RevokeInventoryItem(request: PlayFabAdminModels.RevokeInventoryItemRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryResult>>;
         /**
          * Revokes access for up to 25 items across multiple users and characters.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitems
          */
-        RevokeInventoryItems(request: PlayFabAdminModels.RevokeInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RevokeInventoryItems(request: PlayFabAdminModels.RevokeInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryItemsResult>>;
         /**
          * Run a task immediately regardless of its schedule.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/runtask
          */
-        RunTask(request: PlayFabAdminModels.RunTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RunTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RunTask(request: PlayFabAdminModels.RunTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RunTaskResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RunTaskResult>>;
         /**
          * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
          * change the password.If an account recovery email template ID is provided, an email using the custom email template will
          * be used.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/sendaccountrecoveryemail
          */
-        SendAccountRecoveryEmail(request: PlayFabAdminModels.SendAccountRecoveryEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SendAccountRecoveryEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SendAccountRecoveryEmail(request: PlayFabAdminModels.SendAccountRecoveryEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SendAccountRecoveryEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SendAccountRecoveryEmailResult>>;
         /**
          * Creates the catalog configuration of all virtual goods for the specified catalog version
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setcatalogitems
          */
-        SetCatalogItems(request: PlayFabAdminModels.UpdateCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetCatalogItems(request: PlayFabAdminModels.UpdateCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>>;
         /**
          * Sets the override expiration for a membership subscription
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/setmembershipoverride
          */
-        SetMembershipOverride(request: PlayFabAdminModels.SetMembershipOverrideRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetMembershipOverrideResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetMembershipOverride(request: PlayFabAdminModels.SetMembershipOverrideRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetMembershipOverrideResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetMembershipOverrideResult>>;
         /**
          * Sets or resets the player's secret. Player secrets are used to sign API requests.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/setplayersecret
          */
-        SetPlayerSecret(request: PlayFabAdminModels.SetPlayerSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetPlayerSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetPlayerSecret(request: PlayFabAdminModels.SetPlayerSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetPlayerSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetPlayerSecretResult>>;
         /**
          * Sets the currently published revision of a title Cloud Script
          * https://docs.microsoft.com/rest/api/playfab/admin/server-side-cloud-script/setpublishedrevision
          */
-        SetPublishedRevision(request: PlayFabAdminModels.SetPublishedRevisionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetPublishedRevisionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetPublishedRevision(request: PlayFabAdminModels.SetPublishedRevisionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetPublishedRevisionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetPublishedRevisionResult>>;
         /**
          * Updates the key-value store of custom publisher settings
          * https://docs.microsoft.com/rest/api/playfab/admin/shared-group-data/setpublisherdata
          */
-        SetPublisherData(request: PlayFabAdminModels.SetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetPublisherData(request: PlayFabAdminModels.SetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetPublisherDataResult>>;
         /**
          * Sets all the items in one virtual store
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setstoreitems
          */
-        SetStoreItems(request: PlayFabAdminModels.UpdateStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetStoreItems(request: PlayFabAdminModels.UpdateStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>>;
         /**
          * Creates and updates the key-value store of custom title settings which can be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledata
          */
-        SetTitleData(request: PlayFabAdminModels.SetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetTitleData(request: PlayFabAdminModels.SetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataResult>>;
         /**
          * Set and delete key-value pairs in a title data override instance.
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledataandoverrides
          */
-        SetTitleDataAndOverrides(request: PlayFabAdminModels.SetTitleDataAndOverridesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataAndOverridesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetTitleDataAndOverrides(request: PlayFabAdminModels.SetTitleDataAndOverridesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataAndOverridesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataAndOverridesResult>>;
         /**
          * Updates the key-value store of custom title settings which cannot be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitleinternaldata
          */
-        SetTitleInternalData(request: PlayFabAdminModels.SetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetTitleInternalData(request: PlayFabAdminModels.SetTitleDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetTitleDataResult>>;
         /**
          * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can
          * be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device
          * Messaging is not supported.
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setuppushnotification
          */
-        SetupPushNotification(request: PlayFabAdminModels.SetupPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetupPushNotificationResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetupPushNotification(request: PlayFabAdminModels.SetupPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetupPushNotificationResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetupPushNotificationResult>>;
         /**
          * Decrements the specified virtual currency by the stated amount
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/subtractuservirtualcurrency
          */
-        SubtractUserVirtualCurrency(request: PlayFabAdminModels.SubtractUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SubtractUserVirtualCurrency(request: PlayFabAdminModels.SubtractUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>>;
         /**
          * Updates information of a list of existing bans specified with Ban Ids.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/updatebans
          */
-        UpdateBans(request: PlayFabAdminModels.UpdateBansRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateBansResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateBans(request: PlayFabAdminModels.UpdateBansRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateBansResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateBansResult>>;
         /**
          * Updates the catalog configuration for virtual goods in the specified catalog version
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatecatalogitems
          */
-        UpdateCatalogItems(request: PlayFabAdminModels.UpdateCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateCatalogItems(request: PlayFabAdminModels.UpdateCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>>;
         /**
          * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be
          * submitted in the revision.
          * https://docs.microsoft.com/rest/api/playfab/admin/server-side-cloud-script/updatecloudscript
          */
-        UpdateCloudScript(request: PlayFabAdminModels.UpdateCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateCloudScript(request: PlayFabAdminModels.UpdateCloudScriptRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCloudScriptResult>>;
         /**
          * Modifies data and credentials for an existing relationship between a title and an Open ID Connect provider
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/updateopenidconnection
          */
-        UpdateOpenIdConnection(request: PlayFabAdminModels.UpdateOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateOpenIdConnection(request: PlayFabAdminModels.UpdateOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>>;
         /**
          * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available
          * after this API returns.
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/updateplayersharedsecret
          */
-        UpdatePlayerSharedSecret(request: PlayFabAdminModels.UpdatePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePlayerSharedSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdatePlayerSharedSecret(request: PlayFabAdminModels.UpdatePlayerSharedSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePlayerSharedSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePlayerSharedSecretResult>>;
         /**
          * Updates a player statistic configuration for the title, optionally allowing the developer to specify a reset interval.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/updateplayerstatisticdefinition
          */
-        UpdatePlayerStatisticDefinition(request: PlayFabAdminModels.UpdatePlayerStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePlayerStatisticDefinitionResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdatePlayerStatisticDefinition(request: PlayFabAdminModels.UpdatePlayerStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePlayerStatisticDefinitionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePlayerStatisticDefinitionResult>>;
         /**
          * Changes a policy for a title
          * https://docs.microsoft.com/rest/api/playfab/admin/authentication/updatepolicy
          */
-        UpdatePolicy(request: PlayFabAdminModels.UpdatePolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdatePolicy(request: PlayFabAdminModels.UpdatePolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePolicyResponse>>;
         /**
          * Updates the random drop table configuration for the title
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updaterandomresulttables
          */
-        UpdateRandomResultTables(request: PlayFabAdminModels.UpdateRandomResultTablesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateRandomResultTablesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateRandomResultTables(request: PlayFabAdminModels.UpdateRandomResultTablesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateRandomResultTablesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateRandomResultTablesResult>>;
         /**
          * Updates an existing player segment and its associated definition(s) and action(s) for a title.
          * https://docs.microsoft.com/rest/api/playfab/admin/segments/updatesegment
          */
-        UpdateSegment(request: PlayFabAdminModels.UpdateSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateSegmentResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateSegment(request: PlayFabAdminModels.UpdateSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateSegmentResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateSegmentResponse>>;
         /**
          * Updates an existing virtual item store with new or modified items
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatestoreitems
          */
-        UpdateStoreItems(request: PlayFabAdminModels.UpdateStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateStoreItems(request: PlayFabAdminModels.UpdateStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>>;
         /**
          * Update an existing task.
          * https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/updatetask
          */
-        UpdateTask(request: PlayFabAdminModels.UpdateTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateTask(request: PlayFabAdminModels.UpdateTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.EmptyResponse>>;
         /**
          * Updates the title-specific custom data for the user which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/updateuserdata
          */
-        UpdateUserData(request: PlayFabAdminModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserData(request: PlayFabAdminModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>>;
         /**
          * Updates the title-specific custom data for the user which cannot be accessed by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/updateuserinternaldata
          */
-        UpdateUserInternalData(request: PlayFabAdminModels.UpdateUserInternalDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserInternalData(request: PlayFabAdminModels.UpdateUserInternalDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>>;
         /**
          * Updates the publisher-specific custom data for the user which is readable and writable by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/updateuserpublisherdata
          */
-        UpdateUserPublisherData(request: PlayFabAdminModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserPublisherData(request: PlayFabAdminModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>>;
         /**
          * Updates the publisher-specific custom data for the user which cannot be accessed by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/updateuserpublisherinternaldata
          */
-        UpdateUserPublisherInternalData(request: PlayFabAdminModels.UpdateUserInternalDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserPublisherInternalData(request: PlayFabAdminModels.UpdateUserInternalDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>>;
         /**
          * Updates the publisher-specific custom data for the user which can only be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/updateuserpublisherreadonlydata
          */
-        UpdateUserPublisherReadOnlyData(request: PlayFabAdminModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserPublisherReadOnlyData(request: PlayFabAdminModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>>;
         /**
          * Updates the title-specific custom data for the user which can only be read by the client
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/updateuserreadonlydata
          */
-        UpdateUserReadOnlyData(request: PlayFabAdminModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserReadOnlyData(request: PlayFabAdminModels.UpdateUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserDataResult>>;
         /**
          * Updates the title specific display name for a user
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/updateusertitledisplayname
          */
-        UpdateUserTitleDisplayName(request: PlayFabAdminModels.UpdateUserTitleDisplayNameRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserTitleDisplayNameResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateUserTitleDisplayName(request: PlayFabAdminModels.UpdateUserTitleDisplayNameRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserTitleDisplayNameResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserTitleDisplayNameResult>>;
 
     }
 }
@@ -2821,7 +2821,16 @@ declare module PlayFabAdminModels {
         ContinuationToken?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Maximum number of profiles to load. Default is 1,000. Maximum is 10,000. */
+        /**
+         * If set to true, the profiles are loaded asynchronously and the response will include a continuation token and
+         * approximate profile count until the first batch of profiles is loaded. Use this parameter to help avoid network
+         * timeouts.
+         */
+        GetProfilesAsync?: boolean;
+        /**
+         * Maximum is 10,000. The value 0 will prevent loading any profiles and return only the count of profiles matching this
+         * segment.
+         */
         MaxBatchSize?: number;
         /**
          * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging

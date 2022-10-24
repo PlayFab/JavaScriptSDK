@@ -8,7 +8,7 @@ declare module PlayFabLocalizationModule {
          * Retrieves the list of allowed languages, only accessible by title entities
          * https://docs.microsoft.com/rest/api/playfab/localization/localization/getlanguagelist
          */
-        GetLanguageList(request: PlayFabLocalizationModels.GetLanguageListRequest, callback: PlayFabModule.ApiCallback<PlayFabLocalizationModels.GetLanguageListResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetLanguageList(request: PlayFabLocalizationModels.GetLanguageListRequest, callback: PlayFabModule.ApiCallback<PlayFabLocalizationModels.GetLanguageListResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLocalizationModels.GetLanguageListResponse>>;
 
     }
 }

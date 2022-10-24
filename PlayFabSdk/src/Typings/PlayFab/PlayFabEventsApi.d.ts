@@ -8,13 +8,13 @@ declare module PlayFabEventsModule {
          * Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'.
          * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/writeevents
          */
-        WriteEvents(request: PlayFabEventsModels.WriteEventsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        WriteEvents(request: PlayFabEventsModels.WriteEventsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>>;
         /**
          * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
          * with 'custom.'
          * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/writetelemetryevents
          */
-        WriteTelemetryEvents(request: PlayFabEventsModels.WriteEventsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        WriteTelemetryEvents(request: PlayFabEventsModels.WriteEventsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.WriteEventsResponse>>;
 
     }
 }

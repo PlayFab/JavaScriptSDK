@@ -8,411 +8,411 @@ declare module PlayFabMultiplayerModule {
          * Cancel all active tickets the player is a member of in a given queue.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/cancelallmatchmakingticketsforplayer
          */
-        CancelAllMatchmakingTicketsForPlayer(request: PlayFabMultiplayerModels.CancelAllMatchmakingTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelAllMatchmakingTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CancelAllMatchmakingTicketsForPlayer(request: PlayFabMultiplayerModels.CancelAllMatchmakingTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelAllMatchmakingTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelAllMatchmakingTicketsForPlayerResult>>;
         /**
          * Cancel all active backfill tickets the player is a member of in a given queue.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/cancelallserverbackfillticketsforplayer
          */
-        CancelAllServerBackfillTicketsForPlayer(request: PlayFabMultiplayerModels.CancelAllServerBackfillTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelAllServerBackfillTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CancelAllServerBackfillTicketsForPlayer(request: PlayFabMultiplayerModels.CancelAllServerBackfillTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelAllServerBackfillTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelAllServerBackfillTicketsForPlayerResult>>;
         /**
          * Cancel a matchmaking ticket.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/cancelmatchmakingticket
          */
-        CancelMatchmakingTicket(request: PlayFabMultiplayerModels.CancelMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CancelMatchmakingTicket(request: PlayFabMultiplayerModels.CancelMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelMatchmakingTicketResult>>;
         /**
          * Cancel a server backfill ticket.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/cancelserverbackfillticket
          */
-        CancelServerBackfillTicket(request: PlayFabMultiplayerModels.CancelServerBackfillTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelServerBackfillTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CancelServerBackfillTicket(request: PlayFabMultiplayerModels.CancelServerBackfillTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelServerBackfillTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CancelServerBackfillTicketResult>>;
         /**
          * Creates a multiplayer server build alias.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/createbuildalias
          */
-        CreateBuildAlias(request: PlayFabMultiplayerModels.CreateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateBuildAlias(request: PlayFabMultiplayerModels.CreateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>>;
         /**
          * Creates a multiplayer server build with a custom container.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/createbuildwithcustomcontainer
          */
-        CreateBuildWithCustomContainer(request: PlayFabMultiplayerModels.CreateBuildWithCustomContainerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithCustomContainerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateBuildWithCustomContainer(request: PlayFabMultiplayerModels.CreateBuildWithCustomContainerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithCustomContainerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithCustomContainerResponse>>;
         /**
          * Creates a multiplayer server build with a managed container.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/createbuildwithmanagedcontainer
          */
-        CreateBuildWithManagedContainer(request: PlayFabMultiplayerModels.CreateBuildWithManagedContainerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithManagedContainerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateBuildWithManagedContainer(request: PlayFabMultiplayerModels.CreateBuildWithManagedContainerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithManagedContainerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithManagedContainerResponse>>;
         /**
          * Creates a multiplayer server build with the server running as a process.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/createbuildwithprocessbasedserver
          */
-        CreateBuildWithProcessBasedServer(request: PlayFabMultiplayerModels.CreateBuildWithProcessBasedServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithProcessBasedServerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateBuildWithProcessBasedServer(request: PlayFabMultiplayerModels.CreateBuildWithProcessBasedServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithProcessBasedServerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateBuildWithProcessBasedServerResponse>>;
         /**
          * Create a lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/createlobby
          */
-        CreateLobby(request: PlayFabMultiplayerModels.CreateLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateLobby(request: PlayFabMultiplayerModels.CreateLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateLobbyResult>>;
         /**
          * Create a matchmaking ticket as a client.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/creatematchmakingticket
          */
-        CreateMatchmakingTicket(request: PlayFabMultiplayerModels.CreateMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateMatchmakingTicket(request: PlayFabMultiplayerModels.CreateMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>>;
         /**
          * Creates a remote user to log on to a VM for a multiplayer server build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/createremoteuser
          */
-        CreateRemoteUser(request: PlayFabMultiplayerModels.CreateRemoteUserRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateRemoteUserResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateRemoteUser(request: PlayFabMultiplayerModels.CreateRemoteUserRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateRemoteUserResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateRemoteUserResponse>>;
         /**
          * Create a backfill matchmaking ticket as a server. A backfill ticket represents an ongoing game. The matchmaking service
          * automatically starts matching the backfill ticket against other matchmaking tickets. Backfill tickets cannot match with
          * other backfill tickets.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/createserverbackfillticket
          */
-        CreateServerBackfillTicket(request: PlayFabMultiplayerModels.CreateServerBackfillTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateServerBackfillTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateServerBackfillTicket(request: PlayFabMultiplayerModels.CreateServerBackfillTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateServerBackfillTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateServerBackfillTicketResult>>;
         /**
          * Create a matchmaking ticket as a server. The matchmaking service automatically starts matching the ticket against other
          * matchmaking tickets.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/createservermatchmakingticket
          */
-        CreateServerMatchmakingTicket(request: PlayFabMultiplayerModels.CreateServerMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateServerMatchmakingTicket(request: PlayFabMultiplayerModels.CreateServerMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateMatchmakingTicketResult>>;
         /**
          * Creates a request to change a title's multiplayer server quotas.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/createtitlemultiplayerserversquotachange
          */
-        CreateTitleMultiplayerServersQuotaChange(request: PlayFabMultiplayerModels.CreateTitleMultiplayerServersQuotaChangeRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateTitleMultiplayerServersQuotaChangeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        CreateTitleMultiplayerServersQuotaChange(request: PlayFabMultiplayerModels.CreateTitleMultiplayerServersQuotaChangeRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateTitleMultiplayerServersQuotaChangeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.CreateTitleMultiplayerServersQuotaChangeResponse>>;
         /**
          * Deletes a multiplayer server game asset for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deleteasset
          */
-        DeleteAsset(request: PlayFabMultiplayerModels.DeleteAssetRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteAsset(request: PlayFabMultiplayerModels.DeleteAssetRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Deletes a multiplayer server build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deletebuild
          */
-        DeleteBuild(request: PlayFabMultiplayerModels.DeleteBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteBuild(request: PlayFabMultiplayerModels.DeleteBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Deletes a multiplayer server build alias.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deletebuildalias
          */
-        DeleteBuildAlias(request: PlayFabMultiplayerModels.DeleteBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteBuildAlias(request: PlayFabMultiplayerModels.DeleteBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Removes a multiplayer server build's region.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deletebuildregion
          */
-        DeleteBuildRegion(request: PlayFabMultiplayerModels.DeleteBuildRegionRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteBuildRegion(request: PlayFabMultiplayerModels.DeleteBuildRegionRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Deletes a multiplayer server game certificate.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deletecertificate
          */
-        DeleteCertificate(request: PlayFabMultiplayerModels.DeleteCertificateRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteCertificate(request: PlayFabMultiplayerModels.DeleteCertificateRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Deletes a container image repository.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deletecontainerimagerepository
          */
-        DeleteContainerImageRepository(request: PlayFabMultiplayerModels.DeleteContainerImageRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteContainerImageRepository(request: PlayFabMultiplayerModels.DeleteContainerImageRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Delete a lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/deletelobby
          */
-        DeleteLobby(request: PlayFabMultiplayerModels.DeleteLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteLobby(request: PlayFabMultiplayerModels.DeleteLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
         /**
          * Deletes a remote user to log on to a VM for a multiplayer server build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deleteremoteuser
          */
-        DeleteRemoteUser(request: PlayFabMultiplayerModels.DeleteRemoteUserRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteRemoteUser(request: PlayFabMultiplayerModels.DeleteRemoteUserRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Enables the multiplayer server feature for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/enablemultiplayerserversfortitle
          */
-        EnableMultiplayerServersForTitle(request: PlayFabMultiplayerModels.EnableMultiplayerServersForTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EnableMultiplayerServersForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        EnableMultiplayerServersForTitle(request: PlayFabMultiplayerModels.EnableMultiplayerServersForTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EnableMultiplayerServersForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EnableMultiplayerServersForTitleResponse>>;
         /**
          * Find lobbies which match certain criteria, and which friends are in.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/findfriendlobbies
          */
-        FindFriendLobbies(request: PlayFabMultiplayerModels.FindFriendLobbiesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.FindFriendLobbiesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        FindFriendLobbies(request: PlayFabMultiplayerModels.FindFriendLobbiesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.FindFriendLobbiesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.FindFriendLobbiesResult>>;
         /**
          * Find all the lobbies that match certain criteria.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/findlobbies
          */
-        FindLobbies(request: PlayFabMultiplayerModels.FindLobbiesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.FindLobbiesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        FindLobbies(request: PlayFabMultiplayerModels.FindLobbiesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.FindLobbiesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.FindLobbiesResult>>;
         /**
          * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
          * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&ss=b&srt=sco&sp=rw&st=startDate&se=endDate&spr=https&sig=sampleSig&api-version=2017-07-29
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getassetdownloadurl
          */
-        GetAssetDownloadUrl(request: PlayFabMultiplayerModels.GetAssetDownloadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetAssetDownloadUrlResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetAssetDownloadUrl(request: PlayFabMultiplayerModels.GetAssetDownloadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetAssetDownloadUrlResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetAssetDownloadUrlResponse>>;
         /**
          * Gets the URL to upload assets to. A sample pre-authenticated url -
          * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&ss=b&srt=sco&sp=rw&st=startDate&se=endDate&spr=https&sig=sampleSig&api-version=2017-07-29
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getassetuploadurl
          */
-        GetAssetUploadUrl(request: PlayFabMultiplayerModels.GetAssetUploadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetAssetUploadUrlResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetAssetUploadUrl(request: PlayFabMultiplayerModels.GetAssetUploadUrlRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetAssetUploadUrlResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetAssetUploadUrlResponse>>;
         /**
          * Gets a multiplayer server build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getbuild
          */
-        GetBuild(request: PlayFabMultiplayerModels.GetBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetBuildResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetBuild(request: PlayFabMultiplayerModels.GetBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetBuildResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetBuildResponse>>;
         /**
          * Gets a multiplayer server build alias.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getbuildalias
          */
-        GetBuildAlias(request: PlayFabMultiplayerModels.GetBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetBuildAlias(request: PlayFabMultiplayerModels.GetBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>>;
         /**
          * Gets the credentials to the container registry.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getcontainerregistrycredentials
          */
-        GetContainerRegistryCredentials(request: PlayFabMultiplayerModels.GetContainerRegistryCredentialsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetContainerRegistryCredentialsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetContainerRegistryCredentials(request: PlayFabMultiplayerModels.GetContainerRegistryCredentialsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetContainerRegistryCredentialsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetContainerRegistryCredentialsResponse>>;
         /**
          * Get a lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/getlobby
          */
-        GetLobby(request: PlayFabMultiplayerModels.GetLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetLobby(request: PlayFabMultiplayerModels.GetLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetLobbyResult>>;
         /**
          * Get a match.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/getmatch
          */
-        GetMatch(request: PlayFabMultiplayerModels.GetMatchRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMatch(request: PlayFabMultiplayerModels.GetMatchRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchResult>>;
         /**
          * SDK support is limited to C# and Java for this API. Get a matchmaking queue configuration.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking-admin/getmatchmakingqueue
          */
-        GetMatchmakingQueue(request: PlayFabMultiplayerModels.GetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMatchmakingQueue(request: PlayFabMultiplayerModels.GetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingQueueResult>>;
         /**
          * Get a matchmaking ticket by ticket Id.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/getmatchmakingticket
          */
-        GetMatchmakingTicket(request: PlayFabMultiplayerModels.GetMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMatchmakingTicket(request: PlayFabMultiplayerModels.GetMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMatchmakingTicketResult>>;
         /**
          * Gets multiplayer server session details for a build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getmultiplayerserverdetails
          */
-        GetMultiplayerServerDetails(request: PlayFabMultiplayerModels.GetMultiplayerServerDetailsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMultiplayerServerDetails(request: PlayFabMultiplayerModels.GetMultiplayerServerDetailsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerDetailsResponse>>;
         /**
          * Gets multiplayer server logs after a server has terminated.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getmultiplayerserverlogs
          */
-        GetMultiplayerServerLogs(request: PlayFabMultiplayerModels.GetMultiplayerServerLogsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerLogsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMultiplayerServerLogs(request: PlayFabMultiplayerModels.GetMultiplayerServerLogsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerLogsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerLogsResponse>>;
         /**
          * Gets multiplayer server logs after a server has terminated.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getmultiplayersessionlogsbysessionid
          */
-        GetMultiplayerSessionLogsBySessionId(request: PlayFabMultiplayerModels.GetMultiplayerSessionLogsBySessionIdRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerLogsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetMultiplayerSessionLogsBySessionId(request: PlayFabMultiplayerModels.GetMultiplayerSessionLogsBySessionIdRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerLogsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetMultiplayerServerLogsResponse>>;
         /**
          * Get the statistics for a queue.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/getqueuestatistics
          */
-        GetQueueStatistics(request: PlayFabMultiplayerModels.GetQueueStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetQueueStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetQueueStatistics(request: PlayFabMultiplayerModels.GetQueueStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetQueueStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetQueueStatisticsResult>>;
         /**
          * Gets a remote login endpoint to a VM that is hosting a multiplayer server build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/getremoteloginendpoint
          */
-        GetRemoteLoginEndpoint(request: PlayFabMultiplayerModels.GetRemoteLoginEndpointRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetRemoteLoginEndpointResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetRemoteLoginEndpoint(request: PlayFabMultiplayerModels.GetRemoteLoginEndpointRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetRemoteLoginEndpointResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetRemoteLoginEndpointResponse>>;
         /**
          * Get a matchmaking backfill ticket by ticket Id.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/getserverbackfillticket
          */
-        GetServerBackfillTicket(request: PlayFabMultiplayerModels.GetServerBackfillTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetServerBackfillTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetServerBackfillTicket(request: PlayFabMultiplayerModels.GetServerBackfillTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetServerBackfillTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetServerBackfillTicketResult>>;
         /**
          * Gets the status of whether a title is enabled for the multiplayer server feature.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/gettitleenabledformultiplayerserversstatus
          */
-        GetTitleEnabledForMultiplayerServersStatus(request: PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitleEnabledForMultiplayerServersStatus(request: PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleEnabledForMultiplayerServersStatusResponse>>;
         /**
          * Gets a title's server quota change request.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/gettitlemultiplayerserversquotachange
          */
-        GetTitleMultiplayerServersQuotaChange(request: PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotaChangeRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotaChangeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitleMultiplayerServersQuotaChange(request: PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotaChangeRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotaChangeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotaChangeResponse>>;
         /**
          * Gets the quotas for a title in relation to multiplayer servers.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/gettitlemultiplayerserversquotas
          */
-        GetTitleMultiplayerServersQuotas(request: PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotasResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetTitleMultiplayerServersQuotas(request: PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotasResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.GetTitleMultiplayerServersQuotasResponse>>;
         /**
          * Send a notification to invite a player to a lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/invitetolobby
          */
-        InviteToLobby(request: PlayFabMultiplayerModels.InviteToLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        InviteToLobby(request: PlayFabMultiplayerModels.InviteToLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
         /**
          * Join an Arranged lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/joinarrangedlobby
          */
-        JoinArrangedLobby(request: PlayFabMultiplayerModels.JoinArrangedLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        JoinArrangedLobby(request: PlayFabMultiplayerModels.JoinArrangedLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyResult>>;
         /**
          * Join a lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/joinlobby
          */
-        JoinLobby(request: PlayFabMultiplayerModels.JoinLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        JoinLobby(request: PlayFabMultiplayerModels.JoinLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyResult>>;
         /**
          * Join a matchmaking ticket.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/joinmatchmakingticket
          */
-        JoinMatchmakingTicket(request: PlayFabMultiplayerModels.JoinMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        JoinMatchmakingTicket(request: PlayFabMultiplayerModels.JoinMatchmakingTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinMatchmakingTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinMatchmakingTicketResult>>;
         /**
          * Leave a lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/leavelobby
          */
-        LeaveLobby(request: PlayFabMultiplayerModels.LeaveLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        LeaveLobby(request: PlayFabMultiplayerModels.LeaveLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
         /**
          * Lists archived multiplayer server sessions for a build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listarchivedmultiplayerservers
          */
-        ListArchivedMultiplayerServers(request: PlayFabMultiplayerModels.ListMultiplayerServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMultiplayerServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListArchivedMultiplayerServers(request: PlayFabMultiplayerModels.ListMultiplayerServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMultiplayerServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMultiplayerServersResponse>>;
         /**
          * Lists multiplayer server game assets for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listassetsummaries
          */
-        ListAssetSummaries(request: PlayFabMultiplayerModels.ListAssetSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListAssetSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListAssetSummaries(request: PlayFabMultiplayerModels.ListAssetSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListAssetSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListAssetSummariesResponse>>;
         /**
          * Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
          * game client to request list of builds with player entity token.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listbuildaliases
          */
-        ListBuildAliases(request: PlayFabMultiplayerModels.ListBuildAliasesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListBuildAliasesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListBuildAliases(request: PlayFabMultiplayerModels.ListBuildAliasesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListBuildAliasesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListBuildAliasesResponse>>;
         /**
          * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
          * access is enabled, allows game client to request list of builds with player entity token.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listbuildsummariesv2
          */
-        ListBuildSummariesV2(request: PlayFabMultiplayerModels.ListBuildSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListBuildSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListBuildSummariesV2(request: PlayFabMultiplayerModels.ListBuildSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListBuildSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListBuildSummariesResponse>>;
         /**
          * Lists multiplayer server game certificates for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listcertificatesummaries
          */
-        ListCertificateSummaries(request: PlayFabMultiplayerModels.ListCertificateSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListCertificateSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListCertificateSummaries(request: PlayFabMultiplayerModels.ListCertificateSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListCertificateSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListCertificateSummariesResponse>>;
         /**
          * Lists custom container images for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listcontainerimages
          */
-        ListContainerImages(request: PlayFabMultiplayerModels.ListContainerImagesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListContainerImagesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListContainerImages(request: PlayFabMultiplayerModels.ListContainerImagesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListContainerImagesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListContainerImagesResponse>>;
         /**
          * Lists the tags for a custom container image.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listcontainerimagetags
          */
-        ListContainerImageTags(request: PlayFabMultiplayerModels.ListContainerImageTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListContainerImageTagsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListContainerImageTags(request: PlayFabMultiplayerModels.ListContainerImageTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListContainerImageTagsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListContainerImageTagsResponse>>;
         /**
          * SDK support is limited to C# and Java for this API. List all matchmaking queue configs.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking-admin/listmatchmakingqueues
          */
-        ListMatchmakingQueues(request: PlayFabMultiplayerModels.ListMatchmakingQueuesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingQueuesResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListMatchmakingQueues(request: PlayFabMultiplayerModels.ListMatchmakingQueuesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingQueuesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingQueuesResult>>;
         /**
          * List all matchmaking ticket Ids the user is a member of.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/listmatchmakingticketsforplayer
          */
-        ListMatchmakingTicketsForPlayer(request: PlayFabMultiplayerModels.ListMatchmakingTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListMatchmakingTicketsForPlayer(request: PlayFabMultiplayerModels.ListMatchmakingTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMatchmakingTicketsForPlayerResult>>;
         /**
          * Lists multiplayer server sessions for a build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listmultiplayerservers
          */
-        ListMultiplayerServers(request: PlayFabMultiplayerModels.ListMultiplayerServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMultiplayerServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListMultiplayerServers(request: PlayFabMultiplayerModels.ListMultiplayerServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMultiplayerServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListMultiplayerServersResponse>>;
         /**
          * Lists quality of service servers for party.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listpartyqosservers
          */
-        ListPartyQosServers(request: PlayFabMultiplayerModels.ListPartyQosServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListPartyQosServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListPartyQosServers(request: PlayFabMultiplayerModels.ListPartyQosServersRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListPartyQosServersResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListPartyQosServersResponse>>;
         /**
          * Lists quality of service servers for the title. By default, servers are only returned for regions where a Multiplayer
          * Servers build has been deployed.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listqosserversfortitle
          */
-        ListQosServersForTitle(request: PlayFabMultiplayerModels.ListQosServersForTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListQosServersForTitle(request: PlayFabMultiplayerModels.ListQosServersForTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersForTitleResponse>>;
         /**
          * List all server backfill ticket Ids the user is a member of.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/listserverbackfillticketsforplayer
          */
-        ListServerBackfillTicketsForPlayer(request: PlayFabMultiplayerModels.ListServerBackfillTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListServerBackfillTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListServerBackfillTicketsForPlayer(request: PlayFabMultiplayerModels.ListServerBackfillTicketsForPlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListServerBackfillTicketsForPlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListServerBackfillTicketsForPlayerResult>>;
         /**
          * List all server quota change requests for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listtitlemultiplayerserversquotachanges
          */
-        ListTitleMultiplayerServersQuotaChanges(request: PlayFabMultiplayerModels.ListTitleMultiplayerServersQuotaChangesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListTitleMultiplayerServersQuotaChangesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListTitleMultiplayerServersQuotaChanges(request: PlayFabMultiplayerModels.ListTitleMultiplayerServersQuotaChangesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListTitleMultiplayerServersQuotaChangesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListTitleMultiplayerServersQuotaChangesResponse>>;
         /**
          * Lists virtual machines for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listvirtualmachinesummaries
          */
-        ListVirtualMachineSummaries(request: PlayFabMultiplayerModels.ListVirtualMachineSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListVirtualMachineSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ListVirtualMachineSummaries(request: PlayFabMultiplayerModels.ListVirtualMachineSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListVirtualMachineSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListVirtualMachineSummariesResponse>>;
         /**
          * SDK support is limited to C# and Java for this API. Remove a matchmaking queue config.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking-admin/removematchmakingqueue
          */
-        RemoveMatchmakingQueue(request: PlayFabMultiplayerModels.RemoveMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RemoveMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveMatchmakingQueue(request: PlayFabMultiplayerModels.RemoveMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RemoveMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RemoveMatchmakingQueueResult>>;
         /**
          * Remove a member from a lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/removemember
          */
-        RemoveMember(request: PlayFabMultiplayerModels.RemoveMemberFromLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RemoveMember(request: PlayFabMultiplayerModels.RemoveMemberFromLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
         /**
          * Request a multiplayer server session. Accepts tokens for title and if game client access is enabled, allows game client
          * to request a server with player entity token.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/requestmultiplayerserver
          */
-        RequestMultiplayerServer(request: PlayFabMultiplayerModels.RequestMultiplayerServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RequestMultiplayerServerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RequestMultiplayerServer(request: PlayFabMultiplayerModels.RequestMultiplayerServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RequestMultiplayerServerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RequestMultiplayerServerResponse>>;
         /**
          * Rolls over the credentials to the container registry.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/rollovercontainerregistrycredentials
          */
-        RolloverContainerRegistryCredentials(request: PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        RolloverContainerRegistryCredentials(request: PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RolloverContainerRegistryCredentialsResponse>>;
         /**
          * SDK support is limited to C# and Java for this API. Create or update a matchmaking queue configuration.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking-admin/setmatchmakingqueue
          */
-        SetMatchmakingQueue(request: PlayFabMultiplayerModels.SetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetMatchmakingQueue(request: PlayFabMultiplayerModels.SetMatchmakingQueueRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SetMatchmakingQueueResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SetMatchmakingQueueResult>>;
         /**
          * Shuts down a multiplayer server session.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/shutdownmultiplayerserver
          */
-        ShutdownMultiplayerServer(request: PlayFabMultiplayerModels.ShutdownMultiplayerServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        ShutdownMultiplayerServer(request: PlayFabMultiplayerModels.ShutdownMultiplayerServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Subscribe to lobby resource notifications.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/subscribetolobbyresource
          */
-        SubscribeToLobbyResource(request: PlayFabMultiplayerModels.SubscribeToLobbyResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SubscribeToLobbyResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SubscribeToLobbyResource(request: PlayFabMultiplayerModels.SubscribeToLobbyResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SubscribeToLobbyResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SubscribeToLobbyResourceResult>>;
         /**
          * Subscribe to match resource notifications.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/subscribetomatchmakingresource
          */
-        SubscribeToMatchmakingResource(request: PlayFabMultiplayerModels.SubscribeToMatchResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SubscribeToMatchResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SubscribeToMatchmakingResource(request: PlayFabMultiplayerModels.SubscribeToMatchResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SubscribeToMatchResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.SubscribeToMatchResourceResult>>;
         /**
          * Unsubscribe from lobby notifications.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/unsubscribefromlobbyresource
          */
-        UnsubscribeFromLobbyResource(request: PlayFabMultiplayerModels.UnsubscribeFromLobbyResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnsubscribeFromLobbyResource(request: PlayFabMultiplayerModels.UnsubscribeFromLobbyResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
         /**
          * Unsubscribe from match resource notifications.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/unsubscribefrommatchmakingresource
          */
-        UnsubscribeFromMatchmakingResource(request: PlayFabMultiplayerModels.UnsubscribeFromMatchResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.UnsubscribeFromMatchResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UnsubscribeFromMatchmakingResource(request: PlayFabMultiplayerModels.UnsubscribeFromMatchResourceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.UnsubscribeFromMatchResourceResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.UnsubscribeFromMatchResourceResult>>;
         /**
          * Untags a container image.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/untagcontainerimage
          */
-        UntagContainerImage(request: PlayFabMultiplayerModels.UntagContainerImageRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UntagContainerImage(request: PlayFabMultiplayerModels.UntagContainerImageRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Creates a multiplayer server build alias.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildalias
          */
-        UpdateBuildAlias(request: PlayFabMultiplayerModels.UpdateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateBuildAlias(request: PlayFabMultiplayerModels.UpdateBuildAliasRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.BuildAliasDetailsResponse>>;
         /**
          * Updates a multiplayer server build's name.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildname
          */
-        UpdateBuildName(request: PlayFabMultiplayerModels.UpdateBuildNameRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateBuildName(request: PlayFabMultiplayerModels.UpdateBuildNameRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Updates a multiplayer server build's region. If the region is not yet created, it will be created
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildregion
          */
-        UpdateBuildRegion(request: PlayFabMultiplayerModels.UpdateBuildRegionRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateBuildRegion(request: PlayFabMultiplayerModels.UpdateBuildRegionRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Updates a multiplayer server build's regions.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/updatebuildregions
          */
-        UpdateBuildRegions(request: PlayFabMultiplayerModels.UpdateBuildRegionsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateBuildRegions(request: PlayFabMultiplayerModels.UpdateBuildRegionsRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
          * Update a lobby.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/updatelobby
          */
-        UpdateLobby(request: PlayFabMultiplayerModels.UpdateLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UpdateLobby(request: PlayFabMultiplayerModels.UpdateLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
         /**
          * Uploads a multiplayer server game certificate.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/uploadcertificate
          */
-        UploadCertificate(request: PlayFabMultiplayerModels.UploadCertificateRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UploadCertificate(request: PlayFabMultiplayerModels.UploadCertificateRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
 
     }
 }
