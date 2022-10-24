@@ -8,37 +8,37 @@ declare module PlayFabDataModule {
          * Abort pending file uploads to an entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/data/file/abortfileuploads
          */
-        AbortFileUploads(request: PlayFabDataModels.AbortFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.AbortFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AbortFileUploads(request: PlayFabDataModels.AbortFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.AbortFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabDataModels.AbortFileUploadsResponse>>;
         /**
          * Delete files on an entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/data/file/deletefiles
          */
-        DeleteFiles(request: PlayFabDataModels.DeleteFilesRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.DeleteFilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        DeleteFiles(request: PlayFabDataModels.DeleteFilesRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.DeleteFilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabDataModels.DeleteFilesResponse>>;
         /**
          * Finalize file uploads to an entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/data/file/finalizefileuploads
          */
-        FinalizeFileUploads(request: PlayFabDataModels.FinalizeFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.FinalizeFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        FinalizeFileUploads(request: PlayFabDataModels.FinalizeFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.FinalizeFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabDataModels.FinalizeFileUploadsResponse>>;
         /**
          * Retrieves file metadata from an entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/data/file/getfiles
          */
-        GetFiles(request: PlayFabDataModels.GetFilesRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.GetFilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetFiles(request: PlayFabDataModels.GetFilesRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.GetFilesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabDataModels.GetFilesResponse>>;
         /**
          * Retrieves objects from an entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/data/object/getobjects
          */
-        GetObjects(request: PlayFabDataModels.GetObjectsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.GetObjectsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        GetObjects(request: PlayFabDataModels.GetObjectsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.GetObjectsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabDataModels.GetObjectsResponse>>;
         /**
          * Initiates file uploads to an entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/data/file/initiatefileuploads
          */
-        InitiateFileUploads(request: PlayFabDataModels.InitiateFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.InitiateFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        InitiateFileUploads(request: PlayFabDataModels.InitiateFileUploadsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.InitiateFileUploadsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabDataModels.InitiateFileUploadsResponse>>;
         /**
          * Sets objects on an entity's profile.
          * https://docs.microsoft.com/rest/api/playfab/data/object/setobjects
          */
-        SetObjects(request: PlayFabDataModels.SetObjectsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.SetObjectsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        SetObjects(request: PlayFabDataModels.SetObjectsRequest, callback: PlayFabModule.ApiCallback<PlayFabDataModels.SetObjectsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabDataModels.SetObjectsResponse>>;
 
     }
 }

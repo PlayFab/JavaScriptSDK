@@ -8,23 +8,23 @@ declare module PlayFabMatchmakerModule {
          * Validates a user with the PlayFab service
          * https://docs.microsoft.com/rest/api/playfab/matchmaker/matchmaking/authuser
          */
-        AuthUser(request: PlayFabMatchmakerModels.AuthUserRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.AuthUserResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        AuthUser(request: PlayFabMatchmakerModels.AuthUserRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.AuthUserResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMatchmakerModels.AuthUserResponse>>;
         /**
          * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
          * https://docs.microsoft.com/rest/api/playfab/matchmaker/matchmaking/playerjoined
          */
-        PlayerJoined(request: PlayFabMatchmakerModels.PlayerJoinedRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.PlayerJoinedResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PlayerJoined(request: PlayFabMatchmakerModels.PlayerJoinedRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.PlayerJoinedResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMatchmakerModels.PlayerJoinedResponse>>;
         /**
          * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
          * https://docs.microsoft.com/rest/api/playfab/matchmaker/matchmaking/playerleft
          */
-        PlayerLeft(request: PlayFabMatchmakerModels.PlayerLeftRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.PlayerLeftResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        PlayerLeft(request: PlayFabMatchmakerModels.PlayerLeftRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.PlayerLeftResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMatchmakerModels.PlayerLeftResponse>>;
         /**
          * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
          * effective matches
          * https://docs.microsoft.com/rest/api/playfab/matchmaker/matchmaking/userinfo
          */
-        UserInfo(request: PlayFabMatchmakerModels.UserInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.UserInfoResponse>, customData?: any, extraHeaders?: { [key: string]: string }): void;
+        UserInfo(request: PlayFabMatchmakerModels.UserInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabMatchmakerModels.UserInfoResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMatchmakerModels.UserInfoResponse>>;
 
     }
 }
