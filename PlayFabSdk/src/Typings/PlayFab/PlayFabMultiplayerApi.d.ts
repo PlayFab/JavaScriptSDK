@@ -1473,13 +1473,34 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    type ExternalFriendSources = "None"
+
+        | "Steam"
+        | "Facebook"
+        | "SteamOrFacebook"
+        | "Xbox"
+        | "SteamOrXbox"
+        | "FacebookOrXbox"
+        | "SteamOrFacebookOrXbox"
+        | "Psn"
+        | "SteamOrPsn"
+        | "FacebookOrPsn"
+        | "SteamOrFacebookOrPsn"
+        | "XboxOrPsn"
+        | "SteamOrXboxOrPsn"
+        | "FacebookOrXboxOrPsn"
+        | "SteamOrFacebookOrXboxOrPsn"
+        | "All";
+
     export interface FindFriendLobbiesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /** Controls whether this query should link to friends made on the Facebook network. Defaults to false */
-        ExcludeFacebookFriends: boolean;
+        ExcludeFacebookFriends?: boolean;
         /** Controls whether this query should link to friends made on the Steam network. Defaults to false */
-        ExcludeSteamFriends: boolean;
+        ExcludeSteamFriends?: boolean;
+        /** Indicates which other platforms' friends this query should link to. */
+        ExternalPlatformFriends?: string;
         /**
          * OData style string that contains one or more filters. Only the following operators are supported: "and" (logical and),
          * "eq" (equal), "ne" (not equals), "ge" (greater than or equal), "gt" (greater than), "le" (less than or equal), and "lt"
