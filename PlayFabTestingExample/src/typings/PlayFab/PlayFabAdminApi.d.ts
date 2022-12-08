@@ -2396,9 +2396,9 @@ declare module PlayFabAdminModels {
         | "AutomationRuleAlreadyExists"
         | "AutomationRuleLimitExceeded"
         | "InvalidGooglePlayGamesServerAuthCode"
-        | "StorageAccountNotFound"
         | "PlayStreamConnectionFailed"
         | "InvalidEventContents"
+        | "InsightsV1Deprecated"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -3622,6 +3622,8 @@ declare module PlayFabAdminModels {
         AvatarUrl?: string;
         /** Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date. */
         BannedUntil?: string;
+        /** The prediction of the player to churn within the next seven days. */
+        ChurnPrediction?: string;
         /** Array of contact email addresses associated with the player */
         ContactEmailAddresses?: ContactEmailInfo[];
         /** Player record created */

@@ -1099,6 +1099,12 @@ declare module PlayFabServerModels {
 
     }
 
+    type ChurnRiskLevel = "NoData"
+
+        | "LowRisk"
+        | "MediumRisk"
+        | "HighRisk";
+
     type CloudScriptRevisionOption = "Live"
 
         | "Latest"
@@ -1754,19 +1760,8 @@ declare module PlayFabServerModels {
 
         | "Steam"
         | "Facebook"
-        | "SteamOrFacebook"
         | "Xbox"
-        | "SteamOrXbox"
-        | "FacebookOrXbox"
-        | "SteamOrFacebookOrXbox"
         | "Psn"
-        | "SteamOrPsn"
-        | "FacebookOrPsn"
-        | "SteamOrFacebookOrPsn"
-        | "XboxOrPsn"
-        | "SteamOrXboxOrPsn"
-        | "FacebookOrXboxOrPsn"
-        | "SteamOrFacebookOrXboxOrPsn"
         | "All";
 
     export interface FacebookInstantGamesPlayFabIdPair {
@@ -2351,9 +2346,9 @@ declare module PlayFabServerModels {
         | "AutomationRuleAlreadyExists"
         | "AutomationRuleLimitExceeded"
         | "InvalidGooglePlayGamesServerAuthCode"
-        | "StorageAccountNotFound"
         | "PlayStreamConnectionFailed"
         | "InvalidEventContents"
+        | "InsightsV1Deprecated"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2611,8 +2606,6 @@ declare module PlayFabServerModels {
     }
 
     export interface GetCharacterLeaderboardRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Optional character type on which to filter the leaderboard entries. */
-        CharacterType?: string;
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number;
         /** First entry in the leaderboard to be retrieved. */
@@ -2668,7 +2661,10 @@ declare module PlayFabServerModels {
     export interface GetFriendLeaderboardRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         ExternalPlatformFriends?: string;
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean;
@@ -2698,7 +2694,10 @@ declare module PlayFabServerModels {
     export interface GetFriendsListRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         ExternalPlatformFriends?: string;
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean;
@@ -2726,8 +2725,6 @@ declare module PlayFabServerModels {
     export interface GetLeaderboardAroundCharacterRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
-        /** Optional character type on which to filter the leaderboard entries. */
-        CharacterType?: string;
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3975,6 +3972,8 @@ declare module PlayFabServerModels {
         AvatarUrl?: string;
         /** Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date. */
         BannedUntil?: string;
+        /** The prediction of the player to churn within the next seven days. */
+        ChurnPrediction?: string;
         /** Array of contact email addresses associated with the player */
         ContactEmailAddresses?: ContactEmailInfo[];
         /** Player record created */

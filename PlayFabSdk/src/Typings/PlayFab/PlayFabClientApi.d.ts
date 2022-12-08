@@ -2001,19 +2001,8 @@ declare module PlayFabClientModels {
 
         | "Steam"
         | "Facebook"
-        | "SteamOrFacebook"
         | "Xbox"
-        | "SteamOrXbox"
-        | "FacebookOrXbox"
-        | "SteamOrFacebookOrXbox"
         | "Psn"
-        | "SteamOrPsn"
-        | "FacebookOrPsn"
-        | "SteamOrFacebookOrPsn"
-        | "XboxOrPsn"
-        | "SteamOrXboxOrPsn"
-        | "FacebookOrXboxOrPsn"
-        | "SteamOrFacebookOrXboxOrPsn"
         | "All";
 
     export interface FacebookInstantGamesPlayFabIdPair {
@@ -2290,7 +2279,10 @@ declare module PlayFabClientModels {
     export interface GetFriendLeaderboardAroundPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         ExternalPlatformFriends?: string;
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean;
@@ -2328,7 +2320,10 @@ declare module PlayFabClientModels {
     export interface GetFriendLeaderboardRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         ExternalPlatformFriends?: string;
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean;
@@ -2356,7 +2351,10 @@ declare module PlayFabClientModels {
     export interface GetFriendsListRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         ExternalPlatformFriends?: string;
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean;
