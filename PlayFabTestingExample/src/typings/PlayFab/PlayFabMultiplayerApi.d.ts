@@ -1477,19 +1477,8 @@ declare module PlayFabMultiplayerModels {
 
         | "Steam"
         | "Facebook"
-        | "SteamOrFacebook"
         | "Xbox"
-        | "SteamOrXbox"
-        | "FacebookOrXbox"
-        | "SteamOrFacebookOrXbox"
         | "Psn"
-        | "SteamOrPsn"
-        | "FacebookOrPsn"
-        | "SteamOrFacebookOrPsn"
-        | "XboxOrPsn"
-        | "SteamOrXboxOrPsn"
-        | "FacebookOrXboxOrPsn"
-        | "SteamOrFacebookOrXboxOrPsn"
         | "All";
 
     export interface FindFriendLobbiesRequest extends PlayFabModule.IPlayFabRequestCommon {

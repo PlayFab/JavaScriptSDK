@@ -120,6 +120,11 @@ declare module PlayFabEconomyModule {
          */
         GetMicrosoftStoreAccessTokens(request: PlayFabEconomyModels.GetMicrosoftStoreAccessTokensRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetMicrosoftStoreAccessTokensResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetMicrosoftStoreAccessTokensResponse>>;
         /**
+         * Get transaction history.
+         * https://docs.microsoft.com/rest/api/playfab/economy/inventory/gettransactionhistory
+         */
+        GetTransactionHistory(request: PlayFabEconomyModels.GetTransactionHistoryRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetTransactionHistoryResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetTransactionHistoryResponse>>;
+        /**
          * Initiates a publish of an item from the working catalog to the public catalog.
          * https://docs.microsoft.com/rest/api/playfab/economy/catalog/publishdraftitem
          */
@@ -230,6 +235,8 @@ declare module PlayFabEconomyModels {
         Amount: number;
         /** The inventory item the operation applies to. */
         Item?: InventoryItemReference;
+        /** The values to apply to a stack newly created by this operation. */
+        NewStackValues?: InitialValues;
 
     }
 
@@ -242,14 +249,20 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The Idempotency ID for this request. */
         IdempotencyId?: string;
         /** The inventory item the request applies to. */
         Item?: InventoryItemReference;
+        /** The values to apply to a stack newly created by this request. */
+        NewStackValues?: InitialValues;
 
     }
 
     export interface AddInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The idempotency id used in the request. */
         IdempotencyId?: string;
         /** The ids of transactions that occurred as a result of the request. */
@@ -770,6 +783,8 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity the request is about. Set to the caller by default. */
         Entity?: EntityKey;
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
 
     }
 
@@ -790,6 +805,8 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The Idempotency ID for this request. */
         IdempotencyId?: string;
         /** The inventory item the request applies to. */
@@ -798,6 +815,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface DeleteInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The idempotency id used in the request. */
         IdempotencyId?: string;
         /** The ids of transactions that occurred as a result of the request. */
@@ -851,6 +870,8 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The Idempotency ID for this request. */
         IdempotencyId?: string;
         /**
@@ -862,6 +883,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface ExecuteInventoryOperationsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The idempotency id used in the request. */
         IdempotencyId?: string;
         /** The ids of the transactions that occurred as a result of the request. */
@@ -1020,6 +1043,8 @@ declare module PlayFabEconomyModels {
     export interface GetInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** An opaque token used to retrieve the next page of items, if any are available. */
         ContinuationToken?: string;
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The requested inventory items. */
         Items?: InventoryItem[];
 
@@ -1187,6 +1212,30 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface GetTransactionHistoryRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        CollectionId?: string;
+        /** An opaque token used to retrieve the next page of items, if any are available. Should be null on initial request. */
+        ContinuationToken?: string;
+        /** Number of items to retrieve. (Default = 10) */
+        Count: number;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The entity to perform this action on. */
+        Entity?: EntityKey;
+        /** An OData filter used to refine the query. */
+        Filter?: string;
+
+    }
+
+    export interface GetTransactionHistoryResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** An opaque token used to retrieve the next page of items, if any are available. Should be null on initial request. */
+        ContinuationToken?: string;
+        /** The requested inventory transactions. */
+        Transactions?: Transaction[];
+
+    }
+
     export interface GooglePlayProductPurchase {
         /** The Product ID (SKU) of the InApp product purchased from the Google Play store. */
         ProductId?: string;
@@ -1218,9 +1267,17 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface InitialValues {
+        /** Game specific properties for display purposes. */
+        DisplayProperties?: any;
+
+    }
+
     export interface InventoryItem {
         /** The amount of the item. */
         Amount: number;
+        /** Game specific properties for display purposes. This is an arbitrary JSON blob. */
+        DisplayProperties?: any;
         /** The id of the item. This should correspond to the item id in the catalog. */
         Id?: string;
         /** The stack id of the item. */
@@ -1321,6 +1378,8 @@ declare module PlayFabEconomyModels {
         DeleteEmptyStacks: boolean;
         /** The inventory item the operation applies to. */
         Item?: InventoryItemReference;
+        /** The values to apply to a stack newly created by this operation. */
+        NewStackValues?: InitialValues;
         /**
          * The per-item price the item is expected to be purchased at. This must match a value configured in the Catalog or
          * specified Store.
@@ -1345,10 +1404,14 @@ declare module PlayFabEconomyModels {
         DeleteEmptyStacks: boolean;
         /** The entity to perform this action on. */
         Entity?: EntityKey;
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The Idempotency ID for this request. */
         IdempotencyId?: string;
         /** The inventory item the request applies to. */
         Item?: InventoryItemReference;
+        /** The values to apply to a stack newly created by this request. */
+        NewStackValues?: InitialValues;
         /**
          * The per-item price the item is expected to be purchased at. This must match a value configured in the Catalog or
          * specified Store.
@@ -1360,6 +1423,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface PurchaseInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The idempotency id used in the request. */
         IdempotencyId?: string;
         /** The ids of transactions that occurred as a result of the request. */
@@ -1781,6 +1846,8 @@ declare module PlayFabEconomyModels {
         DeleteEmptyStacks: boolean;
         /** The entity to perform this action on. */
         Entity?: EntityKey;
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The Idempotency ID for this request. */
         IdempotencyId?: string;
         /** The inventory item the request applies to. */
@@ -1789,6 +1856,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface SubtractInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The idempotency id used in the request. */
         IdempotencyId?: string;
         /** The ids of transactions that occurred as a result of the request. */
@@ -1808,6 +1877,72 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface Transaction {
+        /** The API call that caused this transaction. */
+        ApiName?: string;
+        /** The type of item that the the operation occurred on. */
+        ItemType?: string;
+        /** The operations that occurred. */
+        Operations?: TransactionOperation[];
+        /** The type of operation that was run. */
+        OperationType?: string;
+        /** Additional details about the transaction. Null if it was not a purchase operation. */
+        PurchaseDetails?: TransactionPurchaseDetails;
+        /** Additional details about the transaction. Null if it was not a redeem operation. */
+        RedeemDetails?: TransactionRedeemDetails;
+        /** The time this transaction occurred in UTC. */
+        Timestamp: string;
+        /** The id of the transaction. This should be treated like an opaque token. */
+        TransactionId?: string;
+        /** Additional details about the transaction. Null if it was not a transfer operation. */
+        TransferDetails?: TransactionTransferDetails;
+
+    }
+
+    export interface TransactionOperation {
+        /** The amount of items in this transaction. */
+        Amount?: number;
+        /** The item id of the items in this transaction. */
+        ItemId?: string;
+        /** The type of item that the operation occurred on. */
+        ItemType?: string;
+        /** The stack id of the items in this transaction. */
+        StackId?: string;
+        /** The type of the operation that occurred. */
+        Type?: string;
+
+    }
+
+    export interface TransactionPurchaseDetails {
+        /** The id of the Store the item was purchased from or null. */
+        StoreId?: string;
+
+    }
+
+    export interface TransactionRedeemDetails {
+        /** The marketplace that the offer is being redeemed from. */
+        Marketplace?: string;
+        /** The transaction Id returned from the marketplace. */
+        MarketplaceTransactionId?: string;
+        /** The offer Id of the item being redeemed. */
+        OfferId?: string;
+
+    }
+
+    export interface TransactionTransferDetails {
+        /** The collection id the items were transferred from or null if it was the current collection. */
+        GivingCollectionId?: string;
+        /** The entity the items were transferred from or null if it was the current entity. */
+        GivingEntity?: EntityKey;
+        /** The collection id the items were transferred to or null if it was the current collection. */
+        ReceivingCollectionId?: string;
+        /** The entity the items were transferred to or null if it was the current entity. */
+        ReceivingEntity?: EntityKey;
+        /** The id of the transfer that occurred. */
+        TransferId?: string;
+
+    }
+
     export interface TransferInventoryItemsOperation {
         /** The amount to transfer. */
         Amount: number;
@@ -1818,6 +1953,8 @@ declare module PlayFabEconomyModels {
         DeleteEmptyStacks: boolean;
         /** The inventory item the operation is transferring from. */
         GivingItem?: InventoryItemReference;
+        /** The values to apply to a stack newly created by this operation. */
+        NewStackValues?: InitialValues;
         /** The inventory item the operation is transferring to. */
         ReceivingItem?: InventoryItemReference;
 
@@ -1837,10 +1974,14 @@ declare module PlayFabEconomyModels {
         GivingCollectionId?: string;
         /** The entity the request is transferring from. Set to the caller by default. */
         GivingEntity?: EntityKey;
+        /** ETags are used for concurrency checking when updating resources (before transferring from). */
+        GivingETag?: string;
         /** The inventory item the request is transferring from. */
         GivingItem?: InventoryItemReference;
         /** The idempotency id for the request. */
         IdempotencyId?: string;
+        /** The values to apply to a stack newly created by this request. */
+        NewStackValues?: InitialValues;
         /** The inventory collection id the request is transferring to. (Default="default") */
         ReceivingCollectionId?: string;
         /** The entity the request is transferring to. Set to the caller by default. */
@@ -1851,6 +1992,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface TransferInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** ETags are used for concurrency checking when updating resources (after transferring from). */
+        GivingETag?: string;
         /** The ids of transactions that occurred as a result of the request's giving action. */
         GivingTransactionIds?: string[];
         /** The idempotency id for the request. */
@@ -1901,6 +2044,8 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The Idempotency ID for this request. */
         IdempotencyId?: string;
         /** The inventory item to update with the specified values. */
@@ -1909,6 +2054,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface UpdateInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** ETags are used for concurrency checking when updating resources. */
+        ETag?: string;
         /** The idempotency id used in the request. */
         IdempotencyId?: string;
         /** The ids of transactions that occurred as a result of the request. */

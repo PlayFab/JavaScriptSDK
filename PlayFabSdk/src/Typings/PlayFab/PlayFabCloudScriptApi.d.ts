@@ -736,7 +736,7 @@ declare module PlayFabCloudScriptModels {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
-        Entity: EntityKey;
+        Entity?: EntityKey;
         /** The result of the function execution */
         FunctionResult: ExecuteFunctionResult;
         /** The id of the scheduled task that invoked the function. */

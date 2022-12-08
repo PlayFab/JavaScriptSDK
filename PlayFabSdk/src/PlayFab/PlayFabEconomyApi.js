@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.132.221107",
+        sdkVersion: "1.133.221207",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.132.221107"
+            sdk: "JavaScriptSDK-1.133.221207"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
-PlayFab.sdkVersion = "1.132.221107";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
+PlayFab.sdkVersion = "1.133.221207";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -331,6 +331,10 @@ PlayFab.EconomyApi = {
 
     GetMicrosoftStoreAccessTokens: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/GetMicrosoftStoreAccessTokens", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetTransactionHistory: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/GetTransactionHistory", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     PublishDraftItem: function (request, callback, customData, extraHeaders) {
