@@ -721,8 +721,6 @@ declare module PlayFabCloudScriptModels {
     export interface PostFunctionResultForPlayerTriggeredActionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
-        Entity?: EntityKey;
         /** The result of the function execution. */
         FunctionResult: ExecuteFunctionResult;
         /** The player profile the function was invoked with. */
@@ -735,8 +733,6 @@ declare module PlayFabCloudScriptModels {
     export interface PostFunctionResultForScheduledTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The entity to perform this action on. */
-        Entity?: EntityKey;
         /** The result of the function execution */
         FunctionResult: ExecuteFunctionResult;
         /** The id of the scheduled task that invoked the function. */
