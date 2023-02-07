@@ -232,7 +232,7 @@ declare module PlayFabEconomyModule {
 declare module PlayFabEconomyModels {
     export interface AddInventoryItemsOperation {
         /** The amount to add to the current item amount. */
-        Amount: number;
+        Amount?: number;
         /** The inventory item the operation applies to. */
         Item?: InventoryItemReference;
         /** The values to apply to a stack newly created by this operation. */
@@ -242,7 +242,7 @@ declare module PlayFabEconomyModels {
 
     export interface AddInventoryItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The amount to add for the current item. */
-        Amount: number;
+        Amount?: number;
         /** The id of the entity's collection to perform this action on. (Default="default") */
         CollectionId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -1275,7 +1275,7 @@ declare module PlayFabEconomyModels {
 
     export interface InventoryItem {
         /** The amount of the item. */
-        Amount: number;
+        Amount?: number;
         /** Game specific properties for display purposes. This is an arbitrary JSON blob. */
         DisplayProperties?: any;
         /** The id of the item. This should correspond to the item id in the catalog. */
@@ -1370,7 +1370,7 @@ declare module PlayFabEconomyModels {
 
     export interface PurchaseInventoryItemsOperation {
         /** The amount to purchase. */
-        Amount: number;
+        Amount?: number;
         /**
          * Indicates whether stacks reduced to an amount of 0 during the operation should be deleted from the inventory. (Default =
          * false)
@@ -1392,7 +1392,7 @@ declare module PlayFabEconomyModels {
 
     export interface PurchaseInventoryItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The amount to purchase. */
-        Amount: number;
+        Amount?: number;
         /** The id of the entity's collection to perform this action on. (Default="default") */
         CollectionId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -1821,7 +1821,7 @@ declare module PlayFabEconomyModels {
 
     export interface SubtractInventoryItemsOperation {
         /** The amount to subtract from the current item amount. */
-        Amount: number;
+        Amount?: number;
         /**
          * Indicates whether stacks reduced to an amount of 0 during the request should be deleted from the inventory. (Default =
          * false).
@@ -1833,8 +1833,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface SubtractInventoryItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The amount to add for the current item. */
-        Amount: number;
+        /** The amount to subtract for the current item. */
+        Amount?: number;
         /** The id of the entity's collection to perform this action on. (Default="default") */
         CollectionId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
