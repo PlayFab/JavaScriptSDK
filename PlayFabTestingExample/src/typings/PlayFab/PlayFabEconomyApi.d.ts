@@ -1945,7 +1945,7 @@ declare module PlayFabEconomyModels {
 
     export interface TransferInventoryItemsOperation {
         /** The amount to transfer. */
-        Amount: number;
+        Amount?: number;
         /**
          * Indicates whether stacks reduced to an amount of 0 during the operation should be deleted from the inventory. (Default =
          * false)
@@ -1962,7 +1962,7 @@ declare module PlayFabEconomyModels {
 
     export interface TransferInventoryItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The amount to transfer . */
-        Amount: number;
+        Amount?: number;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /**
