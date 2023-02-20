@@ -831,6 +831,8 @@ declare module PlayFabMultiplayerModels {
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
         VmSize?: string;
+        /** The configuration for the VmStartupScript for the build */
+        VmStartupScriptConfiguration?: VmStartupScriptParams;
 
     }
 
@@ -881,6 +883,8 @@ declare module PlayFabMultiplayerModels {
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
+        /** The configuration for the VmStartupScript feature for the build */
+        VmStartupScriptConfiguration?: VmStartupScriptConfiguration;
 
     }
 
@@ -931,6 +935,8 @@ declare module PlayFabMultiplayerModels {
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
         VmSize?: string;
+        /** The configuration for the VmStartupScript for the build */
+        VmStartupScriptConfiguration?: VmStartupScriptParams;
         /** The crash dump configuration for the build. */
         WindowsCrashDumpConfiguration?: WindowsCrashDumpConfiguration;
 
@@ -986,6 +992,8 @@ declare module PlayFabMultiplayerModels {
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
+        /** The configuration for the VmStartupScript feature for the build */
+        VmStartupScriptConfiguration?: VmStartupScriptConfiguration;
 
     }
 
@@ -1042,6 +1050,8 @@ declare module PlayFabMultiplayerModels {
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
         VmSize?: string;
+        /** The configuration for the VmStartupScript for the build */
+        VmStartupScriptConfiguration?: VmStartupScriptParams;
 
     }
 
@@ -1101,6 +1111,8 @@ declare module PlayFabMultiplayerModels {
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
+        /** The configuration for the VmStartupScript feature for the build */
+        VmStartupScriptConfiguration?: VmStartupScriptConfiguration;
 
     }
 
@@ -3337,6 +3349,18 @@ declare module PlayFabMultiplayerModels {
         State?: string;
         /** The virtual machine ID. */
         VmId?: string;
+
+    }
+
+    export interface VmStartupScriptConfiguration {
+        /** Asset which contains the VmStartupScript script and any other required files. */
+        VmStartupScriptAssetReference: AssetReference;
+
+    }
+
+    export interface VmStartupScriptParams {
+        /** Asset which contains the VmStartupScript script and any other required files. */
+        VmStartupScriptAssetReference: AssetReferenceParams;
 
     }
 
