@@ -2417,6 +2417,12 @@ declare module PlayFabAdminModels {
         | "AnalysisSubscriptionManagementInvalidInput"
         | "InvalidGameCenterId"
         | "InvalidNintendoSwitchAccountId"
+        | "EntityAPIKeysNotSupported"
+        | "IpAddressBanned"
+        | "EntityLineageBanned"
+        | "NamespaceMismatch"
+        | "InvalidServiceConfiguration"
+        | "InvalidNamespaceMismatch"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2563,6 +2569,11 @@ declare module PlayFabAdminModels {
         | "EventSamplingInvalidEventNamespace"
         | "EventSamplingInvalidEventName"
         | "EventSamplingRatioNotFound"
+        | "TelemetryKeyNotFound"
+        | "TelemetryKeyInvalidName"
+        | "TelemetryKeyAlreadyExists"
+        | "TelemetryKeyInvalid"
+        | "TelemetryKeyCountOverLimit"
         | "EventSinkConnectionInvalid"
         | "EventSinkConnectionUnauthorized"
         | "EventSinkRegionInvalid"
@@ -2852,7 +2863,7 @@ declare module PlayFabAdminModels {
         MaxBatchSize?: number;
         /**
          * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging
-         * results. Default is 300 (5 minutes). Maximum is 1,800 (30 minutes).
+         * results. Default is 300 (5 minutes). Maximum is 5,400 (90 minutes).
          */
         SecondsToLive?: number;
         /** Unique identifier for this segment. */

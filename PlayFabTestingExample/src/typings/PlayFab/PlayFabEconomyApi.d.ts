@@ -247,6 +247,8 @@ declare module PlayFabEconomyModels {
         CollectionId?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
+        /** The duration to add to the current item expiration date. */
+        DurationInSeconds?: number;
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** ETags are used for concurrency checking when updating resources. */
@@ -324,6 +326,12 @@ declare module PlayFabEconomyModels {
         /** The set of platform specific deep links for this item. */
         DeepLinks?: DeepLink[];
         /**
+         * The Stack Id that will be used as default for this item in Inventory when an explicit one is not provided. This
+         * DefaultStackId can be a static stack id or '{guid}', which will generate a unique stack id for the item. If null,
+         * Inventory's default stack id will be used.
+         */
+        DefaultStackId?: string;
+        /**
          * A dictionary of localized descriptions. Key is language code and localized string is the value. The neutral locale is
          * required.
          */
@@ -385,6 +393,8 @@ declare module PlayFabEconomyModels {
     export interface CatalogPrice {
         /** The amounts of the catalog item price. */
         Amounts?: CatalogPriceAmount[];
+        /** The per-unit duration this price can be used to purchase. */
+        UnitDurationInSeconds?: number;
 
     }
 
@@ -1278,6 +1288,11 @@ declare module PlayFabEconomyModels {
         Amount?: number;
         /** Game specific properties for display purposes. This is an arbitrary JSON blob. */
         DisplayProperties?: any;
+        /**
+         * Only used for subscriptions. The date of when the item will expire in UTC. If not provided then the product will be
+         * available indefinitely.
+         */
+        ExpirationDate?: string;
         /** The id of the item. This should correspond to the item id in the catalog. */
         Id?: string;
         /** The stack id of the item. */
@@ -1376,6 +1391,8 @@ declare module PlayFabEconomyModels {
          * false)
          */
         DeleteEmptyStacks: boolean;
+        /** The duration to purchase. */
+        DurationInSeconds?: number;
         /** The inventory item the operation applies to. */
         Item?: InventoryItemReference;
         /** The values to apply to a stack newly created by this operation. */
@@ -1402,6 +1419,8 @@ declare module PlayFabEconomyModels {
          * (Default=false)
          */
         DeleteEmptyStacks: boolean;
+        /** The duration to purchase. */
+        DurationInSeconds?: number;
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** ETags are used for concurrency checking when updating resources. */
@@ -1827,6 +1846,8 @@ declare module PlayFabEconomyModels {
          * false).
          */
         DeleteEmptyStacks: boolean;
+        /** The duration to subtract from the current item expiration date. */
+        DurationInSeconds?: number;
         /** The inventory item the operation applies to. */
         Item?: InventoryItemReference;
 
@@ -1844,6 +1865,8 @@ declare module PlayFabEconomyModels {
          * (Default=false)
          */
         DeleteEmptyStacks: boolean;
+        /** The duration to subtract from the current item expiration date. */
+        DurationInSeconds?: number;
         /** The entity to perform this action on. */
         Entity?: EntityKey;
         /** ETags are used for concurrency checking when updating resources. */
@@ -1902,6 +1925,8 @@ declare module PlayFabEconomyModels {
     export interface TransactionOperation {
         /** The amount of items in this transaction. */
         Amount?: number;
+        /** The duration modified in this transaction. */
+        DurationInSeconds?: number;
         /** The item id of the items in this transaction. */
         ItemId?: string;
         /** The type of item that the operation occurred on. */
