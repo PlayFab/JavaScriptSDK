@@ -421,6 +421,11 @@ declare module PlayFabServerModule {
          */
         LinkServerCustomId(request: PlayFabServerModels.LinkServerCustomIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.LinkServerCustomIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.LinkServerCustomIdResult>>;
         /**
+         * Links the Steam account associated with the provided Steam ID to the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/linksteamid
+         */
+        LinkSteamId(request: PlayFabServerModels.LinkSteamIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.LinkSteamIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.LinkSteamIdResult>>;
+        /**
          * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/linkxboxaccount
          */
@@ -645,6 +650,11 @@ declare module PlayFabServerModule {
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkservercustomid
          */
         UnlinkServerCustomId(request: PlayFabServerModels.UnlinkServerCustomIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkServerCustomIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkServerCustomIdResult>>;
+        /**
+         * Unlinks the Steam account associated with the provided Steam ID to the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinksteamid
+         */
+        UnlinkSteamId(request: PlayFabServerModels.UnlinkSteamIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkSteamIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkSteamIdResult>>;
         /**
          * Unlinks the related Xbox Live account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkxboxaccount
@@ -2489,6 +2499,7 @@ declare module PlayFabServerModels {
         | "AsyncExportNotInFlight"
         | "AsyncExportNotFound"
         | "AsyncExportRateLimitExceeded"
+        | "AnalyticsSegmentCountOverLimit"
         | "SnapshotNotFound"
         | "InventoryApiNotImplemented"
         | "LobbyDoesNotExist"
@@ -2512,6 +2523,7 @@ declare module PlayFabServerModels {
         | "TelemetryKeyAlreadyExists"
         | "TelemetryKeyInvalid"
         | "TelemetryKeyCountOverLimit"
+        | "TelemetryKeyDeactivated"
         | "EventSinkConnectionInvalid"
         | "EventSinkConnectionUnauthorized"
         | "EventSinkRegionInvalid"
@@ -3662,6 +3674,22 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface LinkSteamIdRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        ForceLink?: boolean;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        PlayFabId: string;
+        /** Unique Steam identifier for a user. */
+        SteamId: string;
+
+    }
+
+    export interface LinkSteamIdResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface LinkXboxAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -3757,7 +3785,7 @@ declare module PlayFabServerModels {
         CustomTags?: { [key: string]: string | null };
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Unique Steam identifier for a user */
+        /** Unique Steam identifier for a user. */
         SteamId: string;
 
     }
@@ -3771,7 +3799,7 @@ declare module PlayFabServerModels {
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
         /** The id of Xbox Live sandbox. */
         Sandbox: string;
-        /** Unique Xbox identifier for a user */
+        /** Unique Xbox identifier for a user. */
         XboxId: string;
 
     }
@@ -4904,6 +4932,18 @@ declare module PlayFabServerModels {
     }
 
     export interface UnlinkServerCustomIdResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface UnlinkSteamIdRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam account. */
+        PlayFabId: string;
+
+    }
+
+    export interface UnlinkSteamIdResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 

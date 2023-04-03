@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.138.230306",
+        sdkVersion: "1.141.230403",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.138.230306"
+            sdk: "JavaScriptSDK-1.141.230403"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.138.230306";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
+PlayFab.sdkVersion = "1.141.230403";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -357,6 +357,9 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetContentDownloadUrl", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Please use MultiplayerServer/ListMultiplayerServers instead. 
+     */
     GetCurrentGames: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetCurrentGames", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -373,6 +376,9 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetFriendsList", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Please use MultiplayerServer/ListMultiplayerServers instead. 
+     */
     GetGameServerRegions: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetGameServerRegions", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -1065,6 +1071,9 @@ PlayFab.ClientApi = {
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
 
+    /**
+     * @deprecated Please use Match/CreateMatchmakingTicket instead. 
+     */
     Matchmake: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/Matchmake", request, "X-Authorization", callback, customData, extraHeaders);
     },
