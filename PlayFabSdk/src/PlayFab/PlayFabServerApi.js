@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.138.230306",
+        sdkVersion: "1.141.230403",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.138.230306"
+            sdk: "JavaScriptSDK-1.141.230403"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.138.230306";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
+PlayFab.sdkVersion = "1.141.230403";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -301,6 +301,9 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/DeleteSharedGroup", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     DeregisterGame: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/DeregisterGame", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -545,6 +548,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkServerCustomId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    LinkSteamId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkSteamId", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     LinkXboxAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkXboxAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -581,6 +588,9 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/MoveItemToUserFromCharacter", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     NotifyMatchmakerPlayerLeft: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/NotifyMatchmakerPlayerLeft", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -589,14 +599,23 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/RedeemCoupon", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     RedeemMatchmakerTicket: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/RedeemMatchmakerTicket", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     RefreshGameServerInstanceHeartbeat: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/RefreshGameServerInstanceHeartbeat", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     RegisterGame: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/RegisterGame", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -661,14 +680,23 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SetFriendTags", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     SetGameServerInstanceData: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SetGameServerInstanceData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     SetGameServerInstanceState: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SetGameServerInstanceState", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    /**
+     * @deprecated Do not use
+     */
     SetGameServerInstanceTags: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SetGameServerInstanceTags", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -711,6 +739,10 @@ PlayFab.ServerApi = {
 
     UnlinkServerCustomId: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkServerCustomId", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UnlinkSteamId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkSteamId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UnlinkXboxAccount: function (request, callback, customData, extraHeaders) {

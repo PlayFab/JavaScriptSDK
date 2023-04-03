@@ -825,8 +825,8 @@ declare module PlayFabMultiplayerModels {
         /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
         ServerResourceConstraints?: ServerResourceConstraintParams;
         /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
+         * DEPRECATED - this is always true. Assets are downloaded and uncompressed in memory, without the compressedversion being
+         * written first to disc.
          */
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
@@ -929,8 +929,8 @@ declare module PlayFabMultiplayerModels {
         /** The command to run when the multiplayer server is started, including any arguments. */
         StartMultiplayerServerCommand: string;
         /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
+         * DEPRECATED - this is always true. Assets are downloaded and uncompressed in memory, without the compressedversion being
+         * written first to disc.
          */
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
@@ -1044,8 +1044,8 @@ declare module PlayFabMultiplayerModels {
          */
         StartMultiplayerServerCommand: string;
         /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
+         * DEPRECATED - this is always true. Assets are downloaded and uncompressed in memory, without the compressedversion being
+         * written first to disc.
          */
         UseStreamingForAssetDownloads?: boolean;
         /** The VM size to create the build on. */
@@ -1784,7 +1784,10 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface GetMatchmakingTicketResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
+        /**
+         * The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. Please retry
+         * if CancellationReason is RetryRequired.
+         */
         CancellationReasonString?: string;
         /** Change number used for differentiating older matchmaking status updates from newer ones. */
         ChangeNumber?: number;
