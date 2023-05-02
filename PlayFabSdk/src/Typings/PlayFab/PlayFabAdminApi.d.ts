@@ -2590,7 +2590,17 @@ declare module PlayFabAdminModels {
         | "EventSinkDatabaseNotFound"
         | "OperationCanceled"
         | "InvalidDisplayNameRandomSuffixLength"
-        | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed";
+        | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed"
+        | "PartitionedEventInvalid"
+        | "PartitionedEventCountOverLimit"
+        | "PlayerCustomPropertiesPropertyNameTooLong"
+        | "PlayerCustomPropertiesPropertyNameIsInvalid"
+        | "PlayerCustomPropertiesStringPropertyValueTooLong"
+        | "PlayerCustomPropertiesValueIsInvalidType"
+        | "PlayerCustomPropertiesVersionMismatch"
+        | "PlayerCustomPropertiesPropertyCountTooHigh"
+        | "PlayerCustomPropertiesDuplicatePropertyName"
+        | "PlayerCustomPropertiesPropertyDoesNotExist";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */

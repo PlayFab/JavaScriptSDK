@@ -2538,7 +2538,17 @@ declare module PlayFabServerModels {
         | "EventSinkDatabaseNotFound"
         | "OperationCanceled"
         | "InvalidDisplayNameRandomSuffixLength"
-        | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed";
+        | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed"
+        | "PartitionedEventInvalid"
+        | "PartitionedEventCountOverLimit"
+        | "PlayerCustomPropertiesPropertyNameTooLong"
+        | "PlayerCustomPropertiesPropertyNameIsInvalid"
+        | "PlayerCustomPropertiesStringPropertyValueTooLong"
+        | "PlayerCustomPropertiesValueIsInvalidType"
+        | "PlayerCustomPropertiesVersionMismatch"
+        | "PlayerCustomPropertiesPropertyCountTooHigh"
+        | "PlayerCustomPropertiesDuplicatePropertyName"
+        | "PlayerCustomPropertiesPropertyDoesNotExist";
 
     export interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
@@ -2695,10 +2705,6 @@ declare module PlayFabServerModels {
          * comma-separated list of platforms.
          */
         ExternalPlatformFriends?: string;
-        /** Indicates whether Facebook friends should be included in the response. Default is true. */
-        IncludeFacebookFriends?: boolean;
-        /** Indicates whether Steam service friends should be included in the response. Default is true. */
-        IncludeSteamFriends?: boolean;
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number;
         /** The player whose friend leaderboard to get */
@@ -2728,10 +2734,6 @@ declare module PlayFabServerModels {
          * comma-separated list of platforms.
          */
         ExternalPlatformFriends?: string;
-        /** Indicates whether Facebook friends should be included in the response. Default is true. */
-        IncludeFacebookFriends?: boolean;
-        /** Indicates whether Steam service friends should be included in the response. Default is true. */
-        IncludeSteamFriends?: boolean;
         /** PlayFab identifier of the player whose friend list to get. */
         PlayFabId: string;
         /**
