@@ -2524,6 +2524,7 @@ declare module PlayFabServerModels {
         | "TelemetryKeyInvalid"
         | "TelemetryKeyCountOverLimit"
         | "TelemetryKeyDeactivated"
+        | "TelemetryKeyLongInsightsRetentionNotAllowed"
         | "EventSinkConnectionInvalid"
         | "EventSinkConnectionUnauthorized"
         | "EventSinkRegionInvalid"
