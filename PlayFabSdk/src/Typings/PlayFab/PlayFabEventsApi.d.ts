@@ -64,7 +64,7 @@ declare module PlayFabEventsModels {
     export interface WriteEventsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** Collection of events to write to PlayStream. */
+        /** The collection of events to write. Up to 200 events can be written per request. */
         Events: EventContents[];
 
     }
