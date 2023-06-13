@@ -170,7 +170,7 @@ declare module PlayFabProfilesModels {
     export interface EntityStatisticValue {
         /** Child statistic values */
         ChildStatistics?: { [key: string]: EntityStatisticChildValue };
-        /** Statistic metadata */
+        /** Metadata associated with the Statistic. */
         Metadata?: string;
         /** Statistic name */
         Name?: string;

@@ -470,6 +470,8 @@ declare module PlayFabEconomyModels {
     export interface CatalogPrice {
         /** The amounts of the catalog item price. Each price can have up to 15 item amounts. */
         Amounts?: CatalogPriceAmount[];
+        /** The per-unit amount this price can be used to purchase. */
+        UnitAmount?: number;
         /** The per-unit duration this price can be used to purchase. The maximum duration is 100 years. */
         UnitDurationInSeconds?: number;
 
