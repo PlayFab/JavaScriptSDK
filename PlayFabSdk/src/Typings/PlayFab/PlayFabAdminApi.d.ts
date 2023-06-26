@@ -2602,7 +2602,9 @@ declare module PlayFabAdminModels {
         | "PlayerCustomPropertiesVersionMismatch"
         | "PlayerCustomPropertiesPropertyCountTooHigh"
         | "PlayerCustomPropertiesDuplicatePropertyName"
-        | "PlayerCustomPropertiesPropertyDoesNotExist";
+        | "PlayerCustomPropertiesPropertyDoesNotExist"
+        | "AddonAlreadyExists"
+        | "AddonDoesntExist";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
