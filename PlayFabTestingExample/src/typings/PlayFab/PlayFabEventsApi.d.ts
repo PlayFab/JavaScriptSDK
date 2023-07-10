@@ -5,6 +5,31 @@ declare module PlayFabEventsModule {
         ForgetAllCredentials(): void;
 
         /**
+         * Creates a new telemetry key for the title.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/createtelemetrykey
+         */
+        CreateTelemetryKey(request: PlayFabEventsModels.CreateTelemetryKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.CreateTelemetryKeyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.CreateTelemetryKeyResponse>>;
+        /**
+         * Deletes a telemetry key configured for the title.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/deletetelemetrykey
+         */
+        DeleteTelemetryKey(request: PlayFabEventsModels.DeleteTelemetryKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.DeleteTelemetryKeyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.DeleteTelemetryKeyResponse>>;
+        /**
+         * Gets information about a telemetry key configured for the title.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/gettelemetrykey
+         */
+        GetTelemetryKey(request: PlayFabEventsModels.GetTelemetryKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.GetTelemetryKeyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.GetTelemetryKeyResponse>>;
+        /**
+         * Lists all telemetry keys configured for the title.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/listtelemetrykeys
+         */
+        ListTelemetryKeys(request: PlayFabEventsModels.ListTelemetryKeysRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.ListTelemetryKeysResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.ListTelemetryKeysResponse>>;
+        /**
+         * Sets a telemetry key to the active or deactivated state.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/settelemetrykeyactive
+         */
+        SetTelemetryKeyActive(request: PlayFabEventsModels.SetTelemetryKeyActiveRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.SetTelemetryKeyActiveResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.SetTelemetryKeyActiveResponse>>;
+        /**
          * Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'.
          * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/writeevents
          */
@@ -20,6 +45,38 @@ declare module PlayFabEventsModule {
 }
 
 declare module PlayFabEventsModels {
+    export interface CreateTelemetryKeyRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+        /** The name of the new key. Telemetry key names must be unique within the scope of the title. */
+        KeyName: string;
+
+    }
+
+    export interface CreateTelemetryKeyResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Details about the newly created telemetry key. */
+        NewKeyDetails?: TelemetryKeyDetails;
+
+    }
+
+    export interface DeleteTelemetryKeyRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+        /** The name of the key to delete. */
+        KeyName: string;
+
+    }
+
+    export interface DeleteTelemetryKeyResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Indicates whether or not the key was deleted. If false, no key with that name existed. */
+        WasKeyDeleted: boolean;
+
+    }
+
     export interface EntityKey {
         /** Unique ID of the entity. */
         Id: string;
@@ -58,6 +115,70 @@ declare module PlayFabEventsModels {
          * allowed.
          */
         PayloadJSON?: string;
+
+    }
+
+    export interface GetTelemetryKeyRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+        /** The name of the key to retrieve. */
+        KeyName: string;
+
+    }
+
+    export interface GetTelemetryKeyResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Details about the requested telemetry key. */
+        KeyDetails?: TelemetryKeyDetails;
+
+    }
+
+    export interface ListTelemetryKeysRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+
+    }
+
+    export interface ListTelemetryKeysResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The telemetry keys configured for the title. */
+        KeyDetails?: TelemetryKeyDetails[];
+
+    }
+
+    export interface SetTelemetryKeyActiveRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Whether to set the key to active (true) or deactivated (false). */
+        Active: boolean;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+        /** The name of the key to update. */
+        KeyName: string;
+
+    }
+
+    export interface SetTelemetryKeyActiveResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The most current details about the telemetry key that was to be updated. */
+        KeyDetails?: TelemetryKeyDetails;
+        /** Indicates whether or not the key was updated. If false, the key was already in the desired state. */
+        WasKeyUpdated: boolean;
+
+    }
+
+    export interface TelemetryKeyDetails {
+        /** When the key was created. */
+        CreateTime: string;
+        /** Whether or not the key is currently active. Deactivated keys cannot be used for telemetry ingestion. */
+        IsActive: boolean;
+        /** The key that can be distributed to clients for use during telemetry ingestion. */
+        KeyValue?: string;
+        /** When the key was last updated. */
+        LastUpdateTime: string;
+        /** The name of the key. Telemetry key names are unique within the scope of the title. */
+        Name?: string;
 
     }
 

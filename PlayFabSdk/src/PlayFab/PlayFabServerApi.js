@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.147.230623",
+        sdkVersion: "1.148.230707",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.147.230623"
+            sdk: "JavaScriptSDK-1.148.230707"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.147.230623";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
+PlayFab.sdkVersion = "1.148.230707";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -542,6 +542,10 @@ PlayFab.ServerApi = {
 
     LinkPSNAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkPSNAccount", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    LinkPSNId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkPSNId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     LinkServerCustomId: function (request, callback, customData, extraHeaders) {

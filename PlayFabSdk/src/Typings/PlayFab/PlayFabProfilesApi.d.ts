@@ -124,8 +124,6 @@ declare module PlayFabProfilesModels {
         Files?: { [key: string]: EntityProfileFileMetadata };
         /** The language on this profile. */
         Language?: string;
-        /** Leaderboard metadata for the entity. */
-        LeaderboardMetadata?: string;
         /** The lineage of this profile. */
         Lineage?: EntityLineage;
         /** The objects on this profile. */
@@ -157,19 +155,7 @@ declare module PlayFabProfilesModels {
 
     }
 
-    export interface EntityStatisticChildValue {
-        /** Child name value, if child statistic */
-        ChildName?: string;
-        /** Child statistic metadata */
-        Metadata?: string;
-        /** Child statistic value */
-        Value: number;
-
-    }
-
     export interface EntityStatisticValue {
-        /** Child statistic values */
-        ChildStatistics?: { [key: string]: EntityStatisticChildValue };
         /** Metadata associated with the Statistic. */
         Metadata?: string;
         /** Statistic name */
