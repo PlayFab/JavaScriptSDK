@@ -25,13 +25,15 @@ declare module PlayFabAdminModule {
          */
         AddPlayerTag(request: PlayFabAdminModels.AddPlayerTagRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.AddPlayerTagResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.AddPlayerTagResult>>;
         /**
-         * Increments the specified virtual currency by the stated amount
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Increments the specified virtual currency by the stated amount
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/adduservirtualcurrency
          */
         AddUserVirtualCurrency(request: PlayFabAdminModels.AddUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>>;
         /**
-         * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of
-         * 2,147,483,647 when granted to a player. Any value over that will be discarded.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum
+         * value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/addvirtualcurrencytypes
          */
         AddVirtualCurrencyTypes(request: PlayFabAdminModels.AddVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>>;
@@ -41,7 +43,8 @@ declare module PlayFabAdminModule {
          */
         BanUsers(request: PlayFabAdminModels.BanUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>>;
         /**
-         * Checks the global count for the limited edition item.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Checks the global count for the limited edition item.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/checklimitededitionitemavailability
          */
         CheckLimitedEditionItemAvailability(request: PlayFabAdminModels.CheckLimitedEditionItemAvailabilityRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.CheckLimitedEditionItemAvailabilityResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.CheckLimitedEditionItemAvailabilityResult>>;
@@ -120,7 +123,8 @@ declare module PlayFabAdminModule {
          */
         DeleteSegment(request: PlayFabAdminModels.DeleteSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteSegmentsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteSegmentsResponse>>;
         /**
-         * Deletes an existing virtual item store
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Deletes an existing virtual item store
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletestore
          */
         DeleteStore(request: PlayFabAdminModels.DeleteStoreRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteStoreResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteStoreResult>>;
@@ -163,7 +167,8 @@ declare module PlayFabAdminModule {
          */
         GetAllSegments(request: PlayFabAdminModels.GetAllSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetAllSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetAllSegmentsResult>>;
         /**
-         * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getcatalogitems
          */
         GetCatalogItems(request: PlayFabAdminModels.GetCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetCatalogItemsResult>>;
@@ -271,7 +276,8 @@ declare module PlayFabAdminModule {
          */
         GetPublisherData(request: PlayFabAdminModels.GetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPublisherDataResult>>;
         /**
-         * Retrieves the random drop table configuration for the title
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves the random drop table configuration for the title
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getrandomresulttables
          */
         GetRandomResultTables(request: PlayFabAdminModels.GetRandomResultTablesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetRandomResultTablesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetRandomResultTablesResult>>;
@@ -289,7 +295,8 @@ declare module PlayFabAdminModule {
          */
         GetSegments(request: PlayFabAdminModels.GetSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetSegmentsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetSegmentsResponse>>;
         /**
-         * Retrieves the set of items defined for the specified store, including all prices defined
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves the set of items defined for the specified store, including all prices defined
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems
          */
         GetStoreItems(request: PlayFabAdminModels.GetStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetStoreItemsResult>>;
@@ -334,7 +341,8 @@ declare module PlayFabAdminModule {
          */
         GetUserInternalData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>>;
         /**
-         * Retrieves the specified user's current inventory of virtual goods
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves the specified user's current inventory of virtual goods
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/getuserinventory
          */
         GetUserInventory(request: PlayFabAdminModels.GetUserInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserInventoryResult>>;
@@ -359,12 +367,14 @@ declare module PlayFabAdminModule {
          */
         GetUserReadOnlyData(request: PlayFabAdminModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetUserDataResult>>;
         /**
-         * Adds the specified items to the specified user inventories
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Adds the specified items to the specified user inventories
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/grantitemstousers
          */
         GrantItemsToUsers(request: PlayFabAdminModels.GrantItemsToUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GrantItemsToUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GrantItemsToUsersResult>>;
         /**
-         * Increases the global count for the given scarce resource.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Increases the global count for the given scarce resource.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/incrementlimitededitionitemavailability
          */
         IncrementLimitedEditionItemAvailability(request: PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.IncrementLimitedEditionItemAvailabilityResult>>;
@@ -379,7 +389,8 @@ declare module PlayFabAdminModule {
          */
         ListOpenIdConnection(request: PlayFabAdminModels.ListOpenIdConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ListOpenIdConnectionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ListOpenIdConnectionResponse>>;
         /**
-         * Retuns the list of all defined virtual currencies for the title
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retuns the list of all defined virtual currencies for the title
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/listvirtualcurrencytypes
          */
         ListVirtualCurrencyTypes(request: PlayFabAdminModels.ListVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ListVirtualCurrencyTypesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ListVirtualCurrencyTypesResult>>;
@@ -389,7 +400,8 @@ declare module PlayFabAdminModule {
          */
         ModifyServerBuild(request: PlayFabAdminModels.ModifyServerBuildRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyServerBuildResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyServerBuildResult>>;
         /**
-         * Attempts to process an order refund through the original real money payment provider.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Attempts to process an order refund through the original real money payment provider.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/refundpurchase
          */
         RefundPurchase(request: PlayFabAdminModels.RefundPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RefundPurchaseResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RefundPurchaseResponse>>;
@@ -399,7 +411,8 @@ declare module PlayFabAdminModule {
          */
         RemovePlayerTag(request: PlayFabAdminModels.RemovePlayerTagRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RemovePlayerTagResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RemovePlayerTagResult>>;
         /**
-         * Removes one or more virtual currencies from the set defined for the title.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Removes one or more virtual currencies from the set defined for the title.
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/removevirtualcurrencytypes
          */
         RemoveVirtualCurrencyTypes(request: PlayFabAdminModels.RemoveVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>>;
@@ -419,7 +432,8 @@ declare module PlayFabAdminModule {
          */
         ResetUserStatistics(request: PlayFabAdminModels.ResetUserStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResetUserStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ResetUserStatisticsResult>>;
         /**
-         * Attempts to resolve a dispute with the original order's payment provider.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Attempts to resolve a dispute with the original order's payment provider.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/resolvepurchasedispute
          */
         ResolvePurchaseDispute(request: PlayFabAdminModels.ResolvePurchaseDisputeRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ResolvePurchaseDisputeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ResolvePurchaseDisputeResponse>>;
@@ -434,12 +448,14 @@ declare module PlayFabAdminModule {
          */
         RevokeBans(request: PlayFabAdminModels.RevokeBansRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeBansResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeBansResult>>;
         /**
-         * Revokes access to an item in a user's inventory
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Revokes access to an item in a user's inventory
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitem
          */
         RevokeInventoryItem(request: PlayFabAdminModels.RevokeInventoryItemRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryResult>>;
         /**
-         * Revokes access for up to 25 items across multiple users and characters.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Revokes access for up to 25 items across multiple users and characters.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitems
          */
         RevokeInventoryItems(request: PlayFabAdminModels.RevokeInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.RevokeInventoryItemsResult>>;
@@ -456,7 +472,8 @@ declare module PlayFabAdminModule {
          */
         SendAccountRecoveryEmail(request: PlayFabAdminModels.SendAccountRecoveryEmailRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SendAccountRecoveryEmailResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SendAccountRecoveryEmailResult>>;
         /**
-         * Creates the catalog configuration of all virtual goods for the specified catalog version
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Creates the catalog configuration of all virtual goods for the specified catalog version
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setcatalogitems
          */
         SetCatalogItems(request: PlayFabAdminModels.UpdateCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>>;
@@ -481,7 +498,8 @@ declare module PlayFabAdminModule {
          */
         SetPublisherData(request: PlayFabAdminModels.SetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetPublisherDataResult>>;
         /**
-         * Sets all the items in one virtual store
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Sets all the items in one virtual store
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setstoreitems
          */
         SetStoreItems(request: PlayFabAdminModels.UpdateStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>>;
@@ -512,7 +530,8 @@ declare module PlayFabAdminModule {
          */
         SetupPushNotification(request: PlayFabAdminModels.SetupPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.SetupPushNotificationResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.SetupPushNotificationResult>>;
         /**
-         * Decrements the specified virtual currency by the stated amount
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Decrements the specified virtual currency by the stated amount
          * https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/subtractuservirtualcurrency
          */
         SubtractUserVirtualCurrency(request: PlayFabAdminModels.SubtractUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ModifyUserVirtualCurrencyResult>>;
@@ -522,7 +541,8 @@ declare module PlayFabAdminModule {
          */
         UpdateBans(request: PlayFabAdminModels.UpdateBansRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateBansResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateBansResult>>;
         /**
-         * Updates the catalog configuration for virtual goods in the specified catalog version
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Updates the catalog configuration for virtual goods in the specified catalog version
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatecatalogitems
          */
         UpdateCatalogItems(request: PlayFabAdminModels.UpdateCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateCatalogItemsResult>>;
@@ -554,7 +574,8 @@ declare module PlayFabAdminModule {
          */
         UpdatePolicy(request: PlayFabAdminModels.UpdatePolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdatePolicyResponse>>;
         /**
-         * Updates the random drop table configuration for the title
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Updates the random drop table configuration for the title
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updaterandomresulttables
          */
         UpdateRandomResultTables(request: PlayFabAdminModels.UpdateRandomResultTablesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateRandomResultTablesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateRandomResultTablesResult>>;
@@ -564,7 +585,8 @@ declare module PlayFabAdminModule {
          */
         UpdateSegment(request: PlayFabAdminModels.UpdateSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateSegmentResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateSegmentResponse>>;
         /**
-         * Updates an existing virtual item store with new or modified items
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Updates an existing virtual item store with new or modified items
          * https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatestoreitems
          */
         UpdateStoreItems(request: PlayFabAdminModels.UpdateStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateStoreItemsResult>>;
