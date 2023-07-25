@@ -45,7 +45,8 @@ declare module PlayFabClientModule {
          */
         AddUsernamePassword(request: PlayFabClientModels.AddUsernamePasswordRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.AddUsernamePasswordResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.AddUsernamePasswordResult>>;
         /**
-         * Increments the user's balance of the specified virtual currency by the stated amount
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Increments the user's balance of the specified virtual currency by the stated amount
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/adduservirtualcurrency
          */
         AddUserVirtualCurrency(request: PlayFabClientModels.AddUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>>;
@@ -67,13 +68,16 @@ declare module PlayFabClientModule {
          */
         CancelTrade(request: PlayFabClientModels.CancelTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.CancelTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.CancelTradeResponse>>;
         /**
-         * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and virtual
-         * currency balances as appropriate
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and
+         * virtual currency balances as appropriate
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/confirmpurchase
          */
         ConfirmPurchase(request: PlayFabClientModels.ConfirmPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConfirmPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ConfirmPurchaseResult>>;
         /**
-         * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's
+         * inventory.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/consumeitem
          */
         ConsumeItem(request: PlayFabClientModels.ConsumeItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ConsumeItemResult>>;
@@ -130,7 +134,8 @@ declare module PlayFabClientModule {
          */
         GetAllUsersCharacters(request: PlayFabClientModels.ListUsersCharactersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ListUsersCharactersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ListUsersCharactersResult>>;
         /**
-         * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
          * https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getcatalogitems
          */
         GetCatalogItems(request: PlayFabClientModels.GetCatalogItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCatalogItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCatalogItemsResult>>;
@@ -140,7 +145,8 @@ declare module PlayFabClientModule {
          */
         GetCharacterData(request: PlayFabClientModels.GetCharacterDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterDataResult>>;
         /**
-         * Retrieves the specified character's current inventory of virtual goods
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves the specified character's current inventory of virtual goods
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getcharacterinventory
          */
         GetCharacterInventory(request: PlayFabClientModels.GetCharacterInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetCharacterInventoryResult>>;
@@ -219,9 +225,10 @@ declare module PlayFabClientModule {
          */
         GetLeaderboardForUserCharacters(request: PlayFabClientModels.GetLeaderboardForUsersCharactersRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardForUsersCharactersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetLeaderboardForUsersCharactersResult>>;
         /**
-         * For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the client
-         * completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the client to
-         * create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the
+         * client completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the
+         * client to create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpaymenttoken
          */
         GetPaymentToken(request: PlayFabClientModels.GetPaymentTokenRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPaymentTokenResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPaymentTokenResult>>;
@@ -349,8 +356,9 @@ declare module PlayFabClientModule {
          */
         GetPublisherData(request: PlayFabClientModels.GetPublisherDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPublisherDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPublisherDataResult>>;
         /**
-         * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still
-         * active.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that
+         * are still active.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpurchase
          */
         GetPurchase(request: PlayFabClientModels.GetPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPurchaseResult>>;
@@ -363,7 +371,8 @@ declare module PlayFabClientModule {
          */
         GetSharedGroupData(request: PlayFabClientModels.GetSharedGroupDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetSharedGroupDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetSharedGroupDataResult>>;
         /**
-         * Retrieves the set of items defined for the specified store, including all prices defined
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves the set of items defined for the specified store, including all prices defined
          * https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getstoreitems
          */
         GetStoreItems(request: PlayFabClientModels.GetStoreItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetStoreItemsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetStoreItemsResult>>;
@@ -398,7 +407,8 @@ declare module PlayFabClientModule {
          */
         GetUserData(request: PlayFabClientModels.GetUserDataRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetUserDataResult>>;
         /**
-         * Retrieves the user's current inventory of virtual goods
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Retrieves the user's current inventory of virtual goods
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getuserinventory
          */
         GetUserInventory(request: PlayFabClientModels.GetUserInventoryRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetUserInventoryResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetUserInventoryResult>>;
@@ -644,18 +654,21 @@ declare module PlayFabClientModule {
          */
         OpenTrade(request: PlayFabClientModels.OpenTradeRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.OpenTradeResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.OpenTradeResponse>>;
         /**
-         * Selects a payment option for purchase order created via StartPurchase
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Selects a payment option for purchase order created via StartPurchase
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/payforpurchase
          */
         PayForPurchase(request: PlayFabClientModels.PayForPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.PayForPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.PayForPurchaseResult>>;
         /**
-         * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as well as what
-         * the client believes the price to be. This lets the server fail the purchase if the price has changed.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as
+         * well as what the client believes the price to be. This lets the server fail the purchase if the price has changed.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/purchaseitem
          */
         PurchaseItem(request: PlayFabClientModels.PurchaseItemRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.PurchaseItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.PurchaseItemResult>>;
         /**
-         * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
          * Economy->Catalogs tab in the PlayFab Game Manager.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/redeemcoupon
          */
@@ -717,7 +730,8 @@ declare module PlayFabClientModule {
          */
         ReportPlayer(request: PlayFabClientModels.ReportPlayerClientRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ReportPlayerClientResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ReportPlayerClientResult>>;
         /**
-         * Restores all in-app purchases based on the given restore receipt
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Restores all in-app purchases based on the given restore receipt
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/restoreiospurchases
          */
         RestoreIOSPurchases(request: PlayFabClientModels.RestoreIOSPurchasesRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RestoreIOSPurchasesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RestoreIOSPurchasesResult>>;
@@ -745,13 +759,15 @@ declare module PlayFabClientModule {
          */
         SetPlayerSecret(request: PlayFabClientModels.SetPlayerSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.SetPlayerSecretResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.SetPlayerSecretResult>>;
         /**
-         * Creates an order for a list of items from the title catalog
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Creates an order for a list of items from the title catalog
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/startpurchase
          */
         StartPurchase(request: PlayFabClientModels.StartPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.StartPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.StartPurchaseResult>>;
         /**
-         * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
-         * balance negative with this API.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make
+         * a VC balance negative with this API.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/subtractuservirtualcurrency
          */
         SubtractUserVirtualCurrency(request: PlayFabClientModels.SubtractUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ModifyUserVirtualCurrencyResult>>;
@@ -843,15 +859,17 @@ declare module PlayFabClientModule {
          */
         UnlinkXboxAccount(request: PlayFabClientModels.UnlinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlinkXboxAccountResult>>;
         /**
-         * Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
-         * If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented,
-         * consistent with the operation of ConsumeItem.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Opens the specified container, with the specified key (when required), and returns the contents of the
+         * opened container. If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will
+         * be decremented, consistent with the operation of ConsumeItem.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontainerinstance
          */
         UnlockContainerInstance(request: PlayFabClientModels.UnlockContainerInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UnlockContainerItemResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UnlockContainerItemResult>>;
         /**
-         * Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an
-         * appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it
+         * using an appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
          * consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
          * https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontaineritem
          */
@@ -903,25 +921,29 @@ declare module PlayFabClientModule {
          */
         UpdateUserTitleDisplayName(request: PlayFabClientModels.UpdateUserTitleDisplayNameRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserTitleDisplayNameResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.UpdateUserTitleDisplayNameResult>>;
         /**
-         * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the
-         * purchased catalog item
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches
+         * the purchased catalog item
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateamazoniapreceipt
          */
         ValidateAmazonIAPReceipt(request: PlayFabClientModels.ValidateAmazonReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateAmazonReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ValidateAmazonReceiptResult>>;
         /**
-         * Validates a Google Play purchase and gives the corresponding item to the player.
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Validates a Google Play purchase and gives the corresponding item to the player.
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validategoogleplaypurchase
          */
         ValidateGooglePlayPurchase(request: PlayFabClientModels.ValidateGooglePlayPurchaseRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateGooglePlayPurchaseResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ValidateGooglePlayPurchaseResult>>;
         /**
-         * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased
-         * catalog item
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the
+         * purchased catalog item
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateiosreceipt
          */
         ValidateIOSReceipt(request: PlayFabClientModels.ValidateIOSReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateIOSReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ValidateIOSReceiptResult>>;
         /**
-         * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the
-         * purchased catalog item
+         * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+         * version 2._ Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it
+         * matches the purchased catalog item
          * https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validatewindowsstorereceipt
          */
         ValidateWindowsStoreReceipt(request: PlayFabClientModels.ValidateWindowsReceiptRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.ValidateWindowsReceiptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.ValidateWindowsReceiptResult>>;
