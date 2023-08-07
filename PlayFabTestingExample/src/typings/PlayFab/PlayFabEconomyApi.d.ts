@@ -367,7 +367,7 @@ declare module PlayFabEconomyModels {
          * to 128 platforms can be listed.
          */
         Platforms?: string[];
-        /** A set of player entity keys that are allowed to review content. There is a maximum of 64 entities that can be added. */
+        /** A set of player entity keys that are allowed to review content. There is a maximum of 128 entities that can be added. */
         ReviewerEntities?: EntityKey[];
         /** The set of configuration that only applies to user generated contents. */
         UserGeneratedContent?: UserGeneratedContentSpecificConfig;

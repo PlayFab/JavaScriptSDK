@@ -685,7 +685,7 @@ declare module PlayFabClientModule {
         RegisterForIOSPushNotification(request: PlayFabClientModels.RegisterForIOSPushNotificationRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterForIOSPushNotificationResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RegisterForIOSPushNotificationResult>>;
         /**
          * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
-         * require an authenticated user. You must supply either a username or an email address.
+         * require an authenticated user. You must supply a username and an email address.
          * https://docs.microsoft.com/rest/api/playfab/client/authentication/registerplayfabuser
          */
         RegisterPlayFabUser(request: PlayFabClientModels.RegisterPlayFabUserRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.RegisterPlayFabUserResult>>;
