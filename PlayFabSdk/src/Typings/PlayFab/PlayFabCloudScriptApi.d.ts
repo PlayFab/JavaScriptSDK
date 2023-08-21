@@ -108,7 +108,8 @@ declare module PlayFabCloudScriptModels {
         | "EU"
         | "NA"
         | "OC"
-        | "SA";
+        | "SA"
+        | "Unknown";
 
     type CountryCode = "AF"
 
@@ -359,7 +360,8 @@ declare module PlayFabCloudScriptModels {
         | "EH"
         | "YE"
         | "ZM"
-        | "ZW";
+        | "ZW"
+        | "Unknown";
 
     type EmailVerificationStatus = "Unverified"
 

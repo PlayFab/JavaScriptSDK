@@ -1079,7 +1079,8 @@ declare module PlayFabAdminModels {
         | "EU"
         | "NA"
         | "OC"
-        | "SA";
+        | "SA"
+        | "Unknown";
 
     type CountryCode = "AF"
 
@@ -1330,7 +1331,8 @@ declare module PlayFabAdminModels {
         | "EH"
         | "YE"
         | "ZM"
-        | "ZW";
+        | "ZW"
+        | "Unknown";
 
     export interface CreateActionsOnPlayerSegmentTaskRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2617,6 +2619,11 @@ declare module PlayFabAdminModels {
         | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed"
         | "PartitionedEventInvalid"
         | "PartitionedEventCountOverLimit"
+        | "ManageEventNamespaceInvalid"
+        | "ManageEventNameInvalid"
+        | "ManagedEventNotFound"
+        | "ManageEventsInvalidRatio"
+        | "ManagedEventInvalid"
         | "PlayerCustomPropertiesPropertyNameTooLong"
         | "PlayerCustomPropertiesPropertyNameIsInvalid"
         | "PlayerCustomPropertiesStringPropertyValueTooLong"
@@ -5365,6 +5372,8 @@ declare module PlayFabAdminModels {
         PrivateInfo?: UserPrivateAccountInfo;
         /** User PlayStation :tm: Network account information, if a PlayStation :tm: Network account has been linked */
         PsnInfo?: UserPsnInfo;
+        /** Server Custom ID information, if a server custom ID has been assigned */
+        ServerCustomIdInfo?: UserServerCustomIdInfo;
         /** User Steam information, if a Steam account has been linked */
         SteamInfo?: UserSteamInfo;
         /** Title-specific information for the user account */
@@ -5536,6 +5545,12 @@ declare module PlayFabAdminModels {
         PsnAccountId?: string;
         /** PlayStation :tm: Network online ID */
         PsnOnlineId?: string;
+
+    }
+
+    export interface UserServerCustomIdInfo {
+        /** Custom ID */
+        CustomId?: string;
 
     }
 
