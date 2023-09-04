@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.152.230818",
+        sdkVersion: "1.153.230901",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.152.230818"
+            sdk: "JavaScriptSDK-1.153.230901"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
-PlayFab.sdkVersion = "1.152.230818";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.sdkVersion = "1.153.230901";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -307,6 +307,10 @@ PlayFab.AdminApi = {
 
     DeleteMasterPlayerAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteMasterPlayerAccount", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    DeleteMasterPlayerEventData: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeleteMasterPlayerEventData", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeleteMembershipSubscription: function (request, callback, customData, extraHeaders) {

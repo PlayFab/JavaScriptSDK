@@ -97,6 +97,11 @@ declare module PlayFabAdminModule {
          */
         DeleteMasterPlayerAccount(request: PlayFabAdminModels.DeleteMasterPlayerAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMasterPlayerAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMasterPlayerAccountResult>>;
         /**
+         * Deletes PlayStream and telemetry event data associated with the master player account from PlayFab storage
+         * https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemasterplayereventdata
+         */
+        DeleteMasterPlayerEventData(request: PlayFabAdminModels.DeleteMasterPlayerEventDataRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMasterPlayerEventDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.DeleteMasterPlayerEventDataResult>>;
+        /**
          * Deletes a player's subscription
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemembershipsubscription
          */
@@ -1642,6 +1647,16 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface DeleteMasterPlayerEventDataRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface DeleteMasterPlayerEventDataResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface DeleteMembershipSubscriptionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -2447,6 +2462,7 @@ declare module PlayFabAdminModels {
         | "NamespaceMismatch"
         | "InvalidServiceConfiguration"
         | "InvalidNamespaceMismatch"
+        | "LeaderboardColumnLengthMismatch"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -4678,7 +4694,8 @@ declare module PlayFabAdminModels {
         | "FacebookInstantGames"
         | "OpenIdConnect"
         | "Apple"
-        | "NintendoSwitchAccount";
+        | "NintendoSwitchAccount"
+        | "GooglePlayGames";
 
     export interface SegmentModel {
         /** Segment description. */
