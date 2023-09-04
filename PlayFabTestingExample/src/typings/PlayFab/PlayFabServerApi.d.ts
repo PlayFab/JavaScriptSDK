@@ -2405,6 +2405,7 @@ declare module PlayFabServerModels {
         | "NamespaceMismatch"
         | "InvalidServiceConfiguration"
         | "InvalidNamespaceMismatch"
+        | "LeaderboardColumnLengthMismatch"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
