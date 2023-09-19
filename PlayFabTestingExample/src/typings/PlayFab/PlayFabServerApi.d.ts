@@ -95,11 +95,6 @@ declare module PlayFabServerModule {
          */
         DeleteSharedGroup(request: PlayFabServerModels.DeleteSharedGroupRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>>;
         /**
-         * Inform the matchmaker that a Game Server Instance is removed.
-         * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/deregistergame
-         */
-        DeregisterGame(request: PlayFabServerModels.DeregisterGameRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.DeregisterGameResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.DeregisterGameResponse>>;
-        /**
          * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
          * version 2._ Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would
          * have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to
@@ -421,6 +416,11 @@ declare module PlayFabServerModule {
          */
         LinkNintendoServiceAccount(request: PlayFabServerModels.LinkNintendoServiceAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>>;
         /**
+         * Links the Nintendo account associated with the Nintendo Service Account subject or id to the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoserviceaccountsubject
+         */
+        LinkNintendoServiceAccountSubject(request: PlayFabServerModels.LinkNintendoServiceAccountSubjectRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResult>>;
+        /**
          * Links the NintendoSwitchDeviceId to the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoswitchdeviceid
          */
@@ -499,32 +499,12 @@ declare module PlayFabServerModule {
          */
         MoveItemToUserFromCharacter(request: PlayFabServerModels.MoveItemToUserFromCharacterRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.MoveItemToUserFromCharacterResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.MoveItemToUserFromCharacterResult>>;
         /**
-         * Informs the PlayFab match-making service that the user specified has left the Game Server Instance
-         * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/notifymatchmakerplayerleft
-         */
-        NotifyMatchmakerPlayerLeft(request: PlayFabServerModels.NotifyMatchmakerPlayerLeftRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.NotifyMatchmakerPlayerLeftResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.NotifyMatchmakerPlayerLeftResult>>;
-        /**
          * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
          * version 2._ Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
          * Economy->Catalogs tab in the PlayFab Game Manager.
          * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/redeemcoupon
          */
         RedeemCoupon(request: PlayFabServerModels.RedeemCouponRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.RedeemCouponResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.RedeemCouponResult>>;
-        /**
-         * Validates a Game Server session ticket and returns details about the user
-         * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/redeemmatchmakerticket
-         */
-        RedeemMatchmakerTicket(request: PlayFabServerModels.RedeemMatchmakerTicketRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.RedeemMatchmakerTicketResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.RedeemMatchmakerTicketResult>>;
-        /**
-         * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
-         * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat
-         */
-        RefreshGameServerInstanceHeartbeat(request: PlayFabServerModels.RefreshGameServerInstanceHeartbeatRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.RefreshGameServerInstanceHeartbeatResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.RefreshGameServerInstanceHeartbeatResult>>;
-        /**
-         * Inform the matchmaker that a new Game Server Instance is added.
-         * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame
-         */
-        RegisterGame(request: PlayFabServerModels.RegisterGameRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.RegisterGameResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.RegisterGameResponse>>;
         /**
          * Removes the specified friend from the the user's friend list
          * https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/removefriend
@@ -609,21 +589,6 @@ declare module PlayFabServerModule {
          * https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/setfriendtags
          */
         SetFriendTags(request: PlayFabServerModels.SetFriendTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>>;
-        /**
-         * Sets the custom data of the indicated Game Server Instance
-         * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancedata
-         */
-        SetGameServerInstanceData(request: PlayFabServerModels.SetGameServerInstanceDataRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.SetGameServerInstanceDataResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.SetGameServerInstanceDataResult>>;
-        /**
-         * Set the state of the indicated Game Server Instance.
-         * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancestate
-         */
-        SetGameServerInstanceState(request: PlayFabServerModels.SetGameServerInstanceStateRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.SetGameServerInstanceStateResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.SetGameServerInstanceStateResult>>;
-        /**
-         * Set custom tags for the specified Game Server Instance
-         * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancetags
-         */
-        SetGameServerInstanceTags(request: PlayFabServerModels.SetGameServerInstanceTagsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.SetGameServerInstanceTagsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.SetGameServerInstanceTagsResult>>;
         /**
          * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
          * secret use the Admin or Server API method SetPlayerSecret.
@@ -1677,18 +1642,6 @@ declare module PlayFabServerModels {
 
     }
 
-    export interface DeregisterGameRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Unique identifier for the Game Server Instance that is being deregistered. */
-        LobbyId: string;
-
-    }
-
-    export interface DeregisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
     type EmailVerificationStatus = "Unverified"
 
         | "Pending"
@@ -1850,10 +1803,6 @@ declare module PlayFabServerModels {
         XboxInfo?: UserXboxInfo;
 
     }
-
-    type GameInstanceState = "Open"
-
-        | "Closed";
 
     type GenericErrorCodes = "Success"
 
@@ -3668,6 +3617,18 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface LinkNintendoServiceAccountSubjectRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** If another user is already linked to a specific Nintendo Service Account, unlink the other user and re-link. */
+        ForceLink?: boolean;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+        /** The Nintendo Service Account subject or id to link to the PlayFab user. */
+        Subject: string;
+
+    }
+
     export interface LinkNintendoSwitchDeviceIdRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -4012,28 +3973,6 @@ declare module PlayFabServerModels {
 
     }
 
-    export interface NotifyMatchmakerPlayerLeftRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Unique identifier of the Game Instance the user is leaving. */
-        LobbyId: string;
-        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
-        PlayFabId: string;
-
-    }
-
-    export interface NotifyMatchmakerPlayerLeftResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** State of user leaving the Game Server Instance. */
-        PlayerState?: string;
-
-    }
-
-    type PlayerConnectionState = "Unassigned"
-
-        | "Connecting"
-        | "Participating"
-        | "Participated";
-
     export interface PlayerLeaderboardEntry {
         /** Title-specific display name of the user for this leaderboard entry. */
         DisplayName?: string;
@@ -4313,84 +4252,6 @@ declare module PlayFabServerModels {
     export interface RedeemCouponResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Items granted to the player as a result of redeeming the coupon. */
         GrantedItems?: ItemInstance[];
-
-    }
-
-    export interface RedeemMatchmakerTicketRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /** Unique identifier of the Game Server Instance that is asking for validation of the authorization ticket. */
-        LobbyId: string;
-        /** Server authorization ticket passed back from a call to Matchmake or StartGame. */
-        Ticket: string;
-
-    }
-
-    export interface RedeemMatchmakerTicketResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Error value if the ticket was not validated. */
-        Error?: string;
-        /** Boolean indicating whether the ticket was validated by the PlayFab service. */
-        TicketIsValid: boolean;
-        /** User account information for the user validated. */
-        UserInfo?: UserAccountInfo;
-
-    }
-
-    export interface RefreshGameServerInstanceHeartbeatRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Unique identifier of the Game Server Instance for which the heartbeat is updated. */
-        LobbyId: string;
-
-    }
-
-    export interface RefreshGameServerInstanceHeartbeatResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
-    type Region = "USCentral"
-
-        | "USEast"
-        | "EUWest"
-        | "Singapore"
-        | "Japan"
-        | "Brazil"
-        | "Australia";
-
-    export interface RegisterGameRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Unique identifier of the build running on the Game Server Instance. */
-        Build: string;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /**
-         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game
-         * Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
-         */
-        GameMode: string;
-        /** Previous lobby id if re-registering an existing game. */
-        LobbyId?: string;
-        /**
-         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS
-         * region and use Tags (below) to specify your custom region.
-         */
-        Region: string;
-        /** IPV4 address of the game server instance. */
-        ServerIPV4Address?: string;
-        /** IPV6 address (if any) of the game server instance. */
-        ServerIPV6Address?: string;
-        /** Port number for communication with the Game Server Instance. */
-        ServerPort: string;
-        /** Public DNS name (if any) of the server */
-        ServerPublicDNSName?: string;
-        /** Tags for the Game Server Instance */
-        Tags?: { [key: string]: string | null };
-
-    }
-
-    export interface RegisterGameResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /**
-         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
-         * game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
-         */
-        LobbyId?: string;
 
     }
 
@@ -4675,45 +4536,6 @@ declare module PlayFabServerModels {
         PlayFabId: string;
         /** Array of tags to set on the friend account. */
         Tags: string[];
-
-    }
-
-    export interface SetGameServerInstanceDataRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Custom data to set for the specified game server instance. */
-        GameServerData: string;
-        /** Unique identifier of the Game Instance to be updated, in decimal format. */
-        LobbyId: string;
-
-    }
-
-    export interface SetGameServerInstanceDataResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
-    export interface SetGameServerInstanceStateRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Unique identifier of the Game Instance to be updated, in decimal format. */
-        LobbyId: string;
-        /** State to set for the specified game server instance. */
-        State: string;
-
-    }
-
-    export interface SetGameServerInstanceStateResult extends PlayFabModule.IPlayFabResultCommon  {
-
-    }
-
-    export interface SetGameServerInstanceTagsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Unique identifier of the Game Server Instance to be updated. */
-        LobbyId: string;
-        /**
-         * Tags to set for the specified Game Server Instance. Note that this is the complete list of tags to be associated with
-         * the Game Server Instance.
-         */
-        Tags: { [key: string]: string | null };
-
-    }
-
-    export interface SetGameServerInstanceTagsResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 

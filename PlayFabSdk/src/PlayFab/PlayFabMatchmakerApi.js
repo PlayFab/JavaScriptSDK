@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.153.230901",
+        sdkVersion: "1.154.230915",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.153.230901"
+            sdk: "JavaScriptSDK-1.154.230915"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -224,7 +224,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.153.230901";
+PlayFab.sdkVersion = "1.154.230915";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -239,34 +239,6 @@ PlayFab.MatchmakerApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
-    },
-
-    /**
-     * @deprecated Do not use
-     */
-    AuthUser: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Matchmaker/AuthUser", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Do not use
-     */
-    PlayerJoined: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Matchmaker/PlayerJoined", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Do not use
-     */
-    PlayerLeft: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Matchmaker/PlayerLeft", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Do not use
-     */
-    UserInfo: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Matchmaker/UserInfo", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
 };
