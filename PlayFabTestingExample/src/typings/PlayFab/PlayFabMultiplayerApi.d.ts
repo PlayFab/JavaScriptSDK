@@ -2289,10 +2289,18 @@ declare module PlayFabMultiplayerModels {
         CustomTags?: { [key: string]: string | null };
         /** The container images we want to list tags for. */
         ImageName?: string;
+        /** The page size for the request. */
+        PageSize?: number;
+        /** The skip token for the paged request. */
+        SkipToken?: string;
 
     }
 
     export interface ListContainerImageTagsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The page size on the response. */
+        PageSize: number;
+        /** The skip token for the paged response. */
+        SkipToken?: string;
         /** The list of tags for a particular container image. */
         Tags?: string[];
 
