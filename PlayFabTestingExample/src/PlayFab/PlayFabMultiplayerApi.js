@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.154.230915",
+        sdkVersion: "1.156.230929",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.154.230915"
+            sdk: "JavaScriptSDK-1.156.230929"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.154.230915";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.156.230929";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -503,6 +503,10 @@ PlayFab.MultiplayerApi = {
 
     RequestMultiplayerServer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/RequestMultiplayerServer", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    RequestPartyService: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Party/RequestPartyService", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     RolloverContainerRegistryCredentials: function (request, callback, customData, extraHeaders) {

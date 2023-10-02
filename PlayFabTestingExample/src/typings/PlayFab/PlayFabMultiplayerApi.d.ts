@@ -344,6 +344,11 @@ declare module PlayFabMultiplayerModule {
          */
         RequestMultiplayerServer(request: PlayFabMultiplayerModels.RequestMultiplayerServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RequestMultiplayerServerResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RequestMultiplayerServerResponse>>;
         /**
+         * Request a party session.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/requestpartyservice
+         */
+        RequestPartyService(request: PlayFabMultiplayerModels.RequestPartyServiceRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RequestPartyServiceResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.RequestPartyServiceResponse>>;
+        /**
          * Rolls over the credentials to the container registry.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/rollovercontainerregistrycredentials
          */
@@ -1429,6 +1434,16 @@ declare module PlayFabMultiplayerModels {
         Weight: number;
 
     }
+
+    type DirectPeerConnectivityOptions = "None"
+
+        | "SamePlatformType"
+        | "DifferentPlatformType"
+        | "AnyPlatformType"
+        | "SameEntityLoginProvider"
+        | "DifferentEntityLoginProvider"
+        | "AnyEntityLoginProvider"
+        | "AnyPlatformTypeAndEntityLoginProvider";
 
     export interface DynamicStandbySettings {
         /**
@@ -2710,6 +2725,45 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface PartyInvitationConfiguration {
+        /**
+         * The list of PlayFab EntityKeys that the invitation allows to authenticate into the network. If this list is empty, all
+         * users are allowed to authenticate using the invitation's identifier. This list may contain no more than 1024 items.
+         */
+        EntityKeys?: EntityKey[];
+        /** The invite identifier for this party. If this value is specified, it must be no longer than 127 characters. */
+        Identifier?: string;
+        /** Controls which participants can revoke this invite. */
+        Revocability?: string;
+
+    }
+
+    type PartyInvitationRevocability = "Creator"
+
+        | "Anyone";
+
+    export interface PartyNetworkConfiguration {
+        /** Controls whether and how to support direct peer-to-peer connection attempts among devices in the network. */
+        DirectPeerConnectivityOptions?: string;
+        /** The maximum number of devices allowed to connect to the network. Must be between 1 and 32, inclusive. */
+        MaxDevices: number;
+        /** The maximum number of devices allowed per user. Must be greater than 0. */
+        MaxDevicesPerUser: number;
+        /** The maximum number of endpoints allowed per device. Must be between 0 and 32, inclusive. */
+        MaxEndpointsPerDevice: number;
+        /** The maximum number of unique users allowed in the network. Must be greater than 0. */
+        MaxUsers: number;
+        /** The maximum number of users allowed per device. Must be between 1 and 8, inclusive. */
+        MaxUsersPerDevice: number;
+        /**
+         * An optionally-specified configuration for the initial invitation for this party. If not provided, default configuration
+         * values will be used: a title-unique invitation identifier will be generated, the revocability will be Anyone, and the
+         * EntityID list will be empty.
+         */
+        PartyInvitationConfiguration?: PartyInvitationConfiguration;
+
+    }
+
     export interface Port {
         /** The name for the port. */
         Name: string;
@@ -2868,6 +2922,34 @@ declare module PlayFabMultiplayerModels {
         State?: string;
         /** The virtual machine ID that the multiplayer server is located on. */
         VmId?: string;
+
+    }
+
+    export interface RequestPartyServiceRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The network configuration for this request. */
+        NetworkConfiguration: PartyNetworkConfiguration;
+        /** A guid string party ID created track the party session over its life. */
+        PartyId?: string;
+        /**
+         * The preferred regions to request a party session from. The party service will iterate through the regions in the
+         * specified order and allocate a party session from the first one that is available.
+         */
+        PreferredRegions: string[];
+
+    }
+
+    export interface RequestPartyServiceResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         * The invitation identifier supplied in the PartyInvitationConfiguration, or the PlayFab-generated guid if none was
+         * supplied.
+         */
+        InvitationId?: string;
+        /** The guid string party ID of the party session. */
+        PartyId?: string;
+        /** A base-64 encoded string containing the serialized network descriptor for this party. */
+        SerializedNetworkDescriptor?: string;
 
     }
 
@@ -3356,6 +3438,8 @@ declare module PlayFabMultiplayerModels {
     export interface UploadCertificateRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
+        /** Forces the certificate renewal if the certificate already exists. Default is false */
+        ForceUpdate?: boolean;
         /** The game certificate to upload. */
         GameCertificate: Certificate;
 
