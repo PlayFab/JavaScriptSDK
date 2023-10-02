@@ -1,6 +1,5 @@
 /// <reference path="PlayFabAdminApi.d.ts" />
 /// <reference path="PlayFabClientApi.d.ts" />
-/// <reference path="PlayFabMatchmakerApi.d.ts" />
 /// <reference path="PlayFabServerApi.d.ts" />
 /// <reference path="PlayFabAuthenticationApi.d.ts" />
 /// <reference path="PlayFabCloudScriptApi.d.ts" />
@@ -48,7 +47,6 @@ declare var PlayFab: {
     settings: PlayFabModule.ISettings;
     AdminApi: PlayFabAdminModule.IPlayFabAdmin;
     ClientApi: PlayFabClientModule.IPlayFabClient;
-    MatchmakerApi: PlayFabMatchmakerModule.IPlayFabMatchmaker;
     ServerApi: PlayFabServerModule.IPlayFabServer;
     AuthenticationApi: PlayFabAuthenticationModule.IPlayFabAuthentication;
     CloudScriptApi: PlayFabCloudScriptModule.IPlayFabCloudScript;
@@ -66,7 +64,6 @@ declare var PlayFab: {
 // Continue to support older usage
 declare var PlayFabAdminSDK: PlayFabAdminModule.IPlayFabAdmin;
 declare var PlayFabClientSDK: PlayFabClientModule.IPlayFabClient;
-declare var PlayFabMatchmakerSDK: PlayFabMatchmakerModule.IPlayFabMatchmaker;
 declare var PlayFabServerSDK: PlayFabServerModule.IPlayFabServer;
 declare var PlayFabAuthenticationSDK: PlayFabAuthenticationModule.IPlayFabAuthentication;
 declare var PlayFabCloudScriptSDK: PlayFabCloudScriptModule.IPlayFabCloudScript;
