@@ -1420,6 +1420,8 @@ declare module PlayFabAdminModels {
         IssuerDiscoveryUrl?: string;
         /** Manually specified information for an OpenID Connect issuer. */
         IssuerInformation?: OpenIdIssuerInformation;
+        /** Override the issuer name for user indexing and lookup. */
+        IssuerOverride?: string;
 
     }
 
@@ -3571,8 +3573,12 @@ declare module PlayFabAdminModels {
         ConnectionId?: string;
         /** Shows if data about the connection will be loaded from the issuer's discovery document */
         DiscoverConfiguration: boolean;
+        /** Ignore 'nonce' claim in identity tokens. */
+        IgnoreNonce?: boolean;
         /** Information for an OpenID Connect provider. */
         IssuerInformation?: OpenIdIssuerInformation;
+        /** Override the issuer name for user indexing and lookup. */
+        IssuerOverride?: string;
 
     }
 
@@ -5121,10 +5127,14 @@ declare module PlayFabAdminModels {
         ClientSecret?: string;
         /** A name for the connection that identifies it within the title. */
         ConnectionId: string;
+        /** Ignore 'nonce' claim in identity tokens. */
+        IgnoreNonce?: boolean;
         /** The issuer URL or discovery document URL to read issuer information from */
         IssuerDiscoveryUrl?: string;
         /** Manually specified information for an OpenID Connect issuer. */
         IssuerInformation?: OpenIdIssuerInformation;
+        /** Override the issuer name for user indexing and lookup. */
+        IssuerOverride?: string;
 
     }
 
