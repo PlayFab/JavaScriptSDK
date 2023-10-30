@@ -1710,7 +1710,10 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
-        /** Xbox Token used for delegated business partner authentication. */
+        /**
+         * Xbox Token used for delegated business partner authentication. Token provided by the Xbox Live SDK method
+         * GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", "").
+         */
         XboxToken?: string;
 
     }
