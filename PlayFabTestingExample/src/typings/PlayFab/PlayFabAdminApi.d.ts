@@ -634,8 +634,12 @@ declare module PlayFabAdminModels {
     }
 
     export interface Action {
+        /** Action content to Add Inventory item v2 */
+        AddInventoryItemV2Content?: AddInventoryItemV2Content;
         /** Action content to ban player */
         BanPlayerContent?: BanPlayerContent;
+        /** Action content to delete inventory item v2 */
+        DeleteInventoryItemV2Content?: DeleteInventoryItemV2Content;
         /** Action content to delete player */
         DeletePlayerContent?: DeletePlayerContent;
         /** Action content to execute cloud script */
@@ -652,6 +656,8 @@ declare module PlayFabAdminModels {
         PushNotificationContent?: PushNotificationContent;
         /** Action content to send email */
         SendEmailContent?: SendEmailContent;
+        /** Action content to Subtract Inventory item v2 */
+        SubtractInventoryItemV2Content?: SubtractInventoryItemV2Content;
 
     }
 
@@ -718,6 +724,20 @@ declare module PlayFabAdminModels {
         CampaignSource?: string;
         /** Campaign comparison. */
         Comparison?: string;
+
+    }
+
+    export interface AddInventoryItemV2Content {
+        /** Amount of the item to be granted to a player */
+        Amount?: number;
+        /** The collection id for where the item will be granted in the player inventory */
+        CollectionId?: string;
+        /** The duration in seconds of the subscription to be granted to a player */
+        DurationInSeconds?: number;
+        /** The id of item to be granted to the player */
+        ItemId?: string;
+        /** The stack id for where the item will be granted in the player inventory */
+        StackId?: string;
 
     }
 
@@ -1645,6 +1665,16 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface DeleteInventoryItemV2Content {
+        /** The collection id for where the item will be removed from the player inventory */
+        CollectionId?: string;
+        /** The id of item to be removed from the player */
+        ItemId?: string;
+        /** The stack id for where the item will be removed from the player inventory */
+        StackId?: string;
+
+    }
+
     export interface DeleteMasterPlayerAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Developer created string to identify a user without PlayFab ID */
         MetaData?: string;
@@ -2486,6 +2516,7 @@ declare module PlayFabAdminModels {
         | "InvalidNamespaceMismatch"
         | "LeaderboardColumnLengthMismatch"
         | "InvalidStatisticScore"
+        | "LeaderboardColumnsNotSpecified"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -3229,11 +3260,11 @@ declare module PlayFabAdminModels {
     }
 
     export interface GrantItemContent {
-        /** Publish cloudscript results as playstream event */
+        /** The catalog version of the item to be granted to the player */
         CatalogVersion?: string;
-        /** Publish cloudscript results as playstream event */
+        /** The id of item to be granted to the player */
         ItemId?: string;
-        /** Publish cloudscript results as playstream event */
+        /** Quantity of the item to be granted to a player */
         ItemQuantity: number;
 
     }
@@ -4968,6 +4999,20 @@ declare module PlayFabAdminModels {
         | "CustomerDidNotAcceptPriceChange"
         | "FreeTrial"
         | "PaymentPending";
+
+    export interface SubtractInventoryItemV2Content {
+        /** Amount of the item to removed from the player */
+        Amount?: number;
+        /** The collection id for where the item will be removed from the player inventory */
+        CollectionId?: string;
+        /** The duration in seconds to be removed from the subscription in the players inventory */
+        DurationInSeconds?: number;
+        /** The id of item to be removed from the player */
+        ItemId?: string;
+        /** The stack id for where the item will be removed from the player inventory */
+        StackId?: string;
+
+    }
 
     export interface SubtractUserVirtualCurrencyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
