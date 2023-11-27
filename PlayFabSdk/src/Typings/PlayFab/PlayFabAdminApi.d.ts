@@ -634,7 +634,7 @@ declare module PlayFabAdminModels {
     }
 
     export interface Action {
-        /** Action content to Add Inventory item v2 */
+        /** Action content to add inventory item v2 */
         AddInventoryItemV2Content?: AddInventoryItemV2Content;
         /** Action content to ban player */
         BanPlayerContent?: BanPlayerContent;
@@ -656,7 +656,7 @@ declare module PlayFabAdminModels {
         PushNotificationContent?: PushNotificationContent;
         /** Action content to send email */
         SendEmailContent?: SendEmailContent;
-        /** Action content to Subtract Inventory item v2 */
+        /** Action content to subtract inventory item v2 */
         SubtractInventoryItemV2Content?: SubtractInventoryItemV2Content;
 
     }
@@ -2661,10 +2661,10 @@ declare module PlayFabAdminModels {
         | "LobbyNewOwnerMustBeConnected"
         | "LobbyCurrentOwnerStillConnected"
         | "LobbyMemberIsNotOwner"
-        | "LobbyAssociatedServerMismatch"
-        | "LobbyAssociatedServerNotFound"
-        | "LobbyAssociatedToDifferentServer"
-        | "LobbyServerAlreadyAssociated"
+        | "LobbyServerMismatch"
+        | "LobbyServerNotFound"
+        | "LobbyDifferentServerAlreadyJoined"
+        | "LobbyServerAlreadyJoined"
         | "LobbyIsNotClientOwned"
         | "LobbyDoesNotUseConnections"
         | "EventSamplingInvalidRatio"
@@ -2712,7 +2712,8 @@ declare module PlayFabAdminModels {
         | "AddonAlreadyExists"
         | "AddonDoesntExist"
         | "CopilotDisabled"
-        | "CopilotInvalidRequest";
+        | "CopilotInvalidRequest"
+        | "TrueSkillUnauthorized";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
