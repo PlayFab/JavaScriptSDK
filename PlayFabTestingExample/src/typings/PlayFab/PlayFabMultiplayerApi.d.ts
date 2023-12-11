@@ -240,6 +240,11 @@ declare module PlayFabMultiplayerModule {
          */
         JoinLobby(request: PlayFabMultiplayerModels.JoinLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyResult>>;
         /**
+         * Preview: Join a lobby as a server entity. This is restricted to client lobbies which are using connections.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/joinlobbyasserver
+         */
+        JoinLobbyAsServer(request: PlayFabMultiplayerModels.JoinLobbyAsServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyAsServerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.JoinLobbyAsServerResult>>;
+        /**
          * Join a matchmaking ticket.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/joinmatchmakingticket
          */
@@ -249,6 +254,11 @@ declare module PlayFabMultiplayerModule {
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/leavelobby
          */
         LeaveLobby(request: PlayFabMultiplayerModels.LeaveLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
+        /**
+         * Preview: Request for server to leave a lobby. This is restricted to client owned lobbies which are using connections.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/leavelobbyasserver
+         */
+        LeaveLobbyAsServer(request: PlayFabMultiplayerModels.LeaveLobbyAsServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
         /**
          * Lists archived multiplayer server sessions for a build.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listarchivedmultiplayerservers
@@ -413,6 +423,13 @@ declare module PlayFabMultiplayerModule {
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/updatelobby
          */
         UpdateLobby(request: PlayFabMultiplayerModels.UpdateLobbyRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
+        /**
+         * Preview: Update fields related to a joined server in the lobby the server is in. Servers can keep a lobby from expiring
+         * by being the one to "update" the lobby in some way. Servers have no impact on last member leave/last member disconnect
+         * behavior.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/lobby/updatelobbyasserver
+         */
+        UpdateLobbyAsServer(request: PlayFabMultiplayerModels.UpdateLobbyAsServerRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.LobbyEmptyResult>>;
         /**
          * Uploads a multiplayer server game certificate.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/uploadcertificate
@@ -2098,6 +2115,41 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface JoinLobbyAsServerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * A field which indicates which lobby the game_server will be joining. This field is opaque to everyone except the Lobby
+         * service.
+         */
+        ConnectionString: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /**
+         * The private key-value pairs which are visible to all entities in the lobby but can only be modified by the joined
+         * server.At most 30 key - value pairs may be stored here, keys are limited to 30 characters and values to 1000.The total
+         * size of all serverData values may not exceed 4096 bytes.
+         */
+        ServerData?: { [key: string]: string | null };
+        /**
+         * The game_server entity which is joining the Lobby. If a different game_server entity has already joined the request will
+         * fail unless the joined entity is disconnected, in which case the incoming game_server entity will replace the
+         * disconnected entity.
+         */
+        ServerEntity: EntityKey;
+
+    }
+
+    export interface JoinLobbyAsServerResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Successfully joined lobby's id. */
+        LobbyId: string;
+        /**
+         * A setting that describes the state of the ServerData after JoinLobbyAsServer call is completed. It is "Initialized", the
+         * first time a server joins the lobby. It is "Ignored" in any subsequent JoinLobbyAsServer calls after it has been
+         * initialized. Any new server taking over should call UpdateLobbyAsServer to update ServerData fields.
+         */
+        ServerDataStatus: string;
+
+    }
+
     export interface JoinLobbyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** A field which indicates which lobby the user will be joining. This field is opaque to everyone except the Lobby service. */
         ConnectionString?: string;
@@ -2133,6 +2185,19 @@ declare module PlayFabMultiplayerModels {
     }
 
     export interface JoinMatchmakingTicketResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface LeaveLobbyAsServerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The id of the lobby. */
+        LobbyId: string;
+        /**
+         * The game_server entity leaving the lobby. If the game_server was subscribed to notifications, it will be unsubscribed.
+         * If a the given game_server entity is not in the lobby, it will fail.
+         */
+        ServerEntity: EntityKey;
 
     }
 
@@ -3001,6 +3066,10 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    type ServerDataStatus = "Initialized"
+
+        | "Ignored";
+
     export interface ServerDetails {
         /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
         Fqdn?: string;
@@ -3354,6 +3423,33 @@ declare module PlayFabMultiplayerModels {
         BuildRegions: BuildRegionParams[];
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
+
+    }
+
+    export interface UpdateLobbyAsServerRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The id of the lobby. */
+        LobbyId: string;
+        /**
+         * The lobby server. Optional. Set a different server as the joined server of the lobby (there can only be 1 joined
+         * server). When changing the server the previous server will automatically be unsubscribed.
+         */
+        Server?: EntityKey;
+        /**
+         * The private key-value pairs which are visible to all entities in the lobby and modifiable by the joined server.
+         * Optional. Sets or updates key-value pairs on the lobby. Only the current lobby lobby server can set serverData. Keys may
+         * be an arbitrary string of at most 30 characters. The total size of all serverData values may not exceed 4096 bytes.
+         * Values are not individually limited. There can be up to 30 key-value pairs stored here. Keys are case sensitive.
+         */
+        ServerData?: { [key: string]: string | null };
+        /**
+         * The keys to delete from the lobby serverData. Optional. Optional. Deletes key-value pairs on the lobby. Only the current
+         * joined lobby server can delete serverData. All the specified keys will be removed from the serverData. Keys that do not
+         * exist in the lobby are a no-op. If the key to delete exists in the serverData (same request) it will result in a bad
+         * request.
+         */
+        ServerDataToDelete?: string[];
 
     }
 
