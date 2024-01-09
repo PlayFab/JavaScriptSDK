@@ -2542,6 +2542,7 @@ declare module PlayFabAdminModels {
         | "InvalidStatisticScore"
         | "LeaderboardColumnsNotSpecified"
         | "LeaderboardMaxSizeTooLarge"
+        | "InvalidAttributeStatisticsSpecified"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2717,6 +2718,8 @@ declare module PlayFabAdminModels {
         | "EventSinkAadNotFound"
         | "EventSinkDatabaseNotFound"
         | "EventSinkTitleUnauthorized"
+        | "EventSinkInsufficientRoleAssignment"
+        | "EventSinkContainerNotFound"
         | "OperationCanceled"
         | "InvalidDisplayNameRandomSuffixLength"
         | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed"
@@ -2739,7 +2742,23 @@ declare module PlayFabAdminModels {
         | "AddonDoesntExist"
         | "CopilotDisabled"
         | "CopilotInvalidRequest"
-        | "TrueSkillUnauthorized";
+        | "TrueSkillUnauthorized"
+        | "TrueSkillBadRequest"
+        | "TrueSkillMatchResultAlreadySubmitted"
+        | "TrueSkillDuplicatePlayerInMatchResult"
+        | "TrueSkillInvalidRanksInMatchResult"
+        | "TrueSkillNoWinnerInMatchResult"
+        | "TrueSkillMissingRequiredConditionInMatchResult"
+        | "TrueSkillMissingRequiredEventInMatchResult"
+        | "TrueSkillUnknownEventInMatchResult"
+        | "TrueSkillUnknownConditionName"
+        | "TrueSkillUnknownConditionValue"
+        | "TrueSkillUnknownScenarioId"
+        | "TrueSkillUnknownModelId"
+        | "TrueSkillNoActiveModelInScenario"
+        | "StateShareUnauthorized"
+        | "StateShareStateNotFound"
+        | "StateShareLinkNotFound";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
