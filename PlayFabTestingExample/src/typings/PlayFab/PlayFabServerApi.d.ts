@@ -2359,6 +2359,8 @@ declare module PlayFabServerModels {
         | "LeaderboardColumnsNotSpecified"
         | "LeaderboardMaxSizeTooLarge"
         | "InvalidAttributeStatisticsSpecified"
+        | "LeaderboardNotFound"
+        | "TokenSigningKeyNotFound"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
