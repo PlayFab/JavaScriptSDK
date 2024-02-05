@@ -272,6 +272,11 @@ declare module PlayFabServerModule {
          */
         GetPlayFabIDsFromPSNAccountIDs(request: PlayFabServerModels.GetPlayFabIDsFromPSNAccountIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromPSNAccountIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromPSNAccountIDsResult>>;
         /**
+         * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnonlineids
+         */
+        GetPlayFabIDsFromPSNOnlineIDs(request: PlayFabServerModels.GetPlayFabIDsFromPSNOnlineIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromPSNOnlineIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromPSNOnlineIDsResult>>;
+        /**
          * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
          * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromsteamids
@@ -3181,6 +3186,23 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface GetPlayFabIDsFromPSNOnlineIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        IssuerId?: number;
+        /**
+         * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
+         * cannot exceed 2,000 in length.
+         */
+        PSNOnlineIDs: string[];
+
+    }
+
+    export interface GetPlayFabIDsFromPSNOnlineIDsResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Mapping of PlayStation :tm: Network identifiers to PlayFab identifiers. */
+        Data?: PSNOnlinePlayFabIdPair[];
+
+    }
+
     export interface GetPlayFabIDsFromSteamIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. The array
@@ -4221,6 +4243,17 @@ declare module PlayFabServerModels {
         PlayFabId?: string;
         /** Unique PlayStation :tm: Network identifier for a user. */
         PSNAccountId?: string;
+
+    }
+
+    export interface PSNOnlinePlayFabIdPair {
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation :tm: Network
+         * identifier.
+         */
+        PlayFabId?: string;
+        /** Unique PlayStation :tm: Network identifier for a user. */
+        PSNOnlineId?: string;
 
     }
 
