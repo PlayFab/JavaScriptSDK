@@ -1657,6 +1657,10 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface RealMoneyPriceDetails {
+
+    }
+
     export interface RedeemAppleAppStoreInventoryItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The id of the entity's collection to perform this action on. (Default="default") */
         CollectionId?: string;
