@@ -245,9 +245,7 @@ declare module PlayFabEconomyModule {
         /**
          * Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
          * complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
-         * 'InProgress'. You can check on the operation status at anytime within 30 days of the request by passing the
-         * TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
-         * here:
+         * 'InProgress'. More information about item transfer scenarios can be found here:
          * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/transferinventoryitems
          */
@@ -1387,6 +1385,11 @@ declare module PlayFabEconomyModels {
          * and (apiname eq 'AddInventoryItems')". By default, a 6 month timespan from the current date is used.
          */
         Filter?: string;
+        /**
+         * An OData orderby to order TransactionHistory results. The only supported values are 'timestamp asc' or 'timestamp desc'.
+         * Default orderby is 'timestamp asc'
+         */
+        OrderBy?: string;
 
     }
 
@@ -1509,6 +1512,15 @@ declare module PlayFabEconomyModels {
         | "Rejected";
 
     export interface PayoutDetails {
+
+    }
+
+    export interface Permissions {
+        /**
+         * The list of ids of Segments that the a player can be in to purchase from the store. When a value is provided, the player
+         * must be in at least one of the segments listed for the purchase to be allowed.
+         */
+        SegmentIds?: string[];
 
     }
 
@@ -1987,6 +1999,8 @@ declare module PlayFabEconomyModels {
     export interface StoreDetails {
         /** The options for the filter in filter-based stores. These options are mutually exclusive with item references. */
         FilterOptions?: FilterOptions;
+        /** The permissions that control which players can purchase from the store. */
+        Permissions?: Permissions;
         /** The global prices utilized in the store. These options are mutually exclusive with price options in item references. */
         PriceOptionsOverride?: CatalogPriceOptionsOverride;
 

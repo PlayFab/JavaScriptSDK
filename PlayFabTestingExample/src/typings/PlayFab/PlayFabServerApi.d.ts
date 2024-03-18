@@ -934,6 +934,8 @@ declare module PlayFabServerModels {
         Created?: string;
         /** The time when this ban expires. Permanent bans do not have expiration date. */
         Expires?: string;
+        /** Whether or not the Microsoft family members are included in the ban. */
+        IncludeMicrosoftFamily?: boolean;
         /** The IP address on which the ban was applied. May affect multiple players. */
         IPAddress?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -946,6 +948,8 @@ declare module PlayFabServerModels {
     export interface BanRequest {
         /** The duration in hours for the ban. Leave this blank for a permanent ban. */
         DurationInHours?: number;
+        /** Whether the Microsoft family members should be included in the ban. May affect multiple players. */
+        IncludeMicrosoftFamily?: boolean;
         /** IP address to be banned. May affect multiple players. */
         IPAddress?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2369,6 +2373,8 @@ declare module PlayFabServerModels {
         | "LeaderboardNameConflict"
         | "LinkedStatisticColumnMismatch"
         | "NoLinkedStatisticToLeaderboard"
+        | "StatDefinitionAlreadyLinkedToLeaderboard"
+        | "LinkingStatsNotAllowedForEntityType"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -4982,6 +4988,8 @@ declare module PlayFabServerModels {
         BanId: string;
         /** The updated expiration date for the ban. Null for no change. */
         Expires?: string;
+        /** The updated decision to ban the Microsoft family members to be updated. Null for no change. */
+        IncludeMicrosoftFamily?: boolean;
         /** The updated IP address for the ban. Null for no change. */
         IPAddress?: string;
         /** Whether to make this ban permanent. Set to true to make this ban permanent. This will not modify Active state. */
