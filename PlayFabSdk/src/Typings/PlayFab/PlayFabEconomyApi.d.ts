@@ -53,6 +53,14 @@ declare module PlayFabEconomyModule {
          */
         ExecuteInventoryOperations(request: PlayFabEconomyModels.ExecuteInventoryOperationsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ExecuteInventoryOperationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.ExecuteInventoryOperationsResponse>>;
         /**
+         * Transfer a list of inventory items. A maximum list of 50 operations can be performed by a single request. When the
+         * response code is 202, one or more operations did not complete within the timeframe of the request. You can identify the
+         * pending operations by looking for OperationStatus = 'InProgress'. You can check on the operation status at anytime
+         * within 1 day of the request by passing the TransactionToken to the GetInventoryOperationStatus API.
+         * https://docs.microsoft.com/rest/api/playfab/economy/inventory/executetransferoperations
+         */
+        ExecuteTransferOperations(request: PlayFabEconomyModels.ExecuteTransferOperationsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.ExecuteTransferOperationsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.ExecuteTransferOperationsResponse>>;
+        /**
          * Gets the configuration for the catalog. Only Title Entities can call this API. There is a limit of 100 requests in 10
          * seconds for this API. More information about the Catalog Config can be found here:
          * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/settings
@@ -96,6 +104,12 @@ declare module PlayFabEconomyModule {
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/getinventoryitems
          */
         GetInventoryItems(request: PlayFabEconomyModels.GetInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryItemsResponse>>;
+        /**
+         * Get the status of an inventory operation using an OperationToken. You can check on the operation status at anytime
+         * within 1 day of the request by passing the TransactionToken to the this API.
+         * https://docs.microsoft.com/rest/api/playfab/economy/inventory/getinventoryoperationstatus
+         */
+        GetInventoryOperationStatus(request: PlayFabEconomyModels.GetInventoryOperationStatusRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryOperationStatusResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetInventoryOperationStatusResponse>>;
         /**
          * Retrieves an item from the public catalog. GetItem does not work off a cache of the Catalog and should be used when
          * trying to get recent item updates. However, please note that item references data is cached and may take a few moments
@@ -245,7 +259,9 @@ declare module PlayFabEconomyModule {
         /**
          * Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
          * complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
-         * 'InProgress'. More information about item transfer scenarios can be found here:
+         * 'InProgress'. You can check on the operation status at anytime within 1 day of the request by passing the
+         * TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
+         * here:
          * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/transferinventoryitems
          */
@@ -1025,6 +1041,63 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface ExecuteTransferOperationsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The inventory collection id the request is transferring from. (Default="default") */
+        GivingCollectionId?: string;
+        /** The entity the request is transferring from. Set to the caller by default. */
+        GivingEntity?: EntityKey;
+        /**
+         * ETags are used for concurrency checking when updating resources. More information about using ETags can be found here:
+         * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/catalog/etags
+         */
+        GivingETag?: string;
+        /** The idempotency id for the request. */
+        IdempotencyId?: string;
+        /**
+         * The transfer operations to run transactionally. The operations will be executed in-order sequentially and will succeed
+         * or fail as a batch. Up to 50 operations can be added.
+         */
+        Operations?: TransferInventoryItemsOperation[];
+        /** The inventory collection id the request is transferring to. (Default="default") */
+        ReceivingCollectionId?: string;
+        /** The entity the request is transferring to. Set to the caller by default. */
+        ReceivingEntity?: EntityKey;
+
+    }
+
+    export interface ExecuteTransferOperationsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /**
+         * ETags are used for concurrency checking when updating resources (before transferring from). This value will be empty if
+         * the operation has not completed yet. More information about using ETags can be found here:
+         * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/catalog/etags
+         */
+        GivingETag?: string;
+        /** The ids of transactions that occurred as a result of the request's giving action. */
+        GivingTransactionIds?: string[];
+        /** The Idempotency ID for this request. */
+        IdempotencyId?: string;
+        /**
+         * The transfer operation status. Possible values are 'InProgress' or 'Completed'. If the operation has completed, the
+         * response code will be 200. Otherwise, it will be 202.
+         */
+        OperationStatus?: string;
+        /**
+         * The token that can be used to get the status of the transfer operation. This will only have a value if OperationStatus
+         * is 'InProgress'.
+         */
+        OperationToken?: string;
+        /**
+         * ETags are used for concurrency checking when updating resources (before transferring to). This value will be empty if
+         * the operation has not completed yet.
+         */
+        ReceivingETag?: string;
+        /** The ids of transactions that occurred as a result of the request's receiving action. */
+        ReceivingTransactionIds?: string[];
+
+    }
+
     export interface FileConfig {
         /**
          * The set of content types that will be used for validation. Each content type can have a maximum character length of 40
@@ -1198,6 +1271,22 @@ declare module PlayFabEconomyModels {
         ETag?: string;
         /** The requested inventory items. */
         Items?: InventoryItem[];
+
+    }
+
+    export interface GetInventoryOperationStatusRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        CollectionId?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The entity to perform this action on. */
+        Entity?: EntityKey;
+
+    }
+
+    export interface GetInventoryOperationStatusResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The inventory operation status. */
+        OperationStatus?: string;
 
     }
 
@@ -2248,6 +2337,11 @@ declare module PlayFabEconomyModels {
          * response code will be 200. Otherwise, it will be 202.
          */
         OperationStatus?: string;
+        /**
+         * The token that can be used to get the status of the transfer operation. This will only have a value if OperationStatus
+         * is 'InProgress'.
+         */
+        OperationToken?: string;
         /** The ids of transactions that occurred as a result of the request's receiving action. */
         ReceivingTransactionIds?: string[];
 
