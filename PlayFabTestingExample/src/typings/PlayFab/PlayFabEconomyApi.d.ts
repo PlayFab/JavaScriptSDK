@@ -384,6 +384,8 @@ declare module PlayFabEconomyModels {
          * to 128 platforms can be listed.
          */
         Platforms?: string[];
+        /** The set of configuration that only applies to Ratings and Reviews. */
+        Review?: ReviewConfig;
         /** A set of player entity keys that are allowed to review content. There is a maximum of 128 entities that can be added. */
         ReviewerEntities?: EntityKey[];
         /** The set of configuration that only applies to user generated contents. */
@@ -547,6 +549,12 @@ declare module PlayFabEconomyModels {
          * can be listed.
          */
         Tags?: string[];
+
+    }
+
+    export interface CategoryRatingConfig {
+        /** Name of the category. */
+        Name?: string;
 
     }
 
@@ -1864,7 +1872,7 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
-        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code. */
         RedirectUri?: string;
         /** Optional Service Label to pass into the request. */
         ServiceLabel?: string;
@@ -1966,6 +1974,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface Review {
+        /** The star rating associated with each selected category in this review. */
+        CategoryRatings?: { [key: string]: number };
         /** The number of negative helpfulness votes for this review. */
         HelpfulNegative: number;
         /** The number of positive helpfulness votes for this review. */
@@ -1992,6 +2002,12 @@ declare module PlayFabEconomyModels {
         Submitted: string;
         /** The title of this review. */
         Title?: string;
+
+    }
+
+    export interface ReviewConfig {
+        /** A set of categories that can be applied toward ratings and reviews. */
+        CategoryRatings?: CategoryRatingConfig[];
 
     }
 

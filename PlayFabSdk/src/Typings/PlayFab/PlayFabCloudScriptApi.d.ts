@@ -22,6 +22,11 @@ declare module PlayFabCloudScriptModule {
          */
         GetFunction(request: PlayFabCloudScriptModels.GetFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.GetFunctionResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.GetFunctionResult>>;
         /**
+         * Lists all currently registered Event Hub triggered Azure Functions for a given title.
+         * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listeventhubfunctions
+         */
+        ListEventHubFunctions(request: PlayFabCloudScriptModels.ListFunctionsRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListEventHubFunctionsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.ListEventHubFunctionsResult>>;
+        /**
          * Lists all currently registered Azure Functions for a given title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listfunctions
          */
@@ -56,6 +61,11 @@ declare module PlayFabCloudScriptModule {
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/postfunctionresultforscheduledtask
          */
         PostFunctionResultForScheduledTask(request: PlayFabCloudScriptModels.PostFunctionResultForScheduledTaskRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
+        /**
+         * Registers an event hub triggered Azure Function with a title.
+         * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/registereventhubfunction
+         */
+        RegisterEventHubFunction(request: PlayFabCloudScriptModels.RegisterEventHubFunctionRequest, callback: PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabCloudScriptModels.EmptyResult>>;
         /**
          * Registers an HTTP triggered Azure function with a title.
          * https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/registerhttpfunction
@@ -380,6 +390,16 @@ declare module PlayFabCloudScriptModels {
 
     }
 
+    export interface EventHubFunctionModel {
+        /** The connection string for the event hub. */
+        ConnectionString?: string;
+        /** The name of the event hub that triggers the Azure Function. */
+        EventHubName?: string;
+        /** The name the function was registered under. */
+        FunctionName?: string;
+
+    }
+
     export interface ExecuteCloudScriptResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Number of PlayFab API requests issued by the CloudScript function */
         APIRequestsIssued: number;
@@ -534,6 +554,12 @@ declare module PlayFabCloudScriptModels {
         PlatformUserId?: string;
         /** Linked account username of the user on the platform, if available */
         Username?: string;
+
+    }
+
+    export interface ListEventHubFunctionsResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of EventHub triggered functions that are currently registered for the title. */
+        Functions?: EventHubFunctionModel[];
 
     }
 
@@ -764,6 +790,18 @@ declare module PlayFabCloudScriptModels {
 
     }
 
+    export interface RegisterEventHubFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** A connection string for the namespace of the event hub for the Azure Function. */
+        ConnectionString: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The name of the event hub for the Azure Function. */
+        EventHubName: string;
+        /** The name of the function to register */
+        FunctionName: string;
+
+    }
+
     export interface RegisterHttpFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -845,7 +883,8 @@ declare module PlayFabCloudScriptModels {
 
     type TriggerType = "HTTP"
 
-        | "Queue";
+        | "Queue"
+        | "EventHub";
 
     export interface UnregisterFunctionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */

@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.170.240412",
+        sdkVersion: "1.171.240426",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.170.240412"
+            sdk: "JavaScriptSDK-1.171.240426"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.170.240412";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.171.240426";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -253,6 +253,10 @@ PlayFab.CloudScriptApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/GetFunction", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    ListEventHubFunctions: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/ListEventHubFunctions", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     ListFunctions: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/ListFunctions", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -279,6 +283,10 @@ PlayFab.CloudScriptApi = {
 
     PostFunctionResultForScheduledTask: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/PostFunctionResultForScheduledTask", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    RegisterEventHubFunction: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/CloudScript/RegisterEventHubFunction", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     RegisterHttpFunction: function (request, callback, customData, extraHeaders) {
