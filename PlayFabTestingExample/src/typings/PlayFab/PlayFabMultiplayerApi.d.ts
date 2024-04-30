@@ -118,6 +118,11 @@ declare module PlayFabMultiplayerModule {
          */
         DeleteRemoteUser(request: PlayFabMultiplayerModels.DeleteRemoteUserRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
         /**
+         * Deletes a multiplayer server game secret.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/deletesecret
+         */
+        DeleteSecret(request: PlayFabMultiplayerModels.DeleteSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
+        /**
          * Enables the multiplayer server feature for a title.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/enablemultiplayerserversfortitle
          */
@@ -323,6 +328,11 @@ declare module PlayFabMultiplayerModule {
          */
         ListQosServersForTitle(request: PlayFabMultiplayerModels.ListQosServersForTitleRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersForTitleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListQosServersForTitleResponse>>;
         /**
+         * Lists multiplayer server game secrets for a title.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/listsecretsummaries
+         */
+        ListSecretSummaries(request: PlayFabMultiplayerModels.ListSecretSummariesRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListSecretSummariesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.ListSecretSummariesResponse>>;
+        /**
          * List all server backfill ticket Ids the user is a member of.
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/matchmaking/listserverbackfillticketsforplayer
          */
@@ -435,6 +445,11 @@ declare module PlayFabMultiplayerModule {
          * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/uploadcertificate
          */
         UploadCertificate(request: PlayFabMultiplayerModels.UploadCertificateRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
+        /**
+         * Uploads a multiplayer server game secret.
+         * https://docs.microsoft.com/rest/api/playfab/multiplayer/multiplayerserver/uploadsecret
+         */
+        UploadSecret(request: PlayFabMultiplayerModels.UploadSecretRequest, callback: PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabMultiplayerModels.EmptyResponse>>;
 
     }
 }
@@ -835,6 +850,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences?: AssetReferenceParams[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReferenceParams[];
+        /** The game secrets for the build. */
+        GameSecretReferences?: GameSecretReferenceParams[];
         /** The Linux instrumentation configuration for the build. */
         LinuxInstrumentationConfiguration?: LinuxInstrumentationConfiguration;
         /**
@@ -881,6 +898,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences?: AssetReference[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReference[];
+        /** The game secrets for the build. */
+        GameSecretReferences?: GameSecretReference[];
         /** The Linux instrumentation configuration for this build. */
         LinuxInstrumentationConfiguration?: LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
@@ -927,6 +946,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences: AssetReferenceParams[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReferenceParams[];
+        /** The game secrets for the build. */
+        GameSecretReferences?: GameSecretReferenceParams[];
         /**
          * The directory containing the game executable. This would be the start path of the game assets that contain the main game
          * server executable. If not provided, a best effort will be made to extract it from the start game command.
@@ -978,6 +999,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences?: AssetReference[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReference[];
+        /** The game secrets for the build. */
+        GameSecretReferences?: GameSecretReference[];
         /**
          * The directory containing the game executable. This would be the start path of the game assets that contain the main game
          * server executable. If not provided, a best effort will be made to extract it from the start game command.
@@ -1029,6 +1052,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences: AssetReferenceParams[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReferenceParams[];
+        /** The game secrets for the build. */
+        GameSecretReferences?: GameSecretReferenceParams[];
         /**
          * The working directory for the game process. If this is not provided, the working directory will be set based on the
          * mount path of the game server executable.
@@ -1086,6 +1111,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences?: AssetReference[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReference[];
+        /** The game secrets for the build. */
+        GameSecretReferences?: GameSecretReference[];
         /**
          * The working directory for the game process. If this is not provided, the working directory will be set based on the
          * mount path of the game server executable.
@@ -1417,6 +1444,14 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface DeleteSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The name of the secret. */
+        Name: string;
+
+    }
+
     export interface DifferenceRule {
         /** Description of the attribute used by this rule to match tickets. */
         Attribute: QueueRuleAttribute;
@@ -1637,6 +1672,18 @@ declare module PlayFabMultiplayerModels {
          * The name of the game certificate. This name should match the name of a certificate that was previously uploaded to this
          * title.
          */
+        Name: string;
+
+    }
+
+    export interface GameSecretReference {
+        /** The name of the game secret. This name should match the name of a secret that was previously added to this title. */
+        Name?: string;
+
+    }
+
+    export interface GameSecretReferenceParams {
+        /** The name of the game secret. This name should match the name of a secret that was previously added to this title. */
         Name: string;
 
     }
@@ -2472,6 +2519,26 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface ListSecretSummariesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The page size for the request. */
+        PageSize?: number;
+        /** The skip token for the paged request. */
+        SkipToken?: string;
+
+    }
+
+    export interface ListSecretSummariesResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The page size on the response. */
+        PageSize: number;
+        /** The list of game secret. */
+        SecretSummaries?: SecretSummary[];
+        /** The skip token for the paged response. */
+        SkipToken?: string;
+
+    }
+
     export interface ListServerBackfillTicketsForPlayerRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -3074,6 +3141,26 @@ declare module PlayFabMultiplayerModels {
 
     }
 
+    export interface Secret {
+        /** Optional secret expiration date. */
+        ExpirationDate?: string;
+        /** A name for the secret. This is used to reference secrets in build configurations. */
+        Name: string;
+        /** Secret value. */
+        Value: string;
+
+    }
+
+    export interface SecretSummary {
+        /** Optional secret expiration date. */
+        ExpirationDate?: string;
+        /** The name of the secret. */
+        Name?: string;
+        /** The secret version auto-generated after upload. */
+        Version?: string;
+
+    }
+
     export interface ServerDetails {
         /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
         Fqdn?: string;
@@ -3543,6 +3630,16 @@ declare module PlayFabMultiplayerModels {
         ForceUpdate?: boolean;
         /** The game certificate to upload. */
         GameCertificate: Certificate;
+
+    }
+
+    export interface UploadSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Forces the secret renewal if the secret already exists. Default is false */
+        ForceUpdate?: boolean;
+        /** The game secret to add. */
+        GameSecret: Secret;
 
     }
 

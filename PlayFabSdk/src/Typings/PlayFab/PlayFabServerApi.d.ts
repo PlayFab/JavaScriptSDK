@@ -934,28 +934,28 @@ declare module PlayFabServerModels {
         Created?: string;
         /** The time when this ban expires. Permanent bans do not have expiration date. */
         Expires?: string;
-        /** Whether or not the Microsoft family members are included in the ban. */
-        IncludeMicrosoftFamily?: boolean;
         /** The IP address on which the ban was applied. May affect multiple players. */
         IPAddress?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId?: string;
         /** The reason why this ban was applied. */
         Reason?: string;
+        /** The family type of the suer that is included in the ban. */
+        UserFamilyType?: string;
 
     }
 
     export interface BanRequest {
         /** The duration in hours for the ban. Leave this blank for a permanent ban. */
         DurationInHours?: number;
-        /** Whether the Microsoft family members should be included in the ban. May affect multiple players. */
-        IncludeMicrosoftFamily?: boolean;
         /** IP address to be banned. May affect multiple players. */
         IPAddress?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
         /** The reason for this ban. Maximum 140 characters. */
         Reason?: string;
+        /** The family type of the user that should be included in the ban if applicable. May affect multiple players. */
+        UserFamilyType?: string;
 
     }
 
@@ -2375,6 +2375,12 @@ declare module PlayFabServerModels {
         | "NoLinkedStatisticToLeaderboard"
         | "StatDefinitionAlreadyLinkedToLeaderboard"
         | "LinkingStatsNotAllowedForEntityType"
+        | "LeaderboardCountLimitExceeded"
+        | "LeaderboardSizeLimitExceeded"
+        | "LeaderboardDefinitionModificationNotAllowedWhileLinked"
+        | "StatisticDefinitionModificationNotAllowedWhileLinked"
+        | "LeaderboardUpdateNotAllowedWhileLinked"
+        | "CloudScriptAzureFunctionsEventHubRequestError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2575,29 +2581,52 @@ declare module PlayFabServerModels {
         | "CopilotDisabled"
         | "CopilotInvalidRequest"
         | "TrueSkillUnauthorized"
-        | "TrueSkillBadRequest"
+        | "TrueSkillInvalidTitleId"
+        | "TrueSkillInvalidScenarioId"
+        | "TrueSkillInvalidModelId"
+        | "TrueSkillInvalidModelName"
+        | "TrueSkillInvalidPlayerIds"
+        | "TrueSkillInvalidEntityKey"
+        | "TrueSkillInvalidConditionKey"
+        | "TrueSkillInvalidConditionValue"
+        | "TrueSkillInvalidConditionAffinityWeight"
+        | "TrueSkillInvalidEventName"
+        | "TrueSkillMatchResultCreated"
         | "TrueSkillMatchResultAlreadySubmitted"
+        | "TrueSkillBadPlayerIdInMatchResult"
+        | "TrueSkillInvalidBotIdInMatchResult"
         | "TrueSkillDuplicatePlayerInMatchResult"
+        | "TrueSkillNoPlayerInMatchResultTeam"
+        | "TrueSkillPlayersInMatchResultExceedingLimit"
+        | "TrueSkillInvalidPreMatchPartyInMatchResult"
+        | "TrueSkillInvalidTimestampInMatchResult"
+        | "TrueSkillStartTimeMissingInMatchResult"
+        | "TrueSkillEndTimeMissingInMatchResult"
+        | "TrueSkillInvalidPlayerSecondsPlayedInMatchResult"
+        | "TrueSkillNoTeamInMatchResult"
+        | "TrueSkillNotEnoughTeamsInMatchResult"
         | "TrueSkillInvalidRanksInMatchResult"
         | "TrueSkillNoWinnerInMatchResult"
         | "TrueSkillMissingRequiredCondition"
         | "TrueSkillMissingRequiredEvent"
         | "TrueSkillUnknownEventName"
+        | "TrueSkillInvalidEventCount"
         | "TrueSkillUnknownConditionKey"
         | "TrueSkillUnknownConditionValue"
-        | "TrueSkillUnknownModelId"
-        | "TrueSkillNoPlayerInMatchResultTeam"
-        | "TrueSkillPlayersInMatchResultExceedingLimit"
-        | "TrueSkillInvalidPreMatchPartyInMatchResult"
-        | "TrueSkillInvalidTimestampInMatchResult"
-        | "TrueSkillInvalidPlayerSecondsPlayedInMatchResult"
-        | "TrueSkillNoTeamInMatchResult"
-        | "TrueSkillNotEnoughTeamsInMatchResult"
         | "TrueSkillScenarioConfigDoesNotExist"
+        | "TrueSkillUnknownModelId"
         | "TrueSkillNoModelInScenario"
         | "TrueSkillNotSupportedForTitle"
         | "TrueSkillModelIsNotActive"
         | "TrueSkillUnauthorizedToQueryOtherPlayerSkills"
+        | "TrueSkillInvalidMaxIterations"
+        | "TrueSkillEndTimeBeforeStartTime"
+        | "TrueSkillInvalidJobId"
+        | "TrueSkillInvalidMetadataId"
+        | "TrueSkillMissingBuildVerison"
+        | "TrueSkillJobAlreadyExists"
+        | "TrueSkillJobNotFound"
+        | "TrueSkillOperationCanceled"
         | "StateShareUnauthorized"
         | "StateShareStateNotFound"
         | "StateShareLinkNotFound";
@@ -4998,14 +5027,14 @@ declare module PlayFabServerModels {
         BanId: string;
         /** The updated expiration date for the ban. Null for no change. */
         Expires?: string;
-        /** The updated decision to ban the Microsoft family members to be updated. Null for no change. */
-        IncludeMicrosoftFamily?: boolean;
         /** The updated IP address for the ban. Null for no change. */
         IPAddress?: string;
         /** Whether to make this ban permanent. Set to true to make this ban permanent. This will not modify Active state. */
         Permanent?: boolean;
         /** The updated reason for the ban to be updated. Maximum 140 characters. Null for no change. */
         Reason?: string;
+        /** The updated family type of the user that should be included in the ban. Null for no change. */
+        UserFamilyType?: string;
 
     }
 
@@ -5278,6 +5307,11 @@ declare module PlayFabServerModels {
         FacebookInstantGamesId?: string;
 
     }
+
+    type UserFamilyType = "None"
+
+        | "Xbox"
+        | "Steam";
 
     export interface UserGameCenterInfo {
         /** Gamecenter identifier */

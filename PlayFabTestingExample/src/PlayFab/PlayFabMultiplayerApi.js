@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.170.240412",
+        sdkVersion: "1.171.240426",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.170.240412"
+            sdk: "JavaScriptSDK-1.171.240426"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.170.240412";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.171.240426";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -327,6 +327,10 @@ PlayFab.MultiplayerApi = {
 
     DeleteRemoteUser: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/DeleteRemoteUser", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteSecret: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/DeleteSecret", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     EnableMultiplayerServersForTitle: function (request, callback, customData, extraHeaders) {
@@ -489,6 +493,10 @@ PlayFab.MultiplayerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListQosServersForTitle", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    ListSecretSummaries: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/ListSecretSummaries", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     ListServerBackfillTicketsForPlayer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Match/ListServerBackfillTicketsForPlayer", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -575,6 +583,10 @@ PlayFab.MultiplayerApi = {
 
     UploadCertificate: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/UploadCertificate", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UploadSecret: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/MultiplayerServer/UploadSecret", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
 };
