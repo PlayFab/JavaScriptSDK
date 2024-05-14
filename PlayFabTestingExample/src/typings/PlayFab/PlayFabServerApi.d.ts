@@ -456,6 +456,12 @@ declare module PlayFabServerModule {
          */
         LinkXboxAccount(request: PlayFabServerModels.LinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.LinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.LinkXboxAccountResult>>;
         /**
+         * Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
+         * subsequently be used for API calls which require an authenticated user
+         * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithpsn
+         */
+        LoginWithPSN(request: PlayFabServerModels.LoginWithPSNRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ServerLoginResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.ServerLoginResult>>;
+        /**
          * Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
          * and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
          * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithservercustomid
@@ -3893,6 +3899,22 @@ declare module PlayFabServerModels {
         | "Apple"
         | "NintendoSwitchAccount"
         | "GooglePlayGames";
+
+    export interface LoginWithPSNRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Auth code provided by the PlayStation :tm: Network OAuth provider. */
+        AuthCode: string;
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        IssuerId?: number;
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
+        RedirectUri: string;
+
+    }
 
     export interface LoginWithServerCustomIdRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */

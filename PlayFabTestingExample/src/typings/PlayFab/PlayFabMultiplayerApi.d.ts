@@ -542,7 +542,9 @@ declare module PlayFabMultiplayerModels {
         | "NCasT4_v3"
         | "Ddv4"
         | "Ddsv4"
-        | "HBv3";
+        | "HBv3"
+        | "Ddv5"
+        | "Ddsv5";
 
     type AzureVmSize = "Standard_A1"
 
@@ -613,7 +615,17 @@ declare module PlayFabMultiplayerModels {
         | "Standard_HB120_32rs_v3"
         | "Standard_HB120_64rs_v3"
         | "Standard_HB120_96rs_v3"
-        | "Standard_HB120rs_v3";
+        | "Standard_HB120rs_v3"
+        | "Standard_D2d_v5"
+        | "Standard_D4d_v5"
+        | "Standard_D8d_v5"
+        | "Standard_D16d_v5"
+        | "Standard_D32d_v5"
+        | "Standard_D2ds_v5"
+        | "Standard_D4ds_v5"
+        | "Standard_D8ds_v5"
+        | "Standard_D16ds_v5"
+        | "Standard_D32ds_v5";
 
     export interface BuildAliasDetailsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The guid string alias Id of the alias to be created or updated. */
@@ -1059,13 +1071,15 @@ declare module PlayFabMultiplayerModels {
          * mount path of the game server executable.
          */
         GameWorkingDirectory?: string;
-        /** The instrumentation configuration for the build. */
+        /** The instrumentation configuration for the Build. Used only if it is a Windows Build. */
         InstrumentationConfiguration?: InstrumentationConfiguration;
         /**
          * Indicates whether this build will be created using the OS Preview versionPreview OS is recommended for dev builds to
          * detect any breaking changes before they are released to retail. Retail builds should set this value to false.
          */
         IsOSPreview?: boolean;
+        /** The Linux instrumentation configuration for the Build. Used only if it is a Linux Build. */
+        LinuxInstrumentationConfiguration?: LinuxInstrumentationConfiguration;
         /**
          * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
@@ -1125,6 +1139,8 @@ declare module PlayFabMultiplayerModels {
          * detect any breaking changes before they are released to retail. Retail builds should set this value to false.
          */
         IsOSPreview?: boolean;
+        /** The Linux instrumentation configuration for this build. */
+        LinuxInstrumentationConfiguration?: LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
         /** The configuration for the monitoring application for the build */
