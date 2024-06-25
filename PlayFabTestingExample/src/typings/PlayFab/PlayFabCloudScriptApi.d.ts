@@ -623,7 +623,8 @@ declare module PlayFabCloudScriptModels {
         | "OpenIdConnect"
         | "Apple"
         | "NintendoSwitchAccount"
-        | "GooglePlayGames";
+        | "GooglePlayGames"
+        | "XboxMobileStore";
 
     export interface LogStatement {
         /** Optional object accompanying the message as contextual information */

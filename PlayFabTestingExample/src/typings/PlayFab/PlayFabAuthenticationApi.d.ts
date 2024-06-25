@@ -116,7 +116,14 @@ declare module PlayFabAuthenticationModels {
     type IdentifiedDeviceType = "Unknown"
 
         | "XboxOne"
-        | "Scarlett";
+        | "Scarlett"
+        | "WindowsOneCore"
+        | "WindowsOneCoreMobile"
+        | "Win32"
+        | "android"
+        | "iOS"
+        | "PlayStation"
+        | "Nintendo";
 
     type LoginIdentityProvider = "Unknown"
 
@@ -140,7 +147,8 @@ declare module PlayFabAuthenticationModels {
         | "OpenIdConnect"
         | "Apple"
         | "NintendoSwitchAccount"
-        | "GooglePlayGames";
+        | "GooglePlayGames"
+        | "XboxMobileStore";
 
     export interface ValidateEntityTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
