@@ -2387,6 +2387,8 @@ declare module PlayFabServerModels {
         | "StatisticDefinitionModificationNotAllowedWhileLinked"
         | "LeaderboardUpdateNotAllowedWhileLinked"
         | "CloudScriptAzureFunctionsEventHubRequestError"
+        | "LeaderboardRateLimitExceeded"
+        | "ExternalEntityNotAllowedForTier"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2633,9 +2635,27 @@ declare module PlayFabServerModels {
         | "TrueSkillJobAlreadyExists"
         | "TrueSkillJobNotFound"
         | "TrueSkillOperationCanceled"
-        | "StateShareUnauthorized"
+        | "TrueSkillActiveModelLimitExceeded"
+        | "TrueSkillTotalModelLimitExceeded"
+        | "TrueSkillUnknownInitialModelId"
+        | "TrueSkillUnauthorizedForJob"
+        | "TrueSkillInvalidScenarioName"
+        | "TrueSkillConditionStateIsRequired"
+        | "TrueSkillEventStateIsRequired"
+        | "TrueSkillDuplicateEvent"
+        | "TrueSkillDuplicateCondition"
+        | "TrueSkillInvalidAnomalyThreshold"
+        | "TrueSkillConditionKeyLimitExceeded"
+        | "TrueSkillConditionValuePerKeyLimitExceeded"
+        | "TrueSkillEventLimitExceeded"
+        | "StateShareForbidden"
+        | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
-        | "StateShareLinkNotFound";
+        | "StateShareLinkNotFound"
+        | "StateShareStateRedemptionLimitExceeded"
+        | "StateShareStateRedemptionLimitNotUpdated"
+        | "StateShareCreatedStatesLimitExceeded"
+        | "StateShareIdMissingOrMalformed";
 
     export interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
@@ -3898,7 +3918,8 @@ declare module PlayFabServerModels {
         | "OpenIdConnect"
         | "Apple"
         | "NintendoSwitchAccount"
-        | "GooglePlayGames";
+        | "GooglePlayGames"
+        | "XboxMobileStore";
 
     export interface LoginWithPSNRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Auth code provided by the PlayStation :tm: Network OAuth provider. */
@@ -5425,7 +5446,8 @@ declare module PlayFabServerModels {
         | "OpenIdConnect"
         | "Apple"
         | "NintendoSwitchAccount"
-        | "GooglePlayGames";
+        | "GooglePlayGames"
+        | "XboxMobileStore";
 
     export interface UserPrivateAccountInfo {
         /** user email address */
