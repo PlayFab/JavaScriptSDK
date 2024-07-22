@@ -1512,7 +1512,8 @@ declare module PlayFabMultiplayerModels {
         | "SameEntityLoginProvider"
         | "DifferentEntityLoginProvider"
         | "AnyEntityLoginProvider"
-        | "AnyPlatformTypeAndEntityLoginProvider";
+        | "AnyPlatformTypeAndEntityLoginProvider"
+        | "OnlyServers";
 
     export interface DynamicStandbySettings {
         /**
