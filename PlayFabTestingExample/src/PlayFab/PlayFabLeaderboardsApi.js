@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabAuthenticationApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabLeaderboardsApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -235,44 +235,101 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.AuthenticationApi = {
+PlayFab.LeaderboardsApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    AuthenticateGameServerWithCustomId: function (request, callback, customData, extraHeaders) {
-        var overloadCallback = function (result, error) {
-            if (result != null && result.data.EntityToken != null && result.data.EntityToken.EntityToken != null)
-                PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/GameServerIdentity/AuthenticateGameServerWithCustomId", request, "X-EntityToken", overloadCallback, customData, extraHeaders);
+    CreateLeaderboardDefinition: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/CreateLeaderboardDefinition", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    Delete: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/GameServerIdentity/Delete", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateStatisticDefinition: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/CreateStatisticDefinition", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    GetEntityToken: function (request, callback, customData, extraHeaders) {
-        var authKey = null; var authValue = null;
-        if (!authKey && PlayFab._internalSettings.sessionTicket) { var authInfo = PlayFab._internalSettings.GetAuthInfo(request, authKey="X-Authorization"); authKey = authInfo.authKey, authValue = authInfo.authValue; }
-        if (!authKey && PlayFab.settings.developerSecretKey) { var authInfo = PlayFab._internalSettings.GetAuthInfo(request, authKey="X-SecretKey"); authKey = authInfo.authKey, authValue = authInfo.authValue; }
-        var overloadCallback = function (result, error) {
-            if (result != null && result.data.EntityToken != null)
-                PlayFab._internalSettings.entityToken = result.data.EntityToken;
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Authentication/GetEntityToken", request, authKey, overloadCallback, customData, extraHeaders);
+    DeleteLeaderboardDefinition: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/DeleteLeaderboardDefinition", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    ValidateEntityToken: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Authentication/ValidateEntityToken", request, "X-EntityToken", callback, customData, extraHeaders);
+    DeleteLeaderboardEntries: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/DeleteLeaderboardEntries", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteStatisticDefinition: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/DeleteStatisticDefinition", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteStatistics: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/DeleteStatistics", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetFriendLeaderboardForEntity: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/GetFriendLeaderboardForEntity", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetLeaderboard: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/GetLeaderboard", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetLeaderboardAroundEntity: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/GetLeaderboardAroundEntity", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetLeaderboardDefinition: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/GetLeaderboardDefinition", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetLeaderboardForEntities: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/GetLeaderboardForEntities", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetStatisticDefinition: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/GetStatisticDefinition", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetStatisticDefinitions: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/GetStatisticDefinitions", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetStatistics: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/GetStatistics", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetStatisticsForEntities: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/GetStatisticsForEntities", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    IncrementLeaderboardVersion: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/IncrementLeaderboardVersion", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    IncrementStatisticVersion: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/IncrementStatisticVersion", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListLeaderboardDefinitions: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/ListLeaderboardDefinitions", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    ListStatisticDefinitions: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/ListStatisticDefinitions", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UnlinkLeaderboardFromStatistic: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/UnlinkLeaderboardFromStatistic", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UpdateLeaderboardEntries: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Leaderboard/UpdateLeaderboardEntries", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    UpdateStatistics: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Statistic/UpdateStatistics", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
 };
 
-var PlayFabAuthenticationSDK = PlayFab.AuthenticationApi;
+var PlayFabLeaderboardsSDK = PlayFab.LeaderboardsApi;
 
