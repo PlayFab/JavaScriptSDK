@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabProfilesApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabAddonApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -235,45 +235,121 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.ProfilesApi = {
+PlayFab.AddonApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
     },
 
-    GetGlobalPolicy: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/GetGlobalPolicy", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateOrUpdateApple: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateApple", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    GetProfile: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/GetProfile", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateOrUpdateFacebook: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateFacebook", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    GetProfiles: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/GetProfiles", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateOrUpdateFacebookInstantGames: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateFacebookInstantGames", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    GetTitlePlayersFromMasterPlayerAccountIds: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/GetTitlePlayersFromMasterPlayerAccountIds", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateOrUpdateGoogle: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateGoogle", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    GetTitlePlayersFromXboxLiveIDs: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/GetTitlePlayersFromXboxLiveIDs", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateOrUpdateKongregate: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateKongregate", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    SetGlobalPolicy: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/SetGlobalPolicy", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateOrUpdateNintendo: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateNintendo", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    SetProfileLanguage: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/SetProfileLanguage", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateOrUpdatePSN: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdatePSN", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
-    SetProfilePolicy: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/SetProfilePolicy", request, "X-EntityToken", callback, customData, extraHeaders);
+    CreateOrUpdateSteam: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateSteam", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    CreateOrUpdateTwitch: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateTwitch", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteApple: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteApple", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteFacebook: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteFacebook", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteFacebookInstantGames: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteFacebookInstantGames", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteGoogle: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteGoogle", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteKongregate: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteKongregate", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteNintendo: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteNintendo", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeletePSN: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeletePSN", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteSteam: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteSteam", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    DeleteTwitch: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteTwitch", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetApple: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetApple", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetFacebook: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetFacebook", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetFacebookInstantGames: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetFacebookInstantGames", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetGoogle: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetGoogle", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetKongregate: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetKongregate", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetNintendo: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetNintendo", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetPSN: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetPSN", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetSteam: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetSteam", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetTwitch: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetTwitch", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
 };
 
-var PlayFabProfilesSDK = PlayFab.ProfilesApi;
+var PlayFabAddonSDK = PlayFab.AddonApi;
 

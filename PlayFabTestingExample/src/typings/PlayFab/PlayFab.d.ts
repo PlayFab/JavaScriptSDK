@@ -9,10 +9,12 @@
 /// <reference path="PlayFabExperimentationApi.d.ts" />
 /// <reference path="PlayFabInsightsApi.d.ts" />
 /// <reference path="PlayFabGroupsApi.d.ts" />
-/// <reference path="PlayFabLeaderboardsApi.d.ts" />
+/// <reference path="PlayFabProgressionApi.d.ts" />
 /// <reference path="PlayFabLocalizationApi.d.ts" />
 /// <reference path="PlayFabMultiplayerApi.d.ts" />
 /// <reference path="PlayFabProfilesApi.d.ts" />
+/// <reference path="PlayFabMatchmakerApi.d.ts" />
+/// <reference path="PlayFabAddonApi.d.ts" />
 
 declare module PlayFabModule {
     export interface ISettings {
@@ -57,10 +59,12 @@ declare var PlayFab: {
     ExperimentationApi: PlayFabExperimentationModule.IPlayFabExperimentation;
     InsightsApi: PlayFabInsightsModule.IPlayFabInsights;
     GroupsApi: PlayFabGroupsModule.IPlayFabGroups;
-    LeaderboardsApi: PlayFabLeaderboardsModule.IPlayFabLeaderboards;
+    ProgressionApi: PlayFabProgressionModule.IPlayFabProgression;
     LocalizationApi: PlayFabLocalizationModule.IPlayFabLocalization;
     MultiplayerApi: PlayFabMultiplayerModule.IPlayFabMultiplayer;
     ProfilesApi: PlayFabProfilesModule.IPlayFabProfiles;
+    MatchmakerApi: PlayFabMatchmakerModule.IPlayFabMatchmaker;
+    AddonApi: PlayFabAddonModule.IPlayFabAddon;
 
 };
 // Continue to support older usage
@@ -75,8 +79,10 @@ declare var PlayFabEventsSDK: PlayFabEventsModule.IPlayFabEvents;
 declare var PlayFabExperimentationSDK: PlayFabExperimentationModule.IPlayFabExperimentation;
 declare var PlayFabInsightsSDK: PlayFabInsightsModule.IPlayFabInsights;
 declare var PlayFabGroupsSDK: PlayFabGroupsModule.IPlayFabGroups;
-declare var PlayFabLeaderboardsSDK: PlayFabLeaderboardsModule.IPlayFabLeaderboards;
+declare var PlayFabProgressionSDK: PlayFabProgressionModule.IPlayFabProgression;
 declare var PlayFabLocalizationSDK: PlayFabLocalizationModule.IPlayFabLocalization;
 declare var PlayFabMultiplayerSDK: PlayFabMultiplayerModule.IPlayFabMultiplayer;
 declare var PlayFabProfilesSDK: PlayFabProfilesModule.IPlayFabProfiles;
+declare var PlayFabMatchmakerSDK: PlayFabMatchmakerModule.IPlayFabMatchmaker;
+declare var PlayFabAddonSDK: PlayFabAddonModule.IPlayFabAddon;
 
