@@ -1,4 +1,4 @@
-/// <reference path="../typings/PlayFab/PlayFabLeaderboardsApi.d.ts" />
+/// <reference path="../typings/PlayFab/PlayFabProgressionApi.d.ts" />
 
 var PlayFab = typeof PlayFab != "undefined" ? PlayFab : {};
 
@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.176.240802",
+        sdkVersion: "1.178.240816",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.176.240802"
+            sdk: "JavaScriptSDK-1.178.240816"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_117";
-PlayFab.sdkVersion = "1.176.240802";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
+PlayFab.sdkVersion = "1.178.240816";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -235,7 +235,7 @@ PlayFab.GenerateErrorReport = function (error) {
     return fullErrors;
 };
 
-PlayFab.LeaderboardsApi = {
+PlayFab.ProgressionApi = {
     ForgetAllCredentials: function () {
         PlayFab._internalSettings.sessionTicket = null;
         PlayFab._internalSettings.entityToken = null;
@@ -331,5 +331,5 @@ PlayFab.LeaderboardsApi = {
 
 };
 
-var PlayFabLeaderboardsSDK = PlayFab.LeaderboardsApi;
+var PlayFabProgressionSDK = PlayFab.ProgressionApi;
 

@@ -3573,7 +3573,9 @@ declare module PlayFabClientModels {
 
     export interface LoginWithFacebookRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique identifier from Facebook for the user. */
-        AccessToken: string;
+        AccessToken?: string;
+        /** Token used for limited login authentication. */
+        AuthenticationToken?: string;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
