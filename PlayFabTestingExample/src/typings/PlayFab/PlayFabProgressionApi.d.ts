@@ -1,125 +1,125 @@
 /// <reference path="Playfab.d.ts" />
 
-declare module PlayFabLeaderboardsModule {
-    export interface IPlayFabLeaderboards {
+declare module PlayFabProgressionModule {
+    export interface IPlayFabProgression {
         ForgetAllCredentials(): void;
 
         /**
          * Creates a new leaderboard definition.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/leaderboards/createleaderboarddefinition
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/createleaderboarddefinition
          */
-        CreateLeaderboardDefinition(request: PlayFabLeaderboardsModels.CreateLeaderboardDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>>;
+        CreateLeaderboardDefinition(request: PlayFabProgressionModels.CreateLeaderboardDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
          * Create a new entity statistic definition.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/createstatisticdefinition
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/createstatisticdefinition
          */
-        CreateStatisticDefinition(request: PlayFabLeaderboardsModels.CreateStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>>;
+        CreateStatisticDefinition(request: PlayFabProgressionModels.CreateStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
          * Deletes a leaderboard definition.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/leaderboards/deleteleaderboarddefinition
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/deleteleaderboarddefinition
          */
-        DeleteLeaderboardDefinition(request: PlayFabLeaderboardsModels.DeleteLeaderboardDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>>;
+        DeleteLeaderboardDefinition(request: PlayFabProgressionModels.DeleteLeaderboardDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
          * Deletes the specified entries from the given leaderboard.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/leaderboards/deleteleaderboardentries
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/deleteleaderboardentries
          */
-        DeleteLeaderboardEntries(request: PlayFabLeaderboardsModels.DeleteLeaderboardEntriesRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>>;
+        DeleteLeaderboardEntries(request: PlayFabProgressionModels.DeleteLeaderboardEntriesRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
          * Delete an entity statistic definition. Will delete all statistics on entity profiles and leaderboards.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/deletestatisticdefinition
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/deletestatisticdefinition
          */
-        DeleteStatisticDefinition(request: PlayFabLeaderboardsModels.DeleteStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>>;
+        DeleteStatisticDefinition(request: PlayFabProgressionModels.DeleteStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
          * Delete statistics on an entity profile. This will remove all rankings from associated leaderboards.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/deletestatistics
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/deletestatistics
          */
-        DeleteStatistics(request: PlayFabLeaderboardsModels.DeleteStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.DeleteStatisticsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.DeleteStatisticsResponse>>;
+        DeleteStatistics(request: PlayFabProgressionModels.DeleteStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.DeleteStatisticsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.DeleteStatisticsResponse>>;
         /**
          * Get the friend leaderboard for the specified entity. A maximum of 100 friend entries are listed in the leaderboard.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/getfriendleaderboardforentity
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/getfriendleaderboardforentity
          */
-        GetFriendLeaderboardForEntity(request: PlayFabLeaderboardsModels.GetFriendLeaderboardForEntityRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetEntityLeaderboardResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetEntityLeaderboardResponse>>;
+        GetFriendLeaderboardForEntity(request: PlayFabProgressionModels.GetFriendLeaderboardForEntityRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetEntityLeaderboardResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetEntityLeaderboardResponse>>;
         /**
          * Get the leaderboard for a specific entity type and statistic.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/getleaderboard
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/getleaderboard
          */
-        GetLeaderboard(request: PlayFabLeaderboardsModels.GetEntityLeaderboardRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetEntityLeaderboardResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetEntityLeaderboardResponse>>;
+        GetLeaderboard(request: PlayFabProgressionModels.GetEntityLeaderboardRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetEntityLeaderboardResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetEntityLeaderboardResponse>>;
         /**
          * Get the leaderboard around a specific entity.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/getleaderboardaroundentity
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/getleaderboardaroundentity
          */
-        GetLeaderboardAroundEntity(request: PlayFabLeaderboardsModels.GetLeaderboardAroundEntityRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetEntityLeaderboardResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetEntityLeaderboardResponse>>;
+        GetLeaderboardAroundEntity(request: PlayFabProgressionModels.GetLeaderboardAroundEntityRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetEntityLeaderboardResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetEntityLeaderboardResponse>>;
         /**
          * Gets the specified leaderboard definition.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/leaderboards/getleaderboarddefinition
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/getleaderboarddefinition
          */
-        GetLeaderboardDefinition(request: PlayFabLeaderboardsModels.GetLeaderboardDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetLeaderboardDefinitionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetLeaderboardDefinitionResponse>>;
+        GetLeaderboardDefinition(request: PlayFabProgressionModels.GetLeaderboardDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetLeaderboardDefinitionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetLeaderboardDefinitionResponse>>;
         /**
          * Get the leaderboard limited to a set of entities.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/getleaderboardforentities
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/getleaderboardforentities
          */
-        GetLeaderboardForEntities(request: PlayFabLeaderboardsModels.GetLeaderboardForEntitiesRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetEntityLeaderboardResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetEntityLeaderboardResponse>>;
+        GetLeaderboardForEntities(request: PlayFabProgressionModels.GetLeaderboardForEntitiesRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetEntityLeaderboardResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetEntityLeaderboardResponse>>;
         /**
          * Get current statistic definition information
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/getstatisticdefinition
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/getstatisticdefinition
          */
-        GetStatisticDefinition(request: PlayFabLeaderboardsModels.GetStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetStatisticDefinitionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetStatisticDefinitionResponse>>;
+        GetStatisticDefinition(request: PlayFabProgressionModels.GetStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticDefinitionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticDefinitionResponse>>;
         /**
          * Get all current statistic definitions information
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/getstatisticdefinitions
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/getstatisticdefinitions
          */
-        GetStatisticDefinitions(request: PlayFabLeaderboardsModels.GetStatisticDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetStatisticDefinitionsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetStatisticDefinitionsResponse>>;
+        GetStatisticDefinitions(request: PlayFabProgressionModels.GetStatisticDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticDefinitionsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticDefinitionsResponse>>;
         /**
          * Gets statistics for the specified entity.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/getstatistics
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/getstatistics
          */
-        GetStatistics(request: PlayFabLeaderboardsModels.GetStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetStatisticsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetStatisticsResponse>>;
+        GetStatistics(request: PlayFabProgressionModels.GetStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticsResponse>>;
         /**
          * Gets statistics for the specified collection of entities.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/getstatisticsforentities
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/getstatisticsforentities
          */
-        GetStatisticsForEntities(request: PlayFabLeaderboardsModels.GetStatisticsForEntitiesRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetStatisticsForEntitiesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.GetStatisticsForEntitiesResponse>>;
+        GetStatisticsForEntities(request: PlayFabProgressionModels.GetStatisticsForEntitiesRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticsForEntitiesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticsForEntitiesResponse>>;
         /**
          * Increment a leaderboard version.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/leaderboards/incrementleaderboardversion
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/incrementleaderboardversion
          */
-        IncrementLeaderboardVersion(request: PlayFabLeaderboardsModels.IncrementLeaderboardVersionRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.IncrementLeaderboardVersionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.IncrementLeaderboardVersionResponse>>;
+        IncrementLeaderboardVersion(request: PlayFabProgressionModels.IncrementLeaderboardVersionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.IncrementLeaderboardVersionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.IncrementLeaderboardVersionResponse>>;
         /**
          * Increment an entity statistic definition version.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/incrementstatisticversion
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/incrementstatisticversion
          */
-        IncrementStatisticVersion(request: PlayFabLeaderboardsModels.IncrementStatisticVersionRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.IncrementStatisticVersionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.IncrementStatisticVersionResponse>>;
+        IncrementStatisticVersion(request: PlayFabProgressionModels.IncrementStatisticVersionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.IncrementStatisticVersionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.IncrementStatisticVersionResponse>>;
         /**
          * Lists the leaderboard definitions defined for the Title.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/leaderboards/listleaderboarddefinitions
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/listleaderboarddefinitions
          */
-        ListLeaderboardDefinitions(request: PlayFabLeaderboardsModels.ListLeaderboardDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.ListLeaderboardDefinitionsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.ListLeaderboardDefinitionsResponse>>;
+        ListLeaderboardDefinitions(request: PlayFabProgressionModels.ListLeaderboardDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.ListLeaderboardDefinitionsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.ListLeaderboardDefinitionsResponse>>;
         /**
          * Get all current statistic definitions information
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/liststatisticdefinitions
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/liststatisticdefinitions
          */
-        ListStatisticDefinitions(request: PlayFabLeaderboardsModels.ListStatisticDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.ListStatisticDefinitionsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.ListStatisticDefinitionsResponse>>;
+        ListStatisticDefinitions(request: PlayFabProgressionModels.ListStatisticDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.ListStatisticDefinitionsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.ListStatisticDefinitionsResponse>>;
         /**
          * Unlinks a leaderboard definition from it's linked statistic definition.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/leaderboards/unlinkleaderboardfromstatistic
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/unlinkleaderboardfromstatistic
          */
-        UnlinkLeaderboardFromStatistic(request: PlayFabLeaderboardsModels.UnlinkLeaderboardFromStatisticRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>>;
+        UnlinkLeaderboardFromStatistic(request: PlayFabProgressionModels.UnlinkLeaderboardFromStatisticRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
          * Adds or updates entries on the specified leaderboard.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/leaderboards/updateleaderboardentries
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/updateleaderboardentries
          */
-        UpdateLeaderboardEntries(request: PlayFabLeaderboardsModels.UpdateLeaderboardEntriesRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.EmptyResponse>>;
+        UpdateLeaderboardEntries(request: PlayFabProgressionModels.UpdateLeaderboardEntriesRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
          * Update statistics on an entity profile. Depending on the statistic definition, this may result in entity being ranked on
          * various leaderboards.
-         * https://docs.microsoft.com/rest/api/playfab/leaderboards/statistics-and-leaderboards/updatestatistics
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/updatestatistics
          */
-        UpdateStatistics(request: PlayFabLeaderboardsModels.UpdateStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.UpdateStatisticsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabLeaderboardsModels.UpdateStatisticsResponse>>;
+        UpdateStatistics(request: PlayFabProgressionModels.UpdateStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.UpdateStatisticsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.UpdateStatisticsResponse>>;
 
     }
 }
 
-declare module PlayFabLeaderboardsModels {
+declare module PlayFabProgressionModels {
     export interface CreateLeaderboardDefinitionRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Leaderboard columns describing the sort directions, cannot be changed after creation. */
         Columns: LeaderboardColumn[];
