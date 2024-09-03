@@ -2571,7 +2571,7 @@ declare module PlayFabAdminModels {
         | "MultipleLinkedStatisticsNotAllowed"
         | "DuplicateLinkedStatisticColumnNameFound"
         | "AggregationTypeNotAllowedForMultiColumnStatistic"
-        | "MaxQueryableVerionsValueNotAllowedForTier"
+        | "MaxQueryableVersionsValueNotAllowedForTier"
         | "StatisticDefinitionHasNullOrEmptyVersionConfiguration"
         | "StatisticColumnLengthMismatch"
         | "MatchmakingEntityInvalid"

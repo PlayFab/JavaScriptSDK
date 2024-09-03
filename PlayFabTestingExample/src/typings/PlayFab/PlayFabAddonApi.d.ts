@@ -6,137 +6,137 @@ declare module PlayFabAddonModule {
 
         /**
          * Creates the Apple addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdateapple
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdateapple
          */
         CreateOrUpdateApple(request: PlayFabAddonModels.CreateOrUpdateAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateAppleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateAppleResponse>>;
         /**
          * Creates the Facebook addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdatefacebook
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatefacebook
          */
         CreateOrUpdateFacebook(request: PlayFabAddonModels.CreateOrUpdateFacebookRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateFacebookResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateFacebookResponse>>;
         /**
          * Creates the Facebook Instant Games addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdatefacebookinstantgames
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatefacebookinstantgames
          */
         CreateOrUpdateFacebookInstantGames(request: PlayFabAddonModels.CreateOrUpdateFacebookInstantGamesRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateFacebookInstantGamesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateFacebookInstantGamesResponse>>;
         /**
          * Creates the Google addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdategoogle
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdategoogle
          */
         CreateOrUpdateGoogle(request: PlayFabAddonModels.CreateOrUpdateGoogleRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateGoogleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateGoogleResponse>>;
         /**
          * Creates the Kongregate addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdatekongregate
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatekongregate
          */
         CreateOrUpdateKongregate(request: PlayFabAddonModels.CreateOrUpdateKongregateRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateKongregateResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateKongregateResponse>>;
         /**
          * Creates the Nintendo addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdatenintendo
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatenintendo
          */
         CreateOrUpdateNintendo(request: PlayFabAddonModels.CreateOrUpdateNintendoRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateNintendoResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateNintendoResponse>>;
         /**
          * Creates the PSN addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdatepsn
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatepsn
          */
         CreateOrUpdatePSN(request: PlayFabAddonModels.CreateOrUpdatePSNRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdatePSNResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdatePSNResponse>>;
         /**
          * Creates the Steam addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdatesteam
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatesteam
          */
         CreateOrUpdateSteam(request: PlayFabAddonModels.CreateOrUpdateSteamRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateSteamResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateSteamResponse>>;
         /**
          * Creates the Twitch addon on a title, or updates it if it already exists.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/createorupdatetwitch
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatetwitch
          */
         CreateOrUpdateTwitch(request: PlayFabAddonModels.CreateOrUpdateTwitchRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateTwitchResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateTwitchResponse>>;
         /**
          * Deletes the Apple addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deleteapple
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deleteapple
          */
         DeleteApple(request: PlayFabAddonModels.DeleteAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteAppleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteAppleResponse>>;
         /**
          * Deletes the Facebook addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deletefacebook
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletefacebook
          */
         DeleteFacebook(request: PlayFabAddonModels.DeleteFacebookRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteFacebookResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteFacebookResponse>>;
         /**
          * Deletes the Facebook addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deletefacebookinstantgames
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletefacebookinstantgames
          */
         DeleteFacebookInstantGames(request: PlayFabAddonModels.DeleteFacebookInstantGamesRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteFacebookInstantGamesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteFacebookInstantGamesResponse>>;
         /**
          * Deletes the Google addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deletegoogle
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletegoogle
          */
         DeleteGoogle(request: PlayFabAddonModels.DeleteGoogleRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteGoogleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteGoogleResponse>>;
         /**
          * Deletes the Kongregate addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deletekongregate
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletekongregate
          */
         DeleteKongregate(request: PlayFabAddonModels.DeleteKongregateRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteKongregateResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteKongregateResponse>>;
         /**
          * Deletes the Nintendo addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deletenintendo
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletenintendo
          */
         DeleteNintendo(request: PlayFabAddonModels.DeleteNintendoRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteNintendoResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteNintendoResponse>>;
         /**
          * Deletes the PSN addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deletepsn
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletepsn
          */
         DeletePSN(request: PlayFabAddonModels.DeletePSNRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeletePSNResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeletePSNResponse>>;
         /**
          * Deletes the Steam addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deletesteam
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletesteam
          */
         DeleteSteam(request: PlayFabAddonModels.DeleteSteamRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteSteamResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteSteamResponse>>;
         /**
          * Deletes the Twitch addon on a title.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/deletetwitch
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletetwitch
          */
         DeleteTwitch(request: PlayFabAddonModels.DeleteTwitchRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteTwitchResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteTwitchResponse>>;
         /**
          * Gets information of the Apple addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/getapple
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/getapple
          */
         GetApple(request: PlayFabAddonModels.GetAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetAppleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetAppleResponse>>;
         /**
          * Gets information of the Facebook addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/getfacebook
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/getfacebook
          */
         GetFacebook(request: PlayFabAddonModels.GetFacebookRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetFacebookResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetFacebookResponse>>;
         /**
          * Gets information of the Facebook Instant Games addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/getfacebookinstantgames
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/getfacebookinstantgames
          */
         GetFacebookInstantGames(request: PlayFabAddonModels.GetFacebookInstantGamesRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetFacebookInstantGamesResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetFacebookInstantGamesResponse>>;
         /**
          * Gets information of the Google addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/getgoogle
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/getgoogle
          */
         GetGoogle(request: PlayFabAddonModels.GetGoogleRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetGoogleResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetGoogleResponse>>;
         /**
          * Gets information of the Kongregate addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/getkongregate
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/getkongregate
          */
         GetKongregate(request: PlayFabAddonModels.GetKongregateRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetKongregateResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetKongregateResponse>>;
         /**
          * Gets information of the Nintendo addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/getnintendo
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/getnintendo
          */
         GetNintendo(request: PlayFabAddonModels.GetNintendoRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetNintendoResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetNintendoResponse>>;
         /**
          * Gets information of the PSN addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/getpsn
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/getpsn
          */
         GetPSN(request: PlayFabAddonModels.GetPSNRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetPSNResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetPSNResponse>>;
         /**
          * Gets information of the Steam addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/getsteam
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/getsteam
          */
         GetSteam(request: PlayFabAddonModels.GetSteamRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetSteamResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetSteamResponse>>;
         /**
          * Gets information of the Twitch addon on a title, omits secrets.
-         * https://docs.microsoft.com/rest/api/playfab/addon/null/gettwitch
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/gettwitch
          */
         GetTwitch(request: PlayFabAddonModels.GetTwitchRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetTwitchResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetTwitchResponse>>;
 
@@ -234,6 +234,12 @@ declare module PlayFabAddonModels {
          * Required if using Google Authentication.
          */
         OAuthClientSecret?: string;
+        /**
+         * Authorized Redirect Uri obtained through the Google Developer Console. This currently defaults to
+         * https://oauth.playfab.com/oauth2/google. If you are authenticating players via browser, please update this to your own
+         * domain.
+         */
+        OAuthCustomRedirectUri?: string;
         /** Needed to enable pending purchase handling and subscription processing. */
         ServiceAccountKey?: string;
 
@@ -536,6 +542,12 @@ declare module PlayFabAddonModels {
          * Required if using Google Authentication.
          */
         OAuthClientID?: string;
+        /**
+         * Authorized Redirect Uri obtained through the Google Developer Console. This currently defaults to
+         * https://oauth.playfab.com/oauth2/google. If you are authenticating players via browser, please update this to your own
+         * domain.
+         */
+        OauthCustomRedirectUri?: string;
 
     }
 
