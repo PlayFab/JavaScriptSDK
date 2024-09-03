@@ -1913,18 +1913,18 @@ declare module PlayFabEconomyModels {
         FailureCode?: string;
         /** The marketplace error details explaining why the offer failed to redeem. */
         FailureDetails?: string;
+        /** The Marketplace Alternate ID being redeemed. */
+        MarketplaceAlternateId?: string;
         /** The transaction id in the external marketplace. */
         MarketplaceTransactionId?: string;
-        /** The ID of the offer being redeemed. */
-        OfferId?: string;
 
     }
 
     export interface RedemptionSuccess {
+        /** The Marketplace Alternate ID being redeemed. */
+        MarketplaceAlternateId?: string;
         /** The transaction id in the external marketplace. */
         MarketplaceTransactionId?: string;
-        /** The ID of the offer being redeemed. */
-        OfferId?: string;
         /** The timestamp for when the redeem was completed. */
         SuccessTimestamp: string;
 
