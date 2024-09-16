@@ -39,7 +39,6 @@
     <Content Include="src\PlayFab\PlayFabLocalizationApi.js" />
     <Content Include="src\PlayFab\PlayFabMultiplayerApi.js" />
     <Content Include="src\PlayFab\PlayFabProfilesApi.js" />
-    <Content Include="src\PlayFab\PlayFabMatchmakerApi.js" />
     <Content Include="src\PlayFab\PlayFabAddonApi.js" />
     <Content Include="web.config" />
   </ItemGroup>
@@ -61,7 +60,6 @@
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabLocalizationApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabMultiplayerApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabProfilesApi.d.ts" />
-    <TypeScriptCompile Include="src\typings\PlayFab\PlayFabMatchmakerApi.d.ts" />
     <TypeScriptCompile Include="src\typings\PlayFab\PlayFabAddonApi.d.ts" />
   </ItemGroup>
   <ItemGroup>

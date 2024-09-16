@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.179.240830",
+        sdkVersion: "1.180.240913",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.179.240830"
+            sdk: "JavaScriptSDK-1.180.240913"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -224,7 +224,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.179.240830";
+PlayFab.sdkVersion = "1.180.240913";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -259,6 +259,10 @@ PlayFab.ProfilesApi = {
 
     GetTitlePlayersFromXboxLiveIDs: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/GetTitlePlayersFromXboxLiveIDs", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SetDisplayName: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Profile/SetDisplayName", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     SetGlobalPolicy: function (request, callback, customData, extraHeaders) {

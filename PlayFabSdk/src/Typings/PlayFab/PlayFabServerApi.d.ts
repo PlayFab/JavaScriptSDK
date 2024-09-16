@@ -3950,7 +3950,8 @@ declare module PlayFabServerModels {
         | "Apple"
         | "NintendoSwitchAccount"
         | "GooglePlayGames"
-        | "XboxMobileStore";
+        | "XboxMobileStore"
+        | "King";
 
     export interface LoginWithPSNRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Auth code provided by the PlayStation :tm: Network OAuth provider. */
@@ -5478,7 +5479,8 @@ declare module PlayFabServerModels {
         | "Apple"
         | "NintendoSwitchAccount"
         | "GooglePlayGames"
-        | "XboxMobileStore";
+        | "XboxMobileStore"
+        | "King";
 
     export interface UserPrivateAccountInfo {
         /** user email address */
