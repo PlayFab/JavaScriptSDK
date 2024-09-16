@@ -3440,7 +3440,8 @@ declare module PlayFabClientModels {
         | "Apple"
         | "NintendoSwitchAccount"
         | "GooglePlayGames"
-        | "XboxMobileStore";
+        | "XboxMobileStore"
+        | "King";
 
     export interface LoginResult extends PlayFabModule.IPlayFabResultCommon  {
         /**
@@ -5335,7 +5336,8 @@ declare module PlayFabClientModels {
         | "Apple"
         | "NintendoSwitchAccount"
         | "GooglePlayGames"
-        | "XboxMobileStore";
+        | "XboxMobileStore"
+        | "King";
 
     export interface UserPrivateAccountInfo {
         /** user email address */

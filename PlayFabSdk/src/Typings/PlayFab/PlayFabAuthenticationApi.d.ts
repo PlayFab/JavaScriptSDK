@@ -148,7 +148,8 @@ declare module PlayFabAuthenticationModels {
         | "Apple"
         | "NintendoSwitchAccount"
         | "GooglePlayGames"
-        | "XboxMobileStore";
+        | "XboxMobileStore"
+        | "King";
 
     export interface ValidateEntityTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */

@@ -65,11 +65,6 @@ declare module PlayFabProgressionModule {
          */
         GetStatisticDefinition(request: PlayFabProgressionModels.GetStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticDefinitionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticDefinitionResponse>>;
         /**
-         * Get all current statistic definitions information
-         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/getstatisticdefinitions
-         */
-        GetStatisticDefinitions(request: PlayFabProgressionModels.GetStatisticDefinitionsRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticDefinitionsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.GetStatisticDefinitionsResponse>>;
-        /**
          * Gets statistics for the specified entity.
          * https://docs.microsoft.com/rest/api/playfab/progression/statistics/getstatistics
          */
@@ -382,18 +377,6 @@ declare module PlayFabProgressionModels {
         Version: number;
         /** The version reset configuration for the leaderboard definition. */
         VersionConfiguration?: VersionConfiguration;
-
-    }
-
-    export interface GetStatisticDefinitionsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-
-    }
-
-    export interface GetStatisticDefinitionsResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** List of statistic definitions for the title. */
-        StatisticDefinitions?: StatisticDefinition[];
 
     }
 

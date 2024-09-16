@@ -13,7 +13,6 @@
 /// <reference path="PlayFabLocalizationApi.d.ts" />
 /// <reference path="PlayFabMultiplayerApi.d.ts" />
 /// <reference path="PlayFabProfilesApi.d.ts" />
-/// <reference path="PlayFabMatchmakerApi.d.ts" />
 /// <reference path="PlayFabAddonApi.d.ts" />
 
 declare module PlayFabModule {
@@ -63,7 +62,6 @@ declare var PlayFab: {
     LocalizationApi: PlayFabLocalizationModule.IPlayFabLocalization;
     MultiplayerApi: PlayFabMultiplayerModule.IPlayFabMultiplayer;
     ProfilesApi: PlayFabProfilesModule.IPlayFabProfiles;
-    MatchmakerApi: PlayFabMatchmakerModule.IPlayFabMatchmaker;
     AddonApi: PlayFabAddonModule.IPlayFabAddon;
 
 };
@@ -83,6 +81,5 @@ declare var PlayFabProgressionSDK: PlayFabProgressionModule.IPlayFabProgression;
 declare var PlayFabLocalizationSDK: PlayFabLocalizationModule.IPlayFabLocalization;
 declare var PlayFabMultiplayerSDK: PlayFabMultiplayerModule.IPlayFabMultiplayer;
 declare var PlayFabProfilesSDK: PlayFabProfilesModule.IPlayFabProfiles;
-declare var PlayFabMatchmakerSDK: PlayFabMatchmakerModule.IPlayFabMatchmaker;
 declare var PlayFabAddonSDK: PlayFabAddonModule.IPlayFabAddon;
 
