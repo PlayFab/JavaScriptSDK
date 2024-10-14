@@ -2903,7 +2903,7 @@ declare module PlayFabMultiplayerModels {
     export interface PartyNetworkConfiguration {
         /** Controls whether and how to support direct peer-to-peer connection attempts among devices in the network. */
         DirectPeerConnectivityOptions?: string;
-        /** The maximum number of devices allowed to connect to the network. Must be between 1 and 32, inclusive. */
+        /** The maximum number of devices allowed to connect to the network. Must be between 1 and 128, inclusive. */
         MaxDevices: number;
         /** The maximum number of devices allowed per user. Must be greater than 0. */
         MaxDevicesPerUser: number;
