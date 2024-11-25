@@ -283,6 +283,12 @@ declare module PlayFabServerModule {
          */
         GetPlayFabIDsFromSteamIDs(request: PlayFabServerModels.GetPlayFabIDsFromSteamIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromSteamIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromSteamIDsResult>>;
         /**
+         * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are persona
+         * names.
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromsteamnames
+         */
+        GetPlayFabIDsFromSteamNames(request: PlayFabServerModels.GetPlayFabIDsFromSteamNamesRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromSteamNamesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromSteamNamesResult>>;
+        /**
          * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
          * the user accounts, available as "_id" from the Twitch API methods (ex:
          * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
@@ -2406,6 +2412,8 @@ declare module PlayFabServerModels {
         | "StatisticColumnLengthMismatch"
         | "InvalidExternalEntityId"
         | "UpdatingStatisticsUsingTransactionIdNotAvailableForFreeTier"
+        | "TransactionAlreadyApplied"
+        | "ReportDataNotRetrievedSuccessfully"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2685,6 +2693,8 @@ declare module PlayFabServerModels {
         | "GameSaveFileNotUploaded"
         | "GameSaveBadRequest"
         | "GameSaveOperationNotAllowed"
+        | "GameSaveDataStorageQuotaExceeded"
+        | "GameSaveNewerManifestExists"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -3326,6 +3336,21 @@ declare module PlayFabServerModels {
     export interface GetPlayFabIDsFromSteamIDsResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Mapping of Steam identifiers to PlayFab identifiers. */
         Data?: SteamPlayFabIdPair[];
+
+    }
+
+    export interface GetPlayFabIDsFromSteamNamesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * Array of unique Steam identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 2,000 in
+         * length.
+         */
+        SteamNames: string[];
+
+    }
+
+    export interface GetPlayFabIDsFromSteamNamesResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Mapping of Steam identifiers to PlayFab identifiers. */
+        Data?: SteamNamePlayFabIdPair[];
 
     }
 
@@ -4837,6 +4862,14 @@ declare module PlayFabServerModels {
         Value: number;
         /** for updates to an existing statistic value for a player, the version of the statistic when it was loaded */
         Version: number;
+
+    }
+
+    export interface SteamNamePlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier. */
+        PlayFabId?: string;
+        /** Unique Steam identifier for a user, also known as Steam persona name. */
+        SteamName?: string;
 
     }
 
