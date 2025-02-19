@@ -857,7 +857,7 @@ declare module PlayFabAdminModels {
         PlayFabId?: string;
         /** The reason why this ban was applied. */
         Reason?: string;
-        /** The family type of the suer that is included in the ban. */
+        /** The family type of the user that is included in the ban. */
         UserFamilyType?: string;
 
     }
@@ -2578,6 +2578,8 @@ declare module PlayFabAdminModels {
         | "UpdatingStatisticsUsingTransactionIdNotAvailableForFreeTier"
         | "TransactionAlreadyApplied"
         | "ReportDataNotRetrievedSuccessfully"
+        | "ResetIntervalCannotBeModified"
+        | "VersionIncrementRateExceeded"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2861,6 +2863,7 @@ declare module PlayFabAdminModels {
         | "GameSaveDataStorageQuotaExceeded"
         | "GameSaveNewerManifestExists"
         | "GameSaveBaseVersionNotAvailable"
+        | "GameSaveManifestVersionQuarantined"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"

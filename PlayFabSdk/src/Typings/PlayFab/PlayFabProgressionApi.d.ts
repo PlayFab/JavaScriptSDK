@@ -100,10 +100,20 @@ declare module PlayFabProgressionModule {
          */
         UnlinkLeaderboardFromStatistic(request: PlayFabProgressionModels.UnlinkLeaderboardFromStatisticRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
+         * Updates a leaderboard definition.
+         * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/updateleaderboarddefinition
+         */
+        UpdateLeaderboardDefinition(request: PlayFabProgressionModels.UpdateLeaderboardDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
+        /**
          * Adds or updates entries on the specified leaderboard.
          * https://docs.microsoft.com/rest/api/playfab/progression/leaderboards/updateleaderboardentries
          */
         UpdateLeaderboardEntries(request: PlayFabProgressionModels.UpdateLeaderboardEntriesRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
+        /**
+         * Update an existing entity statistic definition.
+         * https://docs.microsoft.com/rest/api/playfab/progression/statistics/updatestatisticdefinition
+         */
+        UpdateStatisticDefinition(request: PlayFabProgressionModels.UpdateStatisticDefinitionRequest, callback: PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabProgressionModels.EmptyResponse>>;
         /**
          * Update statistics on an entity profile. Depending on the statistic definition, this may result in entity being ranked on
          * various leaderboards.
@@ -265,6 +275,8 @@ declare module PlayFabProgressionModels {
         Columns?: LeaderboardColumn[];
         /** The number of entries on the leaderboard. */
         EntryCount: number;
+        /** The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule. */
+        NextReset?: string;
         /** Individual entity rankings in the leaderboard, in sorted order by rank. */
         Rankings?: EntityLeaderboardEntry[];
         /** Version of the leaderboard being returned. */
@@ -617,6 +629,18 @@ declare module PlayFabProgressionModels {
 
     }
 
+    export interface UpdateLeaderboardDefinitionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The name of the leaderboard to update the definition for. */
+        Name: string;
+        /** Maximum number of entries on this leaderboard */
+        SizeLimit?: number;
+        /** The version reset configuration for the leaderboard definition. */
+        VersionConfiguration?: VersionConfiguration;
+
+    }
+
     export interface UpdateLeaderboardEntriesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -624,6 +648,16 @@ declare module PlayFabProgressionModels {
         Entries?: LeaderboardEntryUpdate[];
         /** The name of the leaderboard. */
         LeaderboardName: string;
+
+    }
+
+    export interface UpdateStatisticDefinitionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Name of the statistic. Must be less than 150 characters. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'. */
+        Name: string;
+        /** The version reset configuration for the statistic definition. */
+        VersionConfiguration?: VersionConfiguration;
 
     }
 

@@ -3474,7 +3474,7 @@ declare module PlayFabClientModels {
         InfoResultPayload?: GetPlayerCombinedInfoResultPayload;
         /** The time of this user's previous login. If there was no previous login, then it's DateTime.MinValue */
         LastLoginTime?: string;
-        /** True if the account was newly created on this login. */
+        /** True if the master_player_account was newly created on this login. */
         NewlyCreated: boolean;
         /** Player's unique PlayFabId. */
         PlayFabId?: string;
