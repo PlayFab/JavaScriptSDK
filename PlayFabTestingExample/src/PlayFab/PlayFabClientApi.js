@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.187.250228",
+        sdkVersion: "1.188.250314",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.187.250228"
+            sdk: "JavaScriptSDK-1.188.250314"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
-PlayFab.sdkVersion = "1.187.250228";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.sdkVersion = "1.188.250314";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -313,6 +313,10 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/CreateSharedGroup", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    DeletePlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/DeletePlayerCustomProperties", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
     ExecuteCloudScript: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ExecuteCloudScript", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -395,6 +399,10 @@ PlayFab.ClientApi = {
 
     GetPlayerCombinedInfo: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetPlayerCombinedInfo", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    GetPlayerCustomProperty: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetPlayerCustomProperty", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     GetPlayerProfile: function (request, callback, customData, extraHeaders) {
@@ -607,6 +615,10 @@ PlayFab.ClientApi = {
 
     LinkXboxAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkXboxAccount", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    ListPlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/ListPlayerCustomProperties", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     LoginWithAndroidDeviceID: function (request, callback, customData, extraHeaders) {
@@ -1253,6 +1265,10 @@ PlayFab.ClientApi = {
 
     UpdateCharacterStatistics: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UpdateCharacterStatistics", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    UpdatePlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UpdatePlayerCustomProperties", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     UpdatePlayerStatistics: function (request, callback, customData, extraHeaders) {

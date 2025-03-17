@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.187.250228",
+        sdkVersion: "1.188.250314",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.187.250228"
+            sdk: "JavaScriptSDK-1.188.250314"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
-PlayFab.sdkVersion = "1.187.250228";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.sdkVersion = "1.188.250314";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -291,6 +291,10 @@ PlayFab.ServerApi = {
 
     DeletePlayer: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/DeletePlayer", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    DeletePlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/DeletePlayerCustomProperties", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     DeletePushNotificationTemplate: function (request, callback, customData, extraHeaders) {
@@ -375,6 +379,10 @@ PlayFab.ServerApi = {
 
     GetPlayerCombinedInfo: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayerCombinedInfo", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetPlayerCustomProperty: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayerCustomProperty", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerProfile: function (request, callback, customData, extraHeaders) {
@@ -565,6 +573,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkXboxAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    ListPlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/ListPlayerCustomProperties", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     LoginWithPSN: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithPSN", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -743,6 +755,10 @@ PlayFab.ServerApi = {
 
     UpdateCharacterStatistics: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UpdateCharacterStatistics", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UpdatePlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UpdatePlayerCustomProperties", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdatePlayerStatistics: function (request, callback, customData, extraHeaders) {

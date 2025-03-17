@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.187.250228",
+        sdkVersion: "1.188.250314",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.187.250228"
+            sdk: "JavaScriptSDK-1.188.250314"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
-PlayFab.sdkVersion = "1.187.250228";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.sdkVersion = "1.188.250314";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -325,6 +325,10 @@ PlayFab.AdminApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeletePlayer", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    DeletePlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeletePlayerCustomProperties", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     DeletePlayerSharedSecret: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/DeletePlayerSharedSecret", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -395,6 +399,10 @@ PlayFab.AdminApi = {
 
     GetPlayedTitleList: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayedTitleList", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetPlayerCustomProperty: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerCustomProperty", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerIdFromAuthToken: function (request, callback, customData, extraHeaders) {
@@ -521,6 +529,10 @@ PlayFab.AdminApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ListOpenIdConnection", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    ListPlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ListPlayerCustomProperties", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     ListVirtualCurrencyTypes: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ListVirtualCurrencyTypes", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -635,6 +647,10 @@ PlayFab.AdminApi = {
 
     UpdateOpenIdConnection: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateOpenIdConnection", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UpdatePlayerCustomProperties: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdatePlayerCustomProperties", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdatePlayerSharedSecret: function (request, callback, customData, extraHeaders) {
