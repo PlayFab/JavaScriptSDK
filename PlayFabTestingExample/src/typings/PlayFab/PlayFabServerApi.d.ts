@@ -83,6 +83,11 @@ declare module PlayFabServerModule {
          */
         DeletePlayer(request: PlayFabServerModels.DeletePlayerRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.DeletePlayerResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.DeletePlayerResult>>;
         /**
+         * Deletes title-specific custom properties for a player
+         * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/deleteplayercustomproperties
+         */
+        DeletePlayerCustomProperties(request: PlayFabServerModels.DeletePlayerCustomPropertiesRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.DeletePlayerCustomPropertiesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.DeletePlayerCustomPropertiesResult>>;
+        /**
          * Deletes push notification template for title
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/deletepushnotificationtemplate
          */
@@ -205,6 +210,11 @@ declare module PlayFabServerModule {
          * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayercombinedinfo
          */
         GetPlayerCombinedInfo(request: PlayFabServerModels.GetPlayerCombinedInfoRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayerCombinedInfoResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayerCombinedInfoResult>>;
+        /**
+         * Retrieves a title-specific custom property value for a player.
+         * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayercustomproperty
+         */
+        GetPlayerCustomProperty(request: PlayFabServerModels.GetPlayerCustomPropertyRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayerCustomPropertyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayerCustomPropertyResult>>;
         /**
          * Retrieves the player's profile
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayerprofile
@@ -462,6 +472,11 @@ declare module PlayFabServerModule {
          */
         LinkXboxAccount(request: PlayFabServerModels.LinkXboxAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.LinkXboxAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.LinkXboxAccountResult>>;
         /**
+         * Retrieves title-specific custom property values for a player.
+         * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/listplayercustomproperties
+         */
+        ListPlayerCustomProperties(request: PlayFabServerModels.ListPlayerCustomPropertiesRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ListPlayerCustomPropertiesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.ListPlayerCustomPropertiesResult>>;
+        /**
          * Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
          * subsequently be used for API calls which require an authenticated user
          * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithpsn
@@ -718,6 +733,11 @@ declare module PlayFabServerModule {
          * https://docs.microsoft.com/rest/api/playfab/server/characters/updatecharacterstatistics
          */
         UpdateCharacterStatistics(request: PlayFabServerModels.UpdateCharacterStatisticsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UpdateCharacterStatisticsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UpdateCharacterStatisticsResult>>;
+        /**
+         * Updates the title-specific custom property values for a player
+         * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateplayercustomproperties
+         */
+        UpdatePlayerCustomProperties(request: PlayFabServerModels.UpdatePlayerCustomPropertiesRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UpdatePlayerCustomPropertiesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UpdatePlayerCustomPropertiesResult>>;
         /**
          * Updates the values of the specified title-specific statistics for the user
          * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateplayerstatistics
@@ -1618,6 +1638,14 @@ declare module PlayFabServerModels {
         | "ZMW"
         | "ZWD";
 
+    export interface CustomPropertyDetails {
+        /** The custom property's name. */
+        Name?: string;
+        /** The custom property's value. */
+        Value?: any;
+
+    }
+
     export interface DeleteCharacterFromUserRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string;
@@ -1634,6 +1662,42 @@ declare module PlayFabServerModels {
     }
 
     export interface DeleteCharacterFromUserResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface DeletedPropertyDetails {
+        /** The name of the property which was requested to be deleted. */
+        Name?: string;
+        /** Indicates whether or not the property was deleted. If false, no property with that name existed. */
+        WasDeleted: boolean;
+
+    }
+
+    export interface DeletePlayerCustomPropertiesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /**
+         * Optional field used for concurrency control. One can ensure that the delete operation will only be performed if the
+         * player's properties have not been updated by any other clients since the last version.
+         */
+        ExpectedPropertiesVersion?: number;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+        /** A list of property names denoting which properties should be deleted. */
+        PropertyNames: string[];
+
+    }
+
+    export interface DeletePlayerCustomPropertiesResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of properties requested to be deleted. */
+        DeletedProperties?: DeletedPropertyDetails[];
+        /** PlayFab unique identifier of the user whose properties were deleted. */
+        PlayFabId?: string;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        PropertiesVersion: number;
 
     }
 
@@ -2416,6 +2480,7 @@ declare module PlayFabServerModels {
         | "ReportDataNotRetrievedSuccessfully"
         | "ResetIntervalCannotBeModified"
         | "VersionIncrementRateExceeded"
+        | "InvalidSteamUsername"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2549,6 +2614,7 @@ declare module PlayFabServerModels {
         | "AnalyticsSegmentCountOverLimit"
         | "SnapshotNotFound"
         | "InventoryApiNotImplemented"
+        | "InventoryCollectionDeletionDisallowed"
         | "LobbyDoesNotExist"
         | "LobbyRateLimitExceeded"
         | "LobbyPlayerAlreadyJoined"
@@ -2685,6 +2751,7 @@ declare module PlayFabServerModels {
         | "TrueSkillModelStateInvalidForOperation"
         | "TrueSkillScenarioContainsActiveModel"
         | "TrueSkillInvalidConditionRank"
+        | "TrueSkillTotalScenarioLimitExceeded"
         | "GameSaveManifestNotFound"
         | "GameSaveManifestVersionAlreadyExists"
         | "GameSaveConflictUpdatingManifest"
@@ -3089,6 +3156,27 @@ declare module PlayFabServerModels {
         UserVirtualCurrency?: { [key: string]: number };
         /** Dictionary of remaining times and timestamps for virtual currencies. */
         UserVirtualCurrencyRechargeTimes?: { [key: string]: VirtualCurrencyRechargeTime };
+
+    }
+
+    export interface GetPlayerCustomPropertyRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+        /** Specific property name to search for in the player's properties. */
+        PropertyName: string;
+
+    }
+
+    export interface GetPlayerCustomPropertyResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** PlayFab unique identifier of the user whose properties are being returned. */
+        PlayFabId?: string;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        PropertiesVersion: number;
+        /** Player specific property and its corresponding value. */
+        Property?: CustomPropertyDetails;
 
     }
 
@@ -3929,6 +4017,25 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface ListPlayerCustomPropertiesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface ListPlayerCustomPropertiesResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** PlayFab unique identifier of the user whose properties are being returned. */
+        PlayFabId?: string;
+        /** Player specific properties and their corresponding values for this title. */
+        Properties?: CustomPropertyDetails[];
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        PropertiesVersion: number;
+
+    }
+
     export interface ListUsersCharactersRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
@@ -4242,6 +4349,8 @@ declare module PlayFabServerModels {
         ContactEmailAddresses?: ContactEmailInfo[];
         /** Player record created */
         Created?: string;
+        /** Dictionary of player's custom properties. */
+        CustomProperties?: { [key: string]: any };
         /** Player Display Name */
         DisplayName?: string;
         /** Last login */
@@ -5216,6 +5325,32 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface UpdatePlayerCustomPropertiesRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /**
+         * Optional field used for concurrency control. One can ensure that the update operation will only be performed if the
+         * player's properties have not been updated by any other clients since last the version.
+         */
+        ExpectedPropertiesVersion?: number;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+        /** Collection of properties to be set for a player. */
+        Properties: UpdateProperty[];
+
+    }
+
+    export interface UpdatePlayerCustomPropertiesResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** PlayFab unique identifier of the user whose properties were updated. */
+        PlayFabId?: string;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        PropertiesVersion: number;
+
+    }
+
     export interface UpdatePlayerStatisticsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -5232,6 +5367,14 @@ declare module PlayFabServerModels {
     }
 
     export interface UpdatePlayerStatisticsResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface UpdateProperty {
+        /** Name of the custom property. Can contain Unicode letters and digits. They are limited in size. */
+        Name: string;
+        /** Value of the custom property. Limited to booleans, numbers, and strings. */
+        Value: any;
 
     }
 
@@ -5524,7 +5667,8 @@ declare module PlayFabServerModels {
         | "NintendoSwitchAccount"
         | "GooglePlayGames"
         | "XboxMobileStore"
-        | "King";
+        | "King"
+        | "BattleNet";
 
     export interface UserPrivateAccountInfo {
         /** user email address */
