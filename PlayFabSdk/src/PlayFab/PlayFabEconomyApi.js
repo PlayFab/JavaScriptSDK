@@ -223,7 +223,7 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
 PlayFab.sdkVersion = "1.188.250314";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
