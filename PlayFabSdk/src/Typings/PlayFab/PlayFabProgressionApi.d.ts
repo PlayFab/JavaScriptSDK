@@ -261,7 +261,7 @@ declare module PlayFabProgressionModels {
         CustomTags?: { [key: string]: string | null };
         /** Name of the leaderboard. */
         LeaderboardName: string;
-        /** Maximum number of results to return from the leaderboard. Minimum 1, maximum 1,000. */
+        /** Maximum number of results to return from the leaderboard. Minimum 1, maximum 100. */
         PageSize: number;
         /** Index position to start from. 1 is beginning of leaderboard. */
         StartingPosition?: number;
