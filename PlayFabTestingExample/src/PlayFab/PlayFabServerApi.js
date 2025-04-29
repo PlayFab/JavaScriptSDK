@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.189.250328",
+        sdkVersion: "1.190.250428",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.189.250328"
+            sdk: "JavaScriptSDK-1.190.250428"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
-PlayFab.sdkVersion = "1.189.250328";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.190.250428";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -409,6 +409,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayerTags", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    GetPlayFabIDsFromBattleNetAccountIds: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromBattleNetAccountIds", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     GetPlayFabIDsFromFacebookIDs: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromFacebookIDs", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -575,6 +579,18 @@ PlayFab.ServerApi = {
 
     ListPlayerCustomProperties: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/ListPlayerCustomProperties", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    LoginWithAndroidDeviceID: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithAndroidDeviceID", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    LoginWithCustomID: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithCustomID", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    LoginWithIOSDeviceID: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithIOSDeviceID", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     LoginWithPSN: function (request, callback, customData, extraHeaders) {

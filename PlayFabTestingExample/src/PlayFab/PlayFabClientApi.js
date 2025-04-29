@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.189.250328",
+        sdkVersion: "1.190.250428",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.189.250328"
+            sdk: "JavaScriptSDK-1.190.250428"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
-PlayFab.sdkVersion = "1.189.250328";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.190.250428";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -429,6 +429,10 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetPlayerTrades", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    GetPlayFabIDsFromBattleNetAccountIds: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetPlayFabIDsFromBattleNetAccountIds", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
     GetPlayFabIDsFromFacebookIDs: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/GetPlayFabIDsFromFacebookIDs", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -557,6 +561,10 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkApple", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
+    LinkBattleNet: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkBattleNet", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
     LinkCustomID: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkCustomID", request, "X-Authorization", callback, customData, extraHeaders);
     },
@@ -665,6 +673,30 @@ PlayFab.ClientApi = {
                 callback(result, error);
         };
         PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithApple", request, null, overloadCallback, customData, extraHeaders);
+        // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
+        return new Promise(function(resolve){resolve(authenticationContext);});
+    },
+
+    LoginWithBattleNet: function (request, callback, customData, extraHeaders) {
+        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
+        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
+        // Deep-copy the authenticationContext here to safely update it
+        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
+        var overloadCallback = function (result, error) {
+            if (result != null) {
+                if(result.data.SessionTicket != null) {
+                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+                }
+                if (result.data.EntityToken != null) {
+                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+                }
+                // Apply the updates for the AuthenticationContext returned to the client
+                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
+            }
+            if (callback != null && typeof (callback) === "function")
+                callback(result, error);
+        };
+        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithBattleNet", request, null, overloadCallback, customData, extraHeaders);
         // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
         return new Promise(function(resolve){resolve(authenticationContext);});
     },
@@ -1185,6 +1217,10 @@ PlayFab.ClientApi = {
 
     UnlinkApple: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkApple", request, "X-Authorization", callback, customData, extraHeaders);
+    },
+
+    UnlinkBattleNet: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkBattleNet", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     UnlinkCustomID: function (request, callback, customData, extraHeaders) {
