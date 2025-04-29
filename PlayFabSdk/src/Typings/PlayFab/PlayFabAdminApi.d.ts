@@ -2201,7 +2201,6 @@ declare module PlayFabAdminModels {
         | "UnableToConnectToDatabase"
         | "InternalServerError"
         | "InvalidReportDate"
-        | "ReportNotAvailable"
         | "DatabaseThroughputExceeded"
         | "InvalidGameTicket"
         | "ExpiredGameTicket"
@@ -2686,6 +2685,11 @@ declare module PlayFabAdminModels {
         | "VersionIncrementRateExceeded"
         | "InvalidSteamUsername"
         | "InvalidVersionResetForLinkedLeaderboard"
+        | "BattleNetNotEnabledForTitle"
+        | "ReportNotProcessed"
+        | "DataNotAvailable"
+        | "InvalidReportName"
+        | "ResourceNotModified"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2965,6 +2969,7 @@ declare module PlayFabAdminModels {
         | "TrueSkillScenarioContainsActiveModel"
         | "TrueSkillInvalidConditionRank"
         | "TrueSkillTotalScenarioLimitExceeded"
+        | "TrueSkillInvalidConditionsList"
         | "GameSaveManifestNotFound"
         | "GameSaveManifestVersionAlreadyExists"
         | "GameSaveConflictUpdatingManifest"
@@ -2986,6 +2991,9 @@ declare module PlayFabAdminModels {
         | "GameSaveTitleDoesNotExist"
         | "GameSaveOperationNotAllowedForTitle"
         | "GameSaveManifestFilesLimitExceeded"
+        | "GameSaveManifestDescriptionUpdateNotAllowed"
+        | "GameSaveTitleConfigNotFound"
+        | "GameSaveTitleAlreadyOnboarded"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -2993,7 +3001,9 @@ declare module PlayFabAdminModels {
         | "StateShareStateRedemptionLimitExceeded"
         | "StateShareStateRedemptionLimitNotUpdated"
         | "StateShareCreatedStatesLimitExceeded"
-        | "StateShareIdMissingOrMalformed";
+        | "StateShareIdMissingOrMalformed"
+        | "PlayerCreationDisabled"
+        | "AccountAlreadyExists";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
@@ -3852,7 +3862,8 @@ declare module PlayFabAdminModels {
         | "NintendoSwitchAccount"
         | "GooglePlayGames"
         | "XboxMobileStore"
-        | "King";
+        | "King"
+        | "BattleNet";
 
     export interface LogStatement {
         /** Optional object accompanying the message as contextual information */

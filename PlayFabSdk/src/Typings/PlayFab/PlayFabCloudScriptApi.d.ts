@@ -625,7 +625,8 @@ declare module PlayFabCloudScriptModels {
         | "NintendoSwitchAccount"
         | "GooglePlayGames"
         | "XboxMobileStore"
-        | "King";
+        | "King"
+        | "BattleNet";
 
     export interface LogStatement {
         /** Optional object accompanying the message as contextual information */
