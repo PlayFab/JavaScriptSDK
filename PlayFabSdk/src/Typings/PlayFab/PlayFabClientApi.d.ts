@@ -5383,6 +5383,8 @@ declare module PlayFabClientModels {
         AndroidDeviceInfo?: UserAndroidDeviceInfo;
         /** Sign in with Apple account information, if an Apple account has been linked */
         AppleAccountInfo?: UserAppleIdInfo;
+        /** Battle.net account information, if a Battle.net account has been linked */
+        BattleNetAccountInfo?: UserBattleNetInfo;
         /** Timestamp indicating when the user account was created */
         Created: string;
         /** Custom ID information, if a custom ID has been assigned */
@@ -5437,6 +5439,14 @@ declare module PlayFabClientModels {
     export interface UserAppleIdInfo {
         /** Apple subject ID */
         AppleSubjectId?: string;
+
+    }
+
+    export interface UserBattleNetInfo {
+        /** Battle.net identifier */
+        BattleNetAccountId?: string;
+        /** Battle.net display name */
+        BattleNetBattleTag?: string;
 
     }
 

@@ -2517,6 +2517,7 @@ declare module PlayFabServerModels {
         | "DataNotAvailable"
         | "InvalidReportName"
         | "ResourceNotModified"
+        | "StudioCreationLimitExceeded"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2821,6 +2822,8 @@ declare module PlayFabServerModels {
         | "GameSaveManifestDescriptionUpdateNotAllowed"
         | "GameSaveTitleConfigNotFound"
         | "GameSaveTitleAlreadyOnboarded"
+        | "GameSaveServiceNotEnabledForTitle"
+        | "GameSaveServiceOnboardingPending"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -2830,7 +2833,15 @@ declare module PlayFabServerModels {
         | "StateShareCreatedStatesLimitExceeded"
         | "StateShareIdMissingOrMalformed"
         | "PlayerCreationDisabled"
-        | "AccountAlreadyExists";
+        | "AccountAlreadyExists"
+        | "TagInvalid"
+        | "TagTooLong"
+        | "StatisticColumnAggregationMismatch"
+        | "StatisticResetIntervalMismatch"
+        | "VersionConfigurationCannotBeSpecifiedForLinkedStat"
+        | "VersionConfigurationIsRequired"
+        | "InvalidEntityTypeForAggregation"
+        | "MultiLevelAggregationNotAllowed";
 
     export interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
@@ -5592,6 +5603,8 @@ declare module PlayFabServerModels {
         AndroidDeviceInfo?: UserAndroidDeviceInfo;
         /** Sign in with Apple account information, if an Apple account has been linked */
         AppleAccountInfo?: UserAppleIdInfo;
+        /** Battle.net account information, if a Battle.net account has been linked */
+        BattleNetAccountInfo?: UserBattleNetInfo;
         /** Timestamp indicating when the user account was created */
         Created: string;
         /** Custom ID information, if a custom ID has been assigned */
@@ -5646,6 +5659,14 @@ declare module PlayFabServerModels {
     export interface UserAppleIdInfo {
         /** Apple subject ID */
         AppleSubjectId?: string;
+
+    }
+
+    export interface UserBattleNetInfo {
+        /** Battle.net identifier */
+        BattleNetAccountId?: string;
+        /** Battle.net display name */
+        BattleNetBattleTag?: string;
 
     }
 

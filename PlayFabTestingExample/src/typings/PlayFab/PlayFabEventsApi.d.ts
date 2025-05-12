@@ -10,20 +10,45 @@ declare module PlayFabEventsModule {
          */
         CreateTelemetryKey(request: PlayFabEventsModels.CreateTelemetryKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.CreateTelemetryKeyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.CreateTelemetryKeyResponse>>;
         /**
+         * Deletes a Data Connection from a title.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/deletedataconnection
+         */
+        DeleteDataConnection(request: PlayFabEventsModels.DeleteDataConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.DeleteDataConnectionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.DeleteDataConnectionResponse>>;
+        /**
          * Deletes a telemetry key configured for the title.
          * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/deletetelemetrykey
          */
         DeleteTelemetryKey(request: PlayFabEventsModels.DeleteTelemetryKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.DeleteTelemetryKeyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.DeleteTelemetryKeyResponse>>;
+        /**
+         * Retrieves a single Data Connection associated with a title.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/getdataconnection
+         */
+        GetDataConnection(request: PlayFabEventsModels.GetDataConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.GetDataConnectionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.GetDataConnectionResponse>>;
         /**
          * Gets information about a telemetry key configured for the title.
          * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/gettelemetrykey
          */
         GetTelemetryKey(request: PlayFabEventsModels.GetTelemetryKeyRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.GetTelemetryKeyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.GetTelemetryKeyResponse>>;
         /**
+         * Retrieves the list of Data Connections associated with a title.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/listdataconnections
+         */
+        ListDataConnections(request: PlayFabEventsModels.ListDataConnectionsRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.ListDataConnectionsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.ListDataConnectionsResponse>>;
+        /**
          * Lists all telemetry keys configured for the title.
          * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/listtelemetrykeys
          */
         ListTelemetryKeys(request: PlayFabEventsModels.ListTelemetryKeysRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.ListTelemetryKeysResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.ListTelemetryKeysResponse>>;
+        /**
+         * Creates or updates a Data Connection on a title.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/setdataconnection
+         */
+        SetDataConnection(request: PlayFabEventsModels.SetDataConnectionRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.SetDataConnectionResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.SetDataConnectionResponse>>;
+        /**
+         * Sets a Data Connection for the title to either the active or deactivated state.
+         * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/setdataconnectionactive
+         */
+        SetDataConnectionActive(request: PlayFabEventsModels.SetDataConnectionActiveRequest, callback: PlayFabModule.ApiCallback<PlayFabEventsModels.SetDataConnectionActiveResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEventsModels.SetDataConnectionActiveResponse>>;
         /**
          * Sets a telemetry key to the active or deactivated state.
          * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/settelemetrykeyactive
@@ -58,6 +83,95 @@ declare module PlayFabEventsModels {
     export interface CreateTelemetryKeyResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** Details about the newly created telemetry key. */
         NewKeyDetails?: TelemetryKeyDetails;
+
+    }
+
+    export interface DataConnectionAzureBlobSettings {
+        /** Name of the storage account. */
+        AccountName?: string;
+        /** Name of the container. */
+        ContainerName?: string;
+        /** Azure Entra Tenant Id. */
+        TenantId?: string;
+
+    }
+
+    export interface DataConnectionAzureDataExplorerSettings {
+        /** The URI of the ADX cluster. */
+        ClusterUri?: string;
+        /** The database to write to. */
+        Database?: string;
+        /** The table to write to. */
+        Table?: string;
+
+    }
+
+    export interface DataConnectionDetails {
+        /** Settings of the data connection. */
+        ConnectionSettings: DataConnectionSettings;
+        /** Whether or not the connection is currently active. */
+        IsActive: boolean;
+        /** The name of the data connection. */
+        Name: string;
+        /** Current status of the data connection, if any. */
+        Status?: DataConnectionStatusDetails;
+        /** The type of data connection. */
+        Type: string;
+
+    }
+
+    type DataConnectionErrorState = "OK"
+
+        | "Error";
+
+    export interface DataConnectionFabricKQLSettings {
+        /** The URI of the Fabric cluster. */
+        ClusterUri?: string;
+        /** The database to write to. */
+        Database?: string;
+        /** The table to write to. */
+        Table?: string;
+
+    }
+
+    export interface DataConnectionSettings {
+        /** Settings if the type of connection is AzureBlobStorage. */
+        AzureBlobSettings?: DataConnectionAzureBlobSettings;
+        /** Settings if the type of connection is AzureDataExplorer. */
+        AzureDataExplorerSettings?: DataConnectionAzureDataExplorerSettings;
+        /** Settings if the type of connection is FabricKQL. */
+        AzureFabricKQLSettings?: DataConnectionFabricKQLSettings;
+
+    }
+
+    export interface DataConnectionStatusDetails {
+        /** The name of the error affecting the data connection, if any. */
+        Error?: string;
+        /** A description of the error affecting the data connection, if any. This may be empty for some errors. */
+        ErrorMessage?: string;
+        /** The most recent time of the error affecting the data connection, if any. */
+        MostRecentErrorTime?: string;
+        /** Indicates if the connection is in a normal state or error state. */
+        State?: string;
+
+    }
+
+    type DataConnectionType = "AzureBlobStorage"
+
+        | "AzureDataExplorer"
+        | "FabricKQL";
+
+    export interface DeleteDataConnectionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The name of the data connection to delete. */
+        Name: string;
+
+    }
+
+    export interface DeleteDataConnectionResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Indicates whether or not the connection was deleted as part of the request. */
+        WasDeleted: boolean;
 
     }
 
@@ -118,6 +232,20 @@ declare module PlayFabEventsModels {
 
     }
 
+    export interface GetDataConnectionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The name of the data connection to retrieve. */
+        Name: string;
+
+    }
+
+    export interface GetDataConnectionResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The details of the queried Data Connection. */
+        DataConnection?: DataConnectionDetails;
+
+    }
+
     export interface GetTelemetryKeyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -134,6 +262,18 @@ declare module PlayFabEventsModels {
 
     }
 
+    export interface ListDataConnectionsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+
+    }
+
+    export interface ListDataConnectionsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of existing Data Connections. */
+        DataConnections?: DataConnectionDetails[];
+
+    }
+
     export interface ListTelemetryKeysRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -145,6 +285,47 @@ declare module PlayFabEventsModels {
     export interface ListTelemetryKeysResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The telemetry keys configured for the title. */
         KeyDetails?: TelemetryKeyDetails[];
+
+    }
+
+    export interface SetDataConnectionActiveRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Whether to set the data connection to active (true) or deactivated (false). */
+        Active: boolean;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The name of the data connection to update. */
+        Name: string;
+
+    }
+
+    export interface SetDataConnectionActiveResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The most current details about the data connection that was to be updated. */
+        DataConnection?: DataConnectionDetails;
+        /**
+         * Indicates whether or not the data connection was updated. If false, the data connection was already in the desired
+         * state.
+         */
+        WasUpdated: boolean;
+
+    }
+
+    export interface SetDataConnectionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Settings of the data connection. */
+        ConnectionSettings: DataConnectionSettings;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Whether or not the connection is currently active. */
+        IsActive: boolean;
+        /** The name of the data connection to update or create. */
+        Name: string;
+        /** The type of data connection. */
+        Type: string;
+
+    }
+
+    export interface SetDataConnectionResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The details of the Data Connection to be created or updated. */
+        DataConnection?: DataConnectionDetails;
 
     }
 
