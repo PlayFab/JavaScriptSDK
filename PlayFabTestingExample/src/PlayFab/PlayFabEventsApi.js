@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.190.250428",
+        sdkVersion: "1.191.250512",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.190.250428"
+            sdk: "JavaScriptSDK-1.191.250512"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
-PlayFab.sdkVersion = "1.190.250428";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_117";
+PlayFab.sdkVersion = "1.191.250512";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -245,16 +245,36 @@ PlayFab.EventsApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/CreateTelemetryKey", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    DeleteDataConnection: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/DeleteDataConnection", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     DeleteTelemetryKey: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/DeleteTelemetryKey", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetDataConnection: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/GetDataConnection", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetTelemetryKey: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/GetTelemetryKey", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    ListDataConnections: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/ListDataConnections", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     ListTelemetryKeys: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/ListTelemetryKeys", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SetDataConnection: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/SetDataConnection", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    SetDataConnectionActive: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Event/SetDataConnectionActive", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     SetTelemetryKeyActive: function (request, callback, customData, extraHeaders) {
