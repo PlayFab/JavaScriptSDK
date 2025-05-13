@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.190.250428",
+        sdkVersion: "1.191.250512",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.190.250428"
+            sdk: "JavaScriptSDK-1.191.250512"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
-PlayFab.sdkVersion = "1.190.250428";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_117";
+PlayFab.sdkVersion = "1.191.250512";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -273,6 +273,10 @@ PlayFab.AddonApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateSteam", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    CreateOrUpdateToxMod: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateToxMod", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     CreateOrUpdateTwitch: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/CreateOrUpdateTwitch", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -309,6 +313,10 @@ PlayFab.AddonApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteSteam", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
+    DeleteToxMod: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteToxMod", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
     DeleteTwitch: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/DeleteTwitch", request, "X-EntityToken", callback, customData, extraHeaders);
     },
@@ -343,6 +351,10 @@ PlayFab.AddonApi = {
 
     GetSteam: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetSteam", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    GetToxMod: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Addon/GetToxMod", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     GetTwitch: function (request, callback, customData, extraHeaders) {

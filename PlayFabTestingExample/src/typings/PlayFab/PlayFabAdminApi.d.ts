@@ -2690,6 +2690,7 @@ declare module PlayFabAdminModels {
         | "DataNotAvailable"
         | "InvalidReportName"
         | "ResourceNotModified"
+        | "StudioCreationLimitExceeded"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2994,6 +2995,8 @@ declare module PlayFabAdminModels {
         | "GameSaveManifestDescriptionUpdateNotAllowed"
         | "GameSaveTitleConfigNotFound"
         | "GameSaveTitleAlreadyOnboarded"
+        | "GameSaveServiceNotEnabledForTitle"
+        | "GameSaveServiceOnboardingPending"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -3003,7 +3006,15 @@ declare module PlayFabAdminModels {
         | "StateShareCreatedStatesLimitExceeded"
         | "StateShareIdMissingOrMalformed"
         | "PlayerCreationDisabled"
-        | "AccountAlreadyExists";
+        | "AccountAlreadyExists"
+        | "TagInvalid"
+        | "TagTooLong"
+        | "StatisticColumnAggregationMismatch"
+        | "StatisticResetIntervalMismatch"
+        | "VersionConfigurationCannotBeSpecifiedForLinkedStat"
+        | "VersionConfigurationIsRequired"
+        | "InvalidEntityTypeForAggregation"
+        | "MultiLevelAggregationNotAllowed";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
@@ -5776,6 +5787,8 @@ declare module PlayFabAdminModels {
         AndroidDeviceInfo?: UserAndroidDeviceInfo;
         /** Sign in with Apple account information, if an Apple account has been linked */
         AppleAccountInfo?: UserAppleIdInfo;
+        /** Battle.net account information, if a Battle.net account has been linked */
+        BattleNetAccountInfo?: UserBattleNetInfo;
         /** Timestamp indicating when the user account was created */
         Created: string;
         /** Custom ID information, if a custom ID has been assigned */
@@ -5830,6 +5843,14 @@ declare module PlayFabAdminModels {
     export interface UserAppleIdInfo {
         /** Apple subject ID */
         AppleSubjectId?: string;
+
+    }
+
+    export interface UserBattleNetInfo {
+        /** Battle.net identifier */
+        BattleNetAccountId?: string;
+        /** Battle.net display name */
+        BattleNetBattleTag?: string;
 
     }
 

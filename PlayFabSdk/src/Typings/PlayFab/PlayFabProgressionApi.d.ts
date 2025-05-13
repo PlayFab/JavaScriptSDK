@@ -145,6 +145,12 @@ declare module PlayFabProgressionModels {
     }
 
     export interface CreateStatisticDefinitionRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * [In Preview]: The list of statistic definition names whose scores must be aggregated towards this stat. If
+         * AggregationSource is specified, the entityType of this definition MUST be Title (making it a CommunityStat). Currently,
+         * only one aggregation source can be specified.
+         */
+        AggregationSources?: string[];
         /** The columns for the statistic defining the aggregation method for each column. */
         Columns?: StatisticColumn[];
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -375,6 +381,14 @@ declare module PlayFabProgressionModels {
     }
 
     export interface GetStatisticDefinitionResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of statistic definitions names this definition aggregates to. */
+        AggregationDestinations?: string[];
+        /**
+         * The list of statistic definitions names whose values must be aggregated towards this stat. If AggregationSource is
+         * specified, the entityType of this definition MUST be Title (making it a CommunityStat). Currently, only one aggregation
+         * source can be specified.
+         */
+        AggregationSources?: string[];
         /** The columns for the statistic defining the aggregation method for each column. */
         Columns?: StatisticColumn[];
         /** Created time, in UTC */
@@ -574,6 +588,14 @@ declare module PlayFabProgressionModels {
     }
 
     export interface StatisticDefinition {
+        /** The list of statistic definitions names this definition aggregates to. */
+        AggregationDestinations?: string[];
+        /**
+         * The list of statistic definitions names whose values must be aggregated towards this stat. If AggregationSource is
+         * specified, the entityType of this definition MUST be Title (making it a CommunityStat). Currently, only one aggregation
+         * source can be specified.
+         */
+        AggregationSources?: string[];
         /** The columns for the statistic defining the aggregation method for each column. */
         Columns?: StatisticColumn[];
         /** Created time, in UTC */

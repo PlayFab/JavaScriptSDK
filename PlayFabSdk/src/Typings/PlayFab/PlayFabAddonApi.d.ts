@@ -45,6 +45,11 @@ declare module PlayFabAddonModule {
          */
         CreateOrUpdateSteam(request: PlayFabAddonModels.CreateOrUpdateSteamRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateSteamResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateSteamResponse>>;
         /**
+         * Creates the ToxMod addon on a title, or updates it if it already exists.
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatetoxmod
+         */
+        CreateOrUpdateToxMod(request: PlayFabAddonModels.CreateOrUpdateToxModRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateToxModResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.CreateOrUpdateToxModResponse>>;
+        /**
          * Creates the Twitch addon on a title, or updates it if it already exists.
          * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdatetwitch
          */
@@ -90,6 +95,11 @@ declare module PlayFabAddonModule {
          */
         DeleteSteam(request: PlayFabAddonModels.DeleteSteamRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteSteamResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteSteamResponse>>;
         /**
+         * Deletes the ToxMod addon on a title.
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletetoxmod
+         */
+        DeleteToxMod(request: PlayFabAddonModels.DeleteToxModRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteToxModResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.DeleteToxModResponse>>;
+        /**
          * Deletes the Twitch addon on a title.
          * https://docs.microsoft.com/rest/api/playfab/addon/addon/deletetwitch
          */
@@ -134,6 +144,11 @@ declare module PlayFabAddonModule {
          * https://docs.microsoft.com/rest/api/playfab/addon/addon/getsteam
          */
         GetSteam(request: PlayFabAddonModels.GetSteamRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetSteamResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetSteamResponse>>;
+        /**
+         * Gets information of the ToxMod addon on a title, omits secrets.
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/gettoxmod
+         */
+        GetToxMod(request: PlayFabAddonModels.GetToxModRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.GetToxModResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.GetToxModResponse>>;
         /**
          * Gets information of the Twitch addon on a title, omits secrets.
          * https://docs.microsoft.com/rest/api/playfab/addon/addon/gettwitch
@@ -333,6 +348,26 @@ declare module PlayFabAddonModels {
 
     }
 
+    export interface CreateOrUpdateToxModRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Account ID obtained after creating your ToxMod developer account. */
+        AccountId: string;
+        /** Account Key obtained after creating your ToxMod developer account. */
+        AccountKey: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Whether ToxMod Addon is Enabled by Title. */
+        Enabled: boolean;
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+        /** If an error should be returned if the addon already exists. */
+        ErrorIfExists?: boolean;
+
+    }
+
+    export interface CreateOrUpdateToxModResponse extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface CreateOrUpdateTwitchRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Client ID obtained after creating your Twitch developer account. */
         ClientID?: string;
@@ -444,6 +479,18 @@ declare module PlayFabAddonModels {
     }
 
     export interface DeleteSteamResponse extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface DeleteToxModRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+
+    }
+
+    export interface DeleteToxModResponse extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
@@ -621,6 +668,26 @@ declare module PlayFabAddonModels {
         EnforceServiceSpecificTickets?: boolean;
         /** Use Steam Payments sandbox endpoint for test transactions. */
         UseSandbox?: boolean;
+
+    }
+
+    export interface GetToxModRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+
+    }
+
+    export interface GetToxModResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Account ID obtained after creating your Twitch developer account. */
+        AccountId?: string;
+        /** Account Key obtained after creating your Twitch developer account. */
+        AccountKey?: string;
+        /** Addon status. */
+        Created: boolean;
+        /** Whether the ToxMod Addon is enabled by the title. */
+        Enabled: boolean;
 
     }
 
