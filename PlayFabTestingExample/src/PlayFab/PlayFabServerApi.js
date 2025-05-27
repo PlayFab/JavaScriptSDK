@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.191.250512",
+        sdkVersion: "1.192.250526",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.191.250512"
+            sdk: "JavaScriptSDK-1.192.250526"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_117";
-PlayFab.sdkVersion = "1.191.250512";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.192.250526";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -545,6 +545,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GrantItemsToUsers", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    LinkBattleNetAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkBattleNetAccount", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     LinkNintendoServiceAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkNintendoServiceAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -583,6 +587,10 @@ PlayFab.ServerApi = {
 
     LoginWithAndroidDeviceID: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithAndroidDeviceID", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    LoginWithBattleNet: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithBattleNet", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     LoginWithCustomID: function (request, callback, customData, extraHeaders) {
@@ -715,6 +723,10 @@ PlayFab.ServerApi = {
 
     SubtractUserVirtualCurrency: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UnlinkBattleNetAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkBattleNetAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UnlinkNintendoServiceAccount: function (request, callback, customData, extraHeaders) {

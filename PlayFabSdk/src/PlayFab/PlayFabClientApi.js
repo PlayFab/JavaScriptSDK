@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.191.250512",
+        sdkVersion: "1.192.250526",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.191.250512"
+            sdk: "JavaScriptSDK-1.192.250526"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_117";
-PlayFab.sdkVersion = "1.191.250512";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.192.250526";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -561,8 +561,8 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkApple", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    LinkBattleNet: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkBattleNet", request, "X-Authorization", callback, customData, extraHeaders);
+    LinkBattleNetAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LinkBattleNetAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     LinkCustomID: function (request, callback, customData, extraHeaders) {
@@ -1219,8 +1219,8 @@ PlayFab.ClientApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkApple", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
-    UnlinkBattleNet: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkBattleNet", request, "X-Authorization", callback, customData, extraHeaders);
+    UnlinkBattleNetAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Client/UnlinkBattleNetAccount", request, "X-Authorization", callback, customData, extraHeaders);
     },
 
     UnlinkCustomID: function (request, callback, customData, extraHeaders) {

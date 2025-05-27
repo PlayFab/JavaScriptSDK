@@ -126,7 +126,10 @@ declare module PlayFabProgressionModule {
 
 declare module PlayFabProgressionModels {
     export interface CreateLeaderboardDefinitionRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Leaderboard columns describing the sort directions, cannot be changed after creation. */
+        /**
+         * Leaderboard columns describing the sort directions, cannot be changed after creation. A maximum of 5 columns are
+         * allowed.
+         */
         Columns: LeaderboardColumn[];
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -151,7 +154,7 @@ declare module PlayFabProgressionModels {
          * only one aggregation source can be specified.
          */
         AggregationSources?: string[];
-        /** The columns for the statistic defining the aggregation method for each column. */
+        /** The columns for the statistic defining the aggregation method for each column. A maximum of 5 columns are allowed. */
         Columns?: StatisticColumn[];
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };

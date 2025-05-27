@@ -2997,6 +2997,7 @@ declare module PlayFabAdminModels {
         | "GameSaveTitleAlreadyOnboarded"
         | "GameSaveServiceNotEnabledForTitle"
         | "GameSaveServiceOnboardingPending"
+        | "GameSaveManifestNotEligibleAsConflictingVersion"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
