@@ -3304,7 +3304,9 @@ declare module PlayFabClientModels {
 
     export interface LinkFacebookAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Unique identifier from Facebook for the user. */
-        AccessToken: string;
+        AccessToken?: string;
+        /** Token used for limited login authentication. */
+        AuthenticationToken?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /** If another user is already linked to the account, unlink the other user and re-link. */

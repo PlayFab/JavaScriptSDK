@@ -2998,6 +2998,9 @@ declare module PlayFabAdminModels {
         | "GameSaveServiceNotEnabledForTitle"
         | "GameSaveServiceOnboardingPending"
         | "GameSaveManifestNotEligibleAsConflictingVersion"
+        | "GameSaveServiceUnavailable"
+        | "GameSaveConflict"
+        | "GameSaveManifestNotEligibleForRollback"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -3015,7 +3018,8 @@ declare module PlayFabAdminModels {
         | "VersionConfigurationCannotBeSpecifiedForLinkedStat"
         | "VersionConfigurationIsRequired"
         | "InvalidEntityTypeForAggregation"
-        | "MultiLevelAggregationNotAllowed";
+        | "MultiLevelAggregationNotAllowed"
+        | "AggregationTypeNotAllowedForLinkedStat";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
