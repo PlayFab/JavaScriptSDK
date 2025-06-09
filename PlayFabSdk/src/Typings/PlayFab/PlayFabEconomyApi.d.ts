@@ -2211,6 +2211,8 @@ declare module PlayFabEconomyModels {
     export interface Transaction {
         /** The API call that caused this transaction. */
         ApiName?: string;
+        /** Additional details about the transaction. Null if it was not a clawback operation. */
+        ClawbackDetails?: TransactionClawbackDetails;
         /** The type of item that the the operation occurred on. */
         ItemType?: string;
         /** The operations that occurred. */
@@ -2227,6 +2229,12 @@ declare module PlayFabEconomyModels {
         TransactionId?: string;
         /** Additional details about the transaction. Null if it was not a transfer operation. */
         TransferDetails?: TransactionTransferDetails;
+
+    }
+
+    export interface TransactionClawbackDetails {
+        /** The id of the clawed back operation. */
+        TransactionIdClawedback?: string;
 
     }
 
