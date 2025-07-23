@@ -143,7 +143,7 @@ declare module PlayFabProgressionModels {
         /** Maximum number of entries on this leaderboard */
         SizeLimit: number;
         /** The version reset configuration for the leaderboard definition. */
-        VersionConfiguration: VersionConfiguration;
+        VersionConfiguration?: VersionConfiguration;
 
     }
 

@@ -2220,6 +2220,8 @@ declare module PlayFabEconomyModels {
         ApiName?: string;
         /** Additional details about the transaction. Null if it was not a clawback operation. */
         ClawbackDetails?: TransactionClawbackDetails;
+        /** The custom tags associated with this transactions. */
+        CustomTags?: { [key: string]: string | null };
         /** The type of item that the the operation occurred on. */
         ItemType?: string;
         /** The operations that occurred. */
