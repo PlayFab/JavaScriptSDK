@@ -2707,8 +2707,8 @@ declare module PlayFabClientModels {
 
     export interface GetPlayFabIDsFromFacebookIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 2,000
-         * in length.
+         * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 25 in
+         * length.
          */
         FacebookIDs: string[];
 
@@ -2738,7 +2738,7 @@ declare module PlayFabClientModels {
     export interface GetPlayFabIDsFromGameCenterIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Game Center identifiers (the Player Identifier) for which the title needs to get PlayFab identifiers.
-         * The array cannot exceed 2,000 in length.
+         * The array cannot exceed 25 in length.
          */
         GameCenterIDs: string[];
 
@@ -2768,7 +2768,7 @@ declare module PlayFabClientModels {
     export interface GetPlayFabIDsFromGoogleIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Google identifiers (Google+ user IDs) for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         GoogleIDs: string[];
 
@@ -2783,7 +2783,7 @@ declare module PlayFabClientModels {
     export interface GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Google Play Games identifiers (Google+ user IDs) for which the title needs to get PlayFab identifiers.
-         * The array cannot exceed 2,000 in length.
+         * The array cannot exceed 25 in length.
          */
         GooglePlayGamesPlayerIDs: string[];
 
@@ -2798,7 +2798,7 @@ declare module PlayFabClientModels {
     export interface GetPlayFabIDsFromKongregateIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Kongregate identifiers (Kongregate's user_id) for which the title needs to get PlayFab identifiers. The
-         * array cannot exceed 2,000 in length.
+         * array cannot exceed 25 in length.
          */
         KongregateIDs: string[];
 
@@ -2813,7 +2813,7 @@ declare module PlayFabClientModels {
     export interface GetPlayFabIDsFromNintendoServiceAccountIdsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Nintendo Switch Account identifiers for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         NintendoAccountIds: string[];
 
@@ -2828,7 +2828,7 @@ declare module PlayFabClientModels {
     export interface GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Nintendo Switch Device identifiers for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         NintendoSwitchDeviceIds: string[];
 
@@ -2845,7 +2845,7 @@ declare module PlayFabClientModels {
         IssuerId?: number;
         /**
          * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         PSNAccountIDs: string[];
 
@@ -2862,7 +2862,7 @@ declare module PlayFabClientModels {
         IssuerId?: number;
         /**
          * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         PSNOnlineIDs: string[];
 
@@ -2877,7 +2877,7 @@ declare module PlayFabClientModels {
     export interface GetPlayFabIDsFromSteamIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         SteamStringIDs?: string[];
 
@@ -2891,7 +2891,7 @@ declare module PlayFabClientModels {
 
     export interface GetPlayFabIDsFromSteamNamesRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
-         * Array of unique Steam identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 2,000 in
+         * Array of unique Steam identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 25 in
          * length.
          */
         SteamNames: string[];
@@ -2907,7 +2907,7 @@ declare module PlayFabClientModels {
     export interface GetPlayFabIDsFromTwitchIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Twitch identifiers (Twitch's _id) for which the title needs to get PlayFab identifiers. The array cannot
-         * exceed 2,000 in length.
+         * exceed 25 in length.
          */
         TwitchIds: string[];
 
@@ -2924,7 +2924,7 @@ declare module PlayFabClientModels {
         Sandbox?: string;
         /**
          * Array of unique Xbox Live account identifiers for which the title needs to get PlayFab identifiers. The array cannot
-         * exceed 2,000 in length.
+         * exceed 25 in length.
          */
         XboxLiveAccountIDs: string[];
 

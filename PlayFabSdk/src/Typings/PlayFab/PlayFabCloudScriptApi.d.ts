@@ -489,6 +489,8 @@ declare module PlayFabCloudScriptModels {
         FunctionName?: string;
         /** The object returned from the function, if any */
         FunctionResult?: any;
+        /** The size in bytes of the object returned from the function, if any */
+        FunctionResultSize?: number;
         /** Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. */
         FunctionResultTooLarge?: boolean;
 
