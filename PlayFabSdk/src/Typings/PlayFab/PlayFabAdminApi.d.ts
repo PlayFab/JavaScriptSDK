@@ -2691,6 +2691,7 @@ declare module PlayFabAdminModels {
         | "InvalidReportName"
         | "ResourceNotModified"
         | "StudioCreationLimitExceeded"
+        | "StudioDeletionInitiated"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -3019,7 +3020,8 @@ declare module PlayFabAdminModels {
         | "VersionConfigurationIsRequired"
         | "InvalidEntityTypeForAggregation"
         | "MultiLevelAggregationNotAllowed"
-        | "AggregationTypeNotAllowedForLinkedStat";
+        | "AggregationTypeNotAllowedForLinkedStat"
+        | "StoreMetricsRequestInvalidInput";
 
     export interface GetActionsOnPlayersInSegmentTaskInstanceResult extends PlayFabModule.IPlayFabResultCommon  {
         /** Parameter of this task instance */
