@@ -160,8 +160,14 @@ declare module PlayFabAddonModule {
 
 declare module PlayFabAddonModels {
     export interface CreateOrUpdateAppleRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Allow validation of receipts from the Apple production environment. Required for app releases. */
+        AllowProduction?: boolean;
+        /** Allow validation of receipts from the Apple sandbox environment. Typically used while testing. */
+        AllowSandbox?: boolean;
         /** iOS App Bundle ID obtained after setting up your app in the App Store. */
         AppBundleId: string;
+        /** AppId obtained after setting up your app in the App Store. */
+        AppId?: string;
         /** iOS App Shared Secret obtained after setting up your app in the App Store. */
         AppSharedSecret?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -175,6 +181,12 @@ declare module PlayFabAddonModels {
          * case where Apple rotates their signing keys.
          */
         IgnoreExpirationDate?: boolean;
+        /** IssuerId obtained after setting up your app in the App Store. */
+        IssuerId?: string;
+        /** KeyId obtained after setting up your app in the App Store. */
+        KeyId?: string;
+        /** PrivateKey obtained after setting up your app in the App Store. */
+        PrivateKey?: string;
         /** Require secure authentication only for this app. */
         RequireSecureAuthentication?: boolean;
 
