@@ -2266,6 +2266,10 @@ declare module PlayFabEconomyModels {
     }
 
     export interface TransactionPurchaseDetails {
+        /** The friendly id of the item that was purchased. */
+        ItemFriendlyId?: string;
+        /** The id of the item that was purchased. */
+        ItemId?: string;
         /** The friendly id of the Store the item was purchased from or null. */
         StoreFriendlyId?: string;
         /** The id of the Store the item was purchased from or null. */
