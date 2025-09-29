@@ -188,6 +188,11 @@ declare module PlayFabEconomyModule {
         RedeemAppleAppStoreInventoryItems(request: PlayFabEconomyModels.RedeemAppleAppStoreInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemAppleAppStoreInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemAppleAppStoreInventoryItemsResponse>>;
         /**
          * Redeem items.
+         * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemappleappstorewithjwsinventoryitems
+         */
+        RedeemAppleAppStoreWithJwsInventoryItems(request: PlayFabEconomyModels.RedeemAppleAppStoreWithJwsInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemAppleAppStoreWithJwsInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemAppleAppStoreWithJwsInventoryItemsResponse>>;
+        /**
+         * Redeem items.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemgoogleplayinventoryitems
          */
         RedeemGooglePlayInventoryItems(request: PlayFabEconomyModels.RedeemGooglePlayInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemGooglePlayInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemGooglePlayInventoryItemsResponse>>;
@@ -1295,6 +1300,8 @@ declare module PlayFabEconomyModels {
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
         Entity?: EntityKey;
+        /** The token to get the status of the inventory operation. */
+        OperationToken?: string;
 
     }
 
@@ -1732,6 +1739,10 @@ declare module PlayFabEconomyModels {
 
     }
 
+    export interface PurchaseOverride {
+
+    }
+
     export interface PurchaseOverridesInfo {
 
     }
@@ -1793,6 +1804,28 @@ declare module PlayFabEconomyModels {
     }
 
     export interface RedeemAppleAppStoreInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The list of failed redemptions from the external marketplace. */
+        Failed?: RedemptionFailure[];
+        /** The list of successful redemptions from the external marketplace. */
+        Succeeded?: RedemptionSuccess[];
+        /** The Transaction IDs associated with the inventory modifications */
+        TransactionIds?: string[];
+
+    }
+
+    export interface RedeemAppleAppStoreWithJwsInventoryItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        CollectionId?: string;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The entity to perform this action on. */
+        Entity?: EntityKey;
+        /** The JWS representation of a transaction. */
+        JWSTransactions: string[];
+
+    }
+
+    export interface RedeemAppleAppStoreWithJwsInventoryItemsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** The list of failed redemptions from the external marketplace. */
         Failed?: RedemptionFailure[];
         /** The list of successful redemptions from the external marketplace. */

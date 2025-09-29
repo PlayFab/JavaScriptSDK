@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.199.250912",
+        sdkVersion: "1.200.250926",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.199.250912"
+            sdk: "JavaScriptSDK-1.200.250926"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
-PlayFab.sdkVersion = "1.199.250912";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
+PlayFab.sdkVersion = "1.200.250926";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -355,6 +355,10 @@ PlayFab.EconomyApi = {
 
     RedeemAppleAppStoreInventoryItems: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/RedeemAppleAppStoreInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
+    },
+
+    RedeemAppleAppStoreWithJwsInventoryItems: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Inventory/RedeemAppleAppStoreWithJwsInventoryItems", request, "X-EntityToken", callback, customData, extraHeaders);
     },
 
     RedeemGooglePlayInventoryItems: function (request, callback, customData, extraHeaders) {
