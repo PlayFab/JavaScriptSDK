@@ -3114,6 +3114,8 @@ declare module PlayFabMultiplayerModels {
         NetworkConfiguration: PartyNetworkConfiguration;
         /** A guid string party ID created track the party session over its life. */
         PartyId?: string;
+        /** A player entity Id on behalf of whom the request is being made. */
+        PlayFabId?: string;
         /**
          * The preferred regions to request a party session from. The party service will iterate through the regions in the
          * specified order and allocate a party session from the first one that is available.
