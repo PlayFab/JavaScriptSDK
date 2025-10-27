@@ -767,10 +767,7 @@ declare module PlayFabProgressionModels {
         Entity?: EntityKey;
         /** Collection of statistics to update, maximum 50. */
         Statistics: StatisticUpdate[];
-        /**
-         * Optional transactionId of this update which can be used to ensure idempotence. Using this field is still in testing
-         * stage.
-         */
+        /** Optional transactionId of this update which can be used to ensure idempotence. */
         TransactionId?: string;
 
     }
