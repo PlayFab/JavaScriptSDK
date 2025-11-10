@@ -586,24 +586,38 @@ declare module PlayFabProgressionModels {
     export interface ListLeaderboardDefinitionsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
+        /** The page size for the request. */
+        PageSize?: number;
+        /** The skip token for the paged request. */
+        SkipToken?: string;
 
     }
 
     export interface ListLeaderboardDefinitionsResponse extends PlayFabModule.IPlayFabResultCommon  {
         /** List of leaderboard definitions for the title. */
         LeaderboardDefinitions?: LeaderboardDefinition[];
+        /** The page size on the response. */
+        PageSize: number;
+        /** The skip token for the paged response. */
+        SkipToken?: string;
 
     }
 
     export interface ListStatisticDefinitionsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
+        /** The page size for the request. */
+        PageSize?: number;
+        /** The skip token for the paged request. */
+        SkipToken?: string;
 
     }
 
     export interface ListStatisticDefinitionsResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
+        /** The page size on the response. */
+        PageSize: number;
+        /** The skip token for the paged response. */
+        SkipToken?: string;
         /** List of statistic definitions for the title. */
         StatisticDefinitions?: StatisticDefinition[];
 
