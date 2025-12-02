@@ -2697,6 +2697,7 @@ declare module PlayFabAdminModels {
         | "CannotEnableAnonymousPlayerCreation"
         | "ParentCustomerAccountNotFound"
         | "AccountLinkedToABannedPlayer"
+        | "AzureSubscriptionNotEligibleForLinking"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
