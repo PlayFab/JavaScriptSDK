@@ -38,7 +38,7 @@ declare module PlayFabAdminModule {
          */
         AddVirtualCurrencyTypes(request: PlayFabAdminModels.AddVirtualCurrencyTypesRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BlankResult>>;
         /**
-         * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
+         * Bans users by PlayFab ID with optional IP address for the provided game.
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/banusers
          */
         BanUsers(request: PlayFabAdminModels.BanUsersRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.BanUsersResult>>;
@@ -3034,6 +3034,7 @@ declare module PlayFabAdminModels {
         | "UnsupportedEntityType"
         | "EntityTypeSpecifiedRequiresAggregationSource"
         | "PlayFabErrorEventNotSupportedForEntityType"
+        | "MetadataLengthExceeded"
         | "StoreMetricsRequestInvalidInput"
         | "StoreMetricsErrorRetrievingMetrics";
 

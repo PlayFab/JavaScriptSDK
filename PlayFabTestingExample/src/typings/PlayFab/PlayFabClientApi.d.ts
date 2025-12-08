@@ -333,6 +333,13 @@ declare module PlayFabClientModule {
          */
         GetPlayFabIDsFromNintendoSwitchDeviceIds(request: PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>>;
         /**
+         * Retrieves the unique PlayFab identifiers for the given set of OpenId subject identifiers. A OpenId identifier is the
+         * service name plus the service-specific ID for the player, as specified by the title when the OpenId identifier was added
+         * to the player account.
+         * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromopenidsubjectidentifiers
+         */
+        GetPlayFabIDsFromOpenIdSubjectIdentifiers(request: PlayFabClientModels.GetPlayFabIDsFromOpenIdsRequest, callback: PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromOpenIdsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabClientModels.GetPlayFabIDsFromOpenIdsResult>>;
+        /**
          * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
          * https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnaccountids
          */
@@ -2840,6 +2847,21 @@ declare module PlayFabClientModels {
 
     }
 
+    export interface GetPlayFabIDsFromOpenIdsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * Array of unique OpenId Connect identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed
+         * 10 in length.
+         */
+        OpenIdSubjectIdentifiers: OpenIdSubjectIdentifier[];
+
+    }
+
+    export interface GetPlayFabIDsFromOpenIdsResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Mapping of OpenId Connect identifiers to PlayFab identifiers. */
+        Data?: OpenIdSubjectIdentifierPlayFabIdPair[];
+
+    }
+
     export interface GetPlayFabIDsFromPSNAccountIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         IssuerId?: number;
@@ -4176,6 +4198,22 @@ declare module PlayFabClientModels {
         /** Unique Nintendo Switch Device identifier for a user. */
         NintendoSwitchDeviceId?: string;
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Nintendo Switch Device identifier. */
+        PlayFabId?: string;
+
+    }
+
+    export interface OpenIdSubjectIdentifier {
+        /** The issuer URL for the OpenId Connect provider, or the override URL if an override exists. */
+        Issuer: string;
+        /** The unique subject identifier within the context of the issuer. */
+        Subject: string;
+
+    }
+
+    export interface OpenIdSubjectIdentifierPlayFabIdPair {
+        /** Unique OpenId Connect identifier for a user. */
+        OpenIdSubjectIdentifier?: OpenIdSubjectIdentifier;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the OpenId Connect identifier. */
         PlayFabId?: string;
 
     }
