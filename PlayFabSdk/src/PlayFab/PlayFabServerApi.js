@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.204.251121",
+        sdkVersion: "1.205.251205",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.204.251121"
+            sdk: "JavaScriptSDK-1.205.251205"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
-PlayFab.sdkVersion = "1.204.251121";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.205.251205";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -436,6 +436,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    GetPlayFabIDsFromOpenIdSubjectIdentifiers: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromOpenIdSubjectIdentifiers", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     GetPlayFabIDsFromPSNAccountIDs: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromPSNAccountIDs", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -580,6 +584,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkSteamId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    LinkTwitchAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkTwitchAccount", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     LinkXboxAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LinkXboxAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -618,6 +626,10 @@ PlayFab.ServerApi = {
 
     LoginWithSteamId: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithSteamId", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    LoginWithTwitch: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/LoginWithTwitch", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     LoginWithXbox: function (request, callback, customData, extraHeaders) {
@@ -754,6 +766,10 @@ PlayFab.ServerApi = {
 
     UnlinkSteamId: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkSteamId", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UnlinkTwitchAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkTwitchAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UnlinkXboxAccount: function (request, callback, customData, extraHeaders) {

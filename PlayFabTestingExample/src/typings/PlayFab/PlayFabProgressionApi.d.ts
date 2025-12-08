@@ -544,10 +544,7 @@ declare module PlayFabProgressionModels {
     export interface LeaderboardEntryUpdate {
         /** The unique Id for the entry. If using PlayFab Entities, this would be the entityId of the entity. */
         EntityId: string;
-        /**
-         * Arbitrary metadata to store along side the leaderboard entry, will be returned by all Leaderboard APIs. Must be less
-         * than 50 UTF8 encoded characters.
-         */
+        /** Arbitrary metadata to store along side the leaderboard entry, will be returned by all Leaderboard APIs. */
         Metadata?: string;
         /**
          * The scores for the leaderboard. The number of values provided here must match the number of columns in the Leaderboard
@@ -699,10 +696,7 @@ declare module PlayFabProgressionModels {
     }
 
     export interface StatisticUpdate {
-        /**
-         * Arbitrary metadata to store along side the statistic, will be returned by all Leaderboard APIs. Must be less than 50
-         * UTF8 encoded characters.
-         */
+        /** Arbitrary metadata to store along side the statistic, will be returned by all Leaderboard APIs. */
         Metadata?: string;
         /** Name of the statistic, as originally configured. */
         Name: string;
