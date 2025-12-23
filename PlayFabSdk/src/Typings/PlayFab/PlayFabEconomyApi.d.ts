@@ -197,7 +197,7 @@ declare module PlayFabEconomyModule {
          */
         RedeemGooglePlayInventoryItems(request: PlayFabEconomyModels.RedeemGooglePlayInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemGooglePlayInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemGooglePlayInventoryItemsResponse>>;
         /**
-         * Redeem items.
+         * Redeem items from the Microsoft Store. Supported entitlement types are Developer Manager Consumable and Durable.
          * https://docs.microsoft.com/rest/api/playfab/economy/inventory/redeemmicrosoftstoreinventoryitems
          */
         RedeemMicrosoftStoreInventoryItems(request: PlayFabEconomyModels.RedeemMicrosoftStoreInventoryItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemMicrosoftStoreInventoryItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.RedeemMicrosoftStoreInventoryItemsResponse>>;
@@ -1568,6 +1568,8 @@ declare module PlayFabEconomyModels {
         Id?: string;
         /** The stack id of the item. */
         StackId?: string;
+        /** Only used for subscriptions. The date of when the item started in UTC. */
+        StartDate?: string;
         /** The type of the item. This should correspond to the item type in the catalog. */
         Type?: string;
 
