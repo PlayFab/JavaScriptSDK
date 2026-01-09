@@ -2813,6 +2813,7 @@ declare module PlayFabAdminModels {
         | "ExperimentationExclusionGroupInvalidTrafficAllocation"
         | "ExperimentationExclusionGroupInvalidName"
         | "ExperimentationLegacyExperimentInvalidOperation"
+        | "ExperimentationExperimentStopFailed"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
