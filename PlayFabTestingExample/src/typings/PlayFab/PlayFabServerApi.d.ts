@@ -717,6 +717,16 @@ declare module PlayFabServerModule {
          */
         UnlinkBattleNetAccount(request: PlayFabServerModels.UnlinkBattleNetAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.EmptyResponse>>;
         /**
+         * Unlinks the related Facebook account from the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkfacebookaccount
+         */
+        UnlinkFacebookAccount(request: PlayFabServerModels.UnlinkFacebookAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkFacebookAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkFacebookAccountResult>>;
+        /**
+         * Unlinks the related Facebook Instant Games identifier from the user's PlayFab account
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkfacebookinstantgamesid
+         */
+        UnlinkFacebookInstantGamesId(request: PlayFabServerModels.UnlinkFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkFacebookInstantGamesIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkFacebookInstantGamesIdResult>>;
+        /**
          * Unlinks the related Nintendo account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoserviceaccount
          */
@@ -2682,6 +2692,7 @@ declare module PlayFabServerModels {
         | "ExperimentationExclusionGroupInvalidTrafficAllocation"
         | "ExperimentationExclusionGroupInvalidName"
         | "ExperimentationLegacyExperimentInvalidOperation"
+        | "ExperimentationExperimentStopFailed"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -5410,6 +5421,32 @@ declare module PlayFabServerModels {
         CustomTags?: { [key: string]: string | null };
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
+
+    }
+
+    export interface UnlinkFacebookAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** PlayFab unique identifier of the user to unlink. */
+        PlayFabId: string;
+
+    }
+
+    export interface UnlinkFacebookAccountResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface UnlinkFacebookInstantGamesIdRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Facebook Instant Games identifier for the user. If not specified, the most recently linked identifier will be used. */
+        FacebookInstantGamesId?: string;
+        /** PlayFab unique identifier of the user to unlink. */
+        PlayFabId: string;
+
+    }
+
+    export interface UnlinkFacebookInstantGamesIdResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
