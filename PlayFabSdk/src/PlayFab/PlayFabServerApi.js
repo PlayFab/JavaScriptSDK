@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.206.251219",
+        sdkVersion: "1.207.260109",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.206.251219"
+            sdk: "JavaScriptSDK-1.207.260109"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_116";
-PlayFab.sdkVersion = "1.206.251219";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_8";
+PlayFab.sdkVersion = "1.207.260109";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -746,6 +746,14 @@ PlayFab.ServerApi = {
 
     UnlinkBattleNetAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkBattleNetAccount", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UnlinkFacebookAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkFacebookAccount", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UnlinkFacebookInstantGamesId: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkFacebookInstantGamesId", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UnlinkNintendoServiceAccount: function (request, callback, customData, extraHeaders) {
