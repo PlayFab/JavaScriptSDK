@@ -158,11 +158,6 @@ declare module PlayFabEconomyModule {
          */
         GetItems(request: PlayFabEconomyModels.GetItemsRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetItemsResponse>>;
         /**
-         * Gets the access tokens.
-         * https://docs.microsoft.com/rest/api/playfab/economy/inventory/getmicrosoftstoreaccesstokens
-         */
-        GetMicrosoftStoreAccessTokens(request: PlayFabEconomyModels.GetMicrosoftStoreAccessTokensRequest, callback: PlayFabModule.ApiCallback<PlayFabEconomyModels.GetMicrosoftStoreAccessTokensResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabEconomyModels.GetMicrosoftStoreAccessTokensResponse>>;
-        /**
          * Get transaction history for a player. Up to 250 Events can be returned at once. You can use continuation tokens to
          * paginate through results that return greater than the limit. Getting transaction history has a lower RPS limit than
          * getting a Player's inventory with Player Entities having a limit of 30 requests in 300 seconds.
@@ -1459,23 +1454,6 @@ declare module PlayFabEconomyModels {
 
     }
 
-    export interface GetMicrosoftStoreAccessTokensRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-
-    }
-
-    export interface GetMicrosoftStoreAccessTokensResponse extends PlayFabModule.IPlayFabResultCommon  {
-        /**
-         * The collections access token for calling https://onestore.microsoft.com/b2b/keys/create/collections to obtain a
-         * CollectionsIdKey for the user
-         */
-        CollectionsAccessToken?: string;
-        /** The date the collections access token expires */
-        CollectionsAccessTokenExpirationDate: string;
-
-    }
-
     export interface GetTransactionHistoryRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The id of the entity's collection to perform this action on. (Default="default") */
         CollectionId?: string;
@@ -1862,8 +1840,6 @@ declare module PlayFabEconomyModels {
     export interface RedeemMicrosoftStoreInventoryItemsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The id of the entity's collection to perform this action on. (Default="default") */
         CollectionId?: string;
-        /** The OneStore Collections Id Key used for AAD authentication. */
-        CollectionsIdKey?: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
         /** The entity to perform this action on. */
@@ -1967,6 +1943,8 @@ declare module PlayFabEconomyModels {
     }
 
     export interface RedemptionSuccess {
+        /** The timestamp for when the redeem expired. */
+        ExpirationTimestamp?: string;
         /** The Marketplace Alternate ID being redeemed. */
         MarketplaceAlternateId?: string;
         /** The transaction id in the external marketplace. */
