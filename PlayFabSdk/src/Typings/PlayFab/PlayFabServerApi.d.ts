@@ -2621,6 +2621,7 @@ declare module PlayFabServerModels {
         | "CatalogBadRequest"
         | "CatalogTooManyRequests"
         | "InvalidCatalogItemConfiguration"
+        | "LegacyEconomyDisabled"
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
