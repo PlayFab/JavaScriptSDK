@@ -1611,7 +1611,11 @@ declare module PlayFabMultiplayerModels {
         OrderBy?: string;
         /** Request pagination information. */
         Pagination?: PaginationRequest;
-        /** Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. */
+        /**
+         * Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. Only mutual Xbox Live friends
+         * (where both users follow each other) are included, unlike GetFriendsList which includes all users the caller is
+         * following.
+         */
         XboxToken?: string;
 
     }
