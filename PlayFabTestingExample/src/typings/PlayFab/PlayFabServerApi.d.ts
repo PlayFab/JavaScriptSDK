@@ -2730,7 +2730,7 @@ declare module PlayFabServerModels {
         | "AsyncExportNotFound"
         | "AsyncExportRateLimitExceeded"
         | "AnalyticsSegmentCountOverLimit"
-        | "GetPlayersInSegmentDeprecated"
+        | "GetPlayersInSegmentRetired"
         | "SnapshotNotFound"
         | "InventoryApiNotImplemented"
         | "InventoryCollectionDeletionDisallowed"
@@ -3131,7 +3131,10 @@ declare module PlayFabServerModels {
          * the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
         ProfileConstraints?: PlayerProfileViewConstraints;
-        /** Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. */
+        /**
+         * Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. When provided, all Xbox Live
+         * users the caller is following are included regardless of whether they follow the caller back.
+         */
         XboxToken?: string;
 
     }
