@@ -2698,6 +2698,7 @@ declare module PlayFabAdminModels {
         | "ParentCustomerAccountNotFound"
         | "AccountLinkedToABannedPlayer"
         | "AzureSubscriptionNotEligibleForLinking"
+        | "EntityIsNotAMember"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2815,6 +2816,8 @@ declare module PlayFabAdminModels {
         | "ExperimentationExclusionGroupInvalidName"
         | "ExperimentationLegacyExperimentInvalidOperation"
         | "ExperimentationExperimentStopFailed"
+        | "ExperimentationExperimentDeleteFailed"
+        | "ExperimentationExperimentStartFailed"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -3012,6 +3015,7 @@ declare module PlayFabAdminModels {
         | "GameSaveConflict"
         | "GameSaveManifestNotEligibleForRollback"
         | "GameSaveTitleClientAnonymousAccountCreationNotDisabled"
+        | "GameSaveTitleConfigNoUpdatesRequested"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -3358,12 +3362,17 @@ declare module PlayFabAdminModels {
     }
 
     export interface GetPolicyRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** The name of the policy to read. Only supported name is 'ApiPolicy'. */
+        /**
+         * The name of the policy to read. Only 'ApiPolicy' is supported. This parameter is optional and defaults to 'ApiPolicy' if
+         * omitted.
+         */
         PolicyName?: string;
 
     }
 
     export interface GetPolicyResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** The UTC date and time when the policy was last updated. Null if the policy has never been customized. */
+        LastUpdated?: string;
         /** The name of the policy read. */
         PolicyName?: string;
         /** Policy version. */
@@ -3999,15 +4008,18 @@ declare module PlayFabAdminModels {
     }
 
     export interface PermissionStatement {
-        /** The action this statement effects. The only supported action is 'Execute'. */
-        Action: string;
+        /** The action this statement effects. May only be '*'. This parameter is optional and defaults to '*' if omitted. */
+        Action?: string;
         /** Additional conditions to be applied for API Resources. */
         ApiConditions?: ApiCondition;
         /** A comment about the statement. Intended solely for bookkeeping and debugging. */
         Comment?: string;
         /** The effect this statement will have. It could be either Allow or Deny */
         Effect: string;
-        /** The principal this statement will effect. The only supported principal is '*'. */
+        /**
+         * The principal this statement will effect. May be '*' to match all callers, or a JSON object targeting a specific entity
+         * type, e.g. {"title_player_account":"*"} for players or {"master_player_account":"*"} for master player accounts.
+         */
         Principal: string;
         /**
          * The resource this statements effects. The only supported resources look like 'pfrn:api--*' for all apis, or
@@ -5650,8 +5662,11 @@ declare module PlayFabAdminModels {
     export interface UpdatePolicyRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Whether to overwrite or append to the existing policy. */
         OverwritePolicy: boolean;
-        /** The name of the policy being updated. Only supported name is 'ApiPolicy' */
-        PolicyName: string;
+        /**
+         * The name of the policy being updated. Only 'ApiPolicy' is supported. This parameter is optional and defaults to
+         * 'ApiPolicy' if omitted.
+         */
+        PolicyName?: string;
         /** Version of the policy to update. Must be the latest (as returned by GetPolicy). */
         PolicyVersion: number;
         /** The new statements to include in the policy. */
@@ -5664,6 +5679,11 @@ declare module PlayFabAdminModels {
         PolicyName?: string;
         /** The statements included in the new version of the policy. */
         Statements?: PermissionStatement[];
+        /**
+         * Optional warnings about policy statements that may not have the intended effect. For example, resource paths that don't
+         * match any known API endpoint. The policy update still succeeds when warnings are present.
+         */
+        Warnings?: string[];
 
     }
 
