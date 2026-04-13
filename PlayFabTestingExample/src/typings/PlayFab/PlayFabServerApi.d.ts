@@ -119,6 +119,13 @@ declare module PlayFabServerModule {
          */
         ExecuteCloudScript(request: PlayFabServerModels.ExecuteCloudScriptServerRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ExecuteCloudScriptResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.ExecuteCloudScriptResult>>;
         /**
+         * Starts an export for the player profiles in a segment. This API creates a snapshot of all the player profiles which
+         * match the segment definition at the time of the API call. Profiles which change while an export is in progress will not
+         * be reflected in the results.
+         * https://docs.microsoft.com/rest/api/playfab/server/playstream/exportplayersinsegment
+         */
+        ExportPlayersInSegment(request: PlayFabServerModels.ExportPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ExportPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.ExportPlayersInSegmentResult>>;
+        /**
          * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
          * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
          * https://docs.microsoft.com/rest/api/playfab/server/playstream/getallsegments
@@ -231,15 +238,6 @@ declare module PlayFabServerModule {
          */
         GetPlayerSegments(request: PlayFabServerModels.GetPlayersSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayerSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayerSegmentsResult>>;
         /**
-         * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
-         * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
-         * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
-         * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
-         * called 30 times in one minute. You will be returned an error if you exceed this threshold.
-         * https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersinsegment
-         */
-        GetPlayersInSegment(request: PlayFabServerModels.GetPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayersInSegmentResult>>;
-        /**
          * Retrieves the current version and values for the indicated statistics, for the local player.
          * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatistics
          */
@@ -339,6 +337,14 @@ declare module PlayFabServerModule {
          * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getrandomresulttables
          */
         GetRandomResultTables(request: PlayFabServerModels.GetRandomResultTablesRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetRandomResultTablesResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetRandomResultTablesResult>>;
+        /**
+         * Retrieves the result of an export started by ExportPlayersInSegment API. If the ExportPlayersInSegment is successful and
+         * complete, this API returns the IndexUrl from which the index file can be downloaded. The index file has a list of urls
+         * from which the files containing the player profile data can be downloaded. Otherwise, it returns the current 'State' of
+         * the export
+         * https://docs.microsoft.com/rest/api/playfab/server/playstream/getsegmentexport
+         */
+        GetSegmentExport(request: PlayFabServerModels.GetPlayersInSegmentExportRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayersInSegmentExportResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayersInSegmentExportResponse>>;
         /**
          * Retrieves the associated PlayFab account identifiers for the given set of server custom identifiers.
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/getservercustomidsfromplayfabids
@@ -888,16 +894,6 @@ declare module PlayFabServerModule {
 }
 
 declare module PlayFabServerModels {
-    export interface AdCampaignAttribution {
-        /** UTC time stamp of attribution */
-        AttributedAt: string;
-        /** Attribution campaign identifier */
-        CampaignId?: string;
-        /** Attribution network name */
-        Platform?: string;
-
-    }
-
     export interface AdCampaignAttributionModel {
         /** UTC time stamp of attribution */
         AttributedAt: string;
@@ -1249,12 +1245,6 @@ declare module PlayFabServerModels {
 
     }
 
-    type ChurnRiskLevel = "NoData"
-
-        | "LowRisk"
-        | "MediumRisk"
-        | "HighRisk";
-
     type CloudScriptRevisionOption = "Live"
 
         | "Latest"
@@ -1279,16 +1269,6 @@ declare module PlayFabServerModels {
         ItemInstanceId?: string;
         /** Number of uses remaining on the item. */
         RemainingUses: number;
-
-    }
-
-    export interface ContactEmailInfo {
-        /** The email address */
-        EmailAddress?: string;
-        /** The name of the email info data */
-        Name?: string;
-        /** The verification status of the email */
-        VerificationStatus?: string;
 
     }
 
@@ -1937,6 +1917,20 @@ declare module PlayFabServerModels {
         RevisionSelection?: string;
         /** The specivic revision to execute, when RevisionSelection is set to 'Specific' */
         SpecificRevision?: number;
+
+    }
+
+    export interface ExportPlayersInSegmentRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique identifier of the requested segment. */
+        SegmentId: string;
+
+    }
+
+    export interface ExportPlayersInSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Unique identifier of the export for the requested Segment. */
+        ExportId?: string;
+        /** Unique identifier of the requested Segment. */
+        SegmentId?: string;
 
     }
 
@@ -2734,6 +2728,8 @@ declare module PlayFabServerModels {
         | "AsyncExportRateLimitExceeded"
         | "AnalyticsSegmentCountOverLimit"
         | "GetPlayersInSegmentRetired"
+        | "GetSegmentPlayerCountNotInFlight"
+        | "GetSegmentPlayerCountRateLimitExceeded"
         | "SnapshotNotFound"
         | "InventoryApiNotImplemented"
         | "InventoryCollectionDeletionDisallowed"
@@ -2914,6 +2910,7 @@ declare module PlayFabServerModels {
         | "GameSaveManifestNotEligibleForRollback"
         | "GameSaveTitleClientAnonymousAccountCreationNotDisabled"
         | "GameSaveTitleConfigNoUpdatesRequested"
+        | "GameSavePlayerNotEligibleForTransfer"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -3379,39 +3376,17 @@ declare module PlayFabServerModels {
 
     }
 
-    export interface GetPlayersInSegmentRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Continuation token if retrieving subsequent pages of results. */
-        ContinuationToken?: string;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /**
-         * If set to true, the profiles are loaded asynchronously and the response will include a continuation token and
-         * approximate profile count until the first batch of profiles is loaded. Use this parameter to help avoid network
-         * timeouts.
-         */
-        GetProfilesAsync?: boolean;
-        /**
-         * Maximum is 10,000. The value 0 will prevent loading any profiles and return only the count of profiles matching this
-         * segment.
-         */
-        MaxBatchSize?: number;
-        /**
-         * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging
-         * results. Default is 300 (5 minutes). Maximum is 5,400 (90 minutes).
-         */
-        SecondsToLive?: number;
-        /** Unique identifier for this segment. */
-        SegmentId: string;
+    export interface GetPlayersInSegmentExportRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique identifier of the export for the requested Segment. */
+        ExportId: string;
 
     }
 
-    export interface GetPlayersInSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Continuation token to use to retrieve subsequent pages of results. If token returns null there are no more results. */
-        ContinuationToken?: string;
-        /** Array of player profiles in this segment. */
-        PlayerProfiles?: PlayerProfile[];
-        /** Count of profiles matching this segment. */
-        ProfilesInSegment: number;
+    export interface GetPlayersInSegmentExportResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Url from which the index file can be downloaded. */
+        IndexUrl?: string;
+        /** Shows the current status of the export */
+        State?: string;
 
     }
 
@@ -4637,82 +4612,6 @@ declare module PlayFabServerModels {
 
     }
 
-    export interface PlayerLinkedAccount {
-        /** Linked account's email */
-        Email?: string;
-        /** Authentication platform */
-        Platform?: string;
-        /** Platform user identifier */
-        PlatformUserId?: string;
-        /** Linked account's username */
-        Username?: string;
-
-    }
-
-    export interface PlayerLocation {
-        /** City of the player's geographic location. */
-        City?: string;
-        /** The two-character continent code for this location */
-        ContinentCode: string;
-        /** The two-character ISO 3166-1 country code for the country associated with the location */
-        CountryCode: string;
-        /** Latitude coordinate of the player's geographic location. */
-        Latitude?: number;
-        /** Longitude coordinate of the player's geographic location. */
-        Longitude?: number;
-
-    }
-
-    export interface PlayerProfile {
-        /** Array of ad campaigns player has been attributed to */
-        AdCampaignAttributions?: AdCampaignAttribution[];
-        /** Image URL of the player's avatar. */
-        AvatarUrl?: string;
-        /** Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date. */
-        BannedUntil?: string;
-        /** The prediction of the player to churn within the next seven days. */
-        ChurnPrediction?: string;
-        /** Array of contact email addresses associated with the player */
-        ContactEmailAddresses?: ContactEmailInfo[];
-        /** Player record created */
-        Created?: string;
-        /** Dictionary of player's custom properties. */
-        CustomProperties?: { [key: string]: any };
-        /** Player Display Name */
-        DisplayName?: string;
-        /** Last login */
-        LastLogin?: string;
-        /** Array of third party accounts linked to this player */
-        LinkedAccounts?: PlayerLinkedAccount[];
-        /** Dictionary of player's locations by type. */
-        Locations?: { [key: string]: PlayerLocation };
-        /** Player account origination */
-        Origination?: string;
-        /** List of player variants for experimentation */
-        PlayerExperimentVariants?: string[];
-        /** PlayFab Player ID */
-        PlayerId?: string;
-        /** Array of player statistics */
-        PlayerStatistics?: PlayerStatistic[];
-        /** Publisher this player belongs to */
-        PublisherId?: string;
-        /** Array of configured push notification end points */
-        PushNotificationRegistrations?: PushNotificationRegistration[];
-        /** Dictionary of player's statistics using only the latest version's value */
-        Statistics?: { [key: string]: number };
-        /** List of player's tags for segmentation. */
-        Tags?: string[];
-        /** Title ID this profile applies to */
-        TitleId?: string;
-        /** A sum of player's total purchases in USD across all currencies. */
-        TotalValueToDateInUSD?: number;
-        /** Dictionary of player's total purchases by currency. */
-        ValuesToDate?: { [key: string]: number };
-        /** Dictionary of player's virtual currency balances */
-        VirtualCurrencyBalances?: { [key: string]: number };
-
-    }
-
     export interface PlayerProfileModel {
         /** List of advertising campaigns the player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttributionModel[];
@@ -4802,18 +4701,6 @@ declare module PlayFabServerModels {
 
     }
 
-    export interface PlayerStatistic {
-        /** Statistic ID */
-        Id?: string;
-        /** Statistic name */
-        Name?: string;
-        /** Current statistic value */
-        StatisticValue: number;
-        /** Statistic version (0 if not a versioned statistic) */
-        StatisticVersion: number;
-
-    }
-
     export interface PlayerStatisticVersion {
         /** time when the statistic version became active */
         ActivationTime: string;
@@ -4871,14 +4758,6 @@ declare module PlayFabServerModels {
     type PushNotificationPlatform = "ApplePushNotificationService"
 
         | "GoogleCloudMessaging";
-
-    export interface PushNotificationRegistration {
-        /** Notification configured endpoint */
-        NotificationEndpointARN?: string;
-        /** Push notification platform */
-        Platform?: string;
-
-    }
 
     export interface PushNotificationRegistrationModel {
         /** Notification configured endpoint */

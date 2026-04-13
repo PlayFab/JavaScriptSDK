@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.212.260327",
+        sdkVersion: "1.213.260410",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.212.260327"
+            sdk: "JavaScriptSDK-1.213.260410"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -224,7 +224,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.212.260327";
+PlayFab.sdkVersion = "1.213.260410";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -419,13 +419,6 @@ PlayFab.AdminApi = {
 
     GetPlayerSharedSecrets: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayerSharedSecrets", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
-    /**
-     * @deprecated Please use ExportPlayersInSegment instead. 
-     */
-    GetPlayersInSegment: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetPlayersInSegment", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayerStatisticDefinitions: function (request, callback, customData, extraHeaders) {
@@ -710,6 +703,10 @@ PlayFab.AdminApi = {
 
     UpdateUserTitleDisplayName: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateUserTitleDisplayName", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    ValidateApiPolicy: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/ValidateApiPolicy", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
 };
