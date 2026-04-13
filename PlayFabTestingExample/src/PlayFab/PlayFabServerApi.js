@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.212.260327",
+        sdkVersion: "1.213.260410",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.212.260327"
+            sdk: "JavaScriptSDK-1.213.260410"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -224,7 +224,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.212.260327";
+PlayFab.sdkVersion = "1.213.260410";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -317,6 +317,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/ExecuteCloudScript", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    ExportPlayersInSegment: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/ExportPlayersInSegment", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     GetAllSegments: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetAllSegments", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -397,13 +401,6 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayerSegments", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
-    /**
-     * @deprecated Do not use
-     */
-    GetPlayersInSegment: function (request, callback, customData, extraHeaders) {
-        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayersInSegment", request, "X-SecretKey", callback, customData, extraHeaders);
-    },
-
     GetPlayerStatistics: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayerStatistics", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -474,6 +471,10 @@ PlayFab.ServerApi = {
 
     GetRandomResultTables: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetRandomResultTables", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetSegmentExport: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetSegmentExport", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetServerCustomIDsFromPlayFabIDs: function (request, callback, customData, extraHeaders) {

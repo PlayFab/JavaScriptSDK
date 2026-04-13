@@ -246,15 +246,6 @@ declare module PlayFabAdminModule {
          */
         GetPlayerSharedSecrets(request: PlayFabAdminModels.GetPlayerSharedSecretsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSharedSecretsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayerSharedSecretsResult>>;
         /**
-         * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
-         * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
-         * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
-         * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
-         * called 30 times in one minute. You will be returned an error if you exceed this threshold.
-         * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getplayersinsegment
-         */
-        GetPlayersInSegment(request: PlayFabAdminModels.GetPlayersInSegmentRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentResult>>;
-        /**
          * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have
          * a reset interval.
          * https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/getplayerstatisticdefinitions
@@ -640,6 +631,11 @@ declare module PlayFabAdminModule {
          * https://docs.microsoft.com/rest/api/playfab/admin/account-management/updateusertitledisplayname
          */
         UpdateUserTitleDisplayName(request: PlayFabAdminModels.UpdateUserTitleDisplayNameRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserTitleDisplayNameResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.UpdateUserTitleDisplayNameResult>>;
+        /**
+         * Validates the result of a policy update without persisting it.
+         * https://docs.microsoft.com/rest/api/playfab/admin/authentication/validateapipolicy
+         */
+        ValidateApiPolicy(request: PlayFabAdminModels.ValidateApiPolicyRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.ValidateApiPolicyResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.ValidateApiPolicyResponse>>;
 
     }
 }
@@ -714,16 +710,6 @@ declare module PlayFabAdminModels {
         TotalPlayersInSegment?: number;
         /** Total number of players that have had the actions applied to. */
         TotalPlayersProcessed?: number;
-
-    }
-
-    export interface AdCampaignAttribution {
-        /** UTC time stamp of attribution */
-        AttributedAt: string;
-        /** Attribution campaign identifier */
-        CampaignId?: string;
-        /** Attribution network name */
-        Platform?: string;
 
     }
 
@@ -1119,16 +1105,6 @@ declare module PlayFabAdminModels {
 
         | "True"
         | "False";
-
-    export interface ContactEmailInfo {
-        /** The email address */
-        EmailAddress?: string;
-        /** The name of the email info data */
-        Name?: string;
-        /** The verification status of the email */
-        VerificationStatus?: string;
-
-    }
 
     export interface ContactEmailInfoModel {
         /** The email address */
@@ -2836,6 +2812,8 @@ declare module PlayFabAdminModels {
         | "AsyncExportRateLimitExceeded"
         | "AnalyticsSegmentCountOverLimit"
         | "GetPlayersInSegmentRetired"
+        | "GetSegmentPlayerCountNotInFlight"
+        | "GetSegmentPlayerCountRateLimitExceeded"
         | "SnapshotNotFound"
         | "InventoryApiNotImplemented"
         | "InventoryCollectionDeletionDisallowed"
@@ -3016,6 +2994,7 @@ declare module PlayFabAdminModels {
         | "GameSaveManifestNotEligibleForRollback"
         | "GameSaveTitleClientAnonymousAccountCreationNotDisabled"
         | "GameSaveTitleConfigNoUpdatesRequested"
+        | "GameSavePlayerNotEligibleForTransfer"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -3272,42 +3251,6 @@ declare module PlayFabAdminModels {
         IndexUrl?: string;
         /** Shows the current status of the export */
         State?: string;
-
-    }
-
-    export interface GetPlayersInSegmentRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Continuation token if retrieving subsequent pages of results. */
-        ContinuationToken?: string;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null };
-        /**
-         * If set to true, the profiles are loaded asynchronously and the response will include a continuation token and
-         * approximate profile count until the first batch of profiles is loaded. Use this parameter to help avoid network
-         * timeouts.
-         */
-        GetProfilesAsync?: boolean;
-        /**
-         * Maximum is 10,000. The value 0 will prevent loading any profiles and return only the count of profiles matching this
-         * segment.
-         */
-        MaxBatchSize?: number;
-        /**
-         * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging
-         * results. Default is 300 (5 minutes). Maximum is 5,400 (90 minutes).
-         */
-        SecondsToLive?: number;
-        /** Unique identifier for this segment. */
-        SegmentId: string;
-
-    }
-
-    export interface GetPlayersInSegmentResult extends PlayFabModule.IPlayFabResultCommon  {
-        /** Continuation token to use to retrieve subsequent pages of results. If token returns null there are no more results. */
-        ContinuationToken?: string;
-        /** Array of player profiles in this segment. */
-        PlayerProfiles?: PlayerProfile[];
-        /** Count of profiles matching this segment. */
-        ProfilesInSegment: number;
 
     }
 
@@ -4053,82 +3996,6 @@ declare module PlayFabAdminModels {
 
     }
 
-    export interface PlayerLinkedAccount {
-        /** Linked account's email */
-        Email?: string;
-        /** Authentication platform */
-        Platform?: string;
-        /** Platform user identifier */
-        PlatformUserId?: string;
-        /** Linked account's username */
-        Username?: string;
-
-    }
-
-    export interface PlayerLocation {
-        /** City of the player's geographic location. */
-        City?: string;
-        /** The two-character continent code for this location */
-        ContinentCode: string;
-        /** The two-character ISO 3166-1 country code for the country associated with the location */
-        CountryCode: string;
-        /** Latitude coordinate of the player's geographic location. */
-        Latitude?: number;
-        /** Longitude coordinate of the player's geographic location. */
-        Longitude?: number;
-
-    }
-
-    export interface PlayerProfile {
-        /** Array of ad campaigns player has been attributed to */
-        AdCampaignAttributions?: AdCampaignAttribution[];
-        /** Image URL of the player's avatar. */
-        AvatarUrl?: string;
-        /** Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date. */
-        BannedUntil?: string;
-        /** The prediction of the player to churn within the next seven days. */
-        ChurnPrediction?: string;
-        /** Array of contact email addresses associated with the player */
-        ContactEmailAddresses?: ContactEmailInfo[];
-        /** Player record created */
-        Created?: string;
-        /** Dictionary of player's custom properties. */
-        CustomProperties?: { [key: string]: any };
-        /** Player Display Name */
-        DisplayName?: string;
-        /** Last login */
-        LastLogin?: string;
-        /** Array of third party accounts linked to this player */
-        LinkedAccounts?: PlayerLinkedAccount[];
-        /** Dictionary of player's locations by type. */
-        Locations?: { [key: string]: PlayerLocation };
-        /** Player account origination */
-        Origination?: string;
-        /** List of player variants for experimentation */
-        PlayerExperimentVariants?: string[];
-        /** PlayFab Player ID */
-        PlayerId?: string;
-        /** Array of player statistics */
-        PlayerStatistics?: PlayerStatistic[];
-        /** Publisher this player belongs to */
-        PublisherId?: string;
-        /** Array of configured push notification end points */
-        PushNotificationRegistrations?: PushNotificationRegistration[];
-        /** Dictionary of player's statistics using only the latest version's value */
-        Statistics?: { [key: string]: number };
-        /** List of player's tags for segmentation. */
-        Tags?: string[];
-        /** Title ID this profile applies to */
-        TitleId?: string;
-        /** A sum of player's total purchases in USD across all currencies. */
-        TotalValueToDateInUSD?: number;
-        /** Dictionary of player's total purchases by currency. */
-        ValuesToDate?: { [key: string]: number };
-        /** Dictionary of player's virtual currency balances */
-        VirtualCurrencyBalances?: { [key: string]: number };
-
-    }
-
     export interface PlayerProfileModel {
         /** List of advertising campaigns the player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttributionModel[];
@@ -4218,18 +4085,6 @@ declare module PlayFabAdminModels {
 
     }
 
-    export interface PlayerStatistic {
-        /** Statistic ID */
-        Id?: string;
-        /** Statistic name */
-        Name?: string;
-        /** Current statistic value */
-        StatisticValue: number;
-        /** Statistic version (0 if not a versioned statistic) */
-        StatisticVersion: number;
-
-    }
-
     export interface PlayerStatisticDefinition {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         AggregationMethod?: string;
@@ -4262,6 +4117,23 @@ declare module PlayFabAdminModels {
 
     }
 
+    export interface PolicyDiffSummary {
+        /** Number of new statements that would be added. */
+        StatementsAdded: number;
+        /** Number of existing statements that would be removed. Only applicable when OverwritePolicy is true. */
+        StatementsRemoved: number;
+        /**
+         * Number of existing statements that would be replaced by functionally equivalent incoming statements (e.g., same
+         * resource/effect/principal but different comment).
+         */
+        StatementsReplaced: number;
+        /** Number of existing statements that would remain unchanged. */
+        StatementsUnchanged: number;
+        /** Total number of statements in the resulting policy. */
+        TotalResultingStatements: number;
+
+    }
+
     export interface PushNotificationContent {
         /** Text of message to send. */
         Message?: string;
@@ -4275,14 +4147,6 @@ declare module PlayFabAdminModels {
     type PushNotificationPlatform = "ApplePushNotificationService"
 
         | "GoogleCloudMessaging";
-
-    export interface PushNotificationRegistration {
-        /** Notification configured endpoint */
-        NotificationEndpointARN?: string;
-        /** Push notification platform */
-        Platform?: string;
-
-    }
 
     export interface PushNotificationRegistrationModel {
         /** Notification configured endpoint */
@@ -6115,6 +5979,39 @@ declare module PlayFabAdminModels {
         XboxUserId?: string;
         /** XBox user sandbox */
         XboxUserSandbox?: string;
+
+    }
+
+    export interface ValidateApiPolicyRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Whether the validation should simulate overwriting or appending to the existing policy. */
+        OverwritePolicy: boolean;
+        /**
+         * The name of the policy to validate. Only 'ApiPolicy' is supported. This parameter is optional and defaults to
+         * 'ApiPolicy' if omitted.
+         */
+        PolicyName?: string;
+        /** Version of the policy to validate against. Must be the latest (as returned by GetPolicy). */
+        PolicyVersion: number;
+        /** The statements to validate. */
+        Statements: PermissionStatement[];
+
+    }
+
+    export interface ValidateApiPolicyResponse extends PlayFabModule.IPlayFabResultCommon  {
+        /** Summary of what would change compared to the current policy. */
+        Diff?: PolicyDiffSummary;
+        /** Whether the proposed policy is valid and would be accepted by UpdatePolicy. */
+        IsValid: boolean;
+        /** The name of the policy validated. */
+        PolicyName?: string;
+        /** Policy version. */
+        PolicyVersion: number;
+        /** The full set of statements that would result from applying this update. */
+        ResultingStatements?: PermissionStatement[];
+        /** Validation errors that would cause UpdatePolicy to reject this request. Empty if IsValid is true. */
+        ValidationErrors?: string[];
+        /** Non-blocking warnings about the proposed policy (e.g., near statement limit, duplicate statements). */
+        Warnings?: string[];
 
     }
 

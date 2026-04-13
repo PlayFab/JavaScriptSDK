@@ -696,6 +696,13 @@ declare module PlayFabProgressionModels {
     }
 
     export interface StatisticUpdate {
+        /**
+         * A list of entities to which the statistic update must be aggregated to, in addition to the entity being updated. For
+         * example, for Group stats where the stat value is aggregated based on the group members, this would refer to the Group
+         * entity. For a community stat that's aggregated at the Title, it is not required to populate this property (Title is the
+         * default).
+         */
+        AggregationTargetEntityKeys?: EntityKey[];
         /** Arbitrary metadata to store along side the statistic, will be returned by all Leaderboard APIs. */
         Metadata?: string;
         /** Name of the statistic, as originally configured. */
