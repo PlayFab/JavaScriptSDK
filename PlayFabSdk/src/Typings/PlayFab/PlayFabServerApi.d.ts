@@ -723,6 +723,11 @@ declare module PlayFabServerModule {
          */
         SubtractUserVirtualCurrency(request: PlayFabServerModels.SubtractUserVirtualCurrencyRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.ModifyUserVirtualCurrencyResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.ModifyUserVirtualCurrencyResult>>;
         /**
+         * Unlinks the related Apple account from the specified user's PlayFab account.
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkapple
+         */
+        UnlinkApple(request: PlayFabServerModels.UnlinkAppleRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkAppleResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkAppleResult>>;
+        /**
          * Unlinks the related Battle.net account from the user's PlayFab account.
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkbattlenetaccount
          */
@@ -737,6 +742,11 @@ declare module PlayFabServerModule {
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkfacebookinstantgamesid
          */
         UnlinkFacebookInstantGamesId(request: PlayFabServerModels.UnlinkFacebookInstantGamesIdRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkFacebookInstantGamesIdResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkFacebookInstantGamesIdResult>>;
+        /**
+         * Unlinks the related Game Center account from the specified user's PlayFab account.
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkgamecenteraccount
+         */
+        UnlinkGameCenterAccount(request: PlayFabServerModels.UnlinkGameCenterAccountRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkGameCenterAccountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.UnlinkGameCenterAccountResult>>;
         /**
          * Unlinks the related Nintendo account from the user's PlayFab account
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoserviceaccount
@@ -2937,6 +2947,7 @@ declare module PlayFabServerModels {
         | "PlayFabErrorEventNotSupportedForEntityType"
         | "MetadataLengthExceeded"
         | "MaxQueryableVersionsExceeded"
+        | "StatisticVersionIncrementNotAllowedWhileLinked"
         | "StoreMetricsRequestInvalidInput"
         | "StoreMetricsErrorRetrievingMetrics";
 
@@ -5323,6 +5334,18 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface UnlinkAppleRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface UnlinkAppleResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface UnlinkBattleNetAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
@@ -5354,6 +5377,18 @@ declare module PlayFabServerModels {
     }
 
     export interface UnlinkFacebookInstantGamesIdResult extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
+    export interface UnlinkGameCenterAccountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string;
+
+    }
+
+    export interface UnlinkGameCenterAccountResult extends PlayFabModule.IPlayFabResultCommon  {
 
     }
 
