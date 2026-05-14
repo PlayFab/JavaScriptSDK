@@ -3021,6 +3021,7 @@ declare module PlayFabAdminModels {
         | "PlayFabErrorEventNotSupportedForEntityType"
         | "MetadataLengthExceeded"
         | "MaxQueryableVersionsExceeded"
+        | "StatisticVersionIncrementNotAllowedWhileLinked"
         | "StoreMetricsRequestInvalidInput"
         | "StoreMetricsErrorRetrievingMetrics";
 

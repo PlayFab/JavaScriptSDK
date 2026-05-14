@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.213.260410",
+        sdkVersion: "1.215.260512",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.213.260410"
+            sdk: "JavaScriptSDK-1.215.260512"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -224,7 +224,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.213.260410";
+PlayFab.sdkVersion = "1.215.260512";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -749,6 +749,10 @@ PlayFab.ServerApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    UnlinkApple: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkApple", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     UnlinkBattleNetAccount: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkBattleNetAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -759,6 +763,10 @@ PlayFab.ServerApi = {
 
     UnlinkFacebookInstantGamesId: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkFacebookInstantGamesId", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UnlinkGameCenterAccount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/UnlinkGameCenterAccount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UnlinkNintendoServiceAccount: function (request, callback, customData, extraHeaders) {
