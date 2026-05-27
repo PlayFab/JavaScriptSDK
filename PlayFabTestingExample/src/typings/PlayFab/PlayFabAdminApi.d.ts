@@ -172,7 +172,8 @@ declare module PlayFabAdminModule {
         GetActionsOnPlayersInSegmentTaskInstance(request: PlayFabAdminModels.GetTaskInstanceRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetActionsOnPlayersInSegmentTaskInstanceResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetActionsOnPlayersInSegmentTaskInstanceResult>>;
         /**
          * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
-         * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+         * ExportPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not
+         * change.
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getallsegments
          */
         GetAllSegments(request: PlayFabAdminModels.GetAllSegmentsRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetAllSegmentsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetAllSegmentsResult>>;
@@ -285,6 +286,11 @@ declare module PlayFabAdminModule {
          * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getsegmentexport
          */
         GetSegmentExport(request: PlayFabAdminModels.GetPlayersInSegmentExportRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentExportResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetPlayersInSegmentExportResponse>>;
+        /**
+         * Returns the total number of players in a given segment.
+         * https://docs.microsoft.com/rest/api/playfab/admin/playstream/getsegmentplayercount
+         */
+        GetSegmentPlayerCount(request: PlayFabAdminModels.GetSegmentPlayerCountRequest, callback: PlayFabModule.ApiCallback<PlayFabAdminModels.GetSegmentPlayerCountResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAdminModels.GetSegmentPlayerCountResult>>;
         /**
          * Get detail information of a segment and its associated definition(s) and action(s) for a title.
          * https://docs.microsoft.com/rest/api/playfab/admin/segments/getsegments
@@ -784,6 +790,8 @@ declare module PlayFabAdminModels {
         Body: string;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
+        /** Optional status for the new news item. If not set, defaults to Published. */
+        Status?: string;
         /** Time this news was published. If not set, defaults to now. */
         Timestamp?: string;
         /** Default title (headline) of the news item. */
@@ -2552,7 +2560,6 @@ declare module PlayFabAdminModels {
         | "InsightsManagementGetOperationStatusInvalidParameter"
         | "DuplicatePurchaseTransactionId"
         | "EvaluationModePlayerCountExceeded"
-        | "GetPlayersInSegmentRateLimitExceeded"
         | "CloudScriptFunctionNameSizeExceeded"
         | "PaidInsightsFeaturesNotEnabled"
         | "CloudScriptAzureFunctionsQueueRequestError"
@@ -2811,7 +2818,6 @@ declare module PlayFabAdminModels {
         | "AsyncExportNotFound"
         | "AsyncExportRateLimitExceeded"
         | "AnalyticsSegmentCountOverLimit"
-        | "GetPlayersInSegmentRetired"
         | "GetSegmentPlayerCountNotInFlight"
         | "GetSegmentPlayerCountRateLimitExceeded"
         | "SnapshotNotFound"
@@ -2889,8 +2895,6 @@ declare module PlayFabAdminModels {
         | "PlayerCustomPropertiesPropertyDoesNotExist"
         | "AddonAlreadyExists"
         | "AddonDoesntExist"
-        | "CopilotDisabled"
-        | "CopilotInvalidRequest"
         | "TrueSkillUnauthorized"
         | "TrueSkillInvalidTitleId"
         | "TrueSkillInvalidScenarioId"
@@ -3347,6 +3351,18 @@ declare module PlayFabAdminModels {
     export interface GetRandomResultTablesResult extends PlayFabModule.IPlayFabResultCommon  {
         /** array of random result tables currently available */
         Tables?: { [key: string]: RandomResultTableListing };
+
+    }
+
+    export interface GetSegmentPlayerCountRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** Unique identifier for the requested segment. */
+        SegmentId: string;
+
+    }
+
+    export interface GetSegmentPlayerCountResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Count of profiles matching this segment. */
+        ProfilesInSegment: number;
 
     }
 
@@ -3920,6 +3936,12 @@ declare module PlayFabAdminModels {
         Name?: string;
 
     }
+
+    type NewsStatus = "None"
+
+        | "Unpublished"
+        | "Published"
+        | "Archived";
 
     export interface OpenIdConnection {
         /** The client ID given by the ID provider. */

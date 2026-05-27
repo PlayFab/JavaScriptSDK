@@ -303,6 +303,8 @@ declare module PlayFabAddonModels {
         Environments?: NintendoEnvironment[];
         /** If an error should be returned if the addon already exists. */
         ErrorIfExists?: boolean;
+        /** List of Nintendo Subscription Environments, currently supporting up to 4. Needs Catalog enabled. */
+        SubscriptionEnvironments?: NintendoEnvironment[];
 
     }
 
@@ -639,6 +641,8 @@ declare module PlayFabAddonModels {
         Created: boolean;
         /** List of Nintendo Environments, currently supporting up to 4. */
         Environments?: NintendoEnvironment[];
+        /** List of Nintendo Subscription Environments, currently supporting up to 4. */
+        SubscriptionEnvironments?: NintendoEnvironment[];
 
     }
 
