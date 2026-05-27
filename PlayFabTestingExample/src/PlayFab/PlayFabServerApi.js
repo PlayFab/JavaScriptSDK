@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.215.260512",
+        sdkVersion: "1.216.260526",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.215.260512"
+            sdk: "JavaScriptSDK-1.216.260526"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.215.260512";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
+PlayFab.sdkVersion = "1.216.260526";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -475,6 +475,10 @@ PlayFab.ServerApi = {
 
     GetSegmentExport: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetSegmentExport", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetSegmentPlayerCount: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetSegmentPlayerCount", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetServerCustomIDsFromPlayFabIDs: function (request, callback, customData, extraHeaders) {
