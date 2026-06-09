@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.216.260526",
+        sdkVersion: "1.217.260605",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.216.260526"
+            sdk: "JavaScriptSDK-1.217.260605"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -223,8 +223,8 @@ if(!PlayFab._internalSettings) {
     }
 }
 
-PlayFab.buildIdentifier = "adobuild_javascriptsdk_115";
-PlayFab.sdkVersion = "1.216.260526";
+PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
+PlayFab.sdkVersion = "1.217.260605";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -447,6 +447,10 @@ PlayFab.ServerApi = {
 
     GetPlayFabIDsFromPSNOnlineIDs: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromPSNOnlineIDs", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetPlayFabIDsFromServerCustomIDs: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Server/GetPlayFabIDsFromServerCustomIDs", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayFabIDsFromSteamIDs: function (request, callback, customData, extraHeaders) {
