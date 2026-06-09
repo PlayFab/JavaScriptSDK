@@ -641,6 +641,8 @@ declare module PlayFabAddonModels {
         Created: boolean;
         /** List of Nintendo Environments, currently supporting up to 4. */
         Environments?: NintendoEnvironment[];
+        /** List of Nintendo Subscription Environments associated to a secondary AppId, currently supporting up to 4. */
+        SecondarySubscriptionEnvironments?: NintendoEnvironment[];
         /** List of Nintendo Subscription Environments, currently supporting up to 4. */
         SubscriptionEnvironments?: NintendoEnvironment[];
 

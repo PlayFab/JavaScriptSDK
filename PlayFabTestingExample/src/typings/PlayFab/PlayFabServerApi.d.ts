@@ -303,6 +303,11 @@ declare module PlayFabServerModule {
          */
         GetPlayFabIDsFromPSNOnlineIDs(request: PlayFabServerModels.GetPlayFabIDsFromPSNOnlineIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromPSNOnlineIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromPSNOnlineIDsResult>>;
         /**
+         * Retrieves the associated PlayFab account identifiers for the given set of server custom player identifiers.
+         * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromservercustomids
+         */
+        GetPlayFabIDsFromServerCustomIDs(request: PlayFabServerModels.GetPlayFabIDsFromServerCustomIDsRequest, callback: PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromServerCustomIDsResult>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabServerModels.GetPlayFabIDsFromServerCustomIDsResult>>;
+        /**
          * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
          * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
          * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromsteamids
@@ -3605,6 +3610,21 @@ declare module PlayFabServerModels {
 
     }
 
+    export interface GetPlayFabIDsFromServerCustomIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /**
+         * Array of unique server custom player identifiers for which the title needs to get PlayFab identifiers. Cannot contain
+         * more than 25 identifiers.
+         */
+        ServerCustomIds: string[];
+
+    }
+
+    export interface GetPlayFabIDsFromServerCustomIDsResult extends PlayFabModule.IPlayFabResultCommon  {
+        /** Mapping of server custom identifiers to PlayFab identifiers. */
+        Data?: ServerCustomIDPlayFabIDPair[];
+
+    }
+
     export interface GetPlayFabIDsFromSteamIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
         /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. The array
@@ -4414,7 +4434,7 @@ declare module PlayFabServerModels {
         CustomTags?: { [key: string]: string | null };
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         PlayerSecret?: string;
         /** The backend server identifier for this player. */
         ServerCustomId: string;
@@ -5107,7 +5127,7 @@ declare module PlayFabServerModels {
     }
 
     export interface SetPlayerSecretRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         PlayerSecret?: string;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
