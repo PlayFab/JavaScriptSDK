@@ -98,8 +98,6 @@ declare module PlayFabAuthenticationModels {
     export interface GetEntityTokenRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null };
-        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
-        Entity?: EntityKey;
 
     }
 
