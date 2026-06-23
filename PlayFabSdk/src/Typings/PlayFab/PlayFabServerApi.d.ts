@@ -3142,6 +3142,11 @@ declare module PlayFabServerModels {
          * comma-separated list of platforms.
          */
         ExternalPlatformFriends?: string;
+        /**
+         * If true, include friends from the same namespace even if they have not logged in to the current title. Defaults to
+         * false.
+         */
+        NamespaceWide?: boolean;
         /** PlayFab identifier of the player whose friend list to get. */
         PlayFabId: string;
         /**

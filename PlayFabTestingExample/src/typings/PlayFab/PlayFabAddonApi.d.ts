@@ -5,6 +5,11 @@ declare module PlayFabAddonModule {
         ForgetAllCredentials(): void;
 
         /**
+         * Configures PSN event streams for an existing PSN addon on a title, without requiring a full addon upsert.
+         * https://docs.microsoft.com/rest/api/playfab/addon/addon/configurepsneventstreams
+         */
+        ConfigurePSNEventStreams(request: PlayFabAddonModels.ConfigurePSNEventStreamsRequest, callback: PlayFabModule.ApiCallback<PlayFabAddonModels.ConfigurePSNEventStreamsResponse>, customData?: any, extraHeaders?: { [key: string]: string }): Promise<PlayFabModule.ApiCallback<PlayFabAddonModels.ConfigurePSNEventStreamsResponse>>;
+        /**
          * Creates the Apple addon on a title, or updates it if it already exists.
          * https://docs.microsoft.com/rest/api/playfab/addon/addon/createorupdateapple
          */
@@ -159,6 +164,20 @@ declare module PlayFabAddonModule {
 }
 
 declare module PlayFabAddonModels {
+    export interface ConfigurePSNEventStreamsRequest extends PlayFabModule.IPlayFabRequestCommon {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null };
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey;
+        /** Title name obtained after setting a back server for PS5. Used for clawback event listeners. */
+        TitleName?: string;
+
+    }
+
+    export interface ConfigurePSNEventStreamsResponse extends PlayFabModule.IPlayFabResultCommon  {
+
+    }
+
     export interface CreateOrUpdateAppleRequest extends PlayFabModule.IPlayFabRequestCommon {
         /** Allow validation of receipts from the Apple production environment. Required for app releases. */
         AllowProduction?: boolean;
