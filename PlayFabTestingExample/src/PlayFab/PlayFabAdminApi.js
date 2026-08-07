@@ -14,9 +14,9 @@ if(!PlayFab.settings) {
 if(!PlayFab._internalSettings) {
     PlayFab._internalSettings = {
         entityToken: null,
-        sdkVersion: "1.218.260619",
+        sdkVersion: "1.220.260805",
         requestGetParams: {
-            sdk: "JavaScriptSDK-1.218.260619"
+            sdk: "JavaScriptSDK-1.220.260805"
         },
         sessionTicket: null,
         verticalName: null, // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
@@ -224,7 +224,7 @@ if(!PlayFab._internalSettings) {
 }
 
 PlayFab.buildIdentifier = "adobuild_javascriptsdk_114";
-PlayFab.sdkVersion = "1.218.260619";
+PlayFab.sdkVersion = "1.220.260805";
 PlayFab.GenerateErrorReport = function (error) {
     if (error == null)
         return "";
@@ -283,6 +283,10 @@ PlayFab.AdminApi = {
 
     CreateInsightsScheduledScalingTask: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreateInsightsScheduledScalingTask", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    CreateIPBan: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/CreateIPBan", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     CreateOpenIdConnection: function (request, callback, customData, extraHeaders) {
@@ -395,6 +399,14 @@ PlayFab.AdminApi = {
 
     GetDataReport: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetDataReport", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetIPBansForIP: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetIPBansForIP", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    GetIPBansForTitle: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/GetIPBansForTitle", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     GetPlayedTitleList: function (request, callback, customData, extraHeaders) {
@@ -581,6 +593,10 @@ PlayFab.AdminApi = {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RevokeInventoryItems", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
+    RevokeIPBan: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RevokeIPBan", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
     RunTask: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/RunTask", request, "X-SecretKey", callback, customData, extraHeaders);
     },
@@ -643,6 +659,10 @@ PlayFab.AdminApi = {
 
     UpdateCloudScript: function (request, callback, customData, extraHeaders) {
         return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateCloudScript", request, "X-SecretKey", callback, customData, extraHeaders);
+    },
+
+    UpdateIPBan: function (request, callback, customData, extraHeaders) {
+        return PlayFab._internalSettings.ExecuteRequestWrapper("/Admin/UpdateIPBan", request, "X-SecretKey", callback, customData, extraHeaders);
     },
 
     UpdateOpenIdConnection: function (request, callback, customData, extraHeaders) {
