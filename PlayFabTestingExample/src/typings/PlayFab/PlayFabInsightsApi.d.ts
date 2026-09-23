@@ -130,7 +130,7 @@ declare module PlayFabInsightsModels {
     }
 
     export interface InsightsPerformanceLevel {
-        /** Number of allowed active event exports. */
+        /** Number of allowed active event exports. This value is always zero. */
         ActiveEventExports: number;
         /** Maximum cache size. */
         CacheSizeMB: number;
