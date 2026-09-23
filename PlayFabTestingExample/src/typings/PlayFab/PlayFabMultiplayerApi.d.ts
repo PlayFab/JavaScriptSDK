@@ -966,8 +966,6 @@ declare module PlayFabMultiplayerModels {
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
          */
         Metadata?: { [key: string]: string | null };
-        /** The configuration for the monitoring application on the build */
-        MonitoringApplicationConfiguration?: MonitoringApplicationConfigurationParams;
         /** The number of multiplayer servers to host on a single VM. */
         MultiplayerServerCountPerVm: number;
         /** The ports to map the build on. */
@@ -1011,8 +1009,6 @@ declare module PlayFabMultiplayerModels {
         LinuxInstrumentationConfiguration?: LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
-        /** The configuration for the monitoring application for the build */
-        MonitoringApplicationConfiguration?: MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM of the build. */
         MultiplayerServerCountPerVm: number;
         /** The OS platform used for running the game process. */
@@ -1025,11 +1021,6 @@ declare module PlayFabMultiplayerModels {
         ServerResourceConstraints?: ServerResourceConstraintParams;
         /** The type of game server being hosted. */
         ServerType?: string;
-        /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
-         */
-        UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
         /** The configuration for the VmStartupScript feature for the build */
@@ -1067,8 +1058,6 @@ declare module PlayFabMultiplayerModels {
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
          */
         Metadata?: { [key: string]: string | null };
-        /** The configuration for the monitoring application on the build */
-        MonitoringApplicationConfiguration?: MonitoringApplicationConfigurationParams;
         /** The number of multiplayer servers to host on a single VM. */
         MultiplayerServerCountPerVm: number;
         /** The ports to map the build on. */
@@ -1117,8 +1106,6 @@ declare module PlayFabMultiplayerModels {
         InstrumentationConfiguration?: InstrumentationConfiguration;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
-        /** The configuration for the monitoring application for the build */
-        MonitoringApplicationConfiguration?: MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM of the build. */
         MultiplayerServerCountPerVm: number;
         /** The OS platform used for running the game process. */
@@ -1133,11 +1120,6 @@ declare module PlayFabMultiplayerModels {
         ServerType?: string;
         /** The command to run when the multiplayer server has been allocated, including any arguments. */
         StartMultiplayerServerCommand?: string;
-        /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
-         */
-        UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
         /** The configuration for the VmStartupScript feature for the build */
@@ -1180,8 +1162,6 @@ declare module PlayFabMultiplayerModels {
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
          */
         Metadata?: { [key: string]: string | null };
-        /** The configuration for the monitoring application on the build */
-        MonitoringApplicationConfiguration?: MonitoringApplicationConfigurationParams;
         /** The number of multiplayer servers to host on a single VM. */
         MultiplayerServerCountPerVm: number;
         /** The OS platform used for running the game process. */
@@ -1238,8 +1218,6 @@ declare module PlayFabMultiplayerModels {
         LinuxInstrumentationConfiguration?: LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
         Metadata?: { [key: string]: string | null };
-        /** The configuration for the monitoring application for the build */
-        MonitoringApplicationConfiguration?: MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM of the build. */
         MultiplayerServerCountPerVm: number;
         /** The OS platform used for running the game process. */
@@ -1255,11 +1233,6 @@ declare module PlayFabMultiplayerModels {
          * relative to the root asset folder when unzipped.
          */
         StartMultiplayerServerCommand?: string;
-        /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
-         */
-        UseStreamingForAssetDownloads?: boolean;
         /** The VM size the build was created on. */
         VmSize?: string;
         /** The configuration for the VmStartupScript feature for the build */
@@ -1885,6 +1858,8 @@ declare module PlayFabMultiplayerModels {
         GameAssetReferences?: AssetReference[];
         /** The game certificates for the build. */
         GameCertificateReferences?: GameCertificateReference[];
+        /** The game secrets for the build. */
+        GameSecretReferences?: GameSecretReference[];
         /** The instrumentation configuration of the build. */
         InstrumentationConfiguration?: InstrumentationConfiguration;
         /**
@@ -2918,30 +2893,6 @@ declare module PlayFabMultiplayerModels {
     type MembershipLock = "Unlocked"
 
         | "Locked";
-
-    export interface MonitoringApplicationConfiguration {
-        /** Asset which contains the monitoring application files and scripts. */
-        AssetReference: AssetReference;
-        /** Execution script name, this will be the main executable for the monitoring application. */
-        ExecutionScriptName: string;
-        /** Installation script name, this will be run before the ExecutionScript. */
-        InstallationScriptName?: string;
-        /** Timespan the monitoring application will be kept alive when running from the start of the VM */
-        OnStartRuntimeInMinutes?: number;
-
-    }
-
-    export interface MonitoringApplicationConfigurationParams {
-        /** Asset which contains the monitoring application files and scripts. */
-        AssetReference: AssetReferenceParams;
-        /** Execution script name, this will be the main executable for the monitoring application. */
-        ExecutionScriptName: string;
-        /** Installation script name, this will be run before the ExecutionScript. */
-        InstallationScriptName?: string;
-        /** Timespan the monitoring application will be kept alive when running from the start of the VM */
-        OnStartRuntimeInMinutes?: number;
-
-    }
 
     export interface MultiplayerServerSummary {
         /** The connected players in the multiplayer server. */

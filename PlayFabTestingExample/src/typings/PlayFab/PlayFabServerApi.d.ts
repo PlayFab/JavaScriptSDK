@@ -2932,6 +2932,8 @@ declare module PlayFabServerModels {
         | "GameSaveTitleConfigNoUpdatesRequested"
         | "GameSavePlayerNotEligibleForTransfer"
         | "GameSaveAlreadyAutoRolledBack"
+        | "GameSaveManifestNotEligibleForRestore"
+        | "GameSaveManifestArchived"
         | "StateShareForbidden"
         | "StateShareTitleNotInFlight"
         | "StateShareStateNotFound"
@@ -3591,14 +3593,22 @@ declare module PlayFabServerModels {
     }
 
     export interface GetPlayFabIDsFromPSNAccountIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        /**
+         * Id of the PlayStation :tm: Network issuer environment. If null, defaults to the production environment. This must match
+         * the issuer the account signed in under, otherwise the lookup returns a null PlayFabId rather than an error.
+         */
         IssuerId?: number;
         /**
          * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
          * cannot exceed 25 in length.
          */
         PSNAccountIDs: string[];
-        /** Optional sandbox id. When provided, resolves players that logged in from that PlayStation :tm: Network sandbox. */
+        /**
+         * The PlayStation :tm: Network sandbox the account is keyed under. Sandbox membership is per account, not per title:
+         * supply this only for accounts that sign in from a sandbox, and omit it for accounts that do not, including all retail
+         * accounts. Supplying a sandbox id that an account is not keyed under, or omitting one that it is, returns a null
+         * PlayFabId rather than an error.
+         */
         SandboxId?: string;
 
     }
@@ -3610,14 +3620,22 @@ declare module PlayFabServerModels {
     }
 
     export interface GetPlayFabIDsFromPSNOnlineIDsRequest extends PlayFabModule.IPlayFabRequestCommon {
-        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        /**
+         * Id of the PlayStation :tm: Network issuer environment. If null, defaults to the production environment. This must match
+         * the issuer the account signed in under, otherwise the lookup returns a null PlayFabId rather than an error.
+         */
         IssuerId?: number;
         /**
          * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
          * cannot exceed 25 in length.
          */
         PSNOnlineIDs: string[];
-        /** Optional sandbox id. When provided, resolves players that logged in from that PlayStation :tm: Network sandbox. */
+        /**
+         * The PlayStation :tm: Network sandbox the account is keyed under. Sandbox membership is per account, not per title:
+         * supply this only for accounts that sign in from a sandbox, and omit it for accounts that do not, including all retail
+         * accounts. Supplying a sandbox id that an account is not keyed under, or omitting one that it is, returns a null
+         * PlayFabId rather than an error.
+         */
         SandboxId?: string;
 
     }
@@ -4211,13 +4229,20 @@ declare module PlayFabServerModels {
         CustomTags?: { [key: string]: string | null };
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean;
-        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        /**
+         * Id of the PlayStation :tm: Network issuer environment. If null, defaults to the production environment. This must match
+         * the issuer the account signs in under, otherwise the link will not be resolved by that sign in.
+         */
         IssuerId?: number;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string;
         /** Id of the PlayStation :tm: Network user. Also known as the PSN Account Id. */
         PSNUserId: string;
-        /** Optional sandbox id. When provided, resolves and links the player on that PlayStation :tm: Network sandbox. */
+        /**
+         * The PlayStation :tm: Network sandbox to key the link under. Sandbox membership is per account, not per title: supply
+         * this only when the account signs in from a sandbox, and omit it otherwise, including for all retail accounts. This must
+         * match the sandbox the account signs in from, otherwise the link will not be resolved by that sign in.
+         */
         SandboxId?: string;
 
     }
@@ -6039,10 +6064,17 @@ declare module PlayFabServerModels {
     }
 
     export interface UserPsnInfo {
+        /**
+         * Id of the PlayStation :tm: Network issuer environment this account is keyed under. Supply this value as IssuerId when
+         * looking the account up.
+         */
+        IssuerId?: number;
         /** PlayStation :tm: Network account ID */
         PsnAccountId?: string;
         /** PlayStation :tm: Network online ID */
         PsnOnlineId?: string;
+        /** PlayStation :tm: Network sandbox ID */
+        PsnSandboxId?: string;
 
     }
 
